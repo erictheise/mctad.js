@@ -1,0 +1,34 @@
+{
+  "name": "mctad.js",
+  "version": "0.0.0",
+  "description": "Measures of Central Tendency and Dispersion: a JavaScript probability & statistics library",
+  "main": "index.js",
+  "directories": {
+    "example": "examples",
+    "test": "test"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "latest",
+    "mocha": "~1.19.0",
+    "chai": "~1.9.1",
+    "grunt-mocha": "~0.4.10"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/erictheise/mctad.js.git"
+  },
+  "keywords": [
+    "probability",
+    "statistics"
+  ],
+  "author": "Eric Theise <erictheise@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/erictheise/mctad.js/issues"
+  },
+  "homepage": "https://github.com/erictheise/mctad.js"
+}
