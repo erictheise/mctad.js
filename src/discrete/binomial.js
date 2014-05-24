@@ -5,7 +5,7 @@
 // Bernoulli trial; when n = 1, the Binomial Distribution is a Bernoulli Distribution.
 mctad.binomial_distribution = function(n, p) {
   // Check that `p` is a valid probability (0 ≤ p ≤ 1), and that `n` is an integer, strictly positive.
-  if (p < 0 || p > 1.0 || !/^\d+$/.test(n) || n <= 0) { return null; }
+  if (p < 0 || p > 1.0 || !this.isInteger(n) || n <= 0) { return null; }
 
   // We initialize `x`, the random variable, and `acc`, an accumulator for the cumulative distribution function
   // to 0. `distribution_functions` is the object we'll return with the `probability_of_x` and the
