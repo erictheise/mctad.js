@@ -18,6 +18,7 @@ module.exports = function(grunt) {
         src: [
           'src/core/core.js',
           'src/core/constants.js',
+          'src/core/helpers.js',
           'src/core/factorial.js',
           'src/discrete/*.js',
           'src/continuous/*.js'
