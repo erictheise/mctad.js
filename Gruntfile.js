@@ -6,6 +6,9 @@ module.exports = function(grunt) {
     shortname: function() {
       return this.pkg.name.replace('.js','');
     },
+    jshint: {
+      all: ['gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
+    },
     concat: {
       options: {
         stripBanners: true,
@@ -52,6 +55,7 @@ module.exports = function(grunt) {
     }
   });
 
+  grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-mocha');
   grunt.loadNpmTasks('grunt-mocha-test');
@@ -59,6 +63,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   // Default task(s).
-  grunt.registerTask('default', ['concat', 'mochaTest', 'uglify', 'watch']);
+  grunt.registerTask('default', ['jshint', 'concat', 'mochaTest', 'uglify', 'watch']);
 
 };

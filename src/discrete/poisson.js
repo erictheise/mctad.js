@@ -22,4 +22,4 @@ mctad.poisson_distribution = function (λ) {
   while (distribution_functions[x - 1].cumulative_probability_of_x < 1.0 - this.ε);
 
   return distribution_functions;
-}
+};

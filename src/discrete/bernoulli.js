@@ -9,4 +9,4 @@ mctad.bernoulli_distribution = function(p) {
   if (p < 0 || p > 1.0) { return null; }
 
   return this.binomial_distribution(1, p);
-}
+};
