@@ -6,6 +6,12 @@ mctad.π = Math.PI;
 // `ε`, epsilon, is a stopping criterion when we want to iterate until we're "close enough".
 mctad.ε = 0.0001;
 ;
+// A, hopefully small, collection of helper methods.
+
+mctad.isInteger = function(n) {
+  return (/^-?\d+$/.test(n));
+};
+;
 // A factorial, usually written n!, is the product of all positive integers less than or equal to n.
 mctad.factorial = function(n) {
   if (n < 0) { return null; }
@@ -37,7 +43,7 @@ mctad.bernoulli_distribution = function(p) {
 // Bernoulli trial; when n = 1, the Binomial Distribution is a Bernoulli Distribution.
 mctad.binomial_distribution = function(n, p) {
   // Check that `p` is a valid probability (0 ≤ p ≤ 1), and that `n` is an integer, strictly positive.
-  if (p < 0 || p > 1.0 || !/^\d+$/.test(n) || n <= 0) { return null; }
+  if (p < 0 || p > 1.0 || !this.isInteger(n) || n <= 0) { return null; }
 
   // We initialize `x`, the random variable, and `acc`, an accumulator for the cumulative distribution function
   // to 0. `distribution_functions` is the object we'll return with the `probability_of_x` and the
@@ -61,13 +67,9 @@ mctad.geometric_distribution = function (p) {
   // Check that `p` is a valid probability (0 < p < 1).
   if (p <= 0 || p >= 1.0) { return null; }
 
-  // We initialize `x`, the random variable, and `acc`, an accumulator for the cumulative distribution function
-  // to 0. `distribution_functions` is the object we'll return with the `probability_of_x` and the
-  // `cumulative_probability_of_x`, as well as the trivially calculated mean & variance. We iterate until the
-  // `cumulative_probability_of_x` is within `ε` of 1.0.
-  var probability_of_x, x = 1, acc = 0, distribution_functions = { mean: 1/p, variance: (1.0 - p)/Math.pow(p, 2) };
+  var probability_of_x, x = 0, acc = 0, distribution_functions = { mean: (1 - p)/p, variance: (1.0 - p)/Math.pow(p, 2) };
   do {
-    probability_of_x = p * Math.pow(1.0 - p, x - 1);
+    probability_of_x = p * Math.pow(1.0 - p, x);
     acc += probability_of_x;
     distribution_functions[x] = { probability_of_x: probability_of_x, cumulative_probability_of_x: acc };
     x++;
@@ -77,19 +79,15 @@ mctad.geometric_distribution = function (p) {
   return distribution_functions;
 };
 ;
-// # Geometric Distribution
+// # Hypergeometric Distribution
 
-mctad.geometric_distribution = function (p) {
+mctad.hypergeometric_distribution = function (p) {
   // Check that `p` is a valid probability (0 < p < 1).
   if (p <= 0 || p >= 1.0) { return null; }
 
-  // We initialize `x`, the random variable, and `acc`, an accumulator for the cumulative distribution function
-  // to 0. `distribution_functions` is the object we'll return with the `probability_of_x` and the
-  // `cumulative_probability_of_x`, as well as the trivially calculated mean & variance. We iterate until the
-  // `cumulative_probability_of_x` is within `ε` of 1.0.
-  var probability_of_x, x = 1, acc = 0, distribution_functions = { mean: 1/p, variance: (1.0 - p)/Math.pow(p, 2) };
+  var probability_of_x, x = 0, acc = 0, distribution_functions = { mean: (1 - p)/p, variance: (1.0 - p)/Math.pow(p, 2) };
   do {
-    probability_of_x = p * Math.pow(1.0 - p, x - 1);
+    probability_of_x = p * Math.pow(1.0 - p, x);
     acc += probability_of_x;
     distribution_functions[x] = { probability_of_x: probability_of_x, cumulative_probability_of_x: acc };
     x++;
@@ -124,4 +122,91 @@ mctad.poisson_distribution = function (λ) {
   while (distribution_functions[x - 1].cumulative_probability_of_x < 1.0 - this.ε);
 
   return distribution_functions;
+};
+;
+// # Discrete Uniform Distribution
+
+mctad.discrete_uniform = {
+  distribution: function (i, j) {
+    // Check that `i ≤ j`, and that `i` and `j` are integers.
+    if (i > j || !mctad.isInteger(i) || !mctad.isInteger(j) ) { return null; }
+
+    var probability_of_x, x, acc = 0, distribution_functions = { mean: (i + j)/2, variance: (Math.pow((j - i + 1), 2) - 1)/12 };
+    for (x = i; x <= j; x++) {
+      probability_of_x = 1/(j - i + 1);
+      acc += probability_of_x;
+      distribution_functions[x] = { probability_of_x: probability_of_x, cumulative_probability_of_x: acc };
+    }
+
+    return distribution_functions;
+  }
+
+};
+;
+// # Triangular Distribution
+
+mctad.triangular = {
+  distribution: function (a, c, b) {
+    // Check that `a < c < b`.
+    if (a >= b || a >= b || c >= b) { return null; }
+
+    var probability_of_x, x, distribution_functions = {
+      mean: (a + b + c)/3,
+      variance: (Math.pow(a, 2) + Math.pow(b, 2) + Math.pow(c, 2) - (a * b) - (a * c) - (b * c))/18,
+      mode: c
+    };
+
+    probability_of_x = function () {
+      if (a <= x && x <= c) {
+        return (2 * (x - a))/((b - a ) * (c - a));
+      } else {
+        if (c < x && x <= b) {
+          return (2 * (b - x))/((b - a ) * (b - c));
+        } else {
+          return 0;
+        }
+      }
+    };
+    cumulative_probability_of_x = function () {
+      if (x < a) {
+        return 0;
+      } else {
+        if (a <= x && x <= c) {
+          return (Math.pow((x - a), 2))/((b - a ) * (c - a));
+        } else {
+          if (c < x && x <= b) {
+            return 1 - ((Math.pow((b - x), 2))/((b - a ) * (b - c)));
+          } else {
+            return 1;
+          }
+        }
+      }
+    };
+    distribution_functions[x] = {
+      probability_of_x: probability_of_x,
+      cumulative_probability_of_x: cumulative_probability_of_x
+    };
+
+    return distribution_functions;
+  }
+
+};
+;
+// # Uniform Distribution
+
+mctad.uniform = {
+  distribution: function (a, b) {
+    // Check that `a < b`.
+    if (a >= b) { return null; }
+
+    var probability_of_x, x, acc = 0, distribution_functions = { mean: (a + b)/2, variance: Math.pow((b - a), 2)/12 };
+    for (x = i; x <= j; x++) {
+      probability_of_x = 1/(b - a);
+      acc += probability_of_x;
+      distribution_functions[x] = { probability_of_x: probability_of_x, cumulative_probability_of_x: acc };
+    }
+
+    return distribution_functions;
+  }
+
 };
