@@ -5,14 +5,19 @@ mctad.discrete_uniform = {
     // Check that `i ≤ j`, and that `i` and `j` are integers.
     if (i > j || !mctad.isInteger(i) || !mctad.isInteger(j) ) { return null; }
 
-    var probability_of_x, x, acc = 0, distribution_functions = { mean: (i + j)/2, variance: (Math.pow((j - i + 1), 2) - 1)/12 };
+    var x, pdf, cdf = 0, dfs = {
+      mean: (i + j)/2,
+      variance: (Math.pow((j - i + 1), 2) - 1)/12,
+      domain: { min: i, max: j }
+    };
     for (x = i; x <= j; x++) {
-      probability_of_x = 1/(j - i + 1);
-      acc += probability_of_x;
-      distribution_functions[x] = { probability_of_x: probability_of_x, cumulative_probability_of_x: acc };
+      pdf = 1/(j - i + 1);
+      cdf += pdf;
+      dfs[x] = { pdf: pdf, cdf: cdf };
     }
+    _.extend( dfs, mctad.mixins );
 
-    return distribution_functions;
+    return dfs;
   }
 
 };

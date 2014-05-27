@@ -7,7 +7,9 @@
     "example": "examples",
     "test": "test"
   },
-  "dependencies": {},
+  "dependencies": {
+    "underscore": "~1.6.0"
+  },
   "devDependencies": {
     "grunt": "latest",
     "mocha": "~1.19.0",
@@ -16,7 +18,8 @@
     "grunt-contrib-concat": "~0.4.0",
     "grunt-contrib-watch": "~0.6.1",
     "grunt-mocha-test": "~0.10.2",
-    "grunt-contrib-jshint": "~0.10.0"
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-groc": "~0.4.5"
   },
   "scripts": {
     "test": "make test"

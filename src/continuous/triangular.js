@@ -1,9 +1,9 @@
 // # Triangular Distribution
 
 mctad.triangular = {
-  distribution: function (a, c, b) {
+  distribution: function (a, b, c) {
     // Check that `a < c < b`.
-    if (a >= b || a >= b || c >= b) { return null; }
+    if (a >= b || a >= c || c >= b) { return null; }
 
     var probability_of_x, x, distribution_functions = {
       mean: (a + b + c)/3,

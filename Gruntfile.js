@@ -7,7 +7,7 @@ module.exports = function(grunt) {
       return this.pkg.name.replace('.js','');
     },
     jshint: {
-      all: ['gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
+      all: ['gruntfile.js', 'src/**/*.js', 'test/**/*.js']
     },
     concat: {
       options: {
@@ -20,6 +20,7 @@ module.exports = function(grunt) {
           'src/core/constants.js',
           'src/core/helpers.js',
           'src/core/factorial.js',
+          'src/discrete/mixins.js',
           'src/discrete/*.js',
           'src/continuous/*.js'
         ],
@@ -45,10 +46,18 @@ module.exports = function(grunt) {
         }
       }
     },
+    groc: {
+      javascript: [
+        'src/**/*.js', 'README.md'
+      ],
+      options: {
+        "out": "doc/"
+      }
+    },
     watch: {
       js: {
         options: {
-          spawn: false,
+          spawn: false
         },
         files: ['gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
         tasks: ['default']
@@ -61,9 +70,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-mocha');
   grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-groc');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   // Default task(s).
-  grunt.registerTask('default', ['jshint', 'concat', 'mochaTest', 'uglify', 'watch']);
+  grunt.registerTask('default', ['jshint', 'concat', 'mochaTest', 'uglify', 'groc', 'watch']);
 
 };

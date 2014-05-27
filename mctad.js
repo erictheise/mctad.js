@@ -23,17 +23,43 @@ mctad.factorial = function(n) {
   return acc;
 };
 ;
+mctad.mixins = {
+  P: function(x) {
+    if (this.hasOwnProperty(x)) {
+      return this[x].pdf;
+    } else {
+      return 0.0;
+    }
+  },
+  F: function(x) {
+    if (this.hasOwnProperty(x)) {
+      return this[x].cdf;
+    } else {
+      if (x < this.domain.min) {
+        return 0.0;
+      } else {
+        if (x > this.domain.max) {
+          return 1.0;
+        }
+      }
+    }
+  }
+};
+;
 // # Bernoulli Distribution
 // The [Bernoulli distribution](http://en.wikipedia.org/wiki/Bernoulli_distribution) is the probability discrete
 // distribution of a random variable which takes value 1 with success probability `p` and value 0 with failure
 // probability `q` = 1 - `p`. It can be used, for example, to represent the toss of a coin, where "1" is defined to
 // mean "heads" and "0" is defined to mean "tails" (or vice versa). It is a special case of a Binomial Distribution
 // where `n` = 1.
-mctad.bernoulli_distribution = function(p) {
-  // Check that `p` is a valid probability (0 ≤ p ≤ 1)
-  if (p < 0 || p > 1.0) { return null; }
 
-  return this.binomial_distribution(1, p);
+mctad.bernoulli = {
+  distribution: function(p) {
+    // Check that `p` is a valid probability (0 ≤ p ≤ 1)
+    if (p < 0 || p > 1.0) { return null; }
+
+    return mctad.binomial.distribution(1, p);
+  }
 };
 ;
 // # Binomial Distribution
@@ -41,60 +67,86 @@ mctad.bernoulli_distribution = function(p) {
 // distribution of the number of successes in a sequence of n independent yes/no experiments, each of which yields
 // success with probability `p`. Such a success/failure experiment is also called a Bernoulli experiment or
 // Bernoulli trial; when n = 1, the Binomial Distribution is a Bernoulli Distribution.
-mctad.binomial_distribution = function(n, p) {
-  // Check that `p` is a valid probability (0 ≤ p ≤ 1), and that `n` is an integer, strictly positive.
-  if (p < 0 || p > 1.0 || !this.isInteger(n) || n <= 0) { return null; }
 
-  // We initialize `x`, the random variable, and `acc`, an accumulator for the cumulative distribution function
-  // to 0. `distribution_functions` is the object we'll return with the `probability_of_x` and the
-  // `cumulative_probability_of_x`, as well as the calculated mean & variance. We iterate until the
-  // `cumulative_probability_of_x` is within `epsilon` of 1.0.
-  var probability_of_x, x = 0, acc = 0, distribution_functions = { mean: n * p, variance: (n * p) * (1.0 - p) };
-  do {
-    probability_of_x = (this.factorial(n) / (this.factorial(x) * this.factorial(n - x)) * (Math.pow(p, x) * Math.pow(1.0 - p, (n - x))));
-    acc += probability_of_x;
-    distribution_functions[x] = { probability_of_x: probability_of_x, cumulative_probability_of_x: acc };
-    x++;
+mctad.binomial = {
+  distribution: function (n, p) {
+    // Check that `p` is a valid probability (0 ≤ p ≤ 1), and that `n` is an integer, strictly positive.
+    if (p < 0 || p > 1.0 || !mctad.isInteger(n) || n <= 0) { return null; }
+
+    var x = 0, pdf, cdf = 0, dfs = {
+      mean: n * p,
+      variance: (n * p) * (1.0 - p),
+      domain: { min: 0, max: Infinity }
+    };
+    do {
+      pdf = (mctad.factorial(n) / (mctad.factorial(x) * mctad.factorial(n - x)) * (Math.pow(p, x) * Math.pow(1.0 - p, (n - x))));
+      cdf += pdf;
+      dfs[x] = { pdf: pdf, cdf: cdf };
+      x++;
+    }
+    while (dfs[x - 1].cdf < 1.0 - mctad.ε);
+
+    dfs.domain.max = x - 1;
+    _.extend( dfs, mctad.mixins );
+
+    return dfs;
   }
-  while (distribution_functions[x - 1].cumulative_probability_of_x < 1.0 - this.ε);
 
-  return distribution_functions;
 };
 ;
 // # Geometric Distribution
 
-mctad.geometric_distribution = function (p) {
-  // Check that `p` is a valid probability (0 < p < 1).
-  if (p <= 0 || p >= 1.0) { return null; }
+mctad.geometric = {
+  distribution: function (p) {
+    // Check that `p` is a valid probability (0 < p < 1).
+    if (p <= 0 || p >= 1.0) { return null; }
 
-  var probability_of_x, x = 0, acc = 0, distribution_functions = { mean: (1 - p)/p, variance: (1.0 - p)/Math.pow(p, 2) };
-  do {
-    probability_of_x = p * Math.pow(1.0 - p, x);
-    acc += probability_of_x;
-    distribution_functions[x] = { probability_of_x: probability_of_x, cumulative_probability_of_x: acc };
-    x++;
+    var x = 0, pdf, cdf = 0, dfs = {
+      mean: (1 - p)/p,
+      variance: (1.0 - p)/Math.pow(p, 2),
+      domain: { min: 0, max: Infinity }
+    };
+    do {
+      pdf = p * Math.pow(1.0 - p, x);
+      cdf += pdf;
+      dfs[x] = { pdf: pdf, cdf: cdf };
+      x++;
+    }
+    while (dfs[x - 1].cdf < 1.0 - mctad.ε);
+
+    dfs.domain.max = x - 1;
+    _.extend( dfs, mctad.mixins );
+
+    return dfs;
   }
-  while (distribution_functions[x - 1].cumulative_probability_of_x < 1.0 - this.ε);
 
-  return distribution_functions;
 };
 ;
 // # Hypergeometric Distribution
 
-mctad.hypergeometric_distribution = function (p) {
-  // Check that `p` is a valid probability (0 < p < 1).
-  if (p <= 0 || p >= 1.0) { return null; }
+mctad.hypergeometric = {
+  distribution: function (p) {
+    // Check that `p` is a valid probability (0 < p < 1).
+    if (p <= 0 || p >= 1.0) { return null; }
 
-  var probability_of_x, x = 0, acc = 0, distribution_functions = { mean: (1 - p)/p, variance: (1.0 - p)/Math.pow(p, 2) };
-  do {
-    probability_of_x = p * Math.pow(1.0 - p, x);
-    acc += probability_of_x;
-    distribution_functions[x] = { probability_of_x: probability_of_x, cumulative_probability_of_x: acc };
-    x++;
+    var x = 0, pdf, cdf = 0, dfs = {
+      mean: (1 - p)/p,
+      variance: (1.0 - p)/Math.pow(p, 2),
+      domain: { min: 0, max: Infinity }
+    };
+    do {
+      pdf = p * Math.pow(1.0 - p, x);
+      cdf += pdf;
+      dfs[x] = { pdf: pdf, cdf: cdf };
+      x++;
+    }
+    while (dfs[x - 1].cdf < 1.0 - mctad.ε);
+
+    dfs.domain.max = x - 1;
+    _.extend( dfs, mctad.mixins );
+
+    return dfs;
   }
-  while (distribution_functions[x - 1].cumulative_probability_of_x < 1.0 - this.ε);
-
-  return distribution_functions;
 };
 ;
 ;
@@ -104,24 +156,34 @@ mctad.hypergeometric_distribution = function (p) {
 // and/or space if these events occur with a known average rate and independently of the time since the last event.
 //
 // The Poisson Distribution is characterized by the strictly positive mean arrival or occurrence rate, `λ`.
-mctad.poisson_distribution = function (λ) {
-  // Check that λ is strictly positive
-  if (λ <= 0) { return null; }
 
-  // We initialize `x`, the random variable, and `acc`, an accumulator for the cumulative distribution function
-  // to 0. `distribution_functions` is the object we'll return with the `probability_of_x` and the
-  // `cumulative_probability_of_x`, as well as the trivially calculated mean & variance. We iterate until the
-  // `cumulative_probability_of_x` is within `epsilon` of 1.0.
-  var probability_of_x, x = 0, acc = 0, distribution_functions = { mean: λ, variance: λ };
-  do {
-    probability_of_x = (Math.pow(Math.E, -λ) * Math.pow(λ, x))/this.factorial(x);
-    acc += probability_of_x;
-    distribution_functions[x] = { probability_of_x: probability_of_x, cumulative_probability_of_x: acc };
-    x++;
+mctad.poisson = {
+  distribution: function (λ) {
+    // Check that λ is strictly positive
+    if (λ <= 0) { return null; }
+
+    // We initialize `x`, the random variable, and `cdf`, an cdfumulator for the cumulative distribution function
+    // to 0. `dfs` is the object we'll return with the `pdf` and the
+    // `cdf`, as well as the trivially calculated mean & variance. We iterate until the
+    // `cdf` is within `epsilon` of 1.0.
+    var x = 0, pdf, cdf = 0, dfs = {
+      mean: λ,
+      variance: λ,
+      domain: { min: 0, max: Infinity }
+    };
+    do {
+      pdf = (Math.pow(Math.E, -λ) * Math.pow(λ, x))/mctad.factorial(x);
+      cdf += pdf;
+      dfs[x] = { pdf: pdf, cdf: cdf };
+      x++;
+    }
+    while (dfs[x - 1].cdf < 1.0 - mctad.ε);
+
+    dfs.domain.max = x - 1;
+    _.extend( dfs, mctad.mixins );
+
+    return dfs;
   }
-  while (distribution_functions[x - 1].cumulative_probability_of_x < 1.0 - this.ε);
-
-  return distribution_functions;
 };
 ;
 // # Discrete Uniform Distribution
@@ -131,14 +193,19 @@ mctad.discrete_uniform = {
     // Check that `i ≤ j`, and that `i` and `j` are integers.
     if (i > j || !mctad.isInteger(i) || !mctad.isInteger(j) ) { return null; }
 
-    var probability_of_x, x, acc = 0, distribution_functions = { mean: (i + j)/2, variance: (Math.pow((j - i + 1), 2) - 1)/12 };
+    var x, pdf, cdf = 0, dfs = {
+      mean: (i + j)/2,
+      variance: (Math.pow((j - i + 1), 2) - 1)/12,
+      domain: { min: i, max: j }
+    };
     for (x = i; x <= j; x++) {
-      probability_of_x = 1/(j - i + 1);
-      acc += probability_of_x;
-      distribution_functions[x] = { probability_of_x: probability_of_x, cumulative_probability_of_x: acc };
+      pdf = 1/(j - i + 1);
+      cdf += pdf;
+      dfs[x] = { pdf: pdf, cdf: cdf };
     }
+    _.extend( dfs, mctad.mixins );
 
-    return distribution_functions;
+    return dfs;
   }
 
 };
@@ -146,9 +213,9 @@ mctad.discrete_uniform = {
 // # Triangular Distribution
 
 mctad.triangular = {
-  distribution: function (a, c, b) {
+  distribution: function (a, b, c) {
     // Check that `a < c < b`.
-    if (a >= b || a >= b || c >= b) { return null; }
+    if (a >= b || a >= c || c >= b) { return null; }
 
     var probability_of_x, x, distribution_functions = {
       mean: (a + b + c)/3,

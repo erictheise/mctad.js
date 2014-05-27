@@ -4,9 +4,12 @@
 // probability `q` = 1 - `p`. It can be used, for example, to represent the toss of a coin, where "1" is defined to
 // mean "heads" and "0" is defined to mean "tails" (or vice versa). It is a special case of a Binomial Distribution
 // where `n` = 1.
-mctad.bernoulli_distribution = function(p) {
-  // Check that `p` is a valid probability (0 ≤ p ≤ 1)
-  if (p < 0 || p > 1.0) { return null; }
 
-  return this.binomial_distribution(1, p);
+mctad.bernoulli = {
+  distribution: function(p) {
+    // Check that `p` is a valid probability (0 ≤ p ≤ 1)
+    if (p < 0 || p > 1.0) { return null; }
+
+    return mctad.binomial.distribution(1, p);
+  }
 };
