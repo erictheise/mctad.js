@@ -19,7 +19,7 @@ mctad.geometric = {
     while (dfs[x - 1].cdf < 1.0 - mctad.ε);
 
     dfs.domain.max = x - 1;
-    _.extend( dfs, mctad.mixins );
+    mctad.extend(dfs, mctad.mixins);
 
     return dfs;
   }

@@ -15,7 +15,7 @@ mctad.discrete_uniform = {
       cdf += pdf;
       dfs[x] = { pdf: pdf, cdf: cdf };
     }
-    _.extend( dfs, mctad.mixins );
+    mctad.extend(dfs, mctad.mixins);
 
     return dfs;
   }

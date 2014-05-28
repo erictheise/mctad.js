@@ -429,6 +429,136 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "outline": []
             }
           ]
+        }, {
+          "type": "folder",
+          "data": {
+            "path": "src/statistics",
+            "title": "statistics"
+          },
+          "depth": 2,
+          "children": [
+            {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/statistics/mean.js",
+                "projectPath": "src/statistics/mean.js",
+                "targetPath": "src/statistics/mean",
+                "pageTitle": "src/statistics/mean",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "Sample Mean",
+                    "slug": "sample-mean",
+                    "isFileHeader": true
+                  },
+                  "depth": 1
+                },
+                "title": "Sample Mean"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/statistics/median.js",
+                "projectPath": "src/statistics/median.js",
+                "targetPath": "src/statistics/median",
+                "pageTitle": "src/statistics/median",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "Sample Mode",
+                    "slug": "sample-mode",
+                    "isFileHeader": true
+                  },
+                  "depth": 1
+                },
+                "title": "Sample Mode"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/statistics/mode.js",
+                "projectPath": "src/statistics/mode.js",
+                "targetPath": "src/statistics/mode",
+                "pageTitle": "src/statistics/mode",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "Sample Mode",
+                    "slug": "sample-mode",
+                    "isFileHeader": true
+                  },
+                  "depth": 1
+                },
+                "title": "Sample Mode"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/statistics/sum.js",
+                "projectPath": "src/statistics/sum.js",
+                "targetPath": "src/statistics/sum",
+                "pageTitle": "src/statistics/sum",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "Sum",
+                    "slug": "sum",
+                    "isFileHeader": true
+                  },
+                  "depth": 1
+                },
+                "title": "Sum"
+              },
+              "depth": 3,
+              "outline": []
+            }
+          ]
         }
       ]
     }

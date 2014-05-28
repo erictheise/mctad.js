@@ -8,8 +8,22 @@ mctad.ε = 0.0001;
 ;
 // A, hopefully small, collection of helper methods.
 
-mctad.isInteger = function(n) {
+mctad.isInteger = function (n) {
   return (/^-?\d+$/.test(n));
+};
+
+mctad.extend = function (destination, source) {
+  for (var k in source) {
+    if (source.hasOwnProperty(k)) {
+      destination[k] = source[k];
+    }
+  }
+  return destination;
+};
+
+mctad.sortNumeric = function (data) {
+  data.sort(function (a, b) { return a - b; });
+  return data;
 };
 ;
 // A factorial, usually written n!, is the product of all positive integers less than or equal to n.
@@ -21,6 +35,69 @@ mctad.factorial = function(n) {
     acc = acc * i;
   }
   return acc;
+};
+;
+// # Sample Mean
+
+mctad.mean = function (data) {
+  if (!Array.isArray(data) || data.length === 0) { return null; }
+
+  return this.sum(data)/data.length;
+
+};
+;
+// # Sample Mode
+
+mctad.median = function (data) {
+  if (!Array.isArray(data) || data.length === 0) { return null; }
+
+  this.sortNumeric(data);
+  if (data.length % 2 === 0) {
+    return (data[data.length/2 - 1] + data[data.length/2])/2;
+  } else {
+    return data[(data.length + 1)/2 - 1];
+  }
+
+};
+;
+// # Sample Mode
+
+mctad.mode = function (data) {
+  if (!Array.isArray(data) || data.length === 0) { return null; }
+
+  var modes = [], frequencies = {}, max = 0;
+  for (var i = 0; i < data.length; i++) {
+    if (frequencies.hasOwnProperty(data[i])) {
+      frequencies[data[i]]++;
+    } else {
+      frequencies[data[i]] = 1;
+    }
+    if (frequencies[data[i]] > max) { max = frequencies[data[i]]; }
+  }
+
+  for(var key in frequencies) {
+    if (frequencies.hasOwnProperty(key)) {
+      if (frequencies[key] === max) {
+        modes.push(parseInt(key));
+      }
+    }
+  }
+
+  this.sortNumeric(modes);
+  return modes;
+};
+;
+// # Sum
+
+mctad.sum = function (data) {
+  if (!Array.isArray(data) || data.length === 0 ) { return null; }
+
+  var sum = 0.0;
+  for (var i = 0; i < data.length; i++) {
+    sum += data[i];
+  }
+  return sum;
+
 };
 ;
 mctad.mixins = {
@@ -87,7 +164,7 @@ mctad.binomial = {
     while (dfs[x - 1].cdf < 1.0 - mctad.ε);
 
     dfs.domain.max = x - 1;
-    _.extend( dfs, mctad.mixins );
+    mctad.extend(dfs, mctad.mixins);
 
     return dfs;
   }
@@ -115,7 +192,7 @@ mctad.geometric = {
     while (dfs[x - 1].cdf < 1.0 - mctad.ε);
 
     dfs.domain.max = x - 1;
-    _.extend( dfs, mctad.mixins );
+    mctad.extend(dfs, mctad.mixins);
 
     return dfs;
   }
@@ -143,7 +220,7 @@ mctad.hypergeometric = {
     while (dfs[x - 1].cdf < 1.0 - mctad.ε);
 
     dfs.domain.max = x - 1;
-    _.extend( dfs, mctad.mixins );
+    mctad.extend(dfs, mctad.mixins);
 
     return dfs;
   }
@@ -180,7 +257,7 @@ mctad.poisson = {
     while (dfs[x - 1].cdf < 1.0 - mctad.ε);
 
     dfs.domain.max = x - 1;
-    _.extend( dfs, mctad.mixins );
+    mctad.extend(dfs, mctad.mixins);
 
     return dfs;
   }
@@ -203,7 +280,7 @@ mctad.discrete_uniform = {
       cdf += pdf;
       dfs[x] = { pdf: pdf, cdf: cdf };
     }
-    _.extend( dfs, mctad.mixins );
+    mctad.extend(dfs, mctad.mixins);
 
     return dfs;
   }

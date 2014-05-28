@@ -1,5 +1,4 @@
 require('../../mctad');
-_ = require('underscore');
 var assert = require('chai').assert;
 
 describe('discrete_uniform.distribution', function() {
