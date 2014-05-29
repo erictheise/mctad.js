@@ -539,6 +539,66 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/statistics/sample_standard_deviation.js",
+                "projectPath": "src/statistics/sample_standard_deviation.js",
+                "targetPath": "src/statistics/sample_standard_deviation",
+                "pageTitle": "src/statistics/sample_standard_deviation",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "Sample Standard Deviation",
+                    "slug": "sample-standard-deviation",
+                    "isFileHeader": true
+                  },
+                  "depth": 1
+                },
+                "title": "Sample Standard Deviation"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/statistics/sample_variance.js",
+                "projectPath": "src/statistics/sample_variance.js",
+                "targetPath": "src/statistics/sample_variance",
+                "pageTitle": "src/statistics/sample_variance",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "Sample Variance",
+                    "slug": "sample-variance",
+                    "isFileHeader": true
+                  },
+                  "depth": 1
+                },
+                "title": "Sample Variance"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
                 "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/statistics/sum.js",
                 "projectPath": "src/statistics/sum.js",
                 "targetPath": "src/statistics/sum",
