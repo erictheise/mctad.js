@@ -57,7 +57,7 @@ mctad.factorial = function(n) {
 // `mctad.arithmeticMean()` accepts an Array of Numbers and returns their average as a Number.
 // It is aliased by `mctad.mean()`.
 //
-// See [Arithmetic Mean](http://en.wikipedia.org/wiki/Mean#Arithmetic_mean_.28AM.29).
+// More at the [Wikipedia article](http://en.wikipedia.org/wiki/Mean#Arithmetic_mean_.28AM.29).
 
 mctad.arithmeticMean = function (data) {
   if (!Array.isArray(data) || data.length === 0) { return undefined; }
@@ -146,6 +146,19 @@ mctad.medianDirection = function (data) {
   // They don't use it after introducing it, so: low priority
 };
 ;
+// # Geometric Mean
+//
+// `mctad.geometricMean()` accepts an Array of Numbers and returns their average as a Number.
+//
+// More at the [Wikipedia article](http://en.wikipedia.org/wiki/Mean#Geometric_mean_.28AM.29).
+
+mctad.geometricMean = function (data) {
+  if (!Array.isArray(data) || data.length === 0) { return undefined; }
+
+  return Math.pow(this.product(data), 1/data.length);
+
+};
+;
 // # Mean
 //
 // `mctad.mean()` accepts an Array of Numbers and returns their average as a Number.
@@ -196,6 +209,23 @@ mctad.mode = function (data) {
   return modes;
 };
 ;
+// # Product
+//
+// `mctad.product()` accepts an Array of Numbers and returns their product as a Number.
+// It is used in the calculation of `mctad.geometricMean()`, the [Geometric Mean](geometric_mean.html).
+
+mctad.product = function (data) {
+  if (!Array.isArray(data) || data.length === 0 ) { return undefined; }
+
+  // `product` is a simple accumulator.
+  var product = 1.0;
+  for (var i = 0; i < data.length; i++) {
+    product *= data[i];
+  }
+  return product;
+
+};
+;
 // # Sample Standard Deviation
 //
 
@@ -228,12 +258,12 @@ mctad.sampleVariance = function (data) {
 // # Sum
 //
 // `mctad.sum()` accepts an Array of Numbers and returns their sum as a Number.
-// It is used in the calculation of `mctad.mean()`, the [Sample Mean](mean.html).
+// It is used in the calculation of `mctad.arithmeticMean()`, the [Arithmetic Mean](arithmetic_mean.html).
 
 mctad.sum = function (data) {
   if (!Array.isArray(data) || data.length === 0 ) { return undefined; }
 
-  // `sum` is an accumulator.
+  // `sum` is a simple accumulator.
   var sum = 0.0;
   for (var i = 0; i < data.length; i++) {
     sum += data[i];

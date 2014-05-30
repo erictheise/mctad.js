@@ -820,6 +820,36 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/statistics/geometric_mean.js",
+                "projectPath": "src/statistics/geometric_mean.js",
+                "targetPath": "src/statistics/geometric_mean",
+                "pageTitle": "src/statistics/geometric_mean",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "Geometric Mean",
+                    "slug": "geometric-mean",
+                    "isFileHeader": true
+                  },
+                  "depth": 1
+                },
+                "title": "Geometric Mean"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
                 "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/statistics/mean.js",
                 "projectPath": "src/statistics/mean.js",
                 "targetPath": "src/statistics/mean",
@@ -895,6 +925,36 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "depth": 1
                 },
                 "title": "Sample Mode"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/statistics/product.js",
+                "projectPath": "src/statistics/product.js",
+                "targetPath": "src/statistics/product",
+                "pageTitle": "src/statistics/product",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "Product",
+                    "slug": "product",
+                    "isFileHeader": true
+                  },
+                  "depth": 1
+                },
+                "title": "Product"
               },
               "depth": 3,
               "outline": []
