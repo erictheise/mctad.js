@@ -17,3 +17,18 @@ mctad.sortNumeric = function (data) {
   data.sort(function (a, b) { return a - b; });
   return data;
 };
+
+mctad.toRadians = function (v) {
+  if (typeof v === 'string' || v instanceof String) {
+    // If it's a string, explicitly in degrees, e.g, "47.3°", convert it to radians
+    if (v.trim().slice(-1) === '°') {
+      return (Math.PI/180) * parseFloat(v);
+    } else {
+      // If it's a string, assume it's already in radians
+      return parseFloat(v);
+    }
+  } else {
+    // If it's a number, assume it's already in radians
+    return v;
+  }
+};

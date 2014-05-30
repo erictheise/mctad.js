@@ -25,6 +25,21 @@ mctad.sortNumeric = function (data) {
   data.sort(function (a, b) { return a - b; });
   return data;
 };
+
+mctad.toRadians = function (v) {
+  if (typeof v === 'string' || v instanceof String) {
+    // If it's a string, explicitly in degrees, e.g, "47.3°", convert it to radians
+    if (v.trim().slice(-1) === '°') {
+      return (Math.PI/180) * parseFloat(v);
+    } else {
+      // If it's a string, assume it's already in radians
+      return parseFloat(v);
+    }
+  } else {
+    // If it's a number, assume it's already in radians
+    return v;
+  }
+};
 ;
 // A factorial, usually written n!, is the product of all positive integers less than or equal to n.
 mctad.factorial = function(n) {
@@ -37,6 +52,86 @@ mctad.factorial = function(n) {
   return acc;
 };
 ;
+// # Circular Standard Deviation
+
+mctad.circularStandardDeviation = function (data) {
+  // Mardia & Jupp equation (2.3.11)
+  // Depends on meanResultantLength
+  return Math.sqrt( -2.0 * Math.log(1 - this.meanResultantLength(data)) );
+};
+;
+// # Circular Variance
+
+mctad.circularVariance = function (data) {
+  // Mardia & Jupp equation (2.3.3)
+  // Depends on meanResultantLength
+  return 1 - this.meanResultantLength(data);
+};
+;
+// Directional statistics
+//
+// This section is based on "Directional Statistics" by Kanti V. Mardia &
+// Peter E. Jupp, Wiley (2000)
+//
+
+
+
+
+
+
+;
+// # Mean Direction
+
+mctad.meanDirection = function (data) {
+  // The mean_direction of no angles is null
+  if (data.length === 0 ) return null;
+
+  // Mardia & Jupp equation (2.2.4)
+  var c_bar, s_bar, theta_bar, acc = { c: 0, s : 0 };
+  for (i = 0; i < data.length; i++) {
+    acc.c += Math.cos(this.toRadians(data[i]));
+    acc.s += Math.sin(this.toRadians(data[i]));
+  }
+  c_bar = (acc.c / data.length);
+  s_bar = (acc.s / data.length);
+  if (c_bar >= 0 ) {
+    theta_bar = Math.atan(s_bar/c_bar);
+  } else {
+    theta_bar = Math.atan(s_bar/c_bar) + this.π;
+  }
+  return theta_bar;
+};
+;
+// # Mean Resultant Length
+
+mctad.mean_resultant_length = function (data) {
+  // The mean_resultant_length of no angles is null
+  if (data.length === 0 ) return null;
+
+  // Mardia & Jupp equation (2.2.4)
+  var c_bar, s_bar, r_bar, acc = { c: 0, s : 0 };
+  for (i = 0; i < data.length; i++) {
+    acc.c += Math.cos(this.toRadians(data[i]));
+    acc.s += Math.sin(this.toRadians(data[i]));
+  }
+  c_bar = (acc.c / data.length);
+  s_bar = (acc.s / data.length);
+  r_bar = Math.sqrt(Math.pow(c_bar, 2) + Math.pow(s_bar, 2));
+  return r_bar;
+};
+;
+// # Median Direction
+
+mctad.medianDirection = function (data) {
+  // Mardia & Jupp describe the conditions, but not the calculations!
+  //
+  // The median_direction is any angle θ such that
+  // (i)  half of the data points lie in the in the arc [θ, θ + π) and
+  // (ii) the majority are nearer to θ than to θ + π
+  //
+  // They don't use it after introducing it, so: low priority
+};
+;
 // # Sample Mean
 
 mctad.mean = function (data) {
@@ -46,7 +141,7 @@ mctad.mean = function (data) {
 
 };
 ;
-// # Sample Mode
+// # Sample Median
 
 mctad.median = function (data) {
   if (!Array.isArray(data) || data.length === 0) { return null; }

@@ -438,6 +438,186 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "depth": 2,
           "children": [
             {
+              "type": "folder",
+              "data": {
+                "path": "src/statistics/directional",
+                "title": "directional"
+              },
+              "depth": 3,
+              "children": [
+                {
+                  "type": "file",
+                  "data": {
+                    "language": {
+                      "nameMatchers": [".js"],
+                      "pygmentsLexer": "javascript",
+                      "multiLineComment": ["/*", "*", "*/"],
+                      "singleLineComment": ["//"],
+                      "ignorePrefix": "}",
+                      "foldPrefix": "^",
+                      "name": "JavaScript"
+                    },
+                    "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/statistics/directional/circular_standard_deviation.js",
+                    "projectPath": "src/statistics/directional/circular_standard_deviation.js",
+                    "targetPath": "src/statistics/directional/circular_standard_deviation",
+                    "pageTitle": "src/statistics/directional/circular_standard_deviation",
+                    "firstHeader": {
+                      "type": "heading",
+                      "data": {
+                        "level": 1,
+                        "title": "Circular Standard Deviation",
+                        "slug": "circular-standard-deviation",
+                        "isFileHeader": true
+                      },
+                      "depth": 1
+                    },
+                    "title": "Circular Standard Deviation"
+                  },
+                  "depth": 4,
+                  "outline": []
+                }, {
+                  "type": "file",
+                  "data": {
+                    "language": {
+                      "nameMatchers": [".js"],
+                      "pygmentsLexer": "javascript",
+                      "multiLineComment": ["/*", "*", "*/"],
+                      "singleLineComment": ["//"],
+                      "ignorePrefix": "}",
+                      "foldPrefix": "^",
+                      "name": "JavaScript"
+                    },
+                    "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/statistics/directional/circular_variance.js",
+                    "projectPath": "src/statistics/directional/circular_variance.js",
+                    "targetPath": "src/statistics/directional/circular_variance",
+                    "pageTitle": "src/statistics/directional/circular_variance",
+                    "firstHeader": {
+                      "type": "heading",
+                      "data": {
+                        "level": 1,
+                        "title": "Circular Variance",
+                        "slug": "circular-variance",
+                        "isFileHeader": true
+                      },
+                      "depth": 1
+                    },
+                    "title": "Circular Variance"
+                  },
+                  "depth": 4,
+                  "outline": []
+                }, {
+                  "type": "file",
+                  "data": {
+                    "language": {
+                      "nameMatchers": [".js"],
+                      "pygmentsLexer": "javascript",
+                      "multiLineComment": ["/*", "*", "*/"],
+                      "singleLineComment": ["//"],
+                      "ignorePrefix": "}",
+                      "foldPrefix": "^",
+                      "name": "JavaScript"
+                    },
+                    "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/statistics/directional/directional_statistics.js",
+                    "projectPath": "src/statistics/directional/directional_statistics.js",
+                    "targetPath": "src/statistics/directional/directional_statistics",
+                    "pageTitle": "src/statistics/directional/directional_statistics",
+                    "title": "directional_statistics"
+                  },
+                  "depth": 4,
+                  "outline": []
+                }, {
+                  "type": "file",
+                  "data": {
+                    "language": {
+                      "nameMatchers": [".js"],
+                      "pygmentsLexer": "javascript",
+                      "multiLineComment": ["/*", "*", "*/"],
+                      "singleLineComment": ["//"],
+                      "ignorePrefix": "}",
+                      "foldPrefix": "^",
+                      "name": "JavaScript"
+                    },
+                    "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/statistics/directional/mean_direction.js",
+                    "projectPath": "src/statistics/directional/mean_direction.js",
+                    "targetPath": "src/statistics/directional/mean_direction",
+                    "pageTitle": "src/statistics/directional/mean_direction",
+                    "firstHeader": {
+                      "type": "heading",
+                      "data": {
+                        "level": 1,
+                        "title": "Mean Direction",
+                        "slug": "mean-direction",
+                        "isFileHeader": true
+                      },
+                      "depth": 1
+                    },
+                    "title": "Mean Direction"
+                  },
+                  "depth": 4,
+                  "outline": []
+                }, {
+                  "type": "file",
+                  "data": {
+                    "language": {
+                      "nameMatchers": [".js"],
+                      "pygmentsLexer": "javascript",
+                      "multiLineComment": ["/*", "*", "*/"],
+                      "singleLineComment": ["//"],
+                      "ignorePrefix": "}",
+                      "foldPrefix": "^",
+                      "name": "JavaScript"
+                    },
+                    "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/statistics/directional/mean_resultant_length.js",
+                    "projectPath": "src/statistics/directional/mean_resultant_length.js",
+                    "targetPath": "src/statistics/directional/mean_resultant_length",
+                    "pageTitle": "src/statistics/directional/mean_resultant_length",
+                    "firstHeader": {
+                      "type": "heading",
+                      "data": {
+                        "level": 1,
+                        "title": "Mean Resultant Length",
+                        "slug": "mean-resultant-length",
+                        "isFileHeader": true
+                      },
+                      "depth": 1
+                    },
+                    "title": "Mean Resultant Length"
+                  },
+                  "depth": 4,
+                  "outline": []
+                }, {
+                  "type": "file",
+                  "data": {
+                    "language": {
+                      "nameMatchers": [".js"],
+                      "pygmentsLexer": "javascript",
+                      "multiLineComment": ["/*", "*", "*/"],
+                      "singleLineComment": ["//"],
+                      "ignorePrefix": "}",
+                      "foldPrefix": "^",
+                      "name": "JavaScript"
+                    },
+                    "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/statistics/directional/median_direction.js",
+                    "projectPath": "src/statistics/directional/median_direction.js",
+                    "targetPath": "src/statistics/directional/median_direction",
+                    "pageTitle": "src/statistics/directional/median_direction",
+                    "firstHeader": {
+                      "type": "heading",
+                      "data": {
+                        "level": 1,
+                        "title": "Median Direction",
+                        "slug": "median-direction",
+                        "isFileHeader": true
+                      },
+                      "depth": 1
+                    },
+                    "title": "Median Direction"
+                  },
+                  "depth": 4,
+                  "outline": []
+                }
+              ]
+            }, {
               "type": "file",
               "data": {
                 "language": {
@@ -487,13 +667,13 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "type": "heading",
                   "data": {
                     "level": 1,
-                    "title": "Sample Mode",
-                    "slug": "sample-mode",
+                    "title": "Sample Median",
+                    "slug": "sample-median",
                     "isFileHeader": true
                   },
                   "depth": 1
                 },
-                "title": "Sample Mode"
+                "title": "Sample Median"
               },
               "depth": 3,
               "outline": []

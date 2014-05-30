@@ -1,4 +1,4 @@
-// # Sample Mode
+// # Sample Median
 
 mctad.median = function (data) {
   if (!Array.isArray(data) || data.length === 0) { return null; }

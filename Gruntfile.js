@@ -20,10 +20,10 @@ module.exports = function(grunt) {
           'src/core/constants.js',
           'src/core/helpers.js',
           'src/core/factorial.js',
-          'src/statistics/*.js',
+          'src/statistics/**/*.js',
           'src/discrete/mixins.js',
-          'src/discrete/*.js',
-          'src/continuous/*.js'
+          'src/discrete/**/*.js',
+          'src/continuous/**/*.js'
         ],
         dest: './<%= shortname() %>.js'
       }
