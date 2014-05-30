@@ -25,12 +25,173 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "slug": "mctadjs",
             "isFileHeader": true
           },
-          "depth": 1
+          "depth": 1,
+          "children": [
+            {
+              "type": "heading",
+              "data": {
+                "level": 2,
+                "title": "Measures of Central Tendency And Dispersion: A JavaScript library for probability &amp; statistics",
+                "slug": "measures-of-central-tendency-and-dispersion-a-javascript-library-for-probability-amp-statistics"
+              },
+              "depth": 2,
+              "children": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "About",
+                    "slug": "about"
+                  },
+                  "depth": 3
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Use",
+                    "slug": "use"
+                  },
+                  "depth": 3,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 4,
+                        "title": "End-users",
+                        "slug": "end-users"
+                      },
+                      "depth": 4
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 4,
+                        "title": "Developers",
+                        "slug": "developers"
+                      },
+                      "depth": 4
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Tests",
+                    "slug": "tests"
+                  },
+                  "depth": 3
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Documentation",
+                    "slug": "documentation"
+                  },
+                  "depth": 3
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Contributing",
+                    "slug": "contributing"
+                  },
+                  "depth": 3
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "To Do",
+                    "slug": "to-do"
+                  },
+                  "depth": 3
+                }
+              ]
+            }
+          ]
         },
         "title": "mctad.js"
       },
       "depth": 1,
-      "outline": []
+      "outline": [
+        {
+          "type": "heading",
+          "data": {
+            "level": 2,
+            "title": "Measures of Central Tendency And Dispersion: A JavaScript library for probability &amp; statistics",
+            "slug": "measures-of-central-tendency-and-dispersion-a-javascript-library-for-probability-amp-statistics"
+          },
+          "depth": 2,
+          "children": [
+            {
+              "type": "heading",
+              "data": {
+                "level": 3,
+                "title": "About",
+                "slug": "about"
+              },
+              "depth": 3
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 3,
+                "title": "Use",
+                "slug": "use"
+              },
+              "depth": 3,
+              "children": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 4,
+                    "title": "End-users",
+                    "slug": "end-users"
+                  },
+                  "depth": 4
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 4,
+                    "title": "Developers",
+                    "slug": "developers"
+                  },
+                  "depth": 4
+                }
+              ]
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 3,
+                "title": "Tests",
+                "slug": "tests"
+              },
+              "depth": 3
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 3,
+                "title": "Documentation",
+                "slug": "documentation"
+              },
+              "depth": 3
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 3,
+                "title": "Contributing",
+                "slug": "contributing"
+              },
+              "depth": 3
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 3,
+                "title": "To Do",
+                "slug": "to-do"
+              },
+              "depth": 3
+            }
+          ]
+        }
+      ]
     }, {
       "type": "folder",
       "data": {
@@ -438,6 +599,36 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "depth": 2,
           "children": [
             {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/statistics/arithmetic_mean.js",
+                "projectPath": "src/statistics/arithmetic_mean.js",
+                "targetPath": "src/statistics/arithmetic_mean",
+                "pageTitle": "src/statistics/arithmetic_mean",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "Arithmetic Mean",
+                    "slug": "arithmetic-mean",
+                    "isFileHeader": true
+                  },
+                  "depth": 1
+                },
+                "title": "Arithmetic Mean"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
               "type": "folder",
               "data": {
                 "path": "src/statistics/directional",
@@ -637,13 +828,13 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "type": "heading",
                   "data": {
                     "level": 1,
-                    "title": "Sample Mean",
-                    "slug": "sample-mean",
+                    "title": "Mean",
+                    "slug": "mean",
                     "isFileHeader": true
                   },
                   "depth": 1
                 },
-                "title": "Sample Mean"
+                "title": "Mean"
               },
               "depth": 3,
               "outline": []

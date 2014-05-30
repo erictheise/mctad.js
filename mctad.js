@@ -52,6 +52,20 @@ mctad.factorial = function(n) {
   return acc;
 };
 ;
+// # Arithmetic Mean
+//
+// `mctad.arithmeticMean()` accepts an Array of Numbers and returns their average as a Number.
+// It is aliased by `mctad.mean()`.
+//
+// See [Arithmetic Mean](http://en.wikipedia.org/wiki/Mean#Arithmetic_mean_.28AM.29).
+
+mctad.arithmeticMean = function (data) {
+  if (!Array.isArray(data) || data.length === 0) { return undefined; }
+
+  return this.sum(data)/data.length;
+
+};
+;
 // # Circular Standard Deviation
 
 mctad.circularStandardDeviation = function (data) {
@@ -132,14 +146,14 @@ mctad.medianDirection = function (data) {
   // They don't use it after introducing it, so: low priority
 };
 ;
-// # Sample Mean
+// # Mean
+//
+// `mctad.mean()` accepts an Array of Numbers and returns their average as a Number.
+// It is an alias for `mctad.arithmeticMean()`.
+//
+// See [Arithmetic Mean](http://en.wikipedia.org/wiki/Mean#Arithmetic_mean_.28AM.29).
 
-mctad.mean = function (data) {
-  if (!Array.isArray(data) || data.length === 0) { return null; }
-
-  return this.sum(data)/data.length;
-
-};
+mctad.mean = function (data) { return this.arithmeticMean(data); };
 ;
 // # Sample Median
 
@@ -212,10 +226,14 @@ mctad.sampleVariance = function (data) {
 };
 ;
 // # Sum
+//
+// `mctad.sum()` accepts an Array of Numbers and returns their sum as a Number.
+// It is used in the calculation of `mctad.mean()`, the [Sample Mean](mean.html).
 
 mctad.sum = function (data) {
-  if (!Array.isArray(data) || data.length === 0 ) { return null; }
+  if (!Array.isArray(data) || data.length === 0 ) { return undefined; }
 
+  // `sum` is an accumulator.
   var sum = 0.0;
   for (var i = 0; i < data.length; i++) {
     sum += data[i];

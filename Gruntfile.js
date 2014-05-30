@@ -60,7 +60,7 @@ module.exports = function(grunt) {
         options: {
           spawn: false
         },
-        files: ['gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
+        files: ['gruntfile.js', 'src/**/*.js', 'test/**/*.js', 'README.md'],
         tasks: ['default']
       }
     }
