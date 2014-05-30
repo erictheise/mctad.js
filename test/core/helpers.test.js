@@ -18,6 +18,15 @@ describe('isInteger', function () {
   });
 });
 
+describe('allPositive', function () {
+  it('can return true given an array of all positive numbers', function () {
+    assert.isTrue(mctad.allPositive([2, 3, 5.7, 0, 1]));
+  });
+  it('can return false given an array containing a negative number', function () {
+    assert.isFalse(mctad.allPositive([2, -3, 5.7, 0, 1]));
+  });
+});
+
 describe('sortNumeric', function () {
   it('can leave a sorted array alone', function () {
     assert.deepEqual(mctad.sortNumeric([1, 2, 3, 4, 11]), [1, 2, 3, 4, 11], 'array should be unchanged');

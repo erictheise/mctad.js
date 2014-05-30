@@ -4,6 +4,18 @@ mctad.isInteger = function (n) {
   return (/^-?\d+$/.test(n));
 };
 
+mctad.allPositive = function (data) {
+  var positive = true;
+  for (var i = 0; i < data.length; i++) {
+    if (data[i] < 0) {
+      positive = false;
+      break;
+    }
+  }
+  console.log(i);
+  return positive;
+};
+
 mctad.extend = function (destination, source) {
   for (var k in source) {
     if (source.hasOwnProperty(k)) {

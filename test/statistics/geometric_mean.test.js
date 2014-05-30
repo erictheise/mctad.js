@@ -14,8 +14,18 @@ describe('geometricMean', function() {
     assert.equal(mctad.geometricMean([1]), 1, 'this geometricMean should equal 1');
   });
 
+  // Data from http://en.wikipedia.org/wiki/Geometric_mean, retrieved 30 May 2014
+  it('can return the geometricMean when given an array of two numbers', function() {
+    assert.closeTo(mctad.geometricMean([2, 8]), 4, mctad.ε, 'this geometricMean should equal 4');
+  });
+  it('can return the geometricMean when given an array of three numbers', function() {
+    assert.closeTo(mctad.geometricMean([4, 1, 1/32]), 0.5, mctad.ε, 'this geometricMean should equal 0.5');
+  });
   // Data from http://en.wikipedia.org/wiki/Mean#Geometric_mean_.28GM.29, retrieved 30 May 2014
-  it('can return the geometricMean when given an array of more than one number', function() {
+  it('can return the geometricMean when given an array of more than three numbers', function() {
     assert.closeTo(mctad.geometricMean([4, 36, 45, 50, 75]), 30, mctad.ε, 'this geometricMean should equal 30');
+  });
+  it('can return undefined if the array contains a negative number', function() {
+    assert.isUndefined(mctad.geometricMean([4, -36, 45, 50, 75]), 'this geometricMean should not be defined');
   });
 });
