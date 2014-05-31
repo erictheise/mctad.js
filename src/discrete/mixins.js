@@ -1,7 +1,7 @@
 mctad.mixins = {
   P: function(x) {
     if (this.hasOwnProperty(x)) {
-      return this[x].pdf;
+      return this[x].pmf;
     } else {
       return 0.0;
     }

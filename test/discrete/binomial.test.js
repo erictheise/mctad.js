@@ -12,19 +12,19 @@ describe('binomial.distribution', function() {
   // Cumulative probabilities worked by hand to mitigate accumulated rounding errors.
   it('can generate probability and cumulative probability distributions for n = 6, p = 0.3', function() {
     assert.isObject(mctad.binomial.distribution(6, 0.3));
-    assert.closeTo(mctad.binomial.distribution(6, 0.3)[0].pdf, 0.1176, mctad.ε);
+    assert.closeTo(mctad.binomial.distribution(6, 0.3)[0].pmf, 0.1176, mctad.ε);
     assert.closeTo(mctad.binomial.distribution(6, 0.3)[0].cdf, 0.1176, mctad.ε);
-    assert.closeTo(mctad.binomial.distribution(6, 0.3)[1].pdf, 0.3025, mctad.ε);
+    assert.closeTo(mctad.binomial.distribution(6, 0.3)[1].pmf, 0.3025, mctad.ε);
     assert.closeTo(mctad.binomial.distribution(6, 0.3)[1].cdf, 0.4202, mctad.ε);
-    assert.closeTo(mctad.binomial.distribution(6, 0.3)[2].pdf, 0.3241, mctad.ε);
+    assert.closeTo(mctad.binomial.distribution(6, 0.3)[2].pmf, 0.3241, mctad.ε);
     assert.closeTo(mctad.binomial.distribution(6, 0.3)[2].cdf, 0.7443, mctad.ε);
-    assert.closeTo(mctad.binomial.distribution(6, 0.3)[3].pdf, 0.1852, mctad.ε);
+    assert.closeTo(mctad.binomial.distribution(6, 0.3)[3].pmf, 0.1852, mctad.ε);
     assert.closeTo(mctad.binomial.distribution(6, 0.3)[3].cdf, 0.9295, mctad.ε);
-    assert.closeTo(mctad.binomial.distribution(6, 0.3)[4].pdf, 0.0595, mctad.ε);
+    assert.closeTo(mctad.binomial.distribution(6, 0.3)[4].pmf, 0.0595, mctad.ε);
     assert.closeTo(mctad.binomial.distribution(6, 0.3)[4].cdf, 0.9891, mctad.ε);
-    assert.closeTo(mctad.binomial.distribution(6, 0.3)[5].pdf, 0.0102, mctad.ε);
+    assert.closeTo(mctad.binomial.distribution(6, 0.3)[5].pmf, 0.0102, mctad.ε);
     assert.closeTo(mctad.binomial.distribution(6, 0.3)[5].cdf, 0.9993, mctad.ε);
-    assert.closeTo(mctad.binomial.distribution(6, 0.3)[6].pdf, 0.0007, mctad.ε);
+    assert.closeTo(mctad.binomial.distribution(6, 0.3)[6].pmf, 0.0007, mctad.ε);
     assert.closeTo(mctad.binomial.distribution(6, 0.3)[6].cdf, 1.0, mctad.ε);
   });
 });

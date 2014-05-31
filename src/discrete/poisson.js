@@ -11,23 +11,24 @@ mctad.poisson = {
     if (λ <= 0) { return null; }
 
     // We initialize `x`, the random variable, and `cdf`, an cdfumulator for the cumulative distribution function
-    // to 0. `dfs` is the object we'll return with the `pdf` and the
+    // to 0. `dfs` is the object we'll return with the `pmf` and the
     // `cdf`, as well as the trivially calculated mean & variance. We iterate until the
     // `cdf` is within `epsilon` of 1.0.
-    var x = 0, pdf, cdf = 0, dfs = {
+    var x = 0, pmf, cdf = 0, dfs = {
       mean: λ,
       variance: λ,
       domain: { min: 0, max: Infinity }
     };
     do {
-      pdf = (Math.pow(Math.E, -λ) * Math.pow(λ, x))/mctad.factorial(x);
-      cdf += pdf;
-      dfs[x] = { pdf: pdf, cdf: cdf };
+      pmf = (Math.pow(Math.E, -λ) * Math.pow(λ, x))/mctad.factorial(x);
+      cdf += pmf;
+      dfs[x] = { pmf: pmf, cdf: cdf };
       x++;
     }
     while (dfs[x - 1].cdf < 1.0 - mctad.ε);
 
     dfs.domain.max = x - 1;
+    // Mix in the convenience methods for P(X) and F(X).
     mctad.extend(dfs, mctad.mixins);
 
     return dfs;

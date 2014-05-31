@@ -8,9 +8,9 @@ describe('bernoulli.distribution', function() {
   });
   it('can generate probability and cumulative probability distributions for p = 0.3', function() {
     assert.isObject(mctad.bernoulli.distribution(0.3));
-    assert.closeTo(mctad.bernoulli.distribution(0.3)[0].pdf, 0.7, mctad.ε);
+    assert.closeTo(mctad.bernoulli.distribution(0.3)[0].pmf, 0.7, mctad.ε);
     assert.closeTo(mctad.bernoulli.distribution(0.3)[0].cdf, 0.7, mctad.ε);
-    assert.closeTo(mctad.bernoulli.distribution(0.3)[1].pdf, 0.3, mctad.ε);
+    assert.closeTo(mctad.bernoulli.distribution(0.3)[1].pmf, 0.3, mctad.ε);
     assert.closeTo(mctad.bernoulli.distribution(0.3)[1].cdf, 1.0, mctad.ε);
   });
 });

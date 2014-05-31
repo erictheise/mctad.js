@@ -9,21 +9,23 @@ mctad.binomial = {
     // Check that `p` is a valid probability (0 ≤ p ≤ 1), and that `n` is an integer, strictly positive.
     if (p < 0 || p > 1.0 || !mctad.isInteger(n) || n <= 0) { return null; }
 
-    var x = 0, pdf, cdf = 0, dfs = {
+    var x = 0, pmf, cdf = 0, dfs = {
       mean: n * p,
       variance: (n * p) * (1.0 - p),
       skewness: (1 - 2 * p)/Math.sqrt(n * p * (1.0 - p)),
       domain: { min: 0, max: Infinity }
     };
     do {
-      pdf = (mctad.factorial(n) / (mctad.factorial(x) * mctad.factorial(n - x)) * (Math.pow(p, x) * Math.pow(1.0 - p, (n - x))));
-      cdf += pdf;
-      dfs[x] = { pdf: pdf, cdf: cdf };
+      pmf = (mctad.factorial(n) / (mctad.factorial(x) * mctad.factorial(n - x)) * (Math.pow(p, x) * Math.pow(1.0 - p, (n - x))));
+      cdf += pmf;
+      dfs[x] = { pmf: pmf, cdf: cdf };
       x++;
     }
     while (dfs[x - 1].cdf < 1.0 - mctad.ε);
 
     dfs.domain.max = x - 1;
+
+    // Mix in the convenience methods for P(X) and F(X).
     mctad.extend(dfs, mctad.mixins);
 
     return dfs;

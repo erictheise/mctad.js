@@ -9,7 +9,7 @@ mctad.discreteUniform = {
     // Check that `i ≤ j`, and that `i` and `j` are integers.
     if (i > j || !mctad.isInteger(i) || !mctad.isInteger(j) ) { return undefined; }
 
-    var x, pdf, cdf = 0, dfs = {
+    var x, pmf, cdf = 0, dfs = {
       mean: (i + j)/2,
       median: (i + j)/2,
       mode: undefined,
@@ -17,6 +17,8 @@ mctad.discreteUniform = {
       skewness: 0.0,
       entropy: Math.log(j - i + 1),
       domain: { min: i, max: j },
+      // `mctad.discreteUniform.distribution(10, 20).generate(100)` will generate an Array of 100
+      // random variables, distributed uniformly between 10 and 20, inclusive.
       generate: function (n) {
         var randomVariables = [];
         for (var k = 0; k < n; k++ ) {
@@ -27,9 +29,9 @@ mctad.discreteUniform = {
     };
     // Iterate over the domain, calculating the probability mass and cumulative distribution functions.
     for (x = i; x <= j; x++) {
-      pdf = 1/(j - i + 1);
-      cdf += pdf;
-      dfs[x] = { pdf: pdf, cdf: cdf };
+      pmf = 1/(j - i + 1);
+      cdf += pmf;
+      dfs[x] = { pmf: pmf, cdf: cdf };
     }
     // Mix in the convenience methods for P(X) and F(X).
     mctad.extend(dfs, mctad.mixins);

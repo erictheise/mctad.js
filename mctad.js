@@ -330,7 +330,7 @@ mctad.sum = function (data) {
 mctad.mixins = {
   P: function(x) {
     if (this.hasOwnProperty(x)) {
-      return this[x].pdf;
+      return this[x].pmf;
     } else {
       return 0.0;
     }
@@ -393,6 +393,9 @@ mctad.bernoulli = {
       skewness: ((1.0 - p) * p)/Math.sqrt(p * (1.0 - p)),
       entropy: -(1.0 - p) * Math.log(1.0 - p) - p * Math.log(p),
       domain: { min: 0, max: 1 },
+      // `mctad.bernoulli.distribution(.7).generate()` will perform a Bernoulli trial, yielding one
+      // random variable with a success probability of .7. For a sequence of Bernoulli trials, see
+      // the [binomial distribution](binomial.html).
       generate: function () {
         if (mctad.getRandomArbitrary(0, 1) <= p) {
           return 1;
@@ -402,8 +405,8 @@ mctad.bernoulli = {
       }
     };
     // Assign the probability mass and cumulative distribution functions for the outcomes 0 or 1.
-    dfs[0] = { pdf: 1.0 - p, cdf: 1.0 - p };
-    dfs[1] = { pdf: p, cdf: 1.0 };
+    dfs[0] = { pmf: 1.0 - p, cdf: 1.0 - p };
+    dfs[1] = { pmf: p, cdf: 1.0 };
 
     // Mix in the convenience methods for P(X) and F(X).
     mctad.extend(dfs, mctad.mixins);
@@ -423,21 +426,23 @@ mctad.binomial = {
     // Check that `p` is a valid probability (0 ≤ p ≤ 1), and that `n` is an integer, strictly positive.
     if (p < 0 || p > 1.0 || !mctad.isInteger(n) || n <= 0) { return null; }
 
-    var x = 0, pdf, cdf = 0, dfs = {
+    var x = 0, pmf, cdf = 0, dfs = {
       mean: n * p,
       variance: (n * p) * (1.0 - p),
       skewness: (1 - 2 * p)/Math.sqrt(n * p * (1.0 - p)),
       domain: { min: 0, max: Infinity }
     };
     do {
-      pdf = (mctad.factorial(n) / (mctad.factorial(x) * mctad.factorial(n - x)) * (Math.pow(p, x) * Math.pow(1.0 - p, (n - x))));
-      cdf += pdf;
-      dfs[x] = { pdf: pdf, cdf: cdf };
+      pmf = (mctad.factorial(n) / (mctad.factorial(x) * mctad.factorial(n - x)) * (Math.pow(p, x) * Math.pow(1.0 - p, (n - x))));
+      cdf += pmf;
+      dfs[x] = { pmf: pmf, cdf: cdf };
       x++;
     }
     while (dfs[x - 1].cdf < 1.0 - mctad.ε);
 
     dfs.domain.max = x - 1;
+
+    // Mix in the convenience methods for P(X) and F(X).
     mctad.extend(dfs, mctad.mixins);
 
     return dfs;
@@ -452,20 +457,21 @@ mctad.geometric = {
     // Check that `p` is a valid probability (0 < p < 1).
     if (p <= 0 || p >= 1.0) { return null; }
 
-    var x = 0, pdf, cdf = 0, dfs = {
+    var x = 0, pmf, cdf = 0, dfs = {
       mean: (1 - p)/p,
       variance: (1.0 - p)/Math.pow(p, 2),
       domain: { min: 0, max: Infinity }
     };
     do {
-      pdf = p * Math.pow(1.0 - p, x);
-      cdf += pdf;
-      dfs[x] = { pdf: pdf, cdf: cdf };
+      pmf = p * Math.pow(1.0 - p, x);
+      cdf += pmf;
+      dfs[x] = { pmf: pmf, cdf: cdf };
       x++;
     }
     while (dfs[x - 1].cdf < 1.0 - mctad.ε);
 
     dfs.domain.max = x - 1;
+    // Mix in the convenience methods for P(X) and F(X).
     mctad.extend(dfs, mctad.mixins);
 
     return dfs;
@@ -480,20 +486,21 @@ mctad.hypergeometric = {
     // Check that `p` is a valid probability (0 < p < 1).
     if (p <= 0 || p >= 1.0) { return null; }
 
-    var x = 0, pdf, cdf = 0, dfs = {
+    var x = 0, pmf, cdf = 0, dfs = {
       mean: (1 - p)/p,
       variance: (1.0 - p)/Math.pow(p, 2),
       domain: { min: 0, max: Infinity }
     };
     do {
-      pdf = p * Math.pow(1.0 - p, x);
-      cdf += pdf;
-      dfs[x] = { pdf: pdf, cdf: cdf };
+      pmf = p * Math.pow(1.0 - p, x);
+      cdf += pmf;
+      dfs[x] = { pmf: pmf, cdf: cdf };
       x++;
     }
     while (dfs[x - 1].cdf < 1.0 - mctad.ε);
 
     dfs.domain.max = x - 1;
+    // Mix in the convenience methods for P(X) and F(X).
     mctad.extend(dfs, mctad.mixins);
 
     return dfs;
@@ -514,23 +521,24 @@ mctad.poisson = {
     if (λ <= 0) { return null; }
 
     // We initialize `x`, the random variable, and `cdf`, an cdfumulator for the cumulative distribution function
-    // to 0. `dfs` is the object we'll return with the `pdf` and the
+    // to 0. `dfs` is the object we'll return with the `pmf` and the
     // `cdf`, as well as the trivially calculated mean & variance. We iterate until the
     // `cdf` is within `epsilon` of 1.0.
-    var x = 0, pdf, cdf = 0, dfs = {
+    var x = 0, pmf, cdf = 0, dfs = {
       mean: λ,
       variance: λ,
       domain: { min: 0, max: Infinity }
     };
     do {
-      pdf = (Math.pow(Math.E, -λ) * Math.pow(λ, x))/mctad.factorial(x);
-      cdf += pdf;
-      dfs[x] = { pdf: pdf, cdf: cdf };
+      pmf = (Math.pow(Math.E, -λ) * Math.pow(λ, x))/mctad.factorial(x);
+      cdf += pmf;
+      dfs[x] = { pmf: pmf, cdf: cdf };
       x++;
     }
     while (dfs[x - 1].cdf < 1.0 - mctad.ε);
 
     dfs.domain.max = x - 1;
+    // Mix in the convenience methods for P(X) and F(X).
     mctad.extend(dfs, mctad.mixins);
 
     return dfs;
@@ -548,7 +556,7 @@ mctad.discreteUniform = {
     // Check that `i ≤ j`, and that `i` and `j` are integers.
     if (i > j || !mctad.isInteger(i) || !mctad.isInteger(j) ) { return undefined; }
 
-    var x, pdf, cdf = 0, dfs = {
+    var x, pmf, cdf = 0, dfs = {
       mean: (i + j)/2,
       median: (i + j)/2,
       mode: undefined,
@@ -556,6 +564,8 @@ mctad.discreteUniform = {
       skewness: 0.0,
       entropy: Math.log(j - i + 1),
       domain: { min: i, max: j },
+      // `mctad.discreteUniform.distribution(10, 20).generate(100)` will generate an Array of 100
+      // random variables, distributed uniformly between 10 and 20, inclusive.
       generate: function (n) {
         var randomVariables = [];
         for (var k = 0; k < n; k++ ) {
@@ -566,9 +576,9 @@ mctad.discreteUniform = {
     };
     // Iterate over the domain, calculating the probability mass and cumulative distribution functions.
     for (x = i; x <= j; x++) {
-      pdf = 1/(j - i + 1);
-      cdf += pdf;
-      dfs[x] = { pdf: pdf, cdf: cdf };
+      pmf = 1/(j - i + 1);
+      cdf += pmf;
+      dfs[x] = { pmf: pmf, cdf: cdf };
     }
     // Mix in the convenience methods for P(X) and F(X).
     mctad.extend(dfs, mctad.mixins);

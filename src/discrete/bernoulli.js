@@ -41,6 +41,9 @@ mctad.bernoulli = {
       skewness: ((1.0 - p) * p)/Math.sqrt(p * (1.0 - p)),
       entropy: -(1.0 - p) * Math.log(1.0 - p) - p * Math.log(p),
       domain: { min: 0, max: 1 },
+      // `mctad.bernoulli.distribution(.7).generate()` will perform a Bernoulli trial, yielding one
+      // random variable with a success probability of .7. For a sequence of Bernoulli trials, see
+      // the [binomial distribution](binomial.html).
       generate: function () {
         if (mctad.getRandomArbitrary(0, 1) <= p) {
           return 1;
@@ -50,8 +53,8 @@ mctad.bernoulli = {
       }
     };
     // Assign the probability mass and cumulative distribution functions for the outcomes 0 or 1.
-    dfs[0] = { pdf: 1.0 - p, cdf: 1.0 - p };
-    dfs[1] = { pdf: p, cdf: 1.0 };
+    dfs[0] = { pmf: 1.0 - p, cdf: 1.0 - p };
+    dfs[1] = { pmf: p, cdf: 1.0 };
 
     // Mix in the convenience methods for P(X) and F(X).
     mctad.extend(dfs, mctad.mixins);
