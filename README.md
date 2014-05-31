@@ -6,7 +6,6 @@ mctad.js
 ### About
 Informed by [simple-statistics], [science.js], [R].
 
-
 ### Use
 
 #### End-users
@@ -14,6 +13,11 @@ Informed by [simple-statistics], [science.js], [R].
 
 #### Developers
 
+
+### Conventions
+
+Greek letters.
+Type hinting, even if it's an untyped language.
 
 ### Tests
 _mctad.js_ uses [mocha]() with [chai assertions]() as a [grunt](http://gruntjs.com/) task to run the test suite. The general format of the tests is to test exceptions before testing functionality. When possible, test data is taken from a wikipedia article or other hopefully long-lived reference.

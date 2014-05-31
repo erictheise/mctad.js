@@ -75,6 +75,14 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "type": "heading",
                   "data": {
                     "level": 3,
+                    "title": "Conventions",
+                    "slug": "conventions"
+                  },
+                  "depth": 3
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
                     "title": "Tests",
                     "slug": "tests"
                   },
@@ -156,6 +164,14 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "depth": 4
                 }
               ]
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 3,
+                "title": "Conventions",
+                "slug": "conventions"
+              },
+              "depth": 3
             }, {
               "type": "heading",
               "data": {

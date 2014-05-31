@@ -13,8 +13,9 @@ describe('sampleStandardDeviation', function() {
   it('can return the sampleStandardDeviation of 0.0 when there is no variance in the data observations', function() {
     assert.equal(mctad.sampleStandardDeviation([1, 1, 1]), 0, 'this sampleStandardDeviation should equal 0');
   });
+
   // Data from http://en.wikipedia.org/wiki/Standard_deviation retrieved 28 May 2014
-  it('can return the sampleStandardDeviation of 0.0 when there is no variance in the data observations', function() {
-    assert.closeTo(mctad.sampleStandardDeviation([2, 4, 4, 4, 5, 5, 7, 9]), 2.13809, mctad.ε, 'this sampleStandardDeviation should equal 0');
+  it('can return the sampleStandardDeviation of 2.13809 for these data observations', function() {
+    assert.closeTo(mctad.sampleStandardDeviation([2, 4, 4, 4, 5, 5, 7, 9]), 2.13809, mctad.ε, 'this sampleStandardDeviation should equal 2.13809');
   });
 });
