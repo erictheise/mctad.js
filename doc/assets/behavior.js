@@ -306,6 +306,36 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/core/combination.js",
+                "projectPath": "src/core/combination.js",
+                "targetPath": "src/core/combination",
+                "pageTitle": "src/core/combination",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "Combination",
+                    "slug": "combination",
+                    "isFileHeader": true
+                  },
+                  "depth": 1
+                },
+                "title": "Combination"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
                 "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/core/constants.js",
                 "projectPath": "src/core/constants.js",
                 "targetPath": "src/core/constants",

@@ -12,7 +12,16 @@ mctad.geometric = {
       mode: 0.0,
       variance: (1.0 - p)/Math.pow(p, 2),
       skewness: (2 - p)/Math.sqrt(1 - p),
-      domain: { min: 0, max: Infinity }
+      domain: { min: 0, max: Infinity },
+      // `mctad.geometric.distribution(0.25).generate(100)` will generate an Array of 100
+      // random variables, distributed geometrically with a probability .25 of success.
+      generate: function (n) {
+        var randomVariables = [];
+        for (var k = 0; k < n; k++ ) {
+          randomVariables.push(Math.floor(Math.log(mctad.getRandomArbitrary(0, 1))/Math.log(1.0 - p)));
+        }
+        return randomVariables;
+      }
     };
     do {
       pmf = p * Math.pow(1.0 - p, x);
