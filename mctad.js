@@ -363,12 +363,12 @@ mctad.mixins = {
 mctad.bernoulli = {
   distribution: function(p) {
     // Check that `p` is a valid probability (0 ≤ p ≤ 1)
-    if (p < 0 || p > 1.0) { return null; }
+    if (p < 0 || p > 1.0) { return undefined; }
 
     var x, dfs = {
       mean: p,
       median: (function () {
-        if ((1.0 - p > p)) {
+        if (p < 0.5) {
           return 0.0;
         } else {
           if (p === 0.5) {
@@ -379,7 +379,7 @@ mctad.bernoulli = {
         }
       })(),
       mode: (function () {
-        if ((1.0 - p > p)) {
+        if ((p < 0.5)) {
           return [0.0];
         } else {
           if (p === 0.5) {
@@ -439,7 +439,6 @@ mctad.binomial = {
       x++;
     }
     while (dfs[x - 1].cdf < 1.0 - mctad.ε);
-
     dfs.domain.max = x - 1;
 
     // Mix in the convenience methods for P(X) and F(X).
@@ -451,15 +450,19 @@ mctad.binomial = {
 };
 ;
 // # Geometric Distribution
+//
+// This implementation uses the second definition of the [Geometric Distribution](http://en.wikipedia.org/wiki/Geometric_distribution)
 
 mctad.geometric = {
   distribution: function (p) {
-    // Check that `p` is a valid probability (0 < p < 1).
-    if (p <= 0 || p >= 1.0) { return null; }
+    // Check that `p` is a valid probability (0 < p ≤ 1).
+    if (p <= 0 || p > 1.0) { return undefined; }
 
     var x = 0, pmf, cdf = 0, dfs = {
       mean: (1 - p)/p,
+      mode: 0.0,
       variance: (1.0 - p)/Math.pow(p, 2),
+      skewness: (2 - p)/Math.sqrt(1 - p),
       domain: { min: 0, max: Infinity }
     };
     do {
@@ -469,8 +472,8 @@ mctad.geometric = {
       x++;
     }
     while (dfs[x - 1].cdf < 1.0 - mctad.ε);
-
     dfs.domain.max = x - 1;
+
     // Mix in the convenience methods for P(X) and F(X).
     mctad.extend(dfs, mctad.mixins);
 
@@ -498,8 +501,8 @@ mctad.hypergeometric = {
       x++;
     }
     while (dfs[x - 1].cdf < 1.0 - mctad.ε);
-
     dfs.domain.max = x - 1;
+
     // Mix in the convenience methods for P(X) and F(X).
     mctad.extend(dfs, mctad.mixins);
 
@@ -526,7 +529,10 @@ mctad.poisson = {
     // `cdf` is within `epsilon` of 1.0.
     var x = 0, pmf, cdf = 0, dfs = {
       mean: λ,
+      median: Math.floor(λ + 1/3 - 0.02/λ),
+      mode: [Math.floor(λ), Math.ceil(λ) - 1],
       variance: λ,
+      skewness: Math.pow(λ, 0.5),
       domain: { min: 0, max: Infinity }
     };
     do {
@@ -536,8 +542,8 @@ mctad.poisson = {
       x++;
     }
     while (dfs[x - 1].cdf < 1.0 - mctad.ε);
-
     dfs.domain.max = x - 1;
+
     // Mix in the convenience methods for P(X) and F(X).
     mctad.extend(dfs, mctad.mixins);
 

@@ -11,12 +11,12 @@
 mctad.bernoulli = {
   distribution: function(p) {
     // Check that `p` is a valid probability (0 ≤ p ≤ 1)
-    if (p < 0 || p > 1.0) { return null; }
+    if (p < 0 || p > 1.0) { return undefined; }
 
     var x, dfs = {
       mean: p,
       median: (function () {
-        if ((1.0 - p > p)) {
+        if (p < 0.5) {
           return 0.0;
         } else {
           if (p === 0.5) {
@@ -27,7 +27,7 @@ mctad.bernoulli = {
         }
       })(),
       mode: (function () {
-        if ((1.0 - p > p)) {
+        if ((p < 0.5)) {
           return [0.0];
         } else {
           if (p === 0.5) {

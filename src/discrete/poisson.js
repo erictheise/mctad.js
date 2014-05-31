@@ -16,7 +16,10 @@ mctad.poisson = {
     // `cdf` is within `epsilon` of 1.0.
     var x = 0, pmf, cdf = 0, dfs = {
       mean: λ,
+      median: Math.floor(λ + 1/3 - 0.02/λ),
+      mode: [Math.floor(λ), Math.ceil(λ) - 1],
       variance: λ,
+      skewness: Math.pow(λ, 0.5),
       domain: { min: 0, max: Infinity }
     };
     do {
@@ -26,8 +29,8 @@ mctad.poisson = {
       x++;
     }
     while (dfs[x - 1].cdf < 1.0 - mctad.ε);
-
     dfs.domain.max = x - 1;
+
     // Mix in the convenience methods for P(X) and F(X).
     mctad.extend(dfs, mctad.mixins);
 

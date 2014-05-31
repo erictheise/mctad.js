@@ -2,9 +2,9 @@ require('../../mctad');
 var assert = require('chai').assert;
 
 describe('bernoulli.distribution', function() {
-  it('can return null when p is not a valid probability', function() {
-    assert.isNull(mctad.bernoulli.distribution(-0.01), 'p should be greater than 0.0');
-    assert.isNull(mctad.bernoulli.distribution(1.5), 'p should be less than 1.0');
+  it('can return undefined when p is not a valid probability', function() {
+    assert.isUndefined(mctad.bernoulli.distribution(-0.01), 'p should be greater than 0.0');
+    assert.isUndefined(mctad.bernoulli.distribution(1.5), 'p should be less than 1.0');
   });
   it('can generate probability and cumulative probability distributions for p = 0.3', function() {
     assert.isObject(mctad.bernoulli.distribution(0.3));

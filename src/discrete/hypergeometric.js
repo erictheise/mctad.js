@@ -17,8 +17,8 @@ mctad.hypergeometric = {
       x++;
     }
     while (dfs[x - 1].cdf < 1.0 - mctad.ε);
-
     dfs.domain.max = x - 1;
+
     // Mix in the convenience methods for P(X) and F(X).
     mctad.extend(dfs, mctad.mixins);
 
