@@ -185,12 +185,18 @@ mctad.geometricMean = function (data) {
 
 mctad.mean = function (data) { return this.arithmeticMean(data); };
 ;
-// # Sample Median
+// # Median
+//
+// `mctad.median()` accepts an Array of Numbers and returns the numerical value separating the higher half from the lower half as a Number.
+//
+// More at the [Wikimedia article](http://en.wikipedia.org/wiki/Median)
 
 mctad.median = function (data) {
   if (!Array.isArray(data) || data.length === 0) { return null; }
 
+  // The data must be ordered from the lowest value to the highest value.
   this.sortNumeric(data);
+  // If there are an even number of data observations, average the two data points on either side of the divide. If there are an odd number of observations, the middle observation is taken to be the median.
   if (data.length % 2 === 0) {
     return (data[data.length/2 - 1] + data[data.length/2])/2;
   } else {
@@ -199,12 +205,18 @@ mctad.median = function (data) {
 
 };
 ;
-// # Sample Mode
+// # Mode
+//
+// `mctad.mode()` accepts an Array of Numbers and returns the numerical value(s) that appear most frequently as an Array of Numbers. If the data observations are unimodal, the mode will be returned as an Array of a single Number, not as a Number.
+//
+// More at the [Wikimedia article](http://en.wikipedia.org/wiki/Mode_(statistics))
 
 mctad.mode = function (data) {
   if (!Array.isArray(data) || data.length === 0) { return null; }
 
   var modes = [], frequencies = {}, max = 0;
+  // Iterate through the data, creating an object that counts frequencies and keeping track of the
+  // maximum value.
   for (var i = 0; i < data.length; i++) {
     if (frequencies.hasOwnProperty(data[i])) {
       frequencies[data[i]]++;
@@ -214,6 +226,7 @@ mctad.mode = function (data) {
     if (frequencies[data[i]] > max) { max = frequencies[data[i]]; }
   }
 
+  // Pluck the values that have been maximally observed.
   for(var key in frequencies) {
     if (frequencies.hasOwnProperty(key)) {
       if (frequencies[key] === max) {
@@ -222,6 +235,7 @@ mctad.mode = function (data) {
     }
   }
 
+  // Sort the modes before returning.
   this.sortNumeric(modes);
   return modes;
 };

@@ -40,7 +40,7 @@ Please alert me if you see me breaking my own contract. Contributions should fol
 ### To Do
 
 * statistics
-  * other means
+  * harmonic mean
   * confidence intervals
 
 * discrete
