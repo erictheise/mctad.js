@@ -1,20 +1,30 @@
-// # Discrete Uniform Distribution
+// # Uniform Distribution (Discrete)
+//
+// `mctad.discreteUniform()` accepts two Integers, `i` and `j`, the lower and upper bounds of a range of equally likely integers, and returns an Object containing the `mean`, `variance`, `domain`, `P` (the probability mass function, P(X)), and `F` (the cumulative distribution function, F(X)).
+//
+// More at the [Wikipedia article](http://en.wikipedia.org/wiki/Discrete_uniform_distribution).
 
-mctad.discrete_uniform = {
+mctad.discreteUniform = {
   distribution: function (i, j) {
     // Check that `i ≤ j`, and that `i` and `j` are integers.
-    if (i > j || !mctad.isInteger(i) || !mctad.isInteger(j) ) { return null; }
+    if (i > j || !mctad.isInteger(i) || !mctad.isInteger(j) ) { return undefined; }
 
     var x, pdf, cdf = 0, dfs = {
       mean: (i + j)/2,
+      median: (i + j)/2,
+      mode: undefined,
       variance: (Math.pow((j - i + 1), 2) - 1)/12,
+      skewness: 0.0,
+      entropy: Math.log(j - i + 1),
       domain: { min: i, max: j }
     };
+    // Iterate over the domain, calculating the probability mass and cumulative distribution functions.
     for (x = i; x <= j; x++) {
       pdf = 1/(j - i + 1);
       cdf += pdf;
       dfs[x] = { pdf: pdf, cdf: cdf };
     }
+    // Add convenience methods for P(X) and F(X).
     mctad.extend(dfs, mctad.mixins);
 
     return dfs;

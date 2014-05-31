@@ -594,13 +594,13 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "type": "heading",
                   "data": {
                     "level": 1,
-                    "title": "Discrete Uniform Distribution",
-                    "slug": "discrete-uniform-distribution",
+                    "title": "Uniform Distribution (Discrete)",
+                    "slug": "uniform-distribution-discrete",
                     "isFileHeader": true
                   },
                   "depth": 1
                 },
-                "title": "Discrete Uniform Distribution"
+                "title": "Uniform Distribution (Discrete)"
               },
               "depth": 3,
               "outline": []
