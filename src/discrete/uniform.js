@@ -31,7 +31,7 @@ mctad.discreteUniform = {
       cdf += pdf;
       dfs[x] = { pdf: pdf, cdf: cdf };
     }
-    // Add convenience methods for P(X) and F(X).
+    // Mix in the convenience methods for P(X) and F(X).
     mctad.extend(dfs, mctad.mixins);
 
     return dfs;

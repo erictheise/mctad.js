@@ -35,10 +35,10 @@
     <span class="p">}</span>
   <span class="p">}</span> <span class="k">else</span> <span class="p">{</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>If it's a number, assume it's already in radians</p></div></div><div class="code"><div class="wrapper">    <span class="k">return</span> <span class="nx">v</span><span class="p">;</span>
   <span class="p">}</span>
-<span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h1 id="getrandommin-max">getRandom(min, max)</h1>
+<span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h1 id="getrandomarbitrarymin-max">getRandomArbitrary(min, max)</h1>
 
 <p>A function for generating a random number between min and mix, inclusive, taken from
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random</p></div></div><div class="code"><div class="wrapper"><span class="nx">mctad</span><span class="p">.</span><span class="nx">getRandom</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">min</span><span class="p">,</span> <span class="nx">max</span><span class="p">)</span> <span class="p">{</span>
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random</p></div></div><div class="code"><div class="wrapper"><span class="nx">mctad</span><span class="p">.</span><span class="nx">getRandomArbitrary</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">min</span><span class="p">,</span> <span class="nx">max</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="p">(</span><span class="nx">max</span> <span class="o">-</span> <span class="nx">min</span><span class="p">)</span> <span class="o">+</span> <span class="nx">min</span><span class="p">;</span>
 <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h1 id="getrandomintmin-max">getRandomInt(min, max)</h1>
 

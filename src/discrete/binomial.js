@@ -12,6 +12,7 @@ mctad.binomial = {
     var x = 0, pdf, cdf = 0, dfs = {
       mean: n * p,
       variance: (n * p) * (1.0 - p),
+      skewness: (1 - 2 * p)/Math.sqrt(n * p * (1.0 - p)),
       domain: { min: 0, max: Infinity }
     };
     do {
