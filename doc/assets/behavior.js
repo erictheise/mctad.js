@@ -373,7 +373,25 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "title": "helpers"
               },
               "depth": 3,
-              "outline": []
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "getRandom(min, max)",
+                    "slug": "getrandommin-max"
+                  },
+                  "depth": 1
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "getRandomInt(min, max)",
+                    "slug": "getrandomintmin-max"
+                  },
+                  "depth": 1
+                }
+              ]
             }
           ]
         }, {

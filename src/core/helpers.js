@@ -44,3 +44,17 @@ mctad.toRadians = function (v) {
     return v;
   }
 };
+
+// # getRandom(min, max)
+// A function for generating a random number between min and mix, inclusive, taken from
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+mctad.getRandom = function (min, max) {
+  return Math.random() * (max - min) + min;
+};
+
+// # getRandomInt(min, max)
+// A function for generating a random integer between min and max, inclusive, taken from
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+mctad.getRandomInt = function (min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};

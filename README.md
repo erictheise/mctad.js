@@ -49,6 +49,7 @@ Please alert me if you see me breaking my own contract. Contributions should fol
 
 * discrete
   * generators
+  * tests for generators
 
 * continuous
   * distributions
@@ -60,6 +61,7 @@ Please alert me if you see me breaking my own contract. Contributions should fol
     * chi square
     * beta
   * generators
+  * tests for generators
 
 * chi square goodness of fit
 * analysis of variance
