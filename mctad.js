@@ -640,6 +640,45 @@ mctad.discreteUniform = function (i, j) {
   return dfs;
 };
 ;
+mctad.exponential = function (λ) {
+  // Check that `λ > 0`.
+  if (λ < 0) { return undefined; }
+
+  var dfs = {
+    mean: 1 / λ,
+    median: (1 / λ) * Math.log(2),
+    mode: 0.0,
+    variance: Math.pow((1 / λ), 2),
+    skewness: 2.0,
+    entropy: 1 - Math.log(λ),
+    domain: { min: 0, max: Infinity },
+
+    // `mctad.exponential(1.5).generate(100)` will generate an Array of 100
+    // random variables, distributed exponentially.
+    generate: function (n) {
+      var randomVariables = [];
+      for (var k = 0; k < n; k++ ) {
+        randomVariables.push(-(1 / λ) * Math.log(mctad.getRandomArbitrary(0, 1)));
+      }
+      return randomVariables;
+    },
+
+    pdf: function (x) {
+      return λ * Math.pow(Math.E, -λ * x);
+    },
+
+    cdf: function (x) {
+      return 1 - Math.pow(Math.E, -λ * x);
+    }
+
+  };
+
+  // Mix in the convenience methods for f(X) and F(X).
+  mctad.extend(dfs, mctad.continuousMixins);
+
+  return dfs;
+};
+;
 mctad.continuousMixins = {
   f: function(x) {
     return this.pdf(x);
@@ -671,13 +710,14 @@ mctad.triangular = function (a, b, c) {
     // `mctad.triangular(1, 4, 2).generate(100)` will generate an Array of 100
     // random variables, distributed triangularly between 1 and 4, with a peak/mode of 2.
     generate: function (n) {
-      var randomVariables = [];
+      // The approach is to work with the triangular(0, 1, *c\_scaled*) distribution, where 0 < c\_scaled < 1.
+      var c_scaled = (c - a) / (b - a), randomVariables = [];
       for (var k = 0; k < n; k++ ) {
         var U = mctad.getRandomArbitrary(0, 1);
-        if (U <= mctad.triangular.cdf(c)) {
-          randomVariables.push(a + Math.sqrt(U * (b - a) * (c - a)));
+        if (U <= c_scaled) {
+          randomVariables.push(a + (b - a) * Math.sqrt(c_scaled * U));
         } else {
-          randomVariables.push(b - Math.sqrt((1.0 - U) * (b - a) * (b - c)));
+          randomVariables.push(a + (b - a) * (1.0 - Math.sqrt((1.0 - c_scaled) * (1.0 - U))));
         }
       }
       return randomVariables;

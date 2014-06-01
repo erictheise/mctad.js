@@ -1,15 +1,15 @@
 /*
- # Triangular Distribution
+# Triangular Distribution
 
- The [Triangular Distribution](http://en.wikipedia.org/wiki/Triangular_distribution) is a family of continuous probability distributions characterized by a single mode bracketed by minimum and maximum values.
+The [Triangular Distribution](http://en.wikipedia.org/wiki/Triangular_distribution) is a family of continuous probability distributions characterized by a single mode bracketed by minimum and maximum values.
 
- ### Assumptions
+### Assumptions
 
- `a`, `b`, and `c` are real numbers, the minimum, maximum, and modal values, with a < c < b; a may be thought of as a location parameter, (b - a) as a scale parameter, c as a shape parameter.
+`a`, `b`, and `c` are real numbers, the minimum, maximum, and modal values, with a < c < b; a may be thought of as a location parameter, (b - a) as a scale parameter, c as a shape parameter.
 
- ### Use
+### Use
 
- `mctad.triangular(a, b, c)`
+`mctad.triangular(a, b, c)`
 */
 
 mctad.triangular = function (a, b, c) {
@@ -34,7 +34,7 @@ mctad.triangular = function (a, b, c) {
     // `mctad.triangular(1, 4, 2).generate(100)` will generate an Array of 100
     // random variables, distributed triangularly between 1 and 4, with a peak/mode of 2.
     generate: function (n) {
-      // The approach is to work with the triangular(0, 1, c_scaled) distribution.
+      // The approach is to work with the triangular(0, 1, *c\_scaled*) distribution, where 0 < c\_scaled < 1.
       var c_scaled = (c - a) / (b - a), randomVariables = [];
       for (var k = 0; k < n; k++ ) {
         var U = mctad.getRandomArbitrary(0, 1);
