@@ -428,6 +428,7 @@ mctad.bernoulli = {
 };
 ;
 // # Binomial Distribution
+//
 // The [Binomial Distribution](http://en.wikipedia.org/wiki/Binomial_distribution) is the discrete probability
 // distribution of the number of successes in a sequence of n independent yes/no experiments, each of which yields
 // success with probability `p`. Such a success/failure experiment is also called a Bernoulli experiment or
@@ -436,7 +437,7 @@ mctad.bernoulli = {
 mctad.binomial = {
   distribution: function (n, p) {
     // Check that `p` is a valid probability (0 ≤ p ≤ 1), and that `n` is an integer, strictly positive.
-    if (p < 0 || p > 1.0 || !mctad.isInteger(n) || n <= 0) { return null; }
+    if (p < 0 || p > 1.0 || !mctad.isInteger(n) || n <= 0) { return undefined; }
 
     var x = 0, pmf, cdf = 0, dfs = {
       mean: n * p,
@@ -534,6 +535,43 @@ mctad.hypergeometric = {
   }
 };
 ;
+// # Pascal Distribution
+// http://en.wikipedia.org/wiki/Negative_binomial_distribution
+
+mctad.pascal = {
+  distribution: function (r, p) {
+    // Check that `p` is a valid probability (0 < p < 1), and that `r` is an integer, strictly positive.
+    if (p <= 0 || p >= 1.0 || !mctad.isInteger(r) || r <= 0) { return undefined; }
+
+    var k = 0, pmf, cdf = 0, dfs = {
+      mean: (r * p)/(1.0 - p),
+      mode: (function () {
+        if (r > 1) {
+          return Math.floor((p * (r - 1))/(1.0 - p));
+        } else {
+          return 0;
+        }
+      })(),
+      variance: (r * p)/Math.pow((1.0 - p), 2),
+      skewness: (1 + p)/Math.sqrt(r * p),
+      domain: { min: 0, max: Infinity }
+    };
+    do {
+      pmf = (mctad.combination((k + r - 1), k) * Math.pow((1.0 - p), r)) * Math.pow(p, k);
+      cdf += pmf;
+      dfs[k] = { pmf: pmf, cdf: cdf };
+      k++;
+    }
+    while (dfs[k - 1].cdf < 1.0 - mctad.ε);
+    dfs.domain.max = k - 1;
+
+    // Mix in the convenience methods for P(X) and F(X).
+    mctad.extend(dfs, mctad.mixins);
+
+    return dfs;
+  }
+
+};
 ;
 // # Poisson Distribution
 // The [Poisson Distribution](http://en.wikipedia.org/wiki/Poisson_distribution) is a discrete probability
@@ -619,19 +657,44 @@ mctad.discreteUniform = {
 };
 ;
 // # Triangular Distribution
+//
+// http://en.wikipedia.org/wiki/Triangular_distribution
 
 mctad.triangular = {
   distribution: function (a, b, c) {
     // Check that `a < c < b`.
-    if (a >= b || a >= c || c >= b) { return null; }
+    if (a >= b || a >= c || c >= b) { return undefined; }
 
-    var probability_of_x, x, distribution_functions = {
+    var pmf, x, dfs = {
       mean: (a + b + c)/3,
+      median: (function () {
+        if (c > (a + b)/2) {
+          return a + Math.sqrt((b - a) * (c - a))/Math.sqrt(2);
+        } else {
+          return b - Math.sqrt((b - a) * (b - c))/Math.sqrt(2);
+        }
+      })(),
+      mode: c,
       variance: (Math.pow(a, 2) + Math.pow(b, 2) + Math.pow(c, 2) - (a * b) - (a * c) - (b * c))/18,
-      mode: c
+      skewness: (Math.sqrt(2) * (a + b - 2 * c) * (2 * a - b - c) * (a - 2 * b + c))/(5 * Math.pow((Math.pow(a, 2) + Math.pow(b, 2) + Math.pow(c, 2) - a * b - a * c - b * c), 1.5)),
+      domain: { min: a, max: b },
+      // `mctad.triangular.distribution(1, 4, 2).generate(100)` will generate an Array of 100
+      // random variables, distributed triangularly between 1 and 4, with peak 2.
+      generate: function (n) {
+        var randomVariables = [];
+        for (var k = 0; k < n; k++ ) {
+          var U = mctad.getRandomArbitrary(0, 1);
+          if (U <= mctad.triangular.cdf(c)) {
+            randomVariables.push(a + Math.sqrt(U * (b - a) * (c - a)));
+          } else {
+            randomVariables.push(b - Math.sqrt((1.0 - U) * (b - a) * (b - c)));
+          }
+        }
+        return randomVariables;
+      }
     };
 
-    probability_of_x = function () {
+    pmf = function () {
       if (a <= x && x <= c) {
         return (2 * (x - a))/((b - a ) * (c - a));
       } else {
@@ -642,7 +705,7 @@ mctad.triangular = {
         }
       }
     };
-    cumulative_probability_of_x = function () {
+    cdf = function () {
       if (x < a) {
         return 0;
       } else {
@@ -657,31 +720,61 @@ mctad.triangular = {
         }
       }
     };
-    distribution_functions[x] = {
-      probability_of_x: probability_of_x,
-      cumulative_probability_of_x: cumulative_probability_of_x
+    dfs[x] = {
+      pmf: pmf,
+      cdf: cdf
     };
 
-    return distribution_functions;
+    return dfs;
   }
 
 };
 ;
-// # Uniform Distribution
-
-mctad.uniform = {
-  distribution: function (a, b) {
+mctad.uniform = function (a, b) {
     // Check that `a < b`.
-    if (a >= b) { return null; }
+    if (a >= b) { return undefined; }
 
-    var probability_of_x, x, acc = 0, distribution_functions = { mean: (a + b)/2, variance: Math.pow((b - a), 2)/12 };
-    for (x = i; x <= j; x++) {
-      probability_of_x = 1/(b - a);
-      acc += probability_of_x;
-      distribution_functions[x] = { probability_of_x: probability_of_x, cumulative_probability_of_x: acc };
+    var x, dfs = {
+      mean: (a + b)/2,
+      median: (a + b)/2,
+      variance: Math.pow((b - a), 2)/12,
+      skewness: 0,
+      // `mctad.uniform.distribution(10, 20).generate(100)` will generate an Array of 100
+      // random variables, distributed uniformly between 10 and 20, inclusive.
+      generate: function (n) {
+        var randomVariables = [];
+        for (var k = 0; k < n; k++ ) {
+          randomVariables.push(a + (b - a) * mctad.getRandomArbitrary(0, 1));
+        }
+        return randomVariables;
+      },
+
+      pmf: function(x) {
+        if (x >= a && x <= b) {
+          return 1 / (b - a);
+        } else {
+          return 0.0;
+        }
+      },
+
+      cdf: function () {
+      if (x < a) {
+        return 0;
+      } else {
+        if (a <= x && x <= c) {
+          return (Math.pow((x - a), 2))/((b - a) * (c - a));
+        } else {
+          if (c < x && x <= b) {
+            return 1 - ((Math.pow((b - x), 2))/((b - a) * (b - c)));
+          } else {
+            return 1;
+          }
+        }
+      }
     }
 
-    return distribution_functions;
-  }
+  };
+
+  return dfs;
 
 };

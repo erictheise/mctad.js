@@ -3,10 +3,10 @@ var assert = require('chai').assert;
 
 describe('binomial.distribution', function() {
   it('can return null when p or n are not valid parameters', function() {
-    assert.isNull(mctad.binomial.distribution(0, 0.5), 'n should be strictly positive');
-    assert.isNull(mctad.binomial.distribution(1.5, 0.5), 'n should be an integer');
-    assert.isNull(mctad.binomial.distribution(2, -0.01), 'p should be greater than 0.0');
-    assert.isNull(mctad.binomial.distribution(2, 1.5), 'p should be less than 1.0');
+    assert.isUndefined(mctad.binomial.distribution(0, 0.5), 'n should be strictly positive');
+    assert.isUndefined(mctad.binomial.distribution(1.5, 0.5), 'n should be an integer');
+    assert.isUndefined(mctad.binomial.distribution(2, -0.01), 'p should be greater than 0.0');
+    assert.isUndefined(mctad.binomial.distribution(2, 1.5), 'p should be less than 1.0');
   });
   // Data given in the [Wikipedia example](http://en.wikipedia.org/wiki/Binomial_distribution#Example) retrieved 29 Mar 2014
   // Cumulative probabilities worked by hand to mitigate accumulated rounding errors.
