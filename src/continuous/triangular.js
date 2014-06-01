@@ -34,13 +34,14 @@ mctad.triangular = function (a, b, c) {
     // `mctad.triangular(1, 4, 2).generate(100)` will generate an Array of 100
     // random variables, distributed triangularly between 1 and 4, with a peak/mode of 2.
     generate: function (n) {
-      var randomVariables = [];
+      // The approach is to work with the triangular(0, 1, c_scaled) distribution.
+      var c_scaled = (c - a) / (b - a), randomVariables = [];
       for (var k = 0; k < n; k++ ) {
         var U = mctad.getRandomArbitrary(0, 1);
-        if (U <= mctad.triangular.cdf(c)) {
-          randomVariables.push(a + Math.sqrt(U * (b - a) * (c - a)));
+        if (U <= c_scaled) {
+          randomVariables.push(a + (b - a) * Math.sqrt(c_scaled * U));
         } else {
-          randomVariables.push(b - Math.sqrt((1.0 - U) * (b - a) * (b - c)));
+          randomVariables.push(a + (b - a) * (1.0 - Math.sqrt((1.0 - c_scaled) * (1.0 - U))));
         }
       }
       return randomVariables;
