@@ -5,7 +5,7 @@ describe('discreteUniform', function() {
   it('can return undefined when i or j are not valid parameters', function() {
     assert.isUndefined(mctad.discreteUniform(1.2, 3), 'i should be an integer');
     assert.isUndefined(mctad.discreteUniform(1, 2.3), 'j should be an integer');
-    assert.isUndefined(mctad.discreteUniform(3, 2), 'i should be greater than j');
+    assert.isUndefined(mctad.discreteUniform(3, 2), 'j should be ≥ i');
   });
   it('can generate probability and cumulative probability distributions for i = 0, j = 0', function() {
     assert.isObject(mctad.discreteUniform(0, 0));

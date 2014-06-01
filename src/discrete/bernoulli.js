@@ -56,7 +56,7 @@ mctad.bernoulli = function(p) {
   dfs[1] = { pmf: p, cdf: 1.0 };
 
   // Mix in the convenience methods for P(X) and F(X).
-  mctad.extend(dfs, mctad.mixins);
+  mctad.extend(dfs, mctad.discreteMixins);
 
   return dfs;
 };

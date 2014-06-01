@@ -30,108 +30,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             {
               "type": "heading",
               "data": {
-                "level": 2,
-                "title": "Measures of Central Tendency And Dispersion: A JavaScript library for probability &amp; statistics",
-                "slug": "measures-of-central-tendency-and-dispersion-a-javascript-library-for-probability-amp-statistics"
-              },
-              "depth": 2,
-              "children": [
-                {
-                  "type": "heading",
-                  "data": {
-                    "level": 3,
-                    "title": "About",
-                    "slug": "about"
-                  },
-                  "depth": 3
-                }, {
-                  "type": "heading",
-                  "data": {
-                    "level": 3,
-                    "title": "Use",
-                    "slug": "use"
-                  },
-                  "depth": 3,
-                  "children": [
-                    {
-                      "type": "heading",
-                      "data": {
-                        "level": 4,
-                        "title": "End-users",
-                        "slug": "end-users"
-                      },
-                      "depth": 4
-                    }, {
-                      "type": "heading",
-                      "data": {
-                        "level": 4,
-                        "title": "Developers",
-                        "slug": "developers"
-                      },
-                      "depth": 4
-                    }
-                  ]
-                }, {
-                  "type": "heading",
-                  "data": {
-                    "level": 3,
-                    "title": "Conventions",
-                    "slug": "conventions"
-                  },
-                  "depth": 3
-                }, {
-                  "type": "heading",
-                  "data": {
-                    "level": 3,
-                    "title": "Tests",
-                    "slug": "tests"
-                  },
-                  "depth": 3
-                }, {
-                  "type": "heading",
-                  "data": {
-                    "level": 3,
-                    "title": "Documentation",
-                    "slug": "documentation"
-                  },
-                  "depth": 3
-                }, {
-                  "type": "heading",
-                  "data": {
-                    "level": 3,
-                    "title": "Contributing",
-                    "slug": "contributing"
-                  },
-                  "depth": 3
-                }, {
-                  "type": "heading",
-                  "data": {
-                    "level": 3,
-                    "title": "To Do",
-                    "slug": "to-do"
-                  },
-                  "depth": 3
-                }
-              ]
-            }
-          ]
-        },
-        "title": "mctad.js"
-      },
-      "depth": 1,
-      "outline": [
-        {
-          "type": "heading",
-          "data": {
-            "level": 2,
-            "title": "Measures of Central Tendency And Dispersion: A JavaScript library for probability &amp; statistics",
-            "slug": "measures-of-central-tendency-and-dispersion-a-javascript-library-for-probability-amp-statistics"
-          },
-          "depth": 2,
-          "children": [
-            {
-              "type": "heading",
-              "data": {
                 "level": 3,
                 "title": "About",
                 "slug": "about"
@@ -171,7 +69,18 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "title": "Conventions",
                 "slug": "conventions"
               },
-              "depth": 3
+              "depth": 3,
+              "children": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 4,
+                    "title": "Continuous and Discrete Probability Distributions",
+                    "slug": "continuous-and-discrete-probability-distributions"
+                  },
+                  "depth": 4
+                }
+              ]
             }, {
               "type": "heading",
               "data": {
@@ -206,6 +115,97 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "depth": 3
             }
           ]
+        },
+        "title": "mctad.js"
+      },
+      "depth": 1,
+      "outline": [
+        {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "About",
+            "slug": "about"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "Use",
+            "slug": "use"
+          },
+          "depth": 3,
+          "children": [
+            {
+              "type": "heading",
+              "data": {
+                "level": 4,
+                "title": "End-users",
+                "slug": "end-users"
+              },
+              "depth": 4
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 4,
+                "title": "Developers",
+                "slug": "developers"
+              },
+              "depth": 4
+            }
+          ]
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "Conventions",
+            "slug": "conventions"
+          },
+          "depth": 3,
+          "children": [
+            {
+              "type": "heading",
+              "data": {
+                "level": 4,
+                "title": "Continuous and Discrete Probability Distributions",
+                "slug": "continuous-and-discrete-probability-distributions"
+              },
+              "depth": 4
+            }
+          ]
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "Tests",
+            "slug": "tests"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "Documentation",
+            "slug": "documentation"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "Contributing",
+            "slug": "contributing"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "To Do",
+            "slug": "to-do"
+          },
+          "depth": 3
         }
       ]
     }, {
@@ -225,6 +225,26 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "depth": 2,
           "children": [
             {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/continuous/mixins.js",
+                "projectPath": "src/continuous/mixins.js",
+                "targetPath": "src/continuous/mixins",
+                "pageTitle": "src/continuous/mixins",
+                "title": "mixins"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
               "type": "file",
               "data": {
                 "language": {
@@ -283,11 +303,19 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                     {
                       "type": "heading",
                       "data": {
-                        "level": 2,
+                        "level": 3,
+                        "title": "Assumptions",
+                        "slug": "assumptions"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
                         "title": "Use",
                         "slug": "use"
                       },
-                      "depth": 2
+                      "depth": 3
                     }
                   ]
                 },
@@ -298,11 +326,19 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 {
                   "type": "heading",
                   "data": {
-                    "level": 2,
+                    "level": 3,
+                    "title": "Assumptions",
+                    "slug": "assumptions"
+                  },
+                  "depth": 3
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
                     "title": "Use",
                     "slug": "use"
                   },
-                  "depth": 2
+                  "depth": 3
                 }
               ]
             }

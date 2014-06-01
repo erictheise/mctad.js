@@ -32,7 +32,7 @@ mctad.geometric = function (p) {
   dfs.domain.max = x - 1;
 
   // Mix in the convenience methods for P(X) and F(X).
-  mctad.extend(dfs, mctad.mixins);
+  mctad.extend(dfs, mctad.discreteMixins);
 
   return dfs;
 };
