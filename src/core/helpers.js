@@ -12,7 +12,6 @@ mctad.allPositive = function (data) {
       break;
     }
   }
-  console.log(i);
   return positive;
 };
 

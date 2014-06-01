@@ -1,7 +1,7 @@
 /*
 # Uniform Distribution
 
-The [Continuous Uniform Distribution](http://en.wikipedia.org/wiki/Uniform_distribution_(continuous)) or Rectangular Distribution is a family of symmetric probability distributions such that for each member of the family, all intervals of the same length on the distribution are equally probable.
+The [Continuous Uniform Distribution](http://en.wikipedia.org/wiki/Uniform_distribution_(continuous)) or Rectangular Distribution is a family of symmetric continuous probability distributions such that for each member of the family, all intervals of the same length on the distribution are equally probable.
 
 ### Assumptions
 
@@ -16,7 +16,7 @@ mctad.uniform = function (a, b) {
   // Check that `a < b`.
   if (a >= b) { return undefined; }
 
-  var x, dfs = {
+  var dfs = {
     mean: (a + b) / 2,
     median: (a + b) / 2,
     mode: undefined, // not clear what to return, as any value in [a, b] is modal
@@ -35,7 +35,7 @@ mctad.uniform = function (a, b) {
       return randomVariables;
     },
 
-    pdf: function(x) {
+    pdf: function (x) {
       if (x >= a && x <= b) {
         return 1 / (b - a);
       } else {
@@ -43,7 +43,7 @@ mctad.uniform = function (a, b) {
       }
     },
 
-    cdf: function(x) {
+    cdf: function (x) {
       if (x < a) {
         return 0;
       } else {
@@ -56,6 +56,7 @@ mctad.uniform = function (a, b) {
     }
 
   };
+
   // Mix in the convenience methods for f(X) and F(X).
   mctad.extend(dfs, mctad.continuousMixins);
 
