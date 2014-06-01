@@ -372,59 +372,57 @@ mctad.mixins = {
 //
 // More at the [Wikipedia article](http://en.wikipedia.org/wiki/Discrete_uniform_distribution).
 
-mctad.bernoulli = {
-  distribution: function(p) {
-    // Check that `p` is a valid probability (0 ≤ p ≤ 1)
-    if (p < 0 || p > 1.0) { return undefined; }
+mctad.bernoulli = function(p) {
+  // Check that `p` is a valid probability (0 ≤ p ≤ 1)
+  if (p < 0 || p > 1.0) { return undefined; }
 
-    var x, dfs = {
-      mean: p,
-      median: (function () {
-        if (p < 0.5) {
-          return 0.0;
+  var x, dfs = {
+    mean: p,
+    median: (function () {
+      if (p < 0.5) {
+        return 0.0;
+      } else {
+        if (p === 0.5) {
+          return 0.5;
         } else {
-          if (p === 0.5) {
-            return 0.5;
-          } else {
-            return 1.0;
-          }
-        }
-      })(),
-      mode: (function () {
-        if ((p < 0.5)) {
-          return [0.0];
-        } else {
-          if (p === 0.5) {
-            return [0, 1];
-          } else {
-            return [1.0];
-          }
-        }
-      })(),
-      variance: p * (1.0 - p),
-      skewness: ((1.0 - p) * p)/Math.sqrt(p * (1.0 - p)),
-      entropy: -(1.0 - p) * Math.log(1.0 - p) - p * Math.log(p),
-      domain: { min: 0, max: 1 },
-      // `mctad.bernoulli.distribution(.7).generate()` will perform a Bernoulli trial, yielding one
-      // random variable with a success probability of .7. For a sequence of Bernoulli trials, see
-      // the [binomial distribution](binomial.html).
-      generate: function () {
-        if (mctad.getRandomArbitrary(0, 1) <= p) {
-          return 1;
-        } else {
-          return 0;
+          return 1.0;
         }
       }
-    };
-    // Assign the probability mass and cumulative distribution functions for the outcomes 0 or 1.
-    dfs[0] = { pmf: 1.0 - p, cdf: 1.0 - p };
-    dfs[1] = { pmf: p, cdf: 1.0 };
+    })(),
+    mode: (function () {
+      if ((p < 0.5)) {
+        return [0.0];
+      } else {
+        if (p === 0.5) {
+          return [0, 1];
+        } else {
+          return [1.0];
+        }
+      }
+    })(),
+    variance: p * (1.0 - p),
+    skewness: ((1.0 - p) * p)/Math.sqrt(p * (1.0 - p)),
+    entropy: -(1.0 - p) * Math.log(1.0 - p) - p * Math.log(p),
+    domain: { min: 0, max: 1 },
+    // `mctad.bernoulli(.7).generate()` will perform a Bernoulli trial, yielding one
+    // random variable with a success probability of .7. For a sequence of Bernoulli trials, see
+    // the [binomial distribution](binomial.html).
+    generate: function () {
+      if (mctad.getRandomArbitrary(0, 1) <= p) {
+        return 1;
+      } else {
+        return 0;
+      }
+    }
+  };
+  // Assign the probability mass and cumulative distribution functions for the outcomes 0 or 1.
+  dfs[0] = { pmf: 1.0 - p, cdf: 1.0 - p };
+  dfs[1] = { pmf: p, cdf: 1.0 };
 
-    // Mix in the convenience methods for P(X) and F(X).
-    mctad.extend(dfs, mctad.mixins);
+  // Mix in the convenience methods for P(X) and F(X).
+  mctad.extend(dfs, mctad.mixins);
 
-    return dfs;
-  }
+  return dfs;
 };
 ;
 // # Binomial Distribution
@@ -434,105 +432,97 @@ mctad.bernoulli = {
 // success with probability `p`. Such a success/failure experiment is also called a Bernoulli experiment or
 // Bernoulli trial; when n = 1, the Binomial Distribution is a Bernoulli Distribution.
 
-mctad.binomial = {
-  distribution: function (n, p) {
-    // Check that `p` is a valid probability (0 ≤ p ≤ 1), and that `n` is an integer, strictly positive.
-    if (p < 0 || p > 1.0 || !mctad.isInteger(n) || n <= 0) { return undefined; }
+mctad.binomial = function (n, p) {
+  // Check that `p` is a valid probability (0 ≤ p ≤ 1), and that `n` is an integer, strictly positive.
+  if (p < 0 || p > 1.0 || !mctad.isInteger(n) || n <= 0) { return undefined; }
 
-    var x = 0, pmf, cdf = 0, dfs = {
-      mean: n * p,
-      variance: (n * p) * (1.0 - p),
-      skewness: (1 - 2 * p)/Math.sqrt(n * p * (1.0 - p)),
-      domain: { min: 0, max: Infinity }
-    };
-    do {
-      pmf = (mctad.factorial(n) / (mctad.factorial(x) * mctad.factorial(n - x)) * (Math.pow(p, x) * Math.pow(1.0 - p, (n - x))));
-      cdf += pmf;
-      dfs[x] = { pmf: pmf, cdf: cdf };
-      x++;
-    }
-    while (dfs[x - 1].cdf < 1.0 - mctad.ε);
-    dfs.domain.max = x - 1;
-
-    // Mix in the convenience methods for P(X) and F(X).
-    mctad.extend(dfs, mctad.mixins);
-
-    return dfs;
+  var x = 0, pmf, cdf = 0, dfs = {
+    mean: n * p,
+    variance: (n * p) * (1.0 - p),
+    skewness: (1 - 2 * p)/Math.sqrt(n * p * (1.0 - p)),
+    domain: { min: 0, max: Infinity }
+  };
+  do {
+    pmf = (mctad.factorial(n) / (mctad.factorial(x) * mctad.factorial(n - x)) * (Math.pow(p, x) * Math.pow(1.0 - p, (n - x))));
+    cdf += pmf;
+    dfs[x] = { pmf: pmf, cdf: cdf };
+    x++;
   }
+  while (dfs[x - 1].cdf < 1.0 - mctad.ε);
+  dfs.domain.max = x - 1;
 
+  // Mix in the convenience methods for P(X) and F(X).
+  mctad.extend(dfs, mctad.mixins);
+
+  return dfs;
 };
 ;
 // # Geometric Distribution
 //
 // This implementation uses the second definition of the [Geometric Distribution](http://en.wikipedia.org/wiki/Geometric_distribution)
 
-mctad.geometric = {
-  distribution: function (p) {
-    // Check that `p` is a valid probability (0 < p ≤ 1).
-    if (p <= 0 || p > 1.0) { return undefined; }
+mctad.geometric = function (p) {
+  // Check that `p` is a valid probability (0 < p ≤ 1).
+  if (p <= 0 || p > 1.0) { return undefined; }
 
-    var x = 0, pmf, cdf = 0, dfs = {
-      mean: (1 - p)/p,
-      mode: 0.0,
-      variance: (1.0 - p)/Math.pow(p, 2),
-      skewness: (2 - p)/Math.sqrt(1 - p),
-      domain: { min: 0, max: Infinity },
-      // `mctad.geometric.distribution(0.25).generate(100)` will generate an Array of 100
-      // random variables, distributed geometrically with a probability .25 of success.
-      generate: function (n) {
-        var randomVariables = [];
-        for (var k = 0; k < n; k++ ) {
-          randomVariables.push(Math.floor(Math.log(mctad.getRandomArbitrary(0, 1))/Math.log(1.0 - p)));
-        }
-        return randomVariables;
+  var x = 0, pmf, cdf = 0, dfs = {
+    mean: (1 - p)/p,
+    mode: 0.0,
+    variance: (1.0 - p)/Math.pow(p, 2),
+    skewness: (2 - p)/Math.sqrt(1 - p),
+    domain: { min: 0, max: Infinity },
+    // `mctad.geometric(0.25).generate(100)` will generate an Array of 100
+    // random variables, distributed geometrically with a probability .25 of success.
+    generate: function (n) {
+      var randomVariables = [];
+      for (var k = 0; k < n; k++ ) {
+        randomVariables.push(Math.floor(Math.log(mctad.getRandomArbitrary(0, 1))/Math.log(1.0 - p)));
       }
-    };
-    do {
-      pmf = p * Math.pow(1.0 - p, x);
-      cdf += pmf;
-      dfs[x] = { pmf: pmf, cdf: cdf };
-      x++;
+      return randomVariables;
     }
-    while (dfs[x - 1].cdf < 1.0 - mctad.ε);
-    dfs.domain.max = x - 1;
-
-    // Mix in the convenience methods for P(X) and F(X).
-    mctad.extend(dfs, mctad.mixins);
-
-    return dfs;
+  };
+  do {
+    pmf = p * Math.pow(1.0 - p, x);
+    cdf += pmf;
+    dfs[x] = { pmf: pmf, cdf: cdf };
+    x++;
   }
+  while (dfs[x - 1].cdf < 1.0 - mctad.ε);
+  dfs.domain.max = x - 1;
 
+  // Mix in the convenience methods for P(X) and F(X).
+  mctad.extend(dfs, mctad.mixins);
+
+  return dfs;
 };
 ;
 // # Hypergeometric Distribution
 
-mctad.hypergeometric = {
-  distribution: function (N, K, n) {
-    // Check that `p` is a valid probability (0 < p < 1).
-    if (!mctad.isInteger(N) || !mctad.isInteger(K) || !mctad.isInteger(n) || N < 0 || K > N || n > N) { return undefined; }
+mctad.hypergeometric = function (N, K, n) {
+  // Check that `p` is a valid probability (0 < p < 1).
+  if (!mctad.isInteger(N) || !mctad.isInteger(K) || !mctad.isInteger(n) || N < 0 || K > N || n > N) { return undefined; }
 
-    var x = 0, pmf, cdf = 0, dfs = {
-      mean: n * K / N,
-      median: undefined,
-      mode: Math.floor(((n + 1) * (K + 1 ))/(N + 2)),
-      variance: n * (K / N) * (N - K)/N * (N - n)/(N - 1),
-      skewness: ((N - 2 * K) * Math.pow((N - 1, 0.5) * (N - 2 * n_))/(Math.pow(n * K * (N - K) * (N - n)), 0.5) * (N - 2)),
-      domain: { min: 0, max: Infinity }
-    };
-    do {
-      pmf = (this.combination(K, k) * this.combination(N - K, n - k))/this.combination(N, K);
-      cdf += pmf;
-      dfs[x] = { pmf: pmf, cdf: cdf };
-      x++;
-    }
-    while (dfs[x - 1].cdf < 1.0 - mctad.ε);
-    dfs.domain.max = x - 1;
-
-    // Mix in the convenience methods for P(X) and F(X).
-    mctad.extend(dfs, mctad.mixins);
-
-    return dfs;
+  var x = 0, pmf, cdf = 0, dfs = {
+    mean: n * K / N,
+    median: undefined,
+    mode: Math.floor(((n + 1) * (K + 1 ))/(N + 2)),
+    variance: n * (K / N) * (N - K)/N * (N - n)/(N - 1),
+    skewness: ((N - 2 * K) * Math.pow((N - 1, 0.5) * (N - 2 * n_))/(Math.pow(n * K * (N - K) * (N - n)), 0.5) * (N - 2)),
+    domain: { min: 0, max: Infinity }
+  };
+  do {
+    pmf = (this.combination(K, k) * this.combination(N - K, n - k))/this.combination(N, K);
+    cdf += pmf;
+    dfs[x] = { pmf: pmf, cdf: cdf };
+    x++;
   }
+  while (dfs[x - 1].cdf < 1.0 - mctad.ε);
+  dfs.domain.max = x - 1;
+
+  // Mix in the convenience methods for P(X) and F(X).
+  mctad.extend(dfs, mctad.mixins);
+
+  return dfs;
 };
 ;
 // # Pascal Distribution
@@ -580,37 +570,35 @@ mctad.pascal = {
 //
 // The Poisson Distribution is characterized by the strictly positive mean arrival or occurrence rate, `λ`.
 
-mctad.poisson = {
-  distribution: function (λ) {
-    // Check that λ is strictly positive
-    if (λ <= 0) { return null; }
+mctad.poisson = function (λ) {
+  // Check that λ is strictly positive
+  if (λ <= 0) { return null; }
 
-    // We initialize `x`, the random variable, and `cdf`, an cdfumulator for the cumulative distribution function
-    // to 0. `dfs` is the object we'll return with the `pmf` and the
-    // `cdf`, as well as the trivially calculated mean & variance. We iterate until the
-    // `cdf` is within `epsilon` of 1.0.
-    var x = 0, pmf, cdf = 0, dfs = {
-      mean: λ,
-      median: Math.floor(λ + 1/3 - 0.02/λ),
-      mode: [Math.floor(λ), Math.ceil(λ) - 1],
-      variance: λ,
-      skewness: Math.pow(λ, 0.5),
-      domain: { min: 0, max: Infinity }
-    };
-    do {
-      pmf = (Math.pow(Math.E, -λ) * Math.pow(λ, x))/mctad.factorial(x);
-      cdf += pmf;
-      dfs[x] = { pmf: pmf, cdf: cdf };
-      x++;
-    }
-    while (dfs[x - 1].cdf < 1.0 - mctad.ε);
-    dfs.domain.max = x - 1;
-
-    // Mix in the convenience methods for P(X) and F(X).
-    mctad.extend(dfs, mctad.mixins);
-
-    return dfs;
+  // We initialize `x`, the random variable, and `cdf`, an cdfumulator for the cumulative distribution function
+  // to 0. `dfs` is the object we'll return with the `pmf` and the
+  // `cdf`, as well as the trivially calculated mean & variance. We iterate until the
+  // `cdf` is within `epsilon` of 1.0.
+  var x = 0, pmf, cdf = 0, dfs = {
+    mean: λ,
+    median: Math.floor(λ + 1/3 - 0.02/λ),
+    mode: [Math.floor(λ), Math.ceil(λ) - 1],
+    variance: λ,
+    skewness: Math.pow(λ, 0.5),
+    domain: { min: 0, max: Infinity }
+  };
+  do {
+    pmf = (Math.pow(Math.E, -λ) * Math.pow(λ, x))/mctad.factorial(x);
+    cdf += pmf;
+    dfs[x] = { pmf: pmf, cdf: cdf };
+    x++;
   }
+  while (dfs[x - 1].cdf < 1.0 - mctad.ε);
+  dfs.domain.max = x - 1;
+
+  // Mix in the convenience methods for P(X) and F(X).
+  mctad.extend(dfs, mctad.mixins);
+
+  return dfs;
 };
 ;
 // # Uniform Distribution (Discrete)
@@ -619,115 +607,109 @@ mctad.poisson = {
 //
 // More at the [Wikipedia article](http://en.wikipedia.org/wiki/Discrete_uniform_distribution).
 
-mctad.discreteUniform = {
-  distribution: function (i, j) {
-    // Check that `i ≤ j`, and that `i` and `j` are integers.
-    if (i > j || !mctad.isInteger(i) || !mctad.isInteger(j) ) { return undefined; }
+mctad.discreteUniform = function (i, j) {
+  // Check that `i ≤ j`, and that `i` and `j` are integers.
+  if (i > j || !mctad.isInteger(i) || !mctad.isInteger(j) ) { return undefined; }
 
-    var x, pmf, cdf = 0, dfs = {
-      mean: (i + j)/2,
-      median: (i + j)/2,
-      mode: undefined,
-      variance: (Math.pow((j - i + 1), 2) - 1)/12,
-      skewness: 0.0,
-      entropy: Math.log(j - i + 1),
-      domain: { min: i, max: j },
-      // `mctad.discreteUniform.distribution(10, 20).generate(100)` will generate an Array of 100
-      // random variables, distributed uniformly between 10 and 20, inclusive.
-      generate: function (n) {
-        var randomVariables = [];
-        for (var k = 0; k < n; k++ ) {
-          randomVariables.push(mctad.getRandomInt(i, j));
-        }
-        return randomVariables;
+  var x, pmf, cdf = 0, dfs = {
+    mean: (i + j)/2,
+    median: (i + j)/2,
+    mode: undefined,
+    variance: (Math.pow((j - i + 1), 2) - 1)/12,
+    skewness: 0.0,
+    entropy: Math.log(j - i + 1),
+    domain: { min: i, max: j },
+    // `mctad.discreteUniform(10, 20).generate(100)` will generate an Array of 100
+    // random variables, distributed uniformly between 10 and 20, inclusive.
+    generate: function (n) {
+      var randomVariables = [];
+      for (var k = 0; k < n; k++ ) {
+        randomVariables.push(mctad.getRandomInt(i, j));
       }
-    };
-    // Iterate over the domain, calculating the probability mass and cumulative distribution functions.
-    for (x = i; x <= j; x++) {
-      pmf = 1/(j - i + 1);
-      cdf += pmf;
-      dfs[x] = { pmf: pmf, cdf: cdf };
+      return randomVariables;
     }
-    // Mix in the convenience methods for P(X) and F(X).
-    mctad.extend(dfs, mctad.mixins);
-
-    return dfs;
+  };
+  // Iterate over the domain, calculating the probability mass and cumulative distribution functions.
+  for (x = i; x <= j; x++) {
+    pmf = 1/(j - i + 1);
+    cdf += pmf;
+    dfs[x] = { pmf: pmf, cdf: cdf };
   }
+  // Mix in the convenience methods for P(X) and F(X).
+  mctad.extend(dfs, mctad.mixins);
 
+  return dfs;
 };
 ;
 // # Triangular Distribution
 //
 // http://en.wikipedia.org/wiki/Triangular_distribution
 
-mctad.triangular = {
-  distribution: function (a, b, c) {
-    // Check that `a < c < b`.
-    if (a >= b || a >= c || c >= b) { return undefined; }
+mctad.triangular = function (a, b, c) {
+  // Check that `a < c < b`.
+  if (a >= b || a >= c || c >= b) { return undefined; }
 
-    var pmf, x, dfs = {
-      mean: (a + b + c)/3,
-      median: (function () {
-        if (c > (a + b)/2) {
-          return a + Math.sqrt((b - a) * (c - a))/Math.sqrt(2);
-        } else {
-          return b - Math.sqrt((b - a) * (b - c))/Math.sqrt(2);
-        }
-      })(),
-      mode: c,
-      variance: (Math.pow(a, 2) + Math.pow(b, 2) + Math.pow(c, 2) - (a * b) - (a * c) - (b * c))/18,
-      skewness: (Math.sqrt(2) * (a + b - 2 * c) * (2 * a - b - c) * (a - 2 * b + c))/(5 * Math.pow((Math.pow(a, 2) + Math.pow(b, 2) + Math.pow(c, 2) - a * b - a * c - b * c), 1.5)),
-      domain: { min: a, max: b },
-      // `mctad.triangular.distribution(1, 4, 2).generate(100)` will generate an Array of 100
-      // random variables, distributed triangularly between 1 and 4, with peak 2.
-      generate: function (n) {
-        var randomVariables = [];
-        for (var k = 0; k < n; k++ ) {
-          var U = mctad.getRandomArbitrary(0, 1);
-          if (U <= mctad.triangular.cdf(c)) {
-            randomVariables.push(a + Math.sqrt(U * (b - a) * (c - a)));
-          } else {
-            randomVariables.push(b - Math.sqrt((1.0 - U) * (b - a) * (b - c)));
-          }
-        }
-        return randomVariables;
+  var pmf, x, dfs = {
+    mean: (a + b + c)/3,
+    median: (function () {
+      if (c > (a + b)/2) {
+        return a + Math.sqrt((b - a) * (c - a))/Math.sqrt(2);
+      } else {
+        return b - Math.sqrt((b - a) * (b - c))/Math.sqrt(2);
       }
-    };
+    })(),
+    mode: c,
+    variance: (Math.pow(a, 2) + Math.pow(b, 2) + Math.pow(c, 2) - (a * b) - (a * c) - (b * c))/18,
+    skewness: (Math.sqrt(2) * (a + b - 2 * c) * (2 * a - b - c) * (a - 2 * b + c))/(5 * Math.pow((Math.pow(a, 2) + Math.pow(b, 2) + Math.pow(c, 2) - a * b - a * c - b * c), 1.5)),
+    domain: { min: a, max: b },
+    // `mctad.triangular(1, 4, 2).generate(100)` will generate an Array of 100
+    // random variables, distributed triangularly between 1 and 4, with peak 2.
+    generate: function (n) {
+      var randomVariables = [];
+      for (var k = 0; k < n; k++ ) {
+        var U = mctad.getRandomArbitrary(0, 1);
+        if (U <= mctad.triangular.cdf(c)) {
+          randomVariables.push(a + Math.sqrt(U * (b - a) * (c - a)));
+        } else {
+          randomVariables.push(b - Math.sqrt((1.0 - U) * (b - a) * (b - c)));
+        }
+      }
+      return randomVariables;
+    }
+  };
 
-    pmf = function () {
+  pmf = function () {
+    if (a <= x && x <= c) {
+      return (2 * (x - a))/((b - a ) * (c - a));
+    } else {
+      if (c < x && x <= b) {
+        return (2 * (b - x))/((b - a ) * (b - c));
+      } else {
+        return 0;
+      }
+    }
+  };
+  cdf = function () {
+    if (x < a) {
+      return 0;
+    } else {
       if (a <= x && x <= c) {
-        return (2 * (x - a))/((b - a ) * (c - a));
+        return (Math.pow((x - a), 2))/((b - a ) * (c - a));
       } else {
         if (c < x && x <= b) {
-          return (2 * (b - x))/((b - a ) * (b - c));
+          return 1 - ((Math.pow((b - x), 2))/((b - a ) * (b - c)));
         } else {
-          return 0;
+          return 1;
         }
       }
-    };
-    cdf = function () {
-      if (x < a) {
-        return 0;
-      } else {
-        if (a <= x && x <= c) {
-          return (Math.pow((x - a), 2))/((b - a ) * (c - a));
-        } else {
-          if (c < x && x <= b) {
-            return 1 - ((Math.pow((b - x), 2))/((b - a ) * (b - c)));
-          } else {
-            return 1;
-          }
-        }
-      }
-    };
-    dfs[x] = {
-      pmf: pmf,
-      cdf: cdf
-    };
+    }
+  };
+  dfs[x] = {
+    pmf: pmf,
+    cdf: cdf
+  };
 
-    return dfs;
-  }
-
+  return dfs;
 };
 ;
 mctad.uniform = function (a, b) {
@@ -739,7 +721,7 @@ mctad.uniform = function (a, b) {
       median: (a + b)/2,
       variance: Math.pow((b - a), 2)/12,
       skewness: 0,
-      // `mctad.uniform.distribution(10, 20).generate(100)` will generate an Array of 100
+      // `mctad.uniform(10, 20).generate(100)` will generate an Array of 100
       // random variables, distributed uniformly between 10 and 20, inclusive.
       generate: function (n) {
         var randomVariables = [];

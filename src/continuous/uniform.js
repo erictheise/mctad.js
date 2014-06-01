@@ -7,7 +7,7 @@ Another paragraph.
 
 ## Use
 
-`mctad.uniform.distribution(a, b)` where `a` and `b` are the minimum and maximum values.
+`mctad.uniform(a, b)` where `a` and `b` are the minimum and maximum values.
 */
 
 
@@ -20,7 +20,7 @@ mctad.uniform = function (a, b) {
       median: (a + b)/2,
       variance: Math.pow((b - a), 2)/12,
       skewness: 0,
-      // `mctad.uniform.distribution(10, 20).generate(100)` will generate an Array of 100
+      // `mctad.uniform(10, 20).generate(100)` will generate an Array of 100
       // random variables, distributed uniformly between 10 and 20, inclusive.
       generate: function (n) {
         var randomVariables = [];

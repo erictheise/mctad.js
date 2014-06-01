@@ -8,57 +8,55 @@
 //
 // More at the [Wikipedia article](http://en.wikipedia.org/wiki/Discrete_uniform_distribution).
 
-mctad.bernoulli = {
-  distribution: function(p) {
-    // Check that `p` is a valid probability (0 ≤ p ≤ 1)
-    if (p < 0 || p > 1.0) { return undefined; }
+mctad.bernoulli = function(p) {
+  // Check that `p` is a valid probability (0 ≤ p ≤ 1)
+  if (p < 0 || p > 1.0) { return undefined; }
 
-    var x, dfs = {
-      mean: p,
-      median: (function () {
-        if (p < 0.5) {
-          return 0.0;
+  var x, dfs = {
+    mean: p,
+    median: (function () {
+      if (p < 0.5) {
+        return 0.0;
+      } else {
+        if (p === 0.5) {
+          return 0.5;
         } else {
-          if (p === 0.5) {
-            return 0.5;
-          } else {
-            return 1.0;
-          }
-        }
-      })(),
-      mode: (function () {
-        if ((p < 0.5)) {
-          return [0.0];
-        } else {
-          if (p === 0.5) {
-            return [0, 1];
-          } else {
-            return [1.0];
-          }
-        }
-      })(),
-      variance: p * (1.0 - p),
-      skewness: ((1.0 - p) * p)/Math.sqrt(p * (1.0 - p)),
-      entropy: -(1.0 - p) * Math.log(1.0 - p) - p * Math.log(p),
-      domain: { min: 0, max: 1 },
-      // `mctad.bernoulli.distribution(.7).generate()` will perform a Bernoulli trial, yielding one
-      // random variable with a success probability of .7. For a sequence of Bernoulli trials, see
-      // the [binomial distribution](binomial.html).
-      generate: function () {
-        if (mctad.getRandomArbitrary(0, 1) <= p) {
-          return 1;
-        } else {
-          return 0;
+          return 1.0;
         }
       }
-    };
-    // Assign the probability mass and cumulative distribution functions for the outcomes 0 or 1.
-    dfs[0] = { pmf: 1.0 - p, cdf: 1.0 - p };
-    dfs[1] = { pmf: p, cdf: 1.0 };
+    })(),
+    mode: (function () {
+      if ((p < 0.5)) {
+        return [0.0];
+      } else {
+        if (p === 0.5) {
+          return [0, 1];
+        } else {
+          return [1.0];
+        }
+      }
+    })(),
+    variance: p * (1.0 - p),
+    skewness: ((1.0 - p) * p)/Math.sqrt(p * (1.0 - p)),
+    entropy: -(1.0 - p) * Math.log(1.0 - p) - p * Math.log(p),
+    domain: { min: 0, max: 1 },
+    // `mctad.bernoulli(.7).generate()` will perform a Bernoulli trial, yielding one
+    // random variable with a success probability of .7. For a sequence of Bernoulli trials, see
+    // the [binomial distribution](binomial.html).
+    generate: function () {
+      if (mctad.getRandomArbitrary(0, 1) <= p) {
+        return 1;
+      } else {
+        return 0;
+      }
+    }
+  };
+  // Assign the probability mass and cumulative distribution functions for the outcomes 0 or 1.
+  dfs[0] = { pmf: 1.0 - p, cdf: 1.0 - p };
+  dfs[1] = { pmf: p, cdf: 1.0 };
 
-    // Mix in the convenience methods for P(X) and F(X).
-    mctad.extend(dfs, mctad.mixins);
+  // Mix in the convenience methods for P(X) and F(X).
+  mctad.extend(dfs, mctad.mixins);
 
-    return dfs;
-  }
+  return dfs;
 };
