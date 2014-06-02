@@ -79,10 +79,8 @@ Please alert me if you see me breaking my own contract. Contributions should fol
 
 * continuous
   * distributions
-    * uniform
-    * triangle
-    * exponential
     * normal
+    * lognormal
     * student's t
     * chi square
     * beta
