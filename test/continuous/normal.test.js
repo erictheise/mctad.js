@@ -40,13 +40,13 @@ describe('normal', function() {
 
   it('can generate the cumulative probability distribution for the standard normal, μ = 0.0, σ2 = 1.0', function() {
     assert.closeTo(mctad.normal(0.0, 1.0).cdf(-3.99), 1 - 0.99997, mctad.ε);
-//    assert.closeTo(mctad.normal(0.0, 1.0).cdf(-3.5), 1 - 0.99977, mctad.ε);
-//    assert.closeTo(mctad.normal(0.0, 1.0).cdf(-3.0), 1 - 0.99865, mctad.ε);
-//    assert.closeTo(mctad.normal(0.0, 1.0).cdf(-2.5), 1 - 0.99379, mctad.ε);
-//    assert.closeTo(mctad.normal(0.0, 1.0).cdf(-2.0), 1 - 0.97725, mctad.ε);
-//    assert.closeTo(mctad.normal(0.0, 1.0).cdf(-1.5), 1 - 0.93319, mctad.ε);
-//    assert.closeTo(mctad.normal(0.0, 1.0).cdf(-1.0), 1 - 0.84134, mctad.ε);
-//    assert.closeTo(mctad.normal(0.0, 1.0).cdf(-0.99), 1 - 0.83891, mctad.ε);
+    assert.closeTo(mctad.normal(0.0, 1.0).cdf(-3.5), 1 - 0.99977, mctad.ε);
+    assert.closeTo(mctad.normal(0.0, 1.0).cdf(-3.0), 1 - 0.99865, mctad.ε);
+    assert.closeTo(mctad.normal(0.0, 1.0).cdf(-2.5), 1 - 0.99379, mctad.ε);
+    assert.closeTo(mctad.normal(0.0, 1.0).cdf(-2.0), 1 - 0.97725, mctad.ε);
+    assert.closeTo(mctad.normal(0.0, 1.0).cdf(-1.5), 1 - 0.93319, mctad.ε);
+    assert.closeTo(mctad.normal(0.0, 1.0).cdf(-1.0), 1 - 0.84134, mctad.ε);
+    assert.closeTo(mctad.normal(0.0, 1.0).cdf(-0.99), 1 - 0.83891, mctad.ε);
     assert.closeTo(mctad.normal(0.0, 1.0).cdf(-0.88), 1 - 0.81057, mctad.ε);
     assert.closeTo(mctad.normal(0.0, 1.0).cdf(-0.77), 1 - 0.77935, mctad.ε);
     assert.closeTo(mctad.normal(0.0, 1.0).cdf(-0.66), 1 - 0.74537, mctad.ε);
@@ -72,6 +72,11 @@ describe('normal', function() {
     assert.closeTo(mctad.normal(0.0, 1.0).cdf(3.0), 0.99865, mctad.ε);
     assert.closeTo(mctad.normal(0.0, 1.0).cdf(3.5), 0.99977, mctad.ε);
     assert.closeTo(mctad.normal(0.0, 1.0).cdf(3.99), 0.99997, mctad.ε);
+  });
+
+  it('can generate the cumulative probability distribution for an arbitrary normal, μ = 800.0, σ2 = 144.0', function() {
+    assert.closeTo(mctad.normal(800.0, 144.0).cdf(800.0), 0.5, mctad.ε);
+    assert.closeTo(mctad.normal(800.0, 144.0).cdf(772), 1 - 0.99010, mctad.ε);
   });
 
 });

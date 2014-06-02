@@ -579,26 +579,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "depth": 3
                 }
               ]
-            }, {
-              "type": "file",
-              "data": {
-                "language": {
-                  "nameMatchers": [".js"],
-                  "pygmentsLexer": "javascript",
-                  "multiLineComment": ["/*", "*", "*/"],
-                  "singleLineComment": ["//"],
-                  "ignorePrefix": "}",
-                  "foldPrefix": "^",
-                  "name": "JavaScript"
-                },
-                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/continuous/von_mises.js",
-                "projectPath": "src/continuous/von_mises.js",
-                "targetPath": "src/continuous/von_mises",
-                "pageTitle": "src/continuous/von_mises",
-                "title": "von_mises"
-              },
-              "depth": 3,
-              "outline": []
             }
           ]
         }, {
