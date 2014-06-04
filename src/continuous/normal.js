@@ -47,14 +47,13 @@ mctad.normal = function (μ, σ2) {
       return (1 / (Math.sqrt(σ2) * Math.sqrt(2 * mctad.π))) * Math.pow(Math.E, -(Math.pow(x - μ, 2) / (2 * σ2)));
     },
 
-    // The implementation of the erf uses [Abramowitz and Stegun's approximation 7.1.28](http://en.wikipedia.org/wiki/Error_function#Approximation_with_elementary_functions), which in turn comes from C. Hastings, Jr., Approximations for Digital Computers, Princeton University Press, NJ, 1955.
     cdf: function (x) {
       var Z = (x - μ) / Math.sqrt(2 * σ2);
 
       if (Z >= 0) {
-        return 0.5 * (1.0 + (1 - (1 / Math.pow(1 + 0.0705230784 * Z + 0.0422820123 * Math.pow(Z, 2) + 0.0092705272 * Math.pow(Z, 3) + 0.0001520143 * Math.pow(Z, 4) + 0.0002765672 * Math.pow(Z, 5) + 0.0000430638 * Math.pow(Z, 6), 16))));
+        return 0.5 * (1.0 + mctad.erf(Z));
       } else {
-        return 0.5 * (1.0 - (1 - (1 / Math.pow(1 + 0.0705230784 * -Z + 0.0422820123 * Math.pow(-Z, 2) + 0.0092705272 * Math.pow(-Z, 3) + 0.0001520143 * Math.pow(-Z, 4) + 0.0002765672 * Math.pow(-Z, 5) + 0.0000430638 * Math.pow(-Z, 6), 16))));
+        return 0.5 * (1.0 - mctad.erf(-Z));
       }
     }
 

@@ -236,6 +236,36 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/continuous/erf.js",
+                "projectPath": "src/continuous/erf.js",
+                "targetPath": "src/continuous/erf",
+                "pageTitle": "src/continuous/erf",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "Error Function",
+                    "slug": "error-function",
+                    "isFileHeader": true
+                  },
+                  "depth": 1
+                },
+                "title": "Error Function"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
                 "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/continuous/exponential.js",
                 "projectPath": "src/continuous/exponential.js",
                 "targetPath": "src/continuous/exponential",

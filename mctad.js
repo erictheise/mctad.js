@@ -640,6 +640,19 @@ mctad.discreteUniform = function (i, j) {
   return dfs;
 };
 ;
+mctad.continuousMixins = {
+  f: function(x) {
+    return this.pdf(x);
+  },
+  F: function(x) {
+    return this.cdf(x);
+  }
+};
+;
+mctad.erf = function (x) {
+  return 1 - (1 / Math.pow(1 + 0.0705230784 * x + 0.0422820123 * Math.pow(x, 2) + 0.0092705272 * Math.pow(x, 3) + 0.0001520143 * Math.pow(x, 4) + 0.0002765672 * Math.pow(x, 5) + 0.0000430638 * Math.pow(x, 6), 16));
+};
+;
 mctad.exponential = function (λ) {
   // Check that `λ > 0`.
   if (λ < 0) { return undefined; }
@@ -680,17 +693,17 @@ mctad.exponential = function (λ) {
 };
 ;
 mctad.lognormal = function (μ, σ2) {
-  // Check that `σ2 > 0`.
-  if (σ2 <= 0) { return undefined; }
+  // Check that `μ > 0` and `σ2 > 0`.
+  if (μ <= 0 || σ2 <= 0) { return undefined; }
 
   var dfs = {
-    mean: μ,
-    median: μ,
-    mode: μ,
-    variance: σ2,
-    skewness: 0,
-    entropy: 0.5 * Math.log(2 * mctad.π * Math.E * σ2),
-    domain: { min: -Infinity, max: Infinity },
+    mean: Math.pow(Math.E, μ + σ2 / 2),
+    median: Math.pow(Math.E, μ),
+    mode: Math.pow(Math.E, μ - σ2),
+    variance: (Math.pow(Math.E, σ2) - 1) * Math.pow(Math.E, 2 * μ + σ2),
+    skewness: (Math.pow(Math.E, σ2) + 2) * Math.sqrt(Math.pow(Math.E, σ2) - 1),
+    entropy: 0.5 * Math.log(2 * mctad.π * σ2) + μ,
+    domain: { min: 0.0, max: Infinity },
 
     // `mctad.lognormal(-2.0, 0.5).generate(100)` will generate an Array of 100
     // random variables, distributed lognormally with mean -2 and variance 0.5. The implementation
@@ -711,16 +724,18 @@ mctad.lognormal = function (μ, σ2) {
     },
 
     pdf: function (x) {
-      return (1 / (Math.sqrt(σ2) * Math.sqrt(2 * mctad.π))) * Math.pow(Math.E, -(Math.pow(x - μ, 2) / (2 * σ2)));
+      return (1 / (x * Math.sqrt(2 * mctad.π * σ2))) * Math.pow(Math.E, -(Math.pow(Math.log(x) - μ, 2) / (2 * σ2)));
     },
 
+    // The implementation of the erf uses [Abramowitz and Stegun's approximation 7.1.28](http://en.wikipedia.org/wiki/Error_function#Approximation_with_elementary_functions), which in turn comes from C. Hastings, Jr., Approximations for Digital Computers, Princeton University Press, NJ, 1955.
     cdf: function (x) {
-      var x_scaled = (x - μ) / Math.sqrt(2 * σ2);
-      return (Math.sqrt(1 +
+      var Z = (x - μ) / Math.sqrt(2 * σ2);
 
-        (1 - (1 / Math.pow(1 + 0.0705230784 * x_scaled + 0.0422820123 * Math.pow(x_scaled, 2) + 0.0092705272 * Math.pow(x_scaled, 3) + 0.0001520143 * Math.pow(x_scaled, 4) + 0.0002765672 * Math.pow(x_scaled, 5) + 0.0000430638 * Math.pow(x_scaled, 6), 16)))
-
-      ));
+      if (Z >= 0) {
+        return 0.5 * (1.0 + (1 - (1 / Math.pow(1 + 0.0705230784 * Z + 0.0422820123 * Math.pow(Z, 2) + 0.0092705272 * Math.pow(Z, 3) + 0.0001520143 * Math.pow(Z, 4) + 0.0002765672 * Math.pow(Z, 5) + 0.0000430638 * Math.pow(Z, 6), 16))));
+      } else {
+        return 0.5 * (1.0 - (1 - (1 / Math.pow(1 + 0.0705230784 * -Z + 0.0422820123 * Math.pow(-Z, 2) + 0.0092705272 * Math.pow(-Z, 3) + 0.0001520143 * Math.pow(-Z, 4) + 0.0002765672 * Math.pow(-Z, 5) + 0.0000430638 * Math.pow(-Z, 6), 16))));
+      }
     }
 
   };
@@ -729,15 +744,6 @@ mctad.lognormal = function (μ, σ2) {
   mctad.extend(dfs, mctad.continuousMixins);
 
   return dfs;
-};
-;
-mctad.continuousMixins = {
-  f: function(x) {
-    return this.pdf(x);
-  },
-  F: function(x) {
-    return this.cdf(x);
-  }
 };
 ;
 mctad.normal = function (μ, σ2) {
@@ -775,14 +781,13 @@ mctad.normal = function (μ, σ2) {
       return (1 / (Math.sqrt(σ2) * Math.sqrt(2 * mctad.π))) * Math.pow(Math.E, -(Math.pow(x - μ, 2) / (2 * σ2)));
     },
 
-    // The implementation of the erf uses [Abramowitz and Stegun's approximation 7.1.28](http://en.wikipedia.org/wiki/Error_function#Approximation_with_elementary_functions), which in turn comes from C. Hastings, Jr., Approximations for Digital Computers, Princeton University Press, NJ, 1955.
     cdf: function (x) {
       var Z = (x - μ) / Math.sqrt(2 * σ2);
 
       if (Z >= 0) {
-        return 0.5 * (1.0 + (1 - (1 / Math.pow(1 + 0.0705230784 * Z + 0.0422820123 * Math.pow(Z, 2) + 0.0092705272 * Math.pow(Z, 3) + 0.0001520143 * Math.pow(Z, 4) + 0.0002765672 * Math.pow(Z, 5) + 0.0000430638 * Math.pow(Z, 6), 16))));
+        return 0.5 * (1.0 + mctad.erf(Z));
       } else {
-        return 0.5 * (1.0 - (1 - (1 / Math.pow(1 + 0.0705230784 * -Z + 0.0422820123 * Math.pow(-Z, 2) + 0.0092705272 * Math.pow(-Z, 3) + 0.0001520143 * Math.pow(-Z, 4) + 0.0002765672 * Math.pow(-Z, 5) + 0.0000430638 * Math.pow(-Z, 6), 16))));
+        return 0.5 * (1.0 - mctad.erf(-Z));
       }
     }
 
