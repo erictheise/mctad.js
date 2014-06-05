@@ -1,4 +1,4 @@
-[Travis CI Build Status](https://travis-ci.org/erictheise/mctad.js.svg?branch=master)
+![Travis CI Build Status](https://travis-ci.org/erictheise/mctad.js.svg?branch=master)
 
 mctad.js
 ========
