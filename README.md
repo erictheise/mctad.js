@@ -1,3 +1,5 @@
+https://travis-ci.org/erictheise/mctad.js.svg?branch=master
+
 mctad.js
 ========
 
