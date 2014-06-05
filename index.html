@@ -1,3 +1,96 @@
 <!DOCTYPE html><html lang="en"><head><title>index</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="index"><meta name="groc-project-path" content="README.md"><meta name="groc-github-url" content="https://github.com/erictheise/mctad.js"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path"><a href="https://github.com/erictheise/mctad.js/blob/master/README.md">README.md</a></div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="mctadjs">mctad.js</h1>
 
-<p>Measures of Central Tendency And Dispersion: a JavaScript probability &amp; statistics library</p></div></div></div></div></body></html>
+<p>Measures of Central Tendency And Dispersion: A JavaScript library for probability &amp; statistics</p>
+
+<h3 id="about">About</h3>
+
+<p>Informed by [simple-statistics], [science.js], [R].</p>
+
+<h3 id="use">Use</h3>
+
+<h4 id="end-users">End-users</h4>
+
+<h4 id="developers">Developers</h4>
+
+<h3 id="conventions">Conventions</h3>
+
+<p>Greek letters.
+Type hinting, even if it's an untyped language.</p>
+
+<h4 id="continuous-and-discrete-probability-distributions">Continuous and Discrete Probability Distributions</h4>
+
+<p>Any distribution can be called by its common name and its required parameters, e.g., <code>mctad.poisson(7)</code>. This returns an object containing:</p>
+
+<ul>
+<li>statistics on the distribution
+<ul><li><em>mean</em></li>
+<li><em>median</em></li>
+<li><em>mode</em></li>
+<li><em>variance</em></li>
+<li><em>skewness</em></li>
+<li><em>entropy</em></li></ul></li>
+<li><em>pmf</em>, the <em>probability mass function</em></li>
+<li><em>cdf</em>, the <em>cumulative</em>distribution<em>function</em></li>
+<li>convenience methods to access <em>pmf</em> as <em>P(X)</em> and <em>cdf</em> as <em>F(X)</em></li>
+<li><em>generate(n)</em>, a method for generating <em>n</em> random variables from the distribution</li>
+</ul>
+
+<p>making it possible to say things such as</p>
+
+<ul>
+<li><code>mctad.poisson(7).mean</code></li>
+<li><code>mctad.poisson(7).P(5)</code></li>
+<li><code>mctad.poisson(7).F(2)</code></li>
+<li><code>mctad.poisson(7).generate(36)</code></li>
+</ul>
+
+<p>Statistics on the distributions will return <code>undefined</code> if not implemented (this is version 0.1.0) or if actually not defined for the distribution. Since there need not be a single mode, <code>mode</code> always returns an Array.</p>
+
+<h3 id="tests">Tests</h3>
+
+<p><em>mctad.js</em> uses <a href="">mocha</a> with <a href="">chai assertions</a> as a <a href="http://gruntjs.com/">grunt</a> task to run the test suite. The general format of the tests is to test exceptions before testing functionality. When possible, test data is taken from a wikipedia article or other hopefully long-lived reference. If these are not available, hand-worked examples are used for testing.</p>
+
+<h3 id="documentation">Documentation</h3>
+
+<p><em>mctad.js</em> runs <a href="http://nevir.github.io/groc/">groc</a> as a <a href="http://gruntjs.com/">grunt</a> task to automatically generate html documentation from comments in the source code. Access the documentation by opening a browser on your local copy of <code>/doc/index.html</code>.</p>
+
+<p>My contract with myself is to provide</p>
+
+<ul>
+<li>purpose of the method</li>
+<li>input and output formats</li>
+<li>where the method is used, if primarily internal</li>
+<li>a link to a wikipedia article or other hopefully long-lived reference</li>
+<li>a blank line between the introduction and the function declaration</li>
+<li>inline comments about key parameters and non-obvious calculations</li>
+</ul>
+
+<p>Please alert me if you see me breaking my own contract. Contributions should follow this approach.</p>
+
+<h3 id="contributing">Contributing</h3>
+
+<h3 id="to-do">To Do</h3>
+
+<ul>
+<li><p>statistics</p>
+
+<ul><li>harmonic mean</li>
+<li>confidence intervals</li></ul></li>
+<li><p>discrete</p>
+
+<ul><li>generators</li>
+<li>tests for generators</li></ul></li>
+<li><p>continuous</p>
+
+<ul><li>distributions</li>
+<li>normal</li>
+<li>lognormal</li>
+<li>student's t</li>
+<li>chi square</li>
+<li>beta</li>
+<li>generators</li>
+<li>tests for generators</li></ul></li>
+<li><p>chi square goodness of fit</p></li>
+<li>analysis of variance</li>
+<li>linear regression</li>
+</ul></div></div></div></div></body></html>

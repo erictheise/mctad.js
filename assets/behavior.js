@@ -25,12 +25,1432 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "slug": "mctadjs",
             "isFileHeader": true
           },
-          "depth": 1
+          "depth": 1,
+          "children": [
+            {
+              "type": "heading",
+              "data": {
+                "level": 3,
+                "title": "About",
+                "slug": "about"
+              },
+              "depth": 3
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 3,
+                "title": "Use",
+                "slug": "use"
+              },
+              "depth": 3,
+              "children": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 4,
+                    "title": "End-users",
+                    "slug": "end-users"
+                  },
+                  "depth": 4
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 4,
+                    "title": "Developers",
+                    "slug": "developers"
+                  },
+                  "depth": 4
+                }
+              ]
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 3,
+                "title": "Conventions",
+                "slug": "conventions"
+              },
+              "depth": 3,
+              "children": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 4,
+                    "title": "Continuous and Discrete Probability Distributions",
+                    "slug": "continuous-and-discrete-probability-distributions"
+                  },
+                  "depth": 4
+                }
+              ]
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 3,
+                "title": "Tests",
+                "slug": "tests"
+              },
+              "depth": 3
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 3,
+                "title": "Documentation",
+                "slug": "documentation"
+              },
+              "depth": 3
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 3,
+                "title": "Contributing",
+                "slug": "contributing"
+              },
+              "depth": 3
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 3,
+                "title": "To Do",
+                "slug": "to-do"
+              },
+              "depth": 3
+            }
+          ]
         },
         "title": "mctad.js"
       },
       "depth": 1,
-      "outline": []
+      "outline": [
+        {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "About",
+            "slug": "about"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "Use",
+            "slug": "use"
+          },
+          "depth": 3,
+          "children": [
+            {
+              "type": "heading",
+              "data": {
+                "level": 4,
+                "title": "End-users",
+                "slug": "end-users"
+              },
+              "depth": 4
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 4,
+                "title": "Developers",
+                "slug": "developers"
+              },
+              "depth": 4
+            }
+          ]
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "Conventions",
+            "slug": "conventions"
+          },
+          "depth": 3,
+          "children": [
+            {
+              "type": "heading",
+              "data": {
+                "level": 4,
+                "title": "Continuous and Discrete Probability Distributions",
+                "slug": "continuous-and-discrete-probability-distributions"
+              },
+              "depth": 4
+            }
+          ]
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "Tests",
+            "slug": "tests"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "Documentation",
+            "slug": "documentation"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "Contributing",
+            "slug": "contributing"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "To Do",
+            "slug": "to-do"
+          },
+          "depth": 3
+        }
+      ]
+    }, {
+      "type": "folder",
+      "data": {
+        "path": "src",
+        "title": "src"
+      },
+      "depth": 1,
+      "children": [
+        {
+          "type": "folder",
+          "data": {
+            "path": "src/continuous",
+            "title": "continuous"
+          },
+          "depth": 2,
+          "children": [
+            {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/continuous/erf.js",
+                "projectPath": "src/continuous/erf.js",
+                "targetPath": "src/continuous/erf",
+                "pageTitle": "src/continuous/erf",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "Error Function",
+                    "slug": "error-function",
+                    "isFileHeader": true
+                  },
+                  "depth": 1
+                },
+                "title": "Error Function"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/continuous/exponential.js",
+                "projectPath": "src/continuous/exponential.js",
+                "targetPath": "src/continuous/exponential",
+                "pageTitle": "src/continuous/exponential",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "Exponential Distribution",
+                    "slug": "exponential-distribution",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Assumptions",
+                        "slug": "assumptions"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Use",
+                        "slug": "use"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                },
+                "title": "Exponential Distribution"
+              },
+              "depth": 3,
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Assumptions",
+                    "slug": "assumptions"
+                  },
+                  "depth": 3
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Use",
+                    "slug": "use"
+                  },
+                  "depth": 3
+                }
+              ]
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/continuous/lognormal.js",
+                "projectPath": "src/continuous/lognormal.js",
+                "targetPath": "src/continuous/lognormal",
+                "pageTitle": "src/continuous/lognormal",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "Lognormal Distribution",
+                    "slug": "lognormal-distribution",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Assumptions",
+                        "slug": "assumptions"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Use",
+                        "slug": "use"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                },
+                "title": "Lognormal Distribution"
+              },
+              "depth": 3,
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Assumptions",
+                    "slug": "assumptions"
+                  },
+                  "depth": 3
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Use",
+                    "slug": "use"
+                  },
+                  "depth": 3
+                }
+              ]
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/continuous/mixins.js",
+                "projectPath": "src/continuous/mixins.js",
+                "targetPath": "src/continuous/mixins",
+                "pageTitle": "src/continuous/mixins",
+                "title": "mixins"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/continuous/normal.js",
+                "projectPath": "src/continuous/normal.js",
+                "targetPath": "src/continuous/normal",
+                "pageTitle": "src/continuous/normal",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "Normal Distribution",
+                    "slug": "normal-distribution",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Assumptions",
+                        "slug": "assumptions"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Use",
+                        "slug": "use"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                },
+                "title": "Normal Distribution"
+              },
+              "depth": 3,
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Assumptions",
+                    "slug": "assumptions"
+                  },
+                  "depth": 3
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Use",
+                    "slug": "use"
+                  },
+                  "depth": 3
+                }
+              ]
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/continuous/triangular.js",
+                "projectPath": "src/continuous/triangular.js",
+                "targetPath": "src/continuous/triangular",
+                "pageTitle": "src/continuous/triangular",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "Triangular Distribution",
+                    "slug": "triangular-distribution",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Assumptions",
+                        "slug": "assumptions"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Use",
+                        "slug": "use"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                },
+                "title": "Triangular Distribution"
+              },
+              "depth": 3,
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Assumptions",
+                    "slug": "assumptions"
+                  },
+                  "depth": 3
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Use",
+                    "slug": "use"
+                  },
+                  "depth": 3
+                }
+              ]
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/continuous/uniform.js",
+                "projectPath": "src/continuous/uniform.js",
+                "targetPath": "src/continuous/uniform",
+                "pageTitle": "src/continuous/uniform",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "Uniform Distribution",
+                    "slug": "uniform-distribution",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Assumptions",
+                        "slug": "assumptions"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Use",
+                        "slug": "use"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                },
+                "title": "Uniform Distribution"
+              },
+              "depth": 3,
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Assumptions",
+                    "slug": "assumptions"
+                  },
+                  "depth": 3
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Use",
+                    "slug": "use"
+                  },
+                  "depth": 3
+                }
+              ]
+            }
+          ]
+        }, {
+          "type": "folder",
+          "data": {
+            "path": "src/core",
+            "title": "core"
+          },
+          "depth": 2,
+          "children": [
+            {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/core/combination.js",
+                "projectPath": "src/core/combination.js",
+                "targetPath": "src/core/combination",
+                "pageTitle": "src/core/combination",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "Combination",
+                    "slug": "combination",
+                    "isFileHeader": true
+                  },
+                  "depth": 1
+                },
+                "title": "Combination"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/core/constants.js",
+                "projectPath": "src/core/constants.js",
+                "targetPath": "src/core/constants",
+                "pageTitle": "src/core/constants",
+                "title": "constants"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/core/core.js",
+                "projectPath": "src/core/core.js",
+                "targetPath": "src/core/core",
+                "pageTitle": "src/core/core",
+                "title": "core"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/core/factorial.js",
+                "projectPath": "src/core/factorial.js",
+                "targetPath": "src/core/factorial",
+                "pageTitle": "src/core/factorial",
+                "title": "factorial"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/core/helpers.js",
+                "projectPath": "src/core/helpers.js",
+                "targetPath": "src/core/helpers",
+                "pageTitle": "src/core/helpers",
+                "title": "helpers"
+              },
+              "depth": 3,
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "getRandomArbitrary(min, max)",
+                    "slug": "getrandomarbitrarymin-max"
+                  },
+                  "depth": 1
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "getRandomInt(min, max)",
+                    "slug": "getrandomintmin-max"
+                  },
+                  "depth": 1
+                }
+              ]
+            }
+          ]
+        }, {
+          "type": "folder",
+          "data": {
+            "path": "src/discrete",
+            "title": "discrete"
+          },
+          "depth": 2,
+          "children": [
+            {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/discrete/bernoulli.js",
+                "projectPath": "src/discrete/bernoulli.js",
+                "targetPath": "src/discrete/bernoulli",
+                "pageTitle": "src/discrete/bernoulli",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "Bernoulli Distribution",
+                    "slug": "bernoulli-distribution",
+                    "isFileHeader": true
+                  },
+                  "depth": 1
+                },
+                "title": "Bernoulli Distribution"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/discrete/binomial.js",
+                "projectPath": "src/discrete/binomial.js",
+                "targetPath": "src/discrete/binomial",
+                "pageTitle": "src/discrete/binomial",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "Binomial Distribution",
+                    "slug": "binomial-distribution",
+                    "isFileHeader": true
+                  },
+                  "depth": 1
+                },
+                "title": "Binomial Distribution"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/discrete/geometric.js",
+                "projectPath": "src/discrete/geometric.js",
+                "targetPath": "src/discrete/geometric",
+                "pageTitle": "src/discrete/geometric",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "Geometric Distribution",
+                    "slug": "geometric-distribution",
+                    "isFileHeader": true
+                  },
+                  "depth": 1
+                },
+                "title": "Geometric Distribution"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/discrete/hypergeometric.js",
+                "projectPath": "src/discrete/hypergeometric.js",
+                "targetPath": "src/discrete/hypergeometric",
+                "pageTitle": "src/discrete/hypergeometric",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "Hypergeometric Distribution",
+                    "slug": "hypergeometric-distribution",
+                    "isFileHeader": true
+                  },
+                  "depth": 1
+                },
+                "title": "Hypergeometric Distribution"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/discrete/mixins.js",
+                "projectPath": "src/discrete/mixins.js",
+                "targetPath": "src/discrete/mixins",
+                "pageTitle": "src/discrete/mixins",
+                "title": "mixins"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/discrete/pascal.js",
+                "projectPath": "src/discrete/pascal.js",
+                "targetPath": "src/discrete/pascal",
+                "pageTitle": "src/discrete/pascal",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "Pascal Distribution",
+                    "slug": "pascal-distribution",
+                    "isFileHeader": true
+                  },
+                  "depth": 1
+                },
+                "title": "Pascal Distribution"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/discrete/poisson.js",
+                "projectPath": "src/discrete/poisson.js",
+                "targetPath": "src/discrete/poisson",
+                "pageTitle": "src/discrete/poisson",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "Poisson Distribution",
+                    "slug": "poisson-distribution",
+                    "isFileHeader": true
+                  },
+                  "depth": 1
+                },
+                "title": "Poisson Distribution"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/discrete/uniform.js",
+                "projectPath": "src/discrete/uniform.js",
+                "targetPath": "src/discrete/uniform",
+                "pageTitle": "src/discrete/uniform",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "Uniform Distribution (Discrete)",
+                    "slug": "uniform-distribution-discrete",
+                    "isFileHeader": true
+                  },
+                  "depth": 1
+                },
+                "title": "Uniform Distribution (Discrete)"
+              },
+              "depth": 3,
+              "outline": []
+            }
+          ]
+        }, {
+          "type": "folder",
+          "data": {
+            "path": "src/statistics",
+            "title": "statistics"
+          },
+          "depth": 2,
+          "children": [
+            {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/statistics/arithmetic_mean.js",
+                "projectPath": "src/statistics/arithmetic_mean.js",
+                "targetPath": "src/statistics/arithmetic_mean",
+                "pageTitle": "src/statistics/arithmetic_mean",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "Arithmetic Mean",
+                    "slug": "arithmetic-mean",
+                    "isFileHeader": true
+                  },
+                  "depth": 1
+                },
+                "title": "Arithmetic Mean"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "folder",
+              "data": {
+                "path": "src/statistics/directional",
+                "title": "directional"
+              },
+              "depth": 3,
+              "children": [
+                {
+                  "type": "file",
+                  "data": {
+                    "language": {
+                      "nameMatchers": [".js"],
+                      "pygmentsLexer": "javascript",
+                      "multiLineComment": ["/*", "*", "*/"],
+                      "singleLineComment": ["//"],
+                      "ignorePrefix": "}",
+                      "foldPrefix": "^",
+                      "name": "JavaScript"
+                    },
+                    "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/statistics/directional/circular_standard_deviation.js",
+                    "projectPath": "src/statistics/directional/circular_standard_deviation.js",
+                    "targetPath": "src/statistics/directional/circular_standard_deviation",
+                    "pageTitle": "src/statistics/directional/circular_standard_deviation",
+                    "firstHeader": {
+                      "type": "heading",
+                      "data": {
+                        "level": 1,
+                        "title": "Circular Standard Deviation",
+                        "slug": "circular-standard-deviation",
+                        "isFileHeader": true
+                      },
+                      "depth": 1
+                    },
+                    "title": "Circular Standard Deviation"
+                  },
+                  "depth": 4,
+                  "outline": []
+                }, {
+                  "type": "file",
+                  "data": {
+                    "language": {
+                      "nameMatchers": [".js"],
+                      "pygmentsLexer": "javascript",
+                      "multiLineComment": ["/*", "*", "*/"],
+                      "singleLineComment": ["//"],
+                      "ignorePrefix": "}",
+                      "foldPrefix": "^",
+                      "name": "JavaScript"
+                    },
+                    "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/statistics/directional/circular_variance.js",
+                    "projectPath": "src/statistics/directional/circular_variance.js",
+                    "targetPath": "src/statistics/directional/circular_variance",
+                    "pageTitle": "src/statistics/directional/circular_variance",
+                    "firstHeader": {
+                      "type": "heading",
+                      "data": {
+                        "level": 1,
+                        "title": "Circular Variance",
+                        "slug": "circular-variance",
+                        "isFileHeader": true
+                      },
+                      "depth": 1
+                    },
+                    "title": "Circular Variance"
+                  },
+                  "depth": 4,
+                  "outline": []
+                }, {
+                  "type": "file",
+                  "data": {
+                    "language": {
+                      "nameMatchers": [".js"],
+                      "pygmentsLexer": "javascript",
+                      "multiLineComment": ["/*", "*", "*/"],
+                      "singleLineComment": ["//"],
+                      "ignorePrefix": "}",
+                      "foldPrefix": "^",
+                      "name": "JavaScript"
+                    },
+                    "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/statistics/directional/directional_statistics.js",
+                    "projectPath": "src/statistics/directional/directional_statistics.js",
+                    "targetPath": "src/statistics/directional/directional_statistics",
+                    "pageTitle": "src/statistics/directional/directional_statistics",
+                    "title": "directional_statistics"
+                  },
+                  "depth": 4,
+                  "outline": []
+                }, {
+                  "type": "file",
+                  "data": {
+                    "language": {
+                      "nameMatchers": [".js"],
+                      "pygmentsLexer": "javascript",
+                      "multiLineComment": ["/*", "*", "*/"],
+                      "singleLineComment": ["//"],
+                      "ignorePrefix": "}",
+                      "foldPrefix": "^",
+                      "name": "JavaScript"
+                    },
+                    "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/statistics/directional/mean_direction.js",
+                    "projectPath": "src/statistics/directional/mean_direction.js",
+                    "targetPath": "src/statistics/directional/mean_direction",
+                    "pageTitle": "src/statistics/directional/mean_direction",
+                    "firstHeader": {
+                      "type": "heading",
+                      "data": {
+                        "level": 1,
+                        "title": "Mean Direction",
+                        "slug": "mean-direction",
+                        "isFileHeader": true
+                      },
+                      "depth": 1
+                    },
+                    "title": "Mean Direction"
+                  },
+                  "depth": 4,
+                  "outline": []
+                }, {
+                  "type": "file",
+                  "data": {
+                    "language": {
+                      "nameMatchers": [".js"],
+                      "pygmentsLexer": "javascript",
+                      "multiLineComment": ["/*", "*", "*/"],
+                      "singleLineComment": ["//"],
+                      "ignorePrefix": "}",
+                      "foldPrefix": "^",
+                      "name": "JavaScript"
+                    },
+                    "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/statistics/directional/mean_resultant_length.js",
+                    "projectPath": "src/statistics/directional/mean_resultant_length.js",
+                    "targetPath": "src/statistics/directional/mean_resultant_length",
+                    "pageTitle": "src/statistics/directional/mean_resultant_length",
+                    "firstHeader": {
+                      "type": "heading",
+                      "data": {
+                        "level": 1,
+                        "title": "Mean Resultant Length",
+                        "slug": "mean-resultant-length",
+                        "isFileHeader": true
+                      },
+                      "depth": 1
+                    },
+                    "title": "Mean Resultant Length"
+                  },
+                  "depth": 4,
+                  "outline": []
+                }, {
+                  "type": "file",
+                  "data": {
+                    "language": {
+                      "nameMatchers": [".js"],
+                      "pygmentsLexer": "javascript",
+                      "multiLineComment": ["/*", "*", "*/"],
+                      "singleLineComment": ["//"],
+                      "ignorePrefix": "}",
+                      "foldPrefix": "^",
+                      "name": "JavaScript"
+                    },
+                    "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/statistics/directional/median_direction.js",
+                    "projectPath": "src/statistics/directional/median_direction.js",
+                    "targetPath": "src/statistics/directional/median_direction",
+                    "pageTitle": "src/statistics/directional/median_direction",
+                    "firstHeader": {
+                      "type": "heading",
+                      "data": {
+                        "level": 1,
+                        "title": "Median Direction",
+                        "slug": "median-direction",
+                        "isFileHeader": true
+                      },
+                      "depth": 1
+                    },
+                    "title": "Median Direction"
+                  },
+                  "depth": 4,
+                  "outline": []
+                }
+              ]
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/statistics/geometric_mean.js",
+                "projectPath": "src/statistics/geometric_mean.js",
+                "targetPath": "src/statistics/geometric_mean",
+                "pageTitle": "src/statistics/geometric_mean",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "Geometric Mean",
+                    "slug": "geometric-mean",
+                    "isFileHeader": true
+                  },
+                  "depth": 1
+                },
+                "title": "Geometric Mean"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/statistics/mean.js",
+                "projectPath": "src/statistics/mean.js",
+                "targetPath": "src/statistics/mean",
+                "pageTitle": "src/statistics/mean",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "Mean",
+                    "slug": "mean",
+                    "isFileHeader": true
+                  },
+                  "depth": 1
+                },
+                "title": "Mean"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/statistics/median.js",
+                "projectPath": "src/statistics/median.js",
+                "targetPath": "src/statistics/median",
+                "pageTitle": "src/statistics/median",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "Median",
+                    "slug": "median",
+                    "isFileHeader": true
+                  },
+                  "depth": 1
+                },
+                "title": "Median"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/statistics/mode.js",
+                "projectPath": "src/statistics/mode.js",
+                "targetPath": "src/statistics/mode",
+                "pageTitle": "src/statistics/mode",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "Mode",
+                    "slug": "mode",
+                    "isFileHeader": true
+                  },
+                  "depth": 1
+                },
+                "title": "Mode"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/statistics/product.js",
+                "projectPath": "src/statistics/product.js",
+                "targetPath": "src/statistics/product",
+                "pageTitle": "src/statistics/product",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "Product",
+                    "slug": "product",
+                    "isFileHeader": true
+                  },
+                  "depth": 1
+                },
+                "title": "Product"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/statistics/sample_standard_deviation.js",
+                "projectPath": "src/statistics/sample_standard_deviation.js",
+                "targetPath": "src/statistics/sample_standard_deviation",
+                "pageTitle": "src/statistics/sample_standard_deviation",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "Sample Standard Deviation",
+                    "slug": "sample-standard-deviation",
+                    "isFileHeader": true
+                  },
+                  "depth": 1
+                },
+                "title": "Sample Standard Deviation"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/statistics/sample_variance.js",
+                "projectPath": "src/statistics/sample_variance.js",
+                "targetPath": "src/statistics/sample_variance",
+                "pageTitle": "src/statistics/sample_variance",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "Sample Variance",
+                    "slug": "sample-variance",
+                    "isFileHeader": true
+                  },
+                  "depth": 1
+                },
+                "title": "Sample Variance"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/statistics/sum.js",
+                "projectPath": "src/statistics/sum.js",
+                "targetPath": "src/statistics/sum",
+                "pageTitle": "src/statistics/sum",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "Sum",
+                    "slug": "sum",
+                    "isFileHeader": true
+                  },
+                  "depth": 1
+                },
+                "title": "Sum"
+              },
+              "depth": 3,
+              "outline": []
+            }
+          ]
+        }
+      ]
     }
   ];
 
