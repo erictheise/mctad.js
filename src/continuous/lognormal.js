@@ -26,20 +26,13 @@ mctad.lognormal = function (μ, σ2) {
     domain: { min: 0.0, max: Infinity },
 
     // `mctad.lognormal(2.0, 0.5).generate(100)` will generate an Array of 100
-    // random variables, distributed lognormally with mean 2 and variance 0.5. The implementation
-    // uses the [Marsaglia Polar Method](http://en.wikipedia.org/wiki/Marsaglia_polar_method).
+    // random variables, distributed lognormally with mean 2 and variance 0.5.
     generate: function (n) {
-      var U = [], V = [], W, Y, randomVariables = [];
-      for (var k = 0; k < n / 2; k++ ) {
-        do {
-          U = [mctad.getRandomArbitrary(0, 1), mctad.getRandomArbitrary(0, 1)];
-          V = [2 * U[0] - 1, 2 * U[1] - 1];
-          W = Math.pow(V[0], 2) + Math.pow(V[1], 2);
-        } while (W > 1);
-      Y = Math.sqrt((-2 * Math.log(W) / W));
-      randomVariables.push(μ + Math.sqrt(σ2) * (V[0] * Y), μ + Math.sqrt(σ2) * (V[1] * Y));
+      var randomVariables = [];
+      randomVariables = mctad.normal(μ, σ2).generate(n);
+      for (var i = 0; i < n; i++ ) {
+        randomVariables[i] = Math.pow(Math.E, randomVariables[i]);
       }
-      if (randomVariables.length === n + 1) { randomVariables.pop(); }
       return randomVariables;
     },
 

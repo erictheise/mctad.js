@@ -55,7 +55,8 @@ module.exports = function(grunt) {
         'src/**/*.js', 'README.md'
       ],
       options: {
-        "out": "doc/"
+        out: "doc/",
+        github: true
       }
     },
     watch: {
