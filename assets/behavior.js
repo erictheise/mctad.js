@@ -17,13 +17,16 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         "projectPath": "README.md",
         "targetPath": "index",
         "pageTitle": "index",
-        "firstHeader": {
+        "title": "index"
+      },
+      "depth": 1,
+      "outline": [
+        {
           "type": "heading",
           "data": {
             "level": 1,
             "title": "mctad.js",
-            "slug": "mctadjs",
-            "isFileHeader": true
+            "slug": "mctadjs"
           },
           "depth": 1,
           "children": [
@@ -109,103 +112,20 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "type": "heading",
               "data": {
                 "level": 3,
-                "title": "To Do",
-                "slug": "to-do"
+                "title": "Short Term To Do",
+                "slug": "short-term-to-do"
+              },
+              "depth": 3
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 3,
+                "title": "Long Term To Do",
+                "slug": "long-term-to-do"
               },
               "depth": 3
             }
           ]
-        },
-        "title": "mctad.js"
-      },
-      "depth": 1,
-      "outline": [
-        {
-          "type": "heading",
-          "data": {
-            "level": 3,
-            "title": "About",
-            "slug": "about"
-          },
-          "depth": 3
-        }, {
-          "type": "heading",
-          "data": {
-            "level": 3,
-            "title": "Use",
-            "slug": "use"
-          },
-          "depth": 3,
-          "children": [
-            {
-              "type": "heading",
-              "data": {
-                "level": 4,
-                "title": "End-users",
-                "slug": "end-users"
-              },
-              "depth": 4
-            }, {
-              "type": "heading",
-              "data": {
-                "level": 4,
-                "title": "Developers",
-                "slug": "developers"
-              },
-              "depth": 4
-            }
-          ]
-        }, {
-          "type": "heading",
-          "data": {
-            "level": 3,
-            "title": "Conventions",
-            "slug": "conventions"
-          },
-          "depth": 3,
-          "children": [
-            {
-              "type": "heading",
-              "data": {
-                "level": 4,
-                "title": "Continuous and Discrete Probability Distributions",
-                "slug": "continuous-and-discrete-probability-distributions"
-              },
-              "depth": 4
-            }
-          ]
-        }, {
-          "type": "heading",
-          "data": {
-            "level": 3,
-            "title": "Tests",
-            "slug": "tests"
-          },
-          "depth": 3
-        }, {
-          "type": "heading",
-          "data": {
-            "level": 3,
-            "title": "Documentation",
-            "slug": "documentation"
-          },
-          "depth": 3
-        }, {
-          "type": "heading",
-          "data": {
-            "level": 3,
-            "title": "Contributing",
-            "slug": "contributing"
-          },
-          "depth": 3
-        }, {
-          "type": "heading",
-          "data": {
-            "level": 3,
-            "title": "To Do",
-            "slug": "to-do"
-          },
-          "depth": 3
         }
       ]
     }, {

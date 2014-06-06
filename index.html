@@ -1,16 +1,33 @@
-<!DOCTYPE html><html lang="en"><head><title>index</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="index"><meta name="groc-project-path" content="README.md"><meta name="groc-github-url" content="https://github.com/erictheise/mctad.js"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path"><a href="https://github.com/erictheise/mctad.js/blob/master/README.md">README.md</a></div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="mctadjs">mctad.js</h1>
+<!DOCTYPE html><html lang="en"><head><title>index</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="index"><meta name="groc-project-path" content="README.md"><meta name="groc-github-url" content="https://github.com/erictheise/mctad.js"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path"><a href="https://github.com/erictheise/mctad.js/blob/master/README.md">README.md</a></div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><p><img src="https://travis-ci.org/erictheise/mctad.js.svg?branch=master" alt="Travis CI Build Status" title="" /></p>
+
+<h1 id="mctadjs">mctad.js</h1>
 
 <p>Measures of Central Tendency And Dispersion: A JavaScript library for probability &amp; statistics</p>
 
 <h3 id="about">About</h3>
 
-<p>Informed by [simple-statistics], [science.js], [R].</p>
+<p>I got interested in the notion of <em>bearing</em>, which led me to the field of directional statistics. I needed to implement
+some  after learning about them, and not necessarily being a good fit for other projects (e.g.,
+<a href="https://github.com/tmcw/simple-statistics">simple-statistics</a>,
+<a href="https://github.com/jasondavies/science.js">science.js</a>), ended up starting my own library. I'm not usually the
+<a href="http://en.wikipedia.org/wiki/Not_invented_here">NIH</a>-type, but that's how it played out.</p>
+
+<p>The project has definitely been informed &amp; inspired by <em>simple-statistics, _science.js</em>, and, of course,
+<a href="http://www.r-project.org/">R</a>.</p>
+
+<p>In addition to <em>directional statistics</em>, <em>mctad.js</em> distinguishes itself by providing generators for many continuous and
+discrete probability distributions.</p>
 
 <h3 id="use">Use</h3>
 
 <h4 id="end-users">End-users</h4>
 
+<p>You'll want either the file <code>mctad.min.js</code> or the file <code>mctad.js</code> in the root of this repository.</p>
+
 <h4 id="developers">Developers</h4>
+
+<p>Groc-generated documentation is online courtesy <a href="http://erictheise.github.io/mctad.js/">GitHub pages</a> and included in
+the <code>/doc/</code> directory when you <code>git clone</code> this repository.</p>
 
 <h3 id="conventions">Conventions</h3>
 
@@ -19,17 +36,20 @@ Type hinting, even if it's an untyped language.</p>
 
 <h4 id="continuous-and-discrete-probability-distributions">Continuous and Discrete Probability Distributions</h4>
 
-<p>Any distribution can be called by its common name and its required parameters, e.g., <code>mctad.poisson(7)</code>. This returns an object containing:</p>
+<p>Any distribution can be called by its common name and its required parameters, e.g., <code>mctad.poisson(7)</code>. This returns an
+object containing:</p>
 
 <ul>
-<li>statistics on the distribution
+<li><p>statistics on the distribution, including</p>
+
 <ul><li><em>mean</em></li>
 <li><em>median</em></li>
 <li><em>mode</em></li>
 <li><em>variance</em></li>
 <li><em>skewness</em></li>
 <li><em>entropy</em></li></ul></li>
-<li><em>pmf</em>, the <em>probability mass function</em></li>
+<li><em>pdf</em>, the <em>probability density function</em> (continuous distributions), or <em>pmf</em>, the <em>probability mass function</em>
+(discrete distributions)</li>
 <li><em>cdf</em>, the <em>cumulative</em>distribution<em>function</em></li>
 <li>convenience methods to access <em>pmf</em> as <em>P(X)</em> and <em>cdf</em> as <em>F(X)</em></li>
 <li><em>generate(n)</em>, a method for generating <em>n</em> random variables from the distribution</li>
@@ -44,15 +64,21 @@ Type hinting, even if it's an untyped language.</p>
 <li><code>mctad.poisson(7).generate(36)</code></li>
 </ul>
 
-<p>Statistics on the distributions will return <code>undefined</code> if not implemented (this is version 0.1.0) or if actually not defined for the distribution. Since there need not be a single mode, <code>mode</code> always returns an Array.</p>
+<p>Statistics on the distributions will return <code>undefined</code> if not implemented (this is version 0.1.0) or if actually not
+defined for the distribution. Since there need not be a single mode, <code>mode</code> always returns an Array.</p>
 
 <h3 id="tests">Tests</h3>
 
-<p><em>mctad.js</em> uses <a href="">mocha</a> with <a href="">chai assertions</a> as a <a href="http://gruntjs.com/">grunt</a> task to run the test suite. The general format of the tests is to test exceptions before testing functionality. When possible, test data is taken from a wikipedia article or other hopefully long-lived reference. If these are not available, hand-worked examples are used for testing.</p>
+<p><em>mctad.js</em> uses <a href="">mocha</a> with <a href="">chai assertions</a> as a <a href="http://gruntjs.com/">grunt</a> task to run the test suite. The
+general format of the tests is to test exceptions before testing functionality. When possible, test data is taken from a
+wikipedia article or other hopefully long-lived reference. If these are not available, hand-worked examples are used for
+testing.</p>
 
 <h3 id="documentation">Documentation</h3>
 
-<p><em>mctad.js</em> runs <a href="http://nevir.github.io/groc/">groc</a> as a <a href="http://gruntjs.com/">grunt</a> task to automatically generate html documentation from comments in the source code. Access the documentation by opening a browser on your local copy of <code>/doc/index.html</code>.</p>
+<p><em>mctad.js</em> runs <a href="http://nevir.github.io/groc/">groc</a> as a <a href="http://gruntjs.com/">grunt</a> task to automatically generate
+html documentation from comments in the source code. Access the documentation by opening a browser on your local copy of
+<code>/doc/index.html</code> or looking at the associated <a href="http://erictheise.github.io/mctad.js/">GitHub pages</a>.</p>
 
 <p>My contract with myself is to provide</p>
 
@@ -69,7 +95,7 @@ Type hinting, even if it's an untyped language.</p>
 
 <h3 id="contributing">Contributing</h3>
 
-<h3 id="to-do">To Do</h3>
+<h3 id="short-term-to-do">Short Term To Do</h3>
 
 <ul>
 <li><p>statistics</p>
@@ -83,8 +109,6 @@ Type hinting, even if it's an untyped language.</p>
 <li><p>continuous</p>
 
 <ul><li>distributions</li>
-<li>normal</li>
-<li>lognormal</li>
 <li>student's t</li>
 <li>chi square</li>
 <li>beta</li>
@@ -93,4 +117,8 @@ Type hinting, even if it's an untyped language.</p>
 <li><p>chi square goodness of fit</p></li>
 <li>analysis of variance</li>
 <li>linear regression</li>
-</ul></div></div></div></div></body></html>
+</ul>
+
+<h3 id="long-term-to-do">Long Term To Do</h3>
+
+<p>?</p></div></div></div></div></body></html>
