@@ -1,4 +1,4 @@
-![Travis CI Build Status](https://travis-ci.org/erictheise/mctad.js.svg?branch=master)
+[![Travis CI Build Status](https://travis-ci.org/erictheise/mctad.js.svg?branch=master)](https://travis-ci.org/erictheise/mctad.js)
 [![Dependency Status](https://gemnasium.com/erictheise/mctad.js.svg)](https://gemnasium.com/erictheise/mctad.js)
 
 mctad.js
