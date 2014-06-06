@@ -1,11 +1,13 @@
 /*
 # Triangular Distribution
 
-The [Triangular Distribution](http://en.wikipedia.org/wiki/Triangular_distribution) is a family of continuous probability distributions characterized by a single mode bracketed by minimum and maximum values.
+The [Triangular Distribution](http://en.wikipedia.org/wiki/Triangular_distribution) is a family of continuous
+probability distributions characterized by a single mode bracketed by minimum and maximum values.
 
 ### Assumptions
 
-`a`, `b`, and `c` are real numbers, the minimum, maximum, and modal values, with a < c < b; a may be thought of as a location parameter, (b - a) as a scale parameter, c as a shape parameter.
+`a`, `b`, and `c` are real numbers, the minimum, maximum, and modal values, with a < c < b; a may be thought of as a
+location parameter, (b - a) as a scale parameter, c as a shape parameter.
 
 ### Use
 

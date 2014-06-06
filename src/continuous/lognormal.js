@@ -1,7 +1,8 @@
 /*
 # Lognormal Distribution
 
-The [Lognormal Distribution](http://en.wikipedia.org/wiki/Log-normal_distribution) is a continuous probability distribution of a random variable whose logarithm is normally distributed.
+The [Lognormal Distribution](http://en.wikipedia.org/wiki/Log-normal_distribution) is a continuous probability
+distribution of a random variable whose logarithm is normally distributed.
 
 ### Assumptions
 

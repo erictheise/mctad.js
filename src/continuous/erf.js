@@ -1,9 +1,13 @@
 /*
 # Error Function
 
-The [Error Function](http://en.wikipedia.org/wiki/Error_function) (also called the Gauss error function) is a special function of sigmoid shape which occurs in probability, statistics and partial differential equations. It is used in the calculation of `mcatd.normal()` and `mctad.lognormal()`.
+The [Error Function](http://en.wikipedia.org/wiki/Error_function) (also called the Gauss error function) is a special
+function of sigmoid shape which occurs in probability, statistics and partial differential equations. It is used in the
+calculation of `mcatd.normal()` and `mctad.lognormal()`.
 
-The implementation of the erf uses [Abramowitz and Stegun's approximation 7.1.28](http://en.wikipedia.org/wiki/Error_function#Approximation_with_elementary_functions), which in turn comes from C. Hastings, Jr., Approximations for Digital Computers, Princeton University Press, NJ, 1955.
+The implementation of the erf uses [Abramowitz and Stegun's approximation
+7.1.28](http://en.wikipedia.org/wiki/Error_function#Approximation_with_elementary_functions), which in turn comes from
+C. Hastings, Jr., Approximations for Digital Computers, Princeton University Press, NJ, 1955.
 */
 
 mctad.erf = function (x) {

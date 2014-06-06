@@ -1,7 +1,8 @@
 /*
 # Normal Distribution
 
-The [Normal Distribution](http://en.wikipedia.org/wiki/Normal_distribution) or Gaussian Distribution is a family of symmetric, continuous probability distributions.
+The [Normal Distribution](http://en.wikipedia.org/wiki/Normal_distribution) or Gaussian Distribution is a family of
+symmetric, continuous probability distributions.
 
 ### Assumptions
 

@@ -1,11 +1,13 @@
 /*
 # Exponential Distribution
 
-The [Exponential Distribution](http://en.wikipedia.org/wiki/Exponential_distribution) is the continuous analog of the [Geometric Distribution(../discrete/geometric.html); also, it describes the time between events in a Poisson process.
+The [Exponential Distribution](http://en.wikipedia.org/wiki/Exponential_distribution) is the continuous analog of the
+[Geometric Distribution(../discrete/geometric.html); also, it describes the time between events in a Poisson process.
 
 ### Assumptions
 
-`λ` is a strictly positive real number, which represents the constant average rate at which events occur, continuously and independently.
+`λ` is a strictly positive real number, which represents the constant average rate at which events occur, continuously
+and independently.
 
 ### Use
 
