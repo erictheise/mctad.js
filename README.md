@@ -1,4 +1,5 @@
 ![Travis CI Build Status](https://travis-ci.org/erictheise/mctad.js.svg?branch=master)
+[![Dependency Status](https://gemnasium.com/erictheise/mctad.js.svg)](https://gemnasium.com/erictheise/mctad.js)
 
 mctad.js
 ========
@@ -7,7 +8,7 @@ Measures of Central Tendency And Dispersion: A JavaScript library for probabilit
 
 ### About
 
-I got interested in the notion of _bearing_, which led me to the field of directional statistics. I needed to implement
+I recently got interested in the notion of _bearing_, which led me to the field of directional statistics. I needed to implement
 some  after learning about them, and not necessarily being a good fit for other projects (e.g.,
 [simple-statistics](https://github.com/tmcw/simple-statistics),
 [science.js](https://github.com/jasondavies/science.js)), ended up starting my own library. I'm not usually the
@@ -49,6 +50,7 @@ object containing:
     * _variance_
     * _skewness_
     * _entropy_
+
   * _pdf_, the _probability density function_ (continuous distributions), or _pmf_, the _probability mass function_
     (discrete distributions)
   * _cdf_, the _cumulative_distribution_function_
