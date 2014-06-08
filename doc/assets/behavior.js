@@ -17,13 +17,16 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         "projectPath": "README.md",
         "targetPath": "index",
         "pageTitle": "index",
-        "firstHeader": {
+        "title": "index"
+      },
+      "depth": 1,
+      "outline": [
+        {
           "type": "heading",
           "data": {
             "level": 1,
             "title": "mctad.js",
-            "slug": "mctadjs",
-            "isFileHeader": true
+            "slug": "mctadjs"
           },
           "depth": 1,
           "children": [
@@ -109,103 +112,20 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "type": "heading",
               "data": {
                 "level": 3,
-                "title": "To Do",
-                "slug": "to-do"
+                "title": "Short Term To Do",
+                "slug": "short-term-to-do"
+              },
+              "depth": 3
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 3,
+                "title": "Long Term To Do",
+                "slug": "long-term-to-do"
               },
               "depth": 3
             }
           ]
-        },
-        "title": "mctad.js"
-      },
-      "depth": 1,
-      "outline": [
-        {
-          "type": "heading",
-          "data": {
-            "level": 3,
-            "title": "About",
-            "slug": "about"
-          },
-          "depth": 3
-        }, {
-          "type": "heading",
-          "data": {
-            "level": 3,
-            "title": "Use",
-            "slug": "use"
-          },
-          "depth": 3,
-          "children": [
-            {
-              "type": "heading",
-              "data": {
-                "level": 4,
-                "title": "End-users",
-                "slug": "end-users"
-              },
-              "depth": 4
-            }, {
-              "type": "heading",
-              "data": {
-                "level": 4,
-                "title": "Developers",
-                "slug": "developers"
-              },
-              "depth": 4
-            }
-          ]
-        }, {
-          "type": "heading",
-          "data": {
-            "level": 3,
-            "title": "Conventions",
-            "slug": "conventions"
-          },
-          "depth": 3,
-          "children": [
-            {
-              "type": "heading",
-              "data": {
-                "level": 4,
-                "title": "Continuous and Discrete Probability Distributions",
-                "slug": "continuous-and-discrete-probability-distributions"
-              },
-              "depth": 4
-            }
-          ]
-        }, {
-          "type": "heading",
-          "data": {
-            "level": 3,
-            "title": "Tests",
-            "slug": "tests"
-          },
-          "depth": 3
-        }, {
-          "type": "heading",
-          "data": {
-            "level": 3,
-            "title": "Documentation",
-            "slug": "documentation"
-          },
-          "depth": 3
-        }, {
-          "type": "heading",
-          "data": {
-            "level": 3,
-            "title": "Contributing",
-            "slug": "contributing"
-          },
-          "depth": 3
-        }, {
-          "type": "heading",
-          "data": {
-            "level": 3,
-            "title": "To Do",
-            "slug": "to-do"
-          },
-          "depth": 3
         }
       ]
     }, {
@@ -225,6 +145,57 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "depth": 2,
           "children": [
             {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/continuous/chi-squared.js",
+                "projectPath": "src/continuous/chi-squared.js",
+                "targetPath": "src/continuous/chi-squared",
+                "pageTitle": "src/continuous/chi-squared",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "Chi-Squared Distribution",
+                    "slug": "chi-squared-distribution",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Use",
+                        "slug": "use"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                },
+                "title": "Chi-Squared Distribution"
+              },
+              "depth": 3,
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Use",
+                    "slug": "use"
+                  },
+                  "depth": 3
+                }
+              ]
+            }, {
               "type": "file",
               "data": {
                 "language": {

@@ -1,4 +1,6 @@
 // # Mean Direction
+//
+// Directional statistics based on "Directional Statistics" by Kanti V. Mardia & Peter E. Jupp, Wiley (2000)
 
 mctad.meanDirection = function (data) {
   // The mean_direction of no angles is null

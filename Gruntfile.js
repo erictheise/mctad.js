@@ -55,8 +55,8 @@ module.exports = function(grunt) {
         'src/**/*.js', 'README.md'
       ],
       options: {
-        out: "doc/",
-        github: true
+        out: 'doc/',
+        github: false
       }
     },
     watch: {
@@ -78,7 +78,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-groc');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
-  // Default task(s).
-  grunt.registerTask('default', ['jshint', 'concat', 'mochaTest', 'uglify', 'groc', 'watch']);
+  grunt.registerTask('default', ['jshint', 'concat', 'mochaTest', 'uglify', 'watch']);
+  grunt.registerTask('doc', 'groc');
 
 };

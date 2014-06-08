@@ -98,25 +98,24 @@ Please alert me if you see me breaking my own contract. Contributions should fol
 ### Short Term To Do
 
 * statistics
-  * harmonic mean
   * confidence intervals
+  * harmonic mean
 
 * discrete
-  * generators
   * tests for generators
 
 * continuous
   * distributions
-    * student's t
     * chi square
+    * student's t
     * beta
   * generators
   * tests for generators
 
 * chi square goodness of fit
-* analysis of variance
 * linear regression
-
+* analysis of variance
+e
 ### Long Term To Do
 
 ?
