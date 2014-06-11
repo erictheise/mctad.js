@@ -89,10 +89,6 @@ My contract with myself is to provide
 
 Please alert me if you see me breaking my own contract. Contributions should follow this approach.
 
-
-### Contributing
-
-
 ### Short Term To Do
 
 * statistics
