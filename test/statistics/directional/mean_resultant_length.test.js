@@ -7,7 +7,7 @@ describe('meanResultantLength', function() {
   });
 
   it('can get the meanResultantLength of one number', function() {
-    assert.equal(mctad.meanResultantLength([1]), 1);
+    assert.closeTo(mctad.meanResultantLength([1]), 1, mctad.ε);
   });
 
   // Mardia & Jupp example 2.1

@@ -7,7 +7,7 @@ describe('circularVariance', function() {
   });
 
   it('can get the circularVariance of one number', function() {
-    assert.equal(mctad.circularVariance([1]), 0.0);
+    assert.closeTo(mctad.circularVariance([1]), 0.0, mctad.ε);
   });
 
   // Mardia & Jupp example 1.1
