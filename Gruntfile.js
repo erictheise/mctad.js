@@ -79,6 +79,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   grunt.registerTask('default', ['jshint', 'concat', 'mochaTest', 'uglify', 'watch']);
-  grunt.registerTask('doc', 'groc');
+  grunt.registerTask('gh-pages', 'groc');
 
 };
