@@ -8,17 +8,9 @@ Measures of Central Tendency And Dispersion: A JavaScript library for probabilit
 
 ### About
 
-I recently got interested in the notion of _bearing_, which led me to the field of directional statistics. I needed to implement
-some  after learning about them, and not necessarily being a good fit for other projects (e.g.,
-[simple-statistics](https://github.com/tmcw/simple-statistics),
-[science.js](https://github.com/jasondavies/science.js)), ended up starting my own library. I'm not usually the
-[NIH](http://en.wikipedia.org/wiki/Not_invented_here)-type, but that's how it played out.
-
-The project has definitely been informed & inspired by _simple-statistics, _science.js_, and, of course,
-[R](http://www.r-project.org/).
-
-In addition to _directional statistics_, _mctad.js_ distinguishes itself by providing generators for many continuous and
-discrete probability distributions.
+__mctad.js__ is a JavaScript library for probability and statistics. A goal is to provide functionality missing from other
+such libraries, such as having an awareness of many common discrete and continuous probability distributions, an ability
+to generate random variables from those distributions, and having a basic implementation of directional statistics.
 
 ### Use
 
@@ -26,20 +18,25 @@ discrete probability distributions.
 
 You'll want either the file `mctad.min.js` or the file `mctad.js` in the root of this repository.
 
-#### Developers
-
-
 Groc-generated documentation is online courtesy [GitHub pages](http://erictheise.github.io/mctad.js/) and included in
 the `/doc/` directory when you `git clone` this repository.
 
+#### Developers
+
+
 ### Conventions
 
-Greek letters.
-Type hinting, even if it's an untyped language.
+The ability to use Greek letters directly in code appeals to me, and they are used internally. I am still considering
+the extent to which they should be exposed externally. In an ideal world, it would be reliable to use constructions such
+as p-hat (p̂) and x-bar (x̄) as variable names.
+
+Even though it makes little or no difference to the JavaScript language, you will come across examples of _type hinting_,
+e.g., in the form of 1 versus 1.0, to help clarify whether quantities are operationally expected to take integer or real
+values.
 
 #### Continuous and Discrete Probability Distributions
 
-Any distribution can be called by its common name and its required parameters, e.g., `mctad.poisson(7)`. This returns an
+Distributions can be called by their common names and required parameters, e.g., `mctad.poisson(7)`. This returns an
 object containing:
 
   * statistics on the distribution, including
@@ -62,10 +59,11 @@ making it possible to say things such as
   * `mctad.poisson(7).mean`
   * `mctad.poisson(7).P(5)`
   * `mctad.poisson(7).F(2)`
-  * `mctad.poisson(7).generate(36)`
+  * `mctad.triangular(3, 9, 4).generate(36)`
+  * `mctad.normal(60.2, 4.5).generate(100)`
 
-Statistics on the distributions will return `undefined` if not implemented (this is version 0.1.0) or if actually not
-defined for the distribution. Since there need not be a single mode, `mode` always returns an Array.
+Statistics on the distributions will return `undefined` if not implemented (this _is_ version 0.0.X after all ) or if
+actually not defined for the distribution. Since there need not be a single mode, `mode` always returns an Array.
 
 
 ### Tests
@@ -112,10 +110,11 @@ Please alert me if you see me breaking my own contract. Contributions should fol
   * generators
   * tests for generators
 
+* distributions that "self-estimate" when given an Array instead of parameters
 * chi square goodness of fit
 * linear regression
 * analysis of variance
-e
+
 ### Long Term To Do
 
 ?
