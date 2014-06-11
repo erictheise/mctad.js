@@ -1,17 +1,20 @@
 // # Mean Resultant Length
+//
+// From Kanti V. Mardia & Peter E. Jupp, "Directional Statistics", Wiley, 2000
 
-mctad.mean_resultant_length = function (data) {
-  // The mean_resultant_length of no angles is null
-  if (data.length === 0 ) return null;
+mctad.meanResultantLength = function (data) {
+  // The mean resultant length is undefined if the data is not in an Array of 1 or more elements.
+  if (!Array.isArray(data) || data.length === 0) { return undefined; }
 
-  // Mardia & Jupp equation (2.2.4)
-  var c_bar, s_bar, r_bar, acc = { c: 0, s : 0 };
-  for (i = 0; i < data.length; i++) {
-    acc.c += Math.cos(this.toRadians(data[i]));
-    acc.s += Math.sin(this.toRadians(data[i]));
+  // Mardia & Jupp equation 2.2.3
+  var C_bar, S_bar, R_bar, acc = { cos: 0, sin: 0 };
+  for (var i = 0; i < data.length; i++) {
+    acc.cos += Math.cos(mctad.toRadians(data[i]));
+    acc.sin += Math.sin(mctad.toRadians(data[i]));
   }
-  c_bar = (acc.c / data.length);
-  s_bar = (acc.s / data.length);
-  r_bar = Math.sqrt(Math.pow(c_bar, 2) + Math.pow(s_bar, 2));
-  return r_bar;
+  C_bar = (acc.cos / data.length);
+  S_bar = (acc.sin / data.length);
+
+  R_bar = Math.sqrt(Math.pow(C_bar, 2) + Math.pow(S_bar, 2));
+  return R_bar;
 };

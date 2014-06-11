@@ -52,6 +52,15 @@ mctad.toRadians = function (v) {
   }
 };
 
+// # getBaseLog(x, y)
+// A function for returning the logarithm of y with base x (ie. log<sub>x</sub> y), taken from
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/log
+//
+// @todo: replace with Math.log10() if that becomes widely implemented as part of Harmony (ECMAScript 6)
+mctad.getBaseLog = function (x, y) {
+  return Math.log(y) / Math.log(x);
+};
+
 // # getRandomArbitrary(min, max)
 // A function for generating a random number between min and mix, inclusive, taken from
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
@@ -97,6 +106,7 @@ mctad.combination = function(n, k) {
 // More at the [Wikipedia article](http://en.wikipedia.org/wiki/Mean#Arithmetic_mean_.28AM.29).
 
 mctad.arithmeticMean = function (data) {
+  // The arithmetic mean is undefined if the data is not in an Array of 1 or more elements.
   if (!Array.isArray(data) || data.length === 0) { return undefined; }
 
   return this.sum(data)/data.length;
@@ -104,64 +114,86 @@ mctad.arithmeticMean = function (data) {
 };
 ;
 // # Circular Standard Deviation
+//
+// From Kanti V. Mardia & Peter E. Jupp, "Directional Statistics", Wiley, 2000
 
 mctad.circularStandardDeviation = function (data) {
-  // Mardia & Jupp equation (2.3.11)
+  // The circular standard deviation is undefined if the data is not in an Array of 1 or more elements.
+  if (!Array.isArray(data) || data.length === 0) { return undefined; }
+
+  // Mardia & Jupp equation 2.3.11
   // Depends on meanResultantLength
-  return Math.sqrt( -2.0 * Math.log(1 - this.meanResultantLength(data)) );
+  return Math.sqrt( -2.0 * mctad.getBaseLog(10, 1 - mctad.meanResultantLength(data)) );
 };
 ;
 // # Circular Variance
+//
+// `mctad.circularVariance()` accepts an Array of angles (radians as numbers or strings, or degrees as strings only, in the
+// form "47.3°") and returns their variance in radians as a Number. Relies on `mctad.meanResultantLength()`.
+//
+// From Kanti V. Mardia & Peter E. Jupp, "Directional Statistics", Wiley, 2000
 
 mctad.circularVariance = function (data) {
+  // The circular variance is undefined if the data is not in an Array of 1 or more elements.
+  if (!Array.isArray(data) || data.length === 0) { return undefined; }
+
   // Mardia & Jupp equation (2.3.3)
-  // Depends on meanResultantLength
-  return 1 - this.meanResultantLength(data);
+  return 1 - mctad.meanResultantLength(data);
 };
 ;
 // # Mean Direction
 //
-// Directional statistics based on "Directional Statistics" by Kanti V. Mardia & Peter E. Jupp, Wiley (2000)
+// `mctad.meanDirection()` accepts an Array of angles (radians as numbers or strings, or degrees as strings only, in the
+// form "47.3°") and returns their average in radians as a Number.
+//
+// From Kanti V. Mardia & Peter E. Jupp, "Directional Statistics", Wiley, 2000
 
 mctad.meanDirection = function (data) {
-  // The mean_direction of no angles is null
-  if (data.length === 0 ) return null;
+  // The mean direction is undefined if the data is not in an Array of 1 or more elements.
+  if (!Array.isArray(data) || data.length === 0) { return undefined; }
 
-  // Mardia & Jupp equation (2.2.4)
-  var c_bar, s_bar, theta_bar, acc = { c: 0, s : 0 };
-  for (i = 0; i < data.length; i++) {
-    acc.c += Math.cos(this.toRadians(data[i]));
-    acc.s += Math.sin(this.toRadians(data[i]));
+  // Mardia & Jupp equation 2.2.4
+  var C_bar, S_bar, θ_bar, acc = { cos: 0, sin: 0 };
+  for (var i = 0; i < data.length; i++) {
+    acc.cos += Math.cos(mctad.toRadians(data[i]));
+    acc.sin += Math.sin(mctad.toRadians(data[i]));
   }
-  c_bar = (acc.c / data.length);
-  s_bar = (acc.s / data.length);
-  if (c_bar >= 0 ) {
-    theta_bar = Math.atan(s_bar/c_bar);
+  C_bar = (acc.cos / data.length);
+  S_bar = (acc.sin / data.length);
+
+  if (C_bar >= 0 ) {
+    θ_bar = Math.atan(S_bar/C_bar);
   } else {
-    theta_bar = Math.atan(s_bar/c_bar) + this.π;
+    θ_bar = Math.atan(S_bar/C_bar) + mctad.π;
   }
-  return theta_bar;
+  return θ_bar;
+
 };
 ;
 // # Mean Resultant Length
+//
+// From Kanti V. Mardia & Peter E. Jupp, "Directional Statistics", Wiley, 2000
 
-mctad.mean_resultant_length = function (data) {
-  // The mean_resultant_length of no angles is null
-  if (data.length === 0 ) return null;
+mctad.meanResultantLength = function (data) {
+  // The mean resultant length is undefined if the data is not in an Array of 1 or more elements.
+  if (!Array.isArray(data) || data.length === 0) { return undefined; }
 
-  // Mardia & Jupp equation (2.2.4)
-  var c_bar, s_bar, r_bar, acc = { c: 0, s : 0 };
-  for (i = 0; i < data.length; i++) {
-    acc.c += Math.cos(this.toRadians(data[i]));
-    acc.s += Math.sin(this.toRadians(data[i]));
+  // Mardia & Jupp equation 2.2.3
+  var C_bar, S_bar, R_bar, acc = { cos: 0, sin: 0 };
+  for (var i = 0; i < data.length; i++) {
+    acc.cos += Math.cos(mctad.toRadians(data[i]));
+    acc.sin += Math.sin(mctad.toRadians(data[i]));
   }
-  c_bar = (acc.c / data.length);
-  s_bar = (acc.s / data.length);
-  r_bar = Math.sqrt(Math.pow(c_bar, 2) + Math.pow(s_bar, 2));
-  return r_bar;
+  C_bar = (acc.cos / data.length);
+  S_bar = (acc.sin / data.length);
+
+  R_bar = Math.sqrt(Math.pow(C_bar, 2) + Math.pow(S_bar, 2));
+  return R_bar;
 };
 ;
 // # Median Direction
+//
+// From Kanti V. Mardia & Peter E. Jupp, "Directional Statistics", Wiley, 2000
 
 mctad.medianDirection = function (data) {
   // Mardia & Jupp describe the conditions, but not the calculations!

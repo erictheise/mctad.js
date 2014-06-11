@@ -36,3 +36,9 @@ describe('sortNumeric', function () {
     assert.deepEqual(mctad.sortNumeric([1, 11, 111, -1, -11, -111, 0]), [-111, -11, -1, 0, 1, 11, 111], 'array should be sorted');
   });
 });
+
+describe('getBaseLog', function () {
+  it('can return the log base 10 of 1000 as 3', function () {
+    assert.closeTo(mctad.getBaseLog(10, 1000), 3.0, mctad.ε);
+  });
+});

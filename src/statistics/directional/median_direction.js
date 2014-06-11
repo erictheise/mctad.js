@@ -1,4 +1,6 @@
 // # Median Direction
+//
+// From Kanti V. Mardia & Peter E. Jupp, "Directional Statistics", Wiley, 2000
 
 mctad.medianDirection = function (data) {
   // Mardia & Jupp describe the conditions, but not the calculations!
