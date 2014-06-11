@@ -34,6 +34,13 @@
     <span class="p">}</span>
   <span class="p">}</span> <span class="k">else</span> <span class="p">{</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>If it's a number, assume it's already in radians</p></div></div><div class="code"><div class="wrapper">    <span class="k">return</span> <span class="nx">v</span><span class="p">;</span>
   <span class="p">}</span>
+<span class="p">};</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><h1 id="getbaselogx-y">getBaseLog(x, y)</h1>
+
+<p>A function for returning the logarithm of y with base x (ie. log<sub>x</sub> y), taken from
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/log</p>
+
+<p>TODO: </p></div></div><div class="code"><div class="wrapper"><span class="nx">mctad</span><span class="p">.</span><span class="nx">getBaseLog</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">y</span><span class="p">)</span> <span class="o">/</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span>
 <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h1 id="getrandomarbitrarymin-max">getRandomArbitrary(min, max)</h1>
 
 <p>A function for generating a random number between min and mix, inclusive, taken from

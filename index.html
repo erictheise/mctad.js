@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><title>index</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="index"><meta name="groc-project-path" content="README.md"><meta name="groc-github-url" content="https://github.com/erictheise/mctad.js"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path"><a href="https://github.com/erictheise/mctad.js/blob/master/README.md">README.md</a></div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><p><img src="https://travis-ci.org/erictheise/mctad.js.svg?branch=master" alt="Travis CI Build Status" title="" />
+<!DOCTYPE html><html lang="en"><head><title>index</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="index"><meta name="groc-project-path" content="README.md"><meta name="groc-github-url" content="https://github.com/erictheise/mctad.js"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path"><a href="https://github.com/erictheise/mctad.js/blob/master/README.md">README.md</a></div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><p><a href="https://travis-ci.org/erictheise/mctad.js"><img src="https://travis-ci.org/erictheise/mctad.js.svg?branch=master" alt="Travis CI Build Status" title="" /></a>
 <a href="https://gemnasium.com/erictheise/mctad.js"><img src="https://gemnasium.com/erictheise/mctad.js.svg" alt="Dependency Status" title="" /></a></p>
 
 <h1 id="mctadjs">mctad.js</h1>
@@ -7,17 +7,9 @@
 
 <h3 id="about">About</h3>
 
-<p>I recently got interested in the notion of <em>bearing</em>, which led me to the field of directional statistics. I needed to implement
-some  after learning about them, and not necessarily being a good fit for other projects (e.g.,
-<a href="https://github.com/tmcw/simple-statistics">simple-statistics</a>,
-<a href="https://github.com/jasondavies/science.js">science.js</a>), ended up starting my own library. I'm not usually the
-<a href="http://en.wikipedia.org/wiki/Not_invented_here">NIH</a>-type, but that's how it played out.</p>
-
-<p>The project has definitely been informed &amp; inspired by <em>simple-statistics, _science.js</em>, and, of course,
-<a href="http://www.r-project.org/">R</a>.</p>
-
-<p>In addition to <em>directional statistics</em>, <em>mctad.js</em> distinguishes itself by providing generators for many continuous and
-discrete probability distributions.</p>
+<p><strong>mctad.js</strong> is a JavaScript library for probability and statistics. A goal is to provide functionality missing from other
+such libraries, such as having an awareness of many common discrete and continuous probability distributions, an ability
+to generate random variables from those distributions, and having a basic implementation of directional statistics.</p>
 
 <h3 id="use">Use</h3>
 
@@ -25,19 +17,24 @@ discrete probability distributions.</p>
 
 <p>You'll want either the file <code>mctad.min.js</code> or the file <code>mctad.js</code> in the root of this repository.</p>
 
-<h4 id="developers">Developers</h4>
-
 <p>Groc-generated documentation is online courtesy <a href="http://erictheise.github.io/mctad.js/">GitHub pages</a> and included in
 the <code>/doc/</code> directory when you <code>git clone</code> this repository.</p>
 
+<h4 id="developers">Developers</h4>
+
 <h3 id="conventions">Conventions</h3>
 
-<p>Greek letters.
-Type hinting, even if it's an untyped language.</p>
+<p>The ability to use Greek letters directly in code appeals to me, and they are used internally. I am still considering
+the extent to which they should be exposed externally. In an ideal world, it would be reliable to use constructions such
+as p-hat (p̂) and x-bar (x̄) as variable names.</p>
+
+<p>Even though it makes little or no difference to the JavaScript language, you will come across examples of <em>type hinting</em>,
+e.g., in the form of 1 versus 1.0, to help clarify whether quantities are operationally expected to take integer or real
+values.</p>
 
 <h4 id="continuous-and-discrete-probability-distributions">Continuous and Discrete Probability Distributions</h4>
 
-<p>Any distribution can be called by its common name and its required parameters, e.g., <code>mctad.poisson(7)</code>. This returns an
+<p>Distributions can be called by their common names and required parameters, e.g., <code>mctad.poisson(7)</code>. This returns an
 object containing:</p>
 
 <ul>
@@ -62,11 +59,12 @@ object containing:</p>
 <li><code>mctad.poisson(7).mean</code></li>
 <li><code>mctad.poisson(7).P(5)</code></li>
 <li><code>mctad.poisson(7).F(2)</code></li>
-<li><code>mctad.poisson(7).generate(36)</code></li>
+<li><code>mctad.triangular(3, 9, 4).generate(36)</code></li>
+<li><code>mctad.normal(60.2, 4.5).generate(100)</code></li>
 </ul>
 
-<p>Statistics on the distributions will return <code>undefined</code> if not implemented (this is version 0.1.0) or if actually not
-defined for the distribution. Since there need not be a single mode, <code>mode</code> always returns an Array.</p>
+<p>Statistics on the distributions will return <code>undefined</code> if not implemented (this <em>is</em> version 0.0.X after all ) or if
+actually not defined for the distribution. Since there need not be a single mode, <code>mode</code> always returns an Array.</p>
 
 <h3 id="tests">Tests</h3>
 
@@ -101,23 +99,23 @@ html documentation from comments in the source code. Access the documentation by
 <ul>
 <li><p>statistics</p>
 
-<ul><li>harmonic mean</li>
-<li>confidence intervals</li></ul></li>
+<ul><li>confidence intervals</li>
+<li>harmonic mean</li></ul></li>
 <li><p>discrete</p>
 
-<ul><li>generators</li>
-<li>tests for generators</li></ul></li>
+<ul><li>tests for generators</li></ul></li>
 <li><p>continuous</p>
 
 <ul><li>distributions</li>
-<li>student's t</li>
 <li>chi square</li>
+<li>student's t</li>
 <li>beta</li>
 <li>generators</li>
 <li>tests for generators</li></ul></li>
-<li><p>chi square goodness of fit</p></li>
-<li>analysis of variance</li>
+<li><p>distributions that "self-estimate" when given an Array instead of parameters</p></li>
+<li>chi square goodness of fit</li>
 <li>linear regression</li>
+<li>analysis of variance</li>
 </ul>
 
 <h3 id="long-term-to-do">Long Term To Do</h3>

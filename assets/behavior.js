@@ -156,6 +156,57 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/continuous/chi-squared.js",
+                "projectPath": "src/continuous/chi-squared.js",
+                "targetPath": "src/continuous/chi-squared",
+                "pageTitle": "src/continuous/chi-squared",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "Chi-Squared Distribution",
+                    "slug": "chi-squared-distribution",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Use",
+                        "slug": "use"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                },
+                "title": "Chi-Squared Distribution"
+              },
+              "depth": 3,
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Use",
+                    "slug": "use"
+                  },
+                  "depth": 3
+                }
+              ]
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
                 "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/continuous/erf.js",
                 "projectPath": "src/continuous/erf.js",
                 "targetPath": "src/continuous/erf",
@@ -653,6 +704,14 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "type": "heading",
                   "data": {
                     "level": 1,
+                    "title": "getBaseLog(x, y)",
+                    "slug": "getbaselogx-y"
+                  },
+                  "depth": 1
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
                     "title": "getRandomArbitrary(min, max)",
                     "slug": "getrandomarbitrarymin-max"
                   },
@@ -1012,26 +1071,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                       "depth": 1
                     },
                     "title": "Circular Variance"
-                  },
-                  "depth": 4,
-                  "outline": []
-                }, {
-                  "type": "file",
-                  "data": {
-                    "language": {
-                      "nameMatchers": [".js"],
-                      "pygmentsLexer": "javascript",
-                      "multiLineComment": ["/*", "*", "*/"],
-                      "singleLineComment": ["//"],
-                      "ignorePrefix": "}",
-                      "foldPrefix": "^",
-                      "name": "JavaScript"
-                    },
-                    "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/statistics/directional/directional_statistics.js",
-                    "projectPath": "src/statistics/directional/directional_statistics.js",
-                    "targetPath": "src/statistics/directional/directional_statistics",
-                    "pageTitle": "src/statistics/directional/directional_statistics",
-                    "title": "directional_statistics"
                   },
                   "depth": 4,
                   "outline": []
