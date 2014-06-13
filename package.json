@@ -12,7 +12,7 @@
     "grunt": "~0.4",
     "mocha": "~1.20",
     "chai": "~1.9",
-    "grunt-contrib-uglify": "~0.4",
+    "grunt-contrib-uglify": "~0.5",
     "grunt-contrib-concat": "~0.4",
     "grunt-contrib-watch": "~0.6",
     "grunt-mocha-test": "~0.11",
