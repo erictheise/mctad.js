@@ -1,16 +1,45 @@
 require('../../mctad');
 var assert = require('chai').assert;
+var lr, anscombe = { ε : 0.01};
 
-describe('sampleVariance', function() {
-  it('can return null when given something other than an array', function() {
-    assert.isNull(mctad.sampleVariance(), 'empty argument to sampleVariance');
-    assert.isNull(mctad.sampleVariance(2), 'scalar to sampleVariance');
-    assert.isNull(mctad.sampleVariance('string'), 'string to sampleVariance');
+describe('linearRegression', function() {
+  it('can return undefined when given something other than an array', function() {
+    assert.isUndefined(mctad.linearRegression(), 'empty argument to linearRegression');
+    assert.isUndefined(mctad.linearRegression(2), 'scalar to linearRegression');
+    assert.isUndefined(mctad.linearRegression('string'), 'string to linearRegression');
   });
-  it('can return null when given an empty array', function() {
-    assert.isNull(mctad.sampleVariance([]), 'the array should contain at least one data observation');
+  it('can return undefined when given an empty array', function() {
+    assert.isUndefined(mctad.linearRegression([]), 'the array should contain at least one data observation');
   });
-  it('can return the sampleVariance of 0.0 when there is no variance in the data observations', function() {
-    assert.equal(mctad.sampleVariance([1, 1, 1]), 0, 'this sampleVariance should equal 0');
+  it('can return a linearRegression of data in valid format', function() {
+    // Perversely using data from [Anscombe's Quartet](http://en.wikipedia.org/wiki/Anscombe%27s_quartet)
+    lr = mctad.linearRegression([
+      [10, 8.04], [8, 6.95], [13, 7.58], [9, 8.81], [11, 8.33], [14, 9.96],
+      [6, 7.24], [4, 4.26], [12, 10.84], [7, 4.82], [5, 5.68]
+    ]);
+    assert.closeTo(lr.β, 0.5, anscombe.ε, "the slope should be close to 0.5 for all Anscombe's Quartet data");
+    assert.closeTo(lr.α, 3.0, anscombe.ε, "the intercept should be close to 3.0 for all Anscombe's Quartet data");
+
+    lr = mctad.linearRegression([
+      [10, 9.14], [8, 8.14], [13, 8.74], [9, 8.77], [11, 9.26], [14, 8.1],
+      [6, 6.13], [4, 3.1], [12, 9.13], [7, 7.26], [5, 4.74]
+    ]);
+    assert.closeTo(lr.β, 0.5, anscombe.ε, "the slope should be close to 0.5 for all Anscombe's Quartet data");
+    assert.closeTo(lr.α, 3.0, anscombe.ε, "the intercept should be close to 3.0 for all Anscombe's Quartet data");
+
+    lr = mctad.linearRegression([
+      [10, 7.46], [8, 6.77], [13, 12.74], [9, 7.11], [11, 7.81], [14, 8.84],
+      [6, 6.08], [4, 5.39], [12, 8.15], [7, 6.42], [5, 5.73]
+    ]);
+    assert.closeTo(lr.β, 0.5, anscombe.ε, "the slope should be close to 0.5 for all Anscombe's Quartet data");
+    assert.closeTo(lr.α, 3.0, anscombe.ε, "the intercept should be close to 3.0 for all Anscombe's Quartet data");
+
+    lr = mctad.linearRegression([
+      [8, 6.58], [8, 5.76], [8, 7.71], [8, 8.84], [8, 8.47], [8, 7.04],
+      [8, 5.25], [19, 12.5], [8, 5.56], [8, 7.91], [8, 6.89]
+    ]);
+    assert.closeTo(lr.β, 0.5, anscombe.ε, "the slope should be close to 0.5 for all Anscombe's Quartet data");
+    assert.closeTo(lr.α, 3.0, anscombe.ε, "the intercept should be close to 3.0 for all Anscombe's Quartet data");
+
   });
 });
