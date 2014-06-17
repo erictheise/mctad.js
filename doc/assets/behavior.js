@@ -104,14 +104,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "type": "heading",
               "data": {
                 "level": 3,
-                "title": "Contributing",
-                "slug": "contributing"
-              },
-              "depth": 3
-            }, {
-              "type": "heading",
-              "data": {
-                "level": 3,
                 "title": "Short Term To Do",
                 "slug": "short-term-to-do"
               },
@@ -704,6 +696,14 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "type": "heading",
                   "data": {
                     "level": 1,
+                    "title": "getBaseLog(x, y)",
+                    "slug": "getbaselogx-y"
+                  },
+                  "depth": 1
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
                     "title": "getRandomArbitrary(min, max)",
                     "slug": "getrandomarbitrarymin-max"
                   },
@@ -1078,26 +1078,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                       "foldPrefix": "^",
                       "name": "JavaScript"
                     },
-                    "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/statistics/directional/directional_statistics.js",
-                    "projectPath": "src/statistics/directional/directional_statistics.js",
-                    "targetPath": "src/statistics/directional/directional_statistics",
-                    "pageTitle": "src/statistics/directional/directional_statistics",
-                    "title": "directional_statistics"
-                  },
-                  "depth": 4,
-                  "outline": []
-                }, {
-                  "type": "file",
-                  "data": {
-                    "language": {
-                      "nameMatchers": [".js"],
-                      "pygmentsLexer": "javascript",
-                      "multiLineComment": ["/*", "*", "*/"],
-                      "singleLineComment": ["//"],
-                      "ignorePrefix": "}",
-                      "foldPrefix": "^",
-                      "name": "JavaScript"
-                    },
                     "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/statistics/directional/mean_direction.js",
                     "projectPath": "src/statistics/directional/mean_direction.js",
                     "targetPath": "src/statistics/directional/mean_direction",
@@ -1385,6 +1365,36 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "depth": 1
                 },
                 "title": "Sample Variance"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/statistics/simple_linear_regression.js",
+                "projectPath": "src/statistics/simple_linear_regression.js",
+                "targetPath": "src/statistics/simple_linear_regression",
+                "pageTitle": "src/statistics/simple_linear_regression",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "Simple Linear Regression",
+                    "slug": "simple-linear-regression",
+                    "isFileHeader": true
+                  },
+                  "depth": 1
+                },
+                "title": "Simple Linear Regression"
               },
               "depth": 3,
               "outline": []

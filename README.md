@@ -108,7 +108,6 @@ Please alert me if you see me breaking my own contract. Contributions should fol
 
 * distributions that "self-estimate" when given an Array instead of parameters
 * chi square goodness of fit
-* linear regression
 * analysis of variance
 
 ### Long Term To Do
