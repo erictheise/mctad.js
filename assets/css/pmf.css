@@ -1,0 +1,22 @@
+.backgrid {
+  fill: #ddd;
+}
+
+.dot {
+  stroke: #00f;
+  stroke-width: 1.5px;
+  fill: #0d0;
+  fill-opacity: 50%;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #fff;
+  shape-rendering: crispEdges;
+}
+
+.axis text {
+  font-family: sans-serif;
+  font-size: 0.6em;
+}
