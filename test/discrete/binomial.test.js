@@ -8,10 +8,19 @@ describe('binomial', function() {
     assert.isUndefined(mctad.binomial(2, -0.01), 'p should be greater than 0.0');
     assert.isUndefined(mctad.binomial(2, 1.5), 'p should be less than 1.0');
   });
+
   // Data given in the [Wikipedia example](http://en.wikipedia.org/wiki/Binomial_distribution#Example) retrieved 29 Mar 2014
   // Cumulative probabilities worked by hand to mitigate accumulated rounding errors.
-  it('can generate probability mass and cumulative distribution functions for n = 6, p = 0.3', function() {
+  it('can generate stats, probability mass and cumulative distribution functions for n = 6, p = 0.3', function() {
     assert.isObject(mctad.binomial(6, 0.3));
+    assert.closeTo(mctad.binomial(6, 0.3).mean, 1.8, mctad.ε);
+    assert.isUndefined(mctad.binomial(6, 0.3).median);
+    assert.equal(mctad.binomial(6, 0.3).mode, 2);
+    assert.closeTo(mctad.binomial(6, 0.3).variance, 1.26, mctad.ε);
+    assert.closeTo(mctad.binomial(6, 0.3).skewness, 0.35635, mctad.ε);
+    assert.isUndefined(mctad.binomial(6, 0.3).entropy);
+    assert.deepEqual(mctad.binomial(6, 0.3).domain, { min: 0, max: 6 });
+    assert.deepEqual(mctad.binomial(6, 0.3).range, { min: 0, max: 0.4 });
     assert.closeTo(mctad.binomial(6, 0.3)[0].pmf, 0.1176, mctad.ε);
     assert.closeTo(mctad.binomial(6, 0.3)[0].cdf, 0.1176, mctad.ε);
     assert.closeTo(mctad.binomial(6, 0.3)[1].pmf, 0.3025, mctad.ε);

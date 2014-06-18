@@ -451,7 +451,7 @@ mctad.bernoulli = function(p) {
 
     // `mctad.bernoulli(.7).generate()` will perform a single Bernoulli trial, yielding one
     // random variable with a success probability of .7. For a sequence of Bernoulli trials, see
-    // the [binomial distribution](binomial.html).
+    // the [Binomial Distribution](binomial.html).
     generate: function () {
       if (mctad.getRandomArbitrary(0, 1) <= p) {
         return 1;
@@ -482,11 +482,36 @@ mctad.binomial = function (n, p) {
 
   var x = 0, pmf, cdf = 0, dfs = {
     mean: n * p,
+    median: undefined,
+    mode: function () {
+      if ((n + 1) * p === 0.0 || !mctad.isInteger((n + 1) * p)) {
+        return [Math.floor((n + 1) * p)];
+      } else {
+        if (mctad.isInteger((n + 1) * p) && (n + 1) * p >= 1 && (n + 1) * p <= n) {
+          return [(n + 1) * p - 1, (n + 1) * p];
+        } else {
+          return n;
+        }
+      }
+    }(),
     variance: (n * p) * (1.0 - p),
     skewness: (1 - 2 * p)/Math.sqrt(n * p * (1.0 - p)),
+    entropy: undefined, // @todo: implement from wikipedia once O(1/n) becomes clear
     domain: { min: 0, max: Infinity },
-    range: { min: 0.0, max: 0.0 }
+    range: { min: 0.0, max: 0.0 },
+
+    // `mctad.binomial(9, .7).generate()` will perform nine Bernoulli trials, yielding nine
+    // random variables with a success probability of .7.
+    generate: function () {
+      var randomVariables = [];
+      for (var i = 0; i < n; i++ ) {
+        randomVariables.push(mctad.bernoulli(p).generate());
+      }
+      return randomVariables;
+    }
   };
+
+  // Iterate over the domain, calculating the probability mass and cumulative distribution functions.
   do {
     pmf = (mctad.factorial(n) / (mctad.factorial(x) * mctad.factorial(n - x)) * (Math.pow(p, x) * Math.pow(1.0 - p, (n - x))));
     cdf += pmf;
@@ -525,6 +550,8 @@ mctad.geometric = function (p) {
       return randomVariables;
     }
   };
+
+  // Iterate over the domain, calculating the probability mass and cumulative distribution functions.
   do {
     pmf = p * Math.pow(1.0 - p, x);
     cdf += pmf;

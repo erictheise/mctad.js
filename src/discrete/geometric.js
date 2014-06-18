@@ -26,6 +26,8 @@ mctad.geometric = function (p) {
       return randomVariables;
     }
   };
+
+  // Iterate over the domain, calculating the probability mass and cumulative distribution functions.
   do {
     pmf = p * Math.pow(1.0 - p, x);
     cdf += pmf;

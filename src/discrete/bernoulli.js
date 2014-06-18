@@ -2,10 +2,10 @@
 # Bernoulli Distribution
 
 The [Bernoulli distribution](http://en.wikipedia.org/wiki/Bernoulli_distribution) is the probability discrete
-distribution of a random variable which takes value 1 with success probability `p` and value 0 with failure
-probability `q` = 1 - `p`. It can be used, for example, to represent the toss of a coin, where "1" is defined to
-mean "heads" and "0" is defined to mean "tails" (or vice versa). It is a special case of a Binomial Distribution
-where `n` = 1.
+distribution of a random variable which takes value 1 with success probability `p` and value 0 with failure probability
+`q` = 1 - `p`. It can be used, for example, to represent the toss of a coin, where "1" is defined to mean "heads" and
+"0" is defined to mean "tails" (or vice versa). It is a special case of the [Binomial Distribution](binomial.html) where
+`n` = 1.
 
 ### Assumptions
 
@@ -54,7 +54,7 @@ mctad.bernoulli = function(p) {
 
     // `mctad.bernoulli(.7).generate()` will perform a single Bernoulli trial, yielding one
     // random variable with a success probability of .7. For a sequence of Bernoulli trials, see
-    // the [binomial distribution](binomial.html).
+    // the [Binomial Distribution](binomial.html).
     generate: function () {
       if (mctad.getRandomArbitrary(0, 1) <= p) {
         return 1;
