@@ -582,17 +582,16 @@ mctad.hypergeometric = function (N, K, n) {
     skewness: ((N - 2 * K) * Math.sqrt(N - 1) * (N - 2 * n)) / (Math.sqrt(n * K * (N - K) * (N - n)) * (N - 2)),
     entropy: undefined,
     domain: { min: 0, max: Infinity },
-    range: { min: 0.0, max: 0.0 },
+    range: { min: 0.0, max: 0.0 }
 
-    // `mctad.hypergeometric(9, 3, 4).generate()` will generate an Array of 100
-    // random variables, distributed geometrically with a probability .25 of success.
-    generate: function (n) {
-      var randomVariables = [];
-      for (var k = 0; k < n; k++ ) {
-        randomVariables.push(Math.floor(Math.log(mctad.getRandomArbitrary(0, 1))/Math.log(1.0 - p)));
-      }
-      return randomVariables;
-    }
+    // @todo: `mctad.hypergeometric(9, 3, 4).generate()` a sequence that ends at the `k`th success.
+//    generate: function (n) {
+//      var randomVariables = [];
+//      for (var k = 0; k < n; k++ ) {
+//        randomVariables.push(Math.floor(Math.log(mctad.getRandomArbitrary(0, 1))/Math.log(1.0 - p)));
+//      }
+//      return randomVariables;
+//    }
   };
 
   // Iterate over the domain, calculating the probability mass and cumulative distribution functions.

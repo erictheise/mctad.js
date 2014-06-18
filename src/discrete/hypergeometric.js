@@ -28,7 +28,7 @@ mctad.hypergeometric = function (N, K, n) {
     skewness: ((N - 2 * K) * Math.sqrt(N - 1) * (N - 2 * n)) / (Math.sqrt(n * K * (N - K) * (N - n)) * (N - 2)),
     entropy: undefined,
     domain: { min: 0, max: Infinity },
-    range: { min: 0.0, max: 0.0 };
+    range: { min: 0.0, max: 0.0 }
 
     // @todo: `mctad.hypergeometric(9, 3, 4).generate()` a sequence that ends at the `k`th success.
 //    generate: function (n) {
