@@ -41,7 +41,7 @@ mctad.binomial = function (n, p) {
     domain: { min: 0, max: Infinity },
     range: { min: 0.0, max: 0.0 },
 
-    // `mctad.binomial(9, .7).generate()` will perform nine Bernoulli trials, yielding nine
+    // `mctad.binomial(9, .7).generate()` will perform nine [Bernoulli trials](bernoulli.html), yielding nine
     // random variables with a success probability of .7.
     generate: function () {
       var randomVariables = [];

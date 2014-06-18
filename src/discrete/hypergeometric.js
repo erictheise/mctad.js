@@ -1,7 +1,7 @@
 /*
 # Hypergeometric Distribution
 
-The [Hypergeometric Distribution](http://en.wikipedia.org/wiki/Hypergeometric_distribution).
+The [Hypergeometric Distribution](http://en.wikipedia.org/wiki/Hypergeometric_distribution). It's commonly used in [statistical quality control](http://en.wikipedia.org/wiki/Statistical_quality_control)
 */
 
 mctad.hypergeometric = function (N, K, n) {
