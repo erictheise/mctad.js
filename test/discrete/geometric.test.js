@@ -8,7 +8,7 @@ describe('geometric', function() {
     assert.isUndefined(mctad.geometric(1.5), 'p should be less than 1.0');
   });
 
-  it('can generate probability mass and cumulative distribution functions for p = 0.25', function() {
+  it('can generate stats, probability mass and cumulative distribution functions for p = 0.25', function() {
     assert.isObject(mctad.geometric(0.25));
     assert.closeTo(mctad.geometric(0.25).mean, 3.0, mctad.ε);
     assert.isUndefined(mctad.geometric(0.25).median);
