@@ -47,7 +47,7 @@ mctad.bernoulli = function(p) {
       }
     })(),
     variance: p * (1.0 - p),
-    skewness: ((1.0 - p) * p)/Math.sqrt(p * (1.0 - p)),
+    skewness: ((1.0 - p) - p)/Math.sqrt(p * (1.0 - p)),
     entropy: -(1.0 - p) * Math.log(1.0 - p) - p * Math.log(p),
     domain: { min: 0, max: 1 },
     range: { min: 0.0, max: 0.0 },
