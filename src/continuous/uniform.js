@@ -1,5 +1,5 @@
 /*
-# Uniform Distribution
+# Uniform Distribution (Continuous)
 
 The [Continuous Uniform Distribution](http://en.wikipedia.org/wiki/Uniform_distribution_(continuous)) or Rectangular
 Distribution is a family of symmetric, continuous probability distributions such that for each member of the family, all

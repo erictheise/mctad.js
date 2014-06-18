@@ -14,6 +14,8 @@ mctad.geometric = function (p) {
     variance: (1.0 - p)/Math.pow(p, 2),
     skewness: (2 - p)/Math.sqrt(1 - p),
     domain: { min: 0, max: Infinity },
+    range: { min: 0.0, max: 0.0 },
+
     // `mctad.geometric(0.25).generate(100)` will generate an Array of 100
     // random variables, distributed geometrically with a probability .25 of success.
     generate: function (n) {
@@ -28,12 +30,13 @@ mctad.geometric = function (p) {
     pmf = p * Math.pow(1.0 - p, x);
     cdf += pmf;
     dfs[x] = { pmf: pmf, cdf: cdf };
+    if (pmf > dfs.range.max) { dfs.range.max = 0.1 * Math.ceil(10 * pmf); }
     x++;
   }
   while (dfs[x - 1].cdf < 1.0 - mctad.ε);
   dfs.domain.max = x - 1;
 
-  // Mix in the convenience methods for P(X) and F(X).
+  // Mix in the convenience methods for p(x) and F(x).
   mctad.extend(dfs, mctad.discreteMixins);
 
   return dfs;

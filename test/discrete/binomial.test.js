@@ -10,7 +10,7 @@ describe('binomial', function() {
   });
   // Data given in the [Wikipedia example](http://en.wikipedia.org/wiki/Binomial_distribution#Example) retrieved 29 Mar 2014
   // Cumulative probabilities worked by hand to mitigate accumulated rounding errors.
-  it('can generate probability and cumulative probability distributions for n = 6, p = 0.3', function() {
+  it('can generate probability mass and cumulative distribution functions for n = 6, p = 0.3', function() {
     assert.isObject(mctad.binomial(6, 0.3));
     assert.closeTo(mctad.binomial(6, 0.3)[0].pmf, 0.1176, mctad.ε);
     assert.closeTo(mctad.binomial(6, 0.3)[0].cdf, 0.1176, mctad.ε);

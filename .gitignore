@@ -1,6 +1,7 @@
 # Local IDE, OS X, etc.
 .idea
 .DS_Store
+wkg
 
 # Logs
 logs

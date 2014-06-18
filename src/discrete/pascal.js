@@ -1,6 +1,8 @@
 /*
 # Pascal Distribution
-http://en.wikipedia.org/wiki/Negative_binomial_distribution
+
+The [Pascal Distribution](http://en.wikipedia.org/wiki/Negative_binomial_distribution).
+
 */
 
 mctad.pascal = {
@@ -19,18 +21,20 @@ mctad.pascal = {
       })(),
       variance: (r * p)/Math.pow((1.0 - p), 2),
       skewness: (1 + p)/Math.sqrt(r * p),
-      domain: { min: 0, max: Infinity }
+      domain: { min: 0, max: Infinity },
+      range: { min: 0.0, max: 0.0 }
     };
     do {
       pmf = (mctad.combination((k + r - 1), k) * Math.pow((1.0 - p), r)) * Math.pow(p, k);
       cdf += pmf;
       dfs[k] = { pmf: pmf, cdf: cdf };
+      if (pmf > dfs.range.max) { dfs.range.max = 0.1 * Math.ceil(10 * pmf); }
       k++;
     }
     while (dfs[k - 1].cdf < 1.0 - mctad.ε);
     dfs.domain.max = k - 1;
 
-    // Mix in the convenience methods for P(X) and F(X).
+    // Mix in the convenience methods for p(x) and F(x).
     mctad.extend(dfs, mctad.discreteMixins);
 
     return dfs;

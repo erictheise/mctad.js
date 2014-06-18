@@ -393,7 +393,7 @@ mctad.sum = function (data) {
 };
 ;
 mctad.discreteMixins = {
-  P: function(x) {
+  p: function(x) {
     if (this.hasOwnProperty(x)) {
       return this[x].pmf;
     } else {
@@ -415,16 +415,6 @@ mctad.discreteMixins = {
   }
 };
 ;
-// # Bernoulli Distribution
-//
-// The [Bernoulli distribution](http://en.wikipedia.org/wiki/Bernoulli_distribution) is the probability discrete
-// distribution of a random variable which takes value 1 with success probability `p` and value 0 with failure
-// probability `q` = 1 - `p`. It can be used, for example, to represent the toss of a coin, where "1" is defined to
-// mean "heads" and "0" is defined to mean "tails" (or vice versa). It is a special case of a Binomial Distribution
-// where `n` = 1.
-//
-// More at the [Wikipedia article](http://en.wikipedia.org/wiki/Discrete_uniform_distribution).
-
 mctad.bernoulli = function(p) {
   // Check that `p` is a valid probability (0 ≤ p ≤ 1)
   if (p < 0 || p > 1.0) { return undefined; }
@@ -457,7 +447,9 @@ mctad.bernoulli = function(p) {
     skewness: ((1.0 - p) * p)/Math.sqrt(p * (1.0 - p)),
     entropy: -(1.0 - p) * Math.log(1.0 - p) - p * Math.log(p),
     domain: { min: 0, max: 1 },
-    // `mctad.bernoulli(.7).generate()` will perform a Bernoulli trial, yielding one
+    range: { min: 0.0, max: 0.0 },
+
+    // `mctad.bernoulli(.7).generate()` will perform a single Bernoulli trial, yielding one
     // random variable with a success probability of .7. For a sequence of Bernoulli trials, see
     // the [binomial distribution](binomial.html).
     generate: function () {
@@ -468,23 +460,22 @@ mctad.bernoulli = function(p) {
       }
     }
   };
+
   // Assign the probability mass and cumulative distribution functions for the outcomes 0 or 1.
   dfs[0] = { pmf: 1.0 - p, cdf: 1.0 - p };
   dfs[1] = { pmf: p, cdf: 1.0 };
+  if (p > 1.0 - p) {
+    dfs.range.max = 0.1 * Math.ceil(10 * p);
+  } else {
+    dfs.range.max = 0.1 * Math.ceil(10 * (1.0 - p));
+  }
 
-  // Mix in the convenience methods for P(X) and F(X).
+  // Mix in the convenience methods for p(x) and F(x).
   mctad.extend(dfs, mctad.discreteMixins);
 
   return dfs;
 };
 ;
-// # Binomial Distribution
-//
-// The [Binomial Distribution](http://en.wikipedia.org/wiki/Binomial_distribution) is the discrete probability
-// distribution of the number of successes in a sequence of n independent yes/no experiments, each of which yields
-// success with probability `p`. Such a success/failure experiment is also called a Bernoulli experiment or
-// Bernoulli trial; when n = 1, the Binomial Distribution is a Bernoulli Distribution.
-
 mctad.binomial = function (n, p) {
   // Check that `p` is a valid probability (0 ≤ p ≤ 1), and that `n` is an integer, strictly positive.
   if (p < 0 || p > 1.0 || !mctad.isInteger(n) || n <= 0) { return undefined; }
@@ -493,27 +484,25 @@ mctad.binomial = function (n, p) {
     mean: n * p,
     variance: (n * p) * (1.0 - p),
     skewness: (1 - 2 * p)/Math.sqrt(n * p * (1.0 - p)),
-    domain: { min: 0, max: Infinity }
+    domain: { min: 0, max: Infinity },
+    range: { min: 0.0, max: 0.0 }
   };
   do {
     pmf = (mctad.factorial(n) / (mctad.factorial(x) * mctad.factorial(n - x)) * (Math.pow(p, x) * Math.pow(1.0 - p, (n - x))));
     cdf += pmf;
     dfs[x] = { pmf: pmf, cdf: cdf };
+    if (pmf > dfs.range.max) { dfs.range.max = 0.1 * Math.ceil(10 * pmf); }
     x++;
   }
   while (dfs[x - 1].cdf < 1.0 - mctad.ε);
   dfs.domain.max = x - 1;
 
-  // Mix in the convenience methods for P(X) and F(X).
+  // Mix in the convenience methods for p(x) and F(x).
   mctad.extend(dfs, mctad.discreteMixins);
 
   return dfs;
 };
 ;
-// # Geometric Distribution
-//
-// This implementation uses the second definition of the [Geometric Distribution](http://en.wikipedia.org/wiki/Geometric_distribution)
-
 mctad.geometric = function (p) {
   // Check that `p` is a valid probability (0 < p ≤ 1).
   if (p <= 0 || p > 1.0) { return undefined; }
@@ -524,6 +513,8 @@ mctad.geometric = function (p) {
     variance: (1.0 - p)/Math.pow(p, 2),
     skewness: (2 - p)/Math.sqrt(1 - p),
     domain: { min: 0, max: Infinity },
+    range: { min: 0.0, max: 0.0 },
+
     // `mctad.geometric(0.25).generate(100)` will generate an Array of 100
     // random variables, distributed geometrically with a probability .25 of success.
     generate: function (n) {
@@ -538,49 +529,47 @@ mctad.geometric = function (p) {
     pmf = p * Math.pow(1.0 - p, x);
     cdf += pmf;
     dfs[x] = { pmf: pmf, cdf: cdf };
+    if (pmf > dfs.range.max) { dfs.range.max = 0.1 * Math.ceil(10 * pmf); }
     x++;
   }
   while (dfs[x - 1].cdf < 1.0 - mctad.ε);
   dfs.domain.max = x - 1;
 
-  // Mix in the convenience methods for P(X) and F(X).
+  // Mix in the convenience methods for p(x) and F(x).
   mctad.extend(dfs, mctad.discreteMixins);
 
   return dfs;
 };
 ;
-// # Hypergeometric Distribution
-
 mctad.hypergeometric = function (N, K, n) {
   // Check that `p` is a valid probability (0 < p < 1).
   if (!mctad.isInteger(N) || !mctad.isInteger(K) || !mctad.isInteger(n) || N < 0 || K > N || n > N) { return undefined; }
 
-  var x = 0, pmf, cdf = 0, dfs = {
+  var k = 0, pmf, cdf = 0, dfs = {
     mean: n * K / N,
     median: undefined,
-    mode: Math.floor(((n + 1) * (K + 1 ))/(N + 2)),
-    variance: n * (K / N) * (N - K)/N * (N - n)/(N - 1),
-    skewness: ((N - 2 * K) * Math.pow((N - 1, 0.5) * (N - 2 * n_))/(Math.pow(n * K * (N - K) * (N - n)), 0.5) * (N - 2)),
-    domain: { min: 0, max: Infinity }
+    mode: Math.floor(((n + 1) * (K + 1)) / (N + 2)),
+    variance: n * (K / N) * ((N - K) / N) * ((N - n) / (N - 1)),
+    skewness: ((N - 2 * K) * Math.pow(N - 1, 0.5) * (N - 2 * n)) / (Math.pow(n * K * (N - K) * (N - n), 0.5) * (N - 2)),
+    domain: { min: 0, max: Infinity },
+    range: { min: 0.0, max: 0.0 }
   };
   do {
-    pmf = (this.combination(K, k) * this.combination(N - K, n - k))/this.combination(N, K);
+    pmf = (this.combination(K, k) * this.combination(N - K, n - k)) / this.combination(N, n);
     cdf += pmf;
-    dfs[x] = { pmf: pmf, cdf: cdf };
-    x++;
+    dfs[k] = { pmf: pmf, cdf: cdf };
+    if (pmf > dfs.range.max) { dfs.range.max = 0.1 * Math.ceil(10 * pmf); }
+    k++;
   }
-  while (dfs[x - 1].cdf < 1.0 - mctad.ε);
-  dfs.domain.max = x - 1;
+  while (dfs[k - 1].cdf < 1.0 - mctad.ε);
+  dfs.domain.max = k - 1;
 
-  // Mix in the convenience methods for P(X) and F(X).
+  // Mix in the convenience methods for p(x) and F(x).
   mctad.extend(dfs, mctad.discreteMixins);
 
   return dfs;
 };
 ;
-// # Pascal Distribution
-// http://en.wikipedia.org/wiki/Negative_binomial_distribution
-
 mctad.pascal = {
   distribution: function (r, p) {
     // Check that `p` is a valid probability (0 < p < 1), and that `r` is an integer, strictly positive.
@@ -597,18 +586,20 @@ mctad.pascal = {
       })(),
       variance: (r * p)/Math.pow((1.0 - p), 2),
       skewness: (1 + p)/Math.sqrt(r * p),
-      domain: { min: 0, max: Infinity }
+      domain: { min: 0, max: Infinity },
+      range: { min: 0.0, max: 0.0 }
     };
     do {
       pmf = (mctad.combination((k + r - 1), k) * Math.pow((1.0 - p), r)) * Math.pow(p, k);
       cdf += pmf;
       dfs[k] = { pmf: pmf, cdf: cdf };
+      if (pmf > dfs.range.max) { dfs.range.max = 0.1 * Math.ceil(10 * pmf); }
       k++;
     }
     while (dfs[k - 1].cdf < 1.0 - mctad.ε);
     dfs.domain.max = k - 1;
 
-    // Mix in the convenience methods for P(X) and F(X).
+    // Mix in the convenience methods for p(x) and F(x).
     mctad.extend(dfs, mctad.discreteMixins);
 
     return dfs;
@@ -616,13 +607,6 @@ mctad.pascal = {
 
 };
 ;
-// # Poisson Distribution
-// The [Poisson Distribution](http://en.wikipedia.org/wiki/Poisson_distribution) is a discrete probability
-// distribution that expresses the probability of a given number of events occurring in a fixed interval of time
-// and/or space if these events occur with a known average rate and independently of the time since the last event.
-//
-// The Poisson Distribution is characterized by the strictly positive mean arrival or occurrence rate, `λ`.
-
 mctad.poisson = function (λ) {
   // Check that λ is strictly positive
   if (λ <= 0) { return null; }
@@ -637,29 +621,25 @@ mctad.poisson = function (λ) {
     mode: [Math.floor(λ), Math.ceil(λ) - 1],
     variance: λ,
     skewness: Math.pow(λ, 0.5),
-    domain: { min: 0, max: Infinity }
+    domain: { min: 0, max: Infinity },
+    range: { min: 0.0, max: 0.0 }
   };
   do {
     pmf = (Math.pow(Math.E, -λ) * Math.pow(λ, x))/mctad.factorial(x);
     cdf += pmf;
     dfs[x] = { pmf: pmf, cdf: cdf };
+    if (pmf > dfs.range.max) { dfs.range.max = 0.1 * Math.ceil(10 * pmf); }
     x++;
   }
   while (dfs[x - 1].cdf < 1.0 - mctad.ε);
   dfs.domain.max = x - 1;
 
-  // Mix in the convenience methods for P(X) and F(X).
+  // Mix in the convenience methods for p(x) and F(x).
   mctad.extend(dfs, mctad.discreteMixins);
 
   return dfs;
 };
 ;
-// # Uniform Distribution (Discrete)
-//
-// `mctad.discreteUniform()` accepts two Integers, `i` and `j`, the lower and upper bounds of a range of equally likely integers, and returns an Object containing the `mean`, `median`, `mode`, `variance`, `skewness`, `entropy`,`domain`, `P` (the probability mass function, P(X)), `F` (the cumulative distribution function, F(X)), and `generate()`, a function for generating `n` random variables using the specified distribution.
-//
-// More at the [Wikipedia article](http://en.wikipedia.org/wiki/Discrete_uniform_distribution).
-
 mctad.discreteUniform = function (i, j) {
   // Check that `i ≤ j`, and that `i` and `j` are integers.
   if (i > j || !mctad.isInteger(i) || !mctad.isInteger(j) ) { return undefined; }
@@ -672,8 +652,10 @@ mctad.discreteUniform = function (i, j) {
     skewness: 0.0,
     entropy: Math.log(j - i + 1),
     domain: { min: i, max: j },
-    // `mctad.discreteUniform(10, 20).generate(100)` will generate an Array of 100
-    // random variables, distributed uniformly between 10 and 20, inclusive.
+    range: { min: 0.0, max: 0.0 },
+
+    // `mctad.discreteUniform(1, 6).generate(10)` will generate an Array of 10
+    // random variables, distributed uniformly between 1 and 6, inclusive, as in the roll of a fair die.
     generate: function (n) {
       var randomVariables = [];
       for (var k = 0; k < n; k++ ) {
@@ -682,13 +664,15 @@ mctad.discreteUniform = function (i, j) {
       return randomVariables;
     }
   };
+
   // Iterate over the domain, calculating the probability mass and cumulative distribution functions.
   for (x = i; x <= j; x++) {
     pmf = 1/(j - i + 1);
     cdf += pmf;
     dfs[x] = { pmf: pmf, cdf: cdf };
+    if (pmf > dfs.range.max) { dfs.range.max = 0.1 * Math.ceil(10 * pmf); }
   }
-  // Mix in the convenience methods for P(X) and F(X).
+  // Mix in the convenience methods for p(x) and F(x).
   mctad.extend(dfs, mctad.discreteMixins);
 
   return dfs;

@@ -1,5 +1,6 @@
 /*
 # Poisson Distribution
+
 The [Poisson Distribution](http://en.wikipedia.org/wiki/Poisson_distribution) is a discrete probability
 distribution that expresses the probability of a given number of events occurring in a fixed interval of time
 and/or space if these events occur with a known average rate and independently of the time since the last event.
@@ -21,18 +22,20 @@ mctad.poisson = function (λ) {
     mode: [Math.floor(λ), Math.ceil(λ) - 1],
     variance: λ,
     skewness: Math.pow(λ, 0.5),
-    domain: { min: 0, max: Infinity }
+    domain: { min: 0, max: Infinity },
+    range: { min: 0.0, max: 0.0 }
   };
   do {
     pmf = (Math.pow(Math.E, -λ) * Math.pow(λ, x))/mctad.factorial(x);
     cdf += pmf;
     dfs[x] = { pmf: pmf, cdf: cdf };
+    if (pmf > dfs.range.max) { dfs.range.max = 0.1 * Math.ceil(10 * pmf); }
     x++;
   }
   while (dfs[x - 1].cdf < 1.0 - mctad.ε);
   dfs.domain.max = x - 1;
 
-  // Mix in the convenience methods for P(X) and F(X).
+  // Mix in the convenience methods for p(x) and F(x).
   mctad.extend(dfs, mctad.discreteMixins);
 
   return dfs;
