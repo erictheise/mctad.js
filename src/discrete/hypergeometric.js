@@ -40,7 +40,7 @@ mctad.hypergeometric = function (N, K, n) {
 //    }
   };
 
-  // Iterate over the domain, calculating the probability mass and cumulative distribution functions.
+  // @todo: this distribution does not require iteration. Iterate over the domain, calculating the probability mass and cumulative distribution functions.
   do {
     pmf = (this.combination(K, k) * this.combination(N - K, n - k)) / this.combination(N, n);
     cdf += pmf;
