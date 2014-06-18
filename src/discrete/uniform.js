@@ -1,8 +1,10 @@
-// # Uniform Distribution (Discrete)
-//
-// `mctad.discreteUniform()` accepts two Integers, `i` and `j`, the lower and upper bounds of a range of equally likely integers, and returns an Object containing the `mean`, `median`, `mode`, `variance`, `skewness`, `entropy`,`domain`, `P` (the probability mass function, P(X)), `F` (the cumulative distribution function, F(X)), and `generate()`, a function for generating `n` random variables using the specified distribution.
-//
-// More at the [Wikipedia article](http://en.wikipedia.org/wiki/Discrete_uniform_distribution).
+/*
+# Uniform Distribution (Discrete)
+
+`mctad.discreteUniform()` accepts two Integers, `i` and `j`, the lower and upper bounds of a range of equally likely integers, and returns an Object containing the `mean`, `median`, `mode`, `variance`, `skewness`, `entropy`,`domain`, `P` (the probability mass function, P(X)), `F` (the cumulative distribution function, F(X)), and `generate()`, a function for generating `n` random variables using the specified distribution.
+
+More at the [Wikipedia article](http://en.wikipedia.org/wiki/Discrete_uniform_distribution).
+*/
 
 mctad.discreteUniform = function (i, j) {
   // Check that `i ≤ j`, and that `i` and `j` are integers.

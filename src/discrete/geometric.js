@@ -1,6 +1,8 @@
-// # Geometric Distribution
-//
-// This implementation uses the second definition of the [Geometric Distribution](http://en.wikipedia.org/wiki/Geometric_distribution)
+/*
+# Geometric Distribution
+
+This implementation uses the second definition of the [Geometric Distribution](http://en.wikipedia.org/wiki/Geometric_distribution)
+*/
 
 mctad.geometric = function (p) {
   // Check that `p` is a valid probability (0 < p ≤ 1).

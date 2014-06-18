@@ -1,4 +1,6 @@
-// # Hypergeometric Distribution
+/*
+# Hypergeometric Distribution
+*/
 
 mctad.hypergeometric = function (N, K, n) {
   // Check that `p` is a valid probability (0 < p < 1).

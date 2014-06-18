@@ -1,5 +1,7 @@
-// # Pascal Distribution
-// http://en.wikipedia.org/wiki/Negative_binomial_distribution
+/*
+# Pascal Distribution
+http://en.wikipedia.org/wiki/Negative_binomial_distribution
+*/
 
 mctad.pascal = {
   distribution: function (r, p) {
