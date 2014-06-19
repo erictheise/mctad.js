@@ -7,7 +7,7 @@ It's commonly used in [statistical quality control](http://en.wikipedia.org/wiki
 
 ### Assumptions
 
-`N`, `K`, and `n` are positive Integers.
+`N`, `K`, and `n` are positive Integers with K ≤ N, n ≤ K.
 
 ### Use
 
@@ -17,8 +17,8 @@ It's commonly used in [statistical quality control](http://en.wikipedia.org/wiki
 */
 
 mctad.hypergeometric = function (N, K, n) {
-  // Check that `p` is a valid probability (0 < p < 1).
-  if (!mctad.isInteger(N) || !mctad.isInteger(K) || !mctad.isInteger(n) || N < 0 || K > N || n > N) { return undefined; }
+  // Check that `N`, `K`, and `n` are positive Integers, with K ≤ N, n ≤ N.
+  if (!mctad.isInteger(N) || !mctad.isInteger(K) || !mctad.isInteger(n) || N < 0 || K < 0 || n < 0 || K > N || n > N) { return undefined; }
 
   var k = 0, pmf, cdf = 0, dfs = {
     mean: n * K / N,
@@ -27,7 +27,7 @@ mctad.hypergeometric = function (N, K, n) {
     variance: n * (K / N) * ((N - K) / N) * ((N - n) / (N - 1)),
     skewness: ((N - 2 * K) * Math.sqrt(N - 1) * (N - 2 * n)) / (Math.sqrt(n * K * (N - K) * (N - n)) * (N - 2)),
     entropy: undefined,
-    domain: { min: 0, max: Infinity },
+    domain: { min: 0, max: K },
     range: { min: 0.0, max: 0.0 }
 
     // @todo: `mctad.hypergeometric(9, 3, 4).generate()` a sequence that ends at the `k`th success.
@@ -40,16 +40,13 @@ mctad.hypergeometric = function (N, K, n) {
 //    }
   };
 
-  // @todo: this distribution does not require iteration. Iterate over the domain, calculating the probability mass and cumulative distribution functions.
-  do {
+  // Iterate over the domain, calculating the probability mass and cumulative distribution functions.
+  for (k = 0; k <= n; k++) {
     pmf = (this.combination(K, k) * this.combination(N - K, n - k)) / this.combination(N, n);
     cdf += pmf;
     dfs[k] = { pmf: pmf, cdf: cdf };
     if (pmf > dfs.range.max) { dfs.range.max = 0.1 * Math.ceil(10 * pmf); }
-    k++;
   }
-  while (dfs[k - 1].cdf < 1.0 - mctad.ε);
-  dfs.domain.max = k - 1;
 
   // Mix in the convenience methods for p(x) and F(x).
   mctad.extend(dfs, mctad.discreteMixins);

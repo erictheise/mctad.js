@@ -3,9 +3,14 @@ var assert = require('chai').assert;
 
 describe('hypergeometric', function() {
   it('can return undefined when parameters are not valid', function() {
-    assert.isUndefined(mctad.hypergeometric(10, 11, 11), 'p should be greater than 0.0');
-    assert.isUndefined(mctad.hypergeometric(0.0), 'p should be greater than 0.0');
-    assert.isUndefined(mctad.hypergeometric(1.5), 'p should be less than 1.0');
+    assert.isUndefined(mctad.hypergeometric(-10, 4, 3), 'N should be positive');
+    assert.isUndefined(mctad.hypergeometric(10, -4, 3), 'K should be positive');
+    assert.isUndefined(mctad.hypergeometric(10, 4, -3), 'n should be positive');
+    assert.isUndefined(mctad.hypergeometric(10.5, 4, 3), 'N should be an Integer');
+    assert.isUndefined(mctad.hypergeometric(10, 4.2, 3), 'K should be an Integer');
+    assert.isUndefined(mctad.hypergeometric(10, 4, 3.1), 'n should be an Integer');
+    assert.isUndefined(mctad.hypergeometric(10, 11, 1), 'K should be ≤ N');
+    assert.isUndefined(mctad.hypergeometric(10, 4, 11), 'n should be ≤ N');
   });
 
   it('can generate stats, probability mass and cumulative distribution functions for p = 0.25', function() {
@@ -30,3 +35,5 @@ describe('hypergeometric', function() {
   });
 
 });
+
+// Check that `N`, `K`, and `n` are positive Integers, with K ≤ N, n ≤ K.

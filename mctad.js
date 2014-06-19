@@ -571,8 +571,8 @@ mctad.geometric = function (p) {
 };
 ;
 mctad.hypergeometric = function (N, K, n) {
-  // Check that `p` is a valid probability (0 < p < 1).
-  if (!mctad.isInteger(N) || !mctad.isInteger(K) || !mctad.isInteger(n) || N < 0 || K > N || n > N) { return undefined; }
+  // Check that `N`, `K`, and `n` are positive Integers, with K ≤ N, n ≤ N.
+  if (!mctad.isInteger(N) || !mctad.isInteger(K) || !mctad.isInteger(n) || N < 0 || K < 0 || n < 0 || K > N || n > N) { return undefined; }
 
   var k = 0, pmf, cdf = 0, dfs = {
     mean: n * K / N,
@@ -581,7 +581,7 @@ mctad.hypergeometric = function (N, K, n) {
     variance: n * (K / N) * ((N - K) / N) * ((N - n) / (N - 1)),
     skewness: ((N - 2 * K) * Math.sqrt(N - 1) * (N - 2 * n)) / (Math.sqrt(n * K * (N - K) * (N - n)) * (N - 2)),
     entropy: undefined,
-    domain: { min: 0, max: Infinity },
+    domain: { min: 0, max: K },
     range: { min: 0.0, max: 0.0 }
 
     // @todo: `mctad.hypergeometric(9, 3, 4).generate()` a sequence that ends at the `k`th success.
@@ -594,16 +594,13 @@ mctad.hypergeometric = function (N, K, n) {
 //    }
   };
 
-  // @todo: this distribution does not require iteration. Iterate over the domain, calculating the probability mass and cumulative distribution functions.
-  do {
+  // Iterate over the domain, calculating the probability mass and cumulative distribution functions.
+  for (k = 0; k <= n; k++) {
     pmf = (this.combination(K, k) * this.combination(N - K, n - k)) / this.combination(N, n);
     cdf += pmf;
     dfs[k] = { pmf: pmf, cdf: cdf };
     if (pmf > dfs.range.max) { dfs.range.max = 0.1 * Math.ceil(10 * pmf); }
-    k++;
   }
-  while (dfs[k - 1].cdf < 1.0 - mctad.ε);
-  dfs.domain.max = k - 1;
 
   // Mix in the convenience methods for p(x) and F(x).
   mctad.extend(dfs, mctad.discreteMixins);
@@ -650,7 +647,7 @@ mctad.pascal = {
 ;
 mctad.poisson = function (λ) {
   // Check that λ is strictly positive
-  if (λ <= 0) { return null; }
+  if (λ <= 0) { return undefined; }
 
   // We initialize `x`, the random variable, and `cdf`, an cdfumulator for the cumulative distribution function
   // to 0. `dfs` is the object we'll return with the `pmf` and the
@@ -658,15 +655,34 @@ mctad.poisson = function (λ) {
   // `cdf` is within `epsilon` of 1.0.
   var x = 0, pmf, cdf = 0, dfs = {
     mean: λ,
-    median: Math.floor(λ + 1/3 - 0.02/λ),
+    median: Math.floor(λ + 1 / 3 - 0.02 / λ),
     mode: [Math.floor(λ), Math.ceil(λ) - 1],
     variance: λ,
     skewness: Math.pow(λ, 0.5),
+    entropy: undefined, // @todo: revisit this
     domain: { min: 0, max: Infinity },
-    range: { min: 0.0, max: 0.0 }
+    range: { min: 0.0, max: 0.0 },
+
+    // `mctad.poisson(10).generate(100)` will generate an Array of 100
+    // random variables, having a Poisson Distribution with an arrival rate of 10 per time unit.
+    generate: function (n) {
+      var a = Math.pow(Math.E, -λ), randomVariables = [];
+      for (var i = 0; i < n; i++) {
+        var j = 1, b = 1;
+        do {
+          b = b * mctad.getRandomArbitrary(0, 1);
+          j++;
+        }
+        while (b > a);
+        randomVariables.push(j - 1);
+      }
+      return randomVariables;
+    }
   };
+
+  // Iterate over the domain, calculating the probability mass and cumulative distribution functions.
   do {
-    pmf = (Math.pow(Math.E, -λ) * Math.pow(λ, x))/mctad.factorial(x);
+    pmf = (Math.pow(Math.E, -λ) * Math.pow(λ, x)) / mctad.factorial(x);
     cdf += pmf;
     dfs[x] = { pmf: pmf, cdf: cdf };
     if (pmf > dfs.range.max) { dfs.range.max = 0.1 * Math.ceil(10 * pmf); }
