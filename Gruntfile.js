@@ -56,7 +56,7 @@ module.exports = function(grunt) {
       ],
       options: {
         out: 'doc/',
-        github: false
+        github: true
       }
     },
     watch: {
