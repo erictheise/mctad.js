@@ -6,16 +6,22 @@ distribution that expresses the probability of a given number of events occurrin
 and/or space if these events occur with a known average rate and independently of the time since the last event.
 
 The Poisson Distribution is characterized by the strictly positive mean arrival or occurrence rate, `λ`.
+
+### Assumptions
+
+`λ` is a positive Real number.
+
+### Use
+
+`mctad.poisson(λ)`
+
+### Inline Comments
 */
 
 mctad.poisson = function (λ) {
-  // Check that λ is strictly positive
+  // Check that λ is strictly positive.
   if (λ <= 0) { return undefined; }
 
-  // We initialize `x`, the random variable, and `cdf`, an cdfumulator for the cumulative distribution function
-  // to 0. `dfs` is the object we'll return with the `pmf` and the
-  // `cdf`, as well as the trivially calculated mean & variance. We iterate until the
-  // `cdf` is within `epsilon` of 1.0.
   var x = 0, pmf, cdf = 0, dfs = {
     mean: λ,
     median: Math.floor(λ + 1 / 3 - 0.02 / λ),
