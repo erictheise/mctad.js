@@ -30,12 +30,9 @@ mctad.hypergeometric = function (N, K, n) {
     domain: { min: 0, max: K },
     range: { min: 0.0, max: 0.0 }
 
-    // @todo: `mctad.hypergeometric(9, 3, 4).generate()` a sequence that ends at the `k`th success.
+    // @todo: implement `mctad.hypergeometric(9, 3, 4).generate()`
 //    generate: function (n) {
 //      var randomVariables = [];
-//      for (var k = 0; k < n; k++ ) {
-//        randomVariables.push(Math.floor(Math.log(mctad.getRandomArbitrary(0, 1))/Math.log(1.0 - p)));
-//      }
 //      return randomVariables;
 //    }
   };
