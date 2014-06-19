@@ -1104,12 +1104,65 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                     "slug": "pascal-distribution",
                     "isFileHeader": true
                   },
-                  "depth": 1
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Assumptions",
+                        "slug": "assumptions"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Use",
+                        "slug": "use"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Inline Comments",
+                        "slug": "inline-comments"
+                      },
+                      "depth": 3
+                    }
+                  ]
                 },
                 "title": "Pascal Distribution"
               },
               "depth": 3,
-              "outline": []
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Assumptions",
+                    "slug": "assumptions"
+                  },
+                  "depth": 3
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Use",
+                    "slug": "use"
+                  },
+                  "depth": 3
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Inline Comments",
+                    "slug": "inline-comments"
+                  },
+                  "depth": 3
+                }
+              ]
             }, {
               "type": "file",
               "data": {
