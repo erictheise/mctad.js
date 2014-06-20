@@ -3,8 +3,13 @@ var assert = require('chai').assert;
 
 describe('lognormal', function() {
   it('can return undefined when μ ορ σ2 are not valid parameters', function() {
-    assert.isUndefined(mctad.lognormal(-1.0, 0.0), 'μ should be > 0');
+    assert.isUndefined(mctad.lognormal(-1.0, 0.0), 'μ should be ≥ 0');
     assert.isUndefined(mctad.lognormal(0.0, -1.0), 'σ2 should be > 0');
+  });
+
+  it('can return undefined when x is not a valid parameter to f(x) or F(x)', function() {
+    assert.isUndefined(mctad.lognormal(0.0, 1.0).f(-1), 'x should be ≥ 0');
+    assert.isUndefined(mctad.lognormal(0.0, 1.0).F(-1), 'x should be ≥ 0');
   });
 
 //  it('can generate the distribution statistics for μ = -2.0, σ2 = 0.5', function() {

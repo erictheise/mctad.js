@@ -15,7 +15,7 @@ distribution of a random variable whose logarithm is normally distributed.
 
 mctad.lognormal = function (μ, σ2) {
   // Check that `μ > 0` and `σ2 > 0`.
-  if (μ <= 0 || σ2 <= 0) { return undefined; }
+  if (μ < 0 || σ2 <= 0) { return undefined; }
 
   var dfs = {
     mean: Math.pow(Math.E, μ + σ2 / 2),
@@ -39,27 +39,32 @@ mctad.lognormal = function (μ, σ2) {
     },
 
     pdf: function (x) {
-      return (1 / (x * Math.sqrt(2 * mctad.π * σ2))) * Math.pow(Math.E, -(Math.pow(Math.log(x) - μ, 2) / (2 * σ2)));
+      if (x > 0) {
+        return (1 / (x * Math.sqrt(2 * mctad.π * σ2))) * Math.pow(Math.E, -(Math.pow(Math.log(x) - μ, 2) / (2 * σ2)));
+      } else {
+        return undefined;
+      }
     },
 
     cdf: function (x) {
-      var Z = (Math.log(x) - μ) / Math.sqrt(2 * σ2);
-
-      if (Z >= 0) {
-        return 0.5 * (1.0 + mctad.erf(Z));
+      if (x > 0) {
+        var Z = (Math.log(x) - μ) / Math.sqrt(2 * σ2);
+        if (Z >= 0) {
+          return 0.5 * (1.0 + mctad.erf(Z));
+        } else {
+          return 0.5 * (1.0 - mctad.erf(Z));
+        }
       } else {
-        return 0.5 * (1.0 - mctad.erf(Z));
+        return undefined;
       }
     }
-
   };
 
   // Mix in the convenience methods for f(X) and F(X).
   mctad.extend(dfs, mctad.continuousMixins);
 
-  dfs.domain.min = -Math.ceil(3 * dfs.variance);
-  dfs.domain.max = Math.ceil(3 * dfs.variance);
-  dfs.range.max = 0.1 * Math.ceil(10 * dfs.pdf(μ));
+  dfs.domain.max = μ + Math.ceil(3 * dfs.variance);
+  dfs.range.max = 0.1 * Math.ceil(10 * dfs.pdf(dfs.mode));
 
   return dfs;
 };

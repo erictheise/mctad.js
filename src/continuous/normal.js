@@ -64,8 +64,8 @@ mctad.normal = function (μ, σ2) {
   // Mix in the convenience methods for f(X) and F(X).
   mctad.extend(dfs, mctad.continuousMixins);
 
-  dfs.domain.min = -Math.ceil(3 * dfs.variance);
-  dfs.domain.max = Math.ceil(3 * dfs.variance);
+  dfs.domain.min = μ - Math.ceil(3 * dfs.variance);
+  dfs.domain.max = μ + Math.ceil(3 * dfs.variance);
   dfs.range.max = 0.1 * Math.ceil(10 * dfs.pdf(μ));
 
   return dfs;
