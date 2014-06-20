@@ -25,6 +25,7 @@ mctad.lognormal = function (μ, σ2) {
     skewness: (Math.pow(Math.E, σ2) + 2) * Math.sqrt(Math.pow(Math.E, σ2) - 1),
     entropy: 0.5 * Math.log(2 * mctad.π * σ2) + μ,
     domain: { min: 0.0, max: Infinity },
+    range: { min: 0, max: Infinity },
 
     // `mctad.lognormal(2.0, 0.5).generate(100)` will generate an Array of 100
     // random variables, distributed lognormally with mean 2 and variance 0.5.
@@ -55,6 +56,10 @@ mctad.lognormal = function (μ, σ2) {
 
   // Mix in the convenience methods for f(X) and F(X).
   mctad.extend(dfs, mctad.continuousMixins);
+
+  dfs.domain.min = -Math.ceil(3 * dfs.variance);
+  dfs.domain.max = Math.ceil(3 * dfs.variance);
+  dfs.range.max = 0.1 * Math.ceil(10 * dfs.pdf(μ));
 
   return dfs;
 };

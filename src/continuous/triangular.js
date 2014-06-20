@@ -82,7 +82,7 @@ mctad.triangular = function (a, b, c) {
   // Mix in the convenience methods for f(X) and F(X).
   mctad.extend(dfs, mctad.continuousMixins);
 
-  dfs.range.max = dfs.pdf(c);
+  dfs.range.max = 0.1 * Math.ceil(10 * dfs.pdf(c));
 
   return dfs;
 };

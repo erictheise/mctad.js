@@ -9,6 +9,13 @@
   fill-opacity: 50%;
 }
 
+.line {
+  stroke: #00f;
+  stroke-width: 1.5px;
+  fill: none;
+  fill-opacity: 50%;
+}
+
 .axis path,
 .axis line {
   fill: none;

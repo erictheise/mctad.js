@@ -837,6 +837,7 @@ mctad.exponential = function (λ) {
     skewness: 2.0,
     entropy: 1 - Math.log(λ),
     domain: { min: 0, max: Infinity },
+    range: { min: 0, max: Infinity },
 
     // `mctad.exponential(1.5).generate(100)` will generate an Array of 100
     // random variables, distributed exponentially.
@@ -849,17 +850,28 @@ mctad.exponential = function (λ) {
     },
 
     pdf: function (x) {
-      return λ * Math.pow(Math.E, -λ * x);
+      if (x >= 0) {
+        return λ * Math.pow(Math.E, -λ * x);
+      } else {
+        return undefined;
+      }
     },
 
     cdf: function (x) {
-      return 1 - Math.pow(Math.E, -λ * x);
+      if (x >= 0) {
+        return 1 - Math.pow(Math.E, -λ * x);
+      } else {
+        return undefined;
+      }
     }
 
   };
 
   // Mix in the convenience methods for f(X) and F(X).
   mctad.extend(dfs, mctad.continuousMixins);
+
+  dfs.domain.max = Math.ceil(4 * dfs.variance);
+  dfs.range.max = 0.1 * Math.ceil(10 * dfs.pdf(0.0));
 
   return dfs;
 };
@@ -876,6 +888,7 @@ mctad.lognormal = function (μ, σ2) {
     skewness: (Math.pow(Math.E, σ2) + 2) * Math.sqrt(Math.pow(Math.E, σ2) - 1),
     entropy: 0.5 * Math.log(2 * mctad.π * σ2) + μ,
     domain: { min: 0.0, max: Infinity },
+    range: { min: 0, max: Infinity },
 
     // `mctad.lognormal(2.0, 0.5).generate(100)` will generate an Array of 100
     // random variables, distributed lognormally with mean 2 and variance 0.5.
@@ -907,6 +920,10 @@ mctad.lognormal = function (μ, σ2) {
   // Mix in the convenience methods for f(X) and F(X).
   mctad.extend(dfs, mctad.continuousMixins);
 
+  dfs.domain.min = -Math.ceil(3 * dfs.variance);
+  dfs.domain.max = Math.ceil(3 * dfs.variance);
+  dfs.range.max = 0.1 * Math.ceil(10 * dfs.pdf(μ));
+
   return dfs;
 };
 ;
@@ -922,6 +939,7 @@ mctad.normal = function (μ, σ2) {
     skewness: 0,
     entropy: 0.5 * Math.log(2 * mctad.π * Math.E * σ2),
     domain: { min: -Infinity, max: Infinity },
+    range: { min: 0, max: Infinity },
 
     // `mctad.normal(-2.0, 0.5).generate(100)` will generate an Array of 100
     // random variables, distributed normally with mean -2 and variance 0.5. The implementation
@@ -960,6 +978,10 @@ mctad.normal = function (μ, σ2) {
   // Mix in the convenience methods for f(X) and F(X).
   mctad.extend(dfs, mctad.continuousMixins);
 
+  dfs.domain.min = -Math.ceil(3 * dfs.variance);
+  dfs.domain.max = Math.ceil(3 * dfs.variance);
+  dfs.range.max = 0.1 * Math.ceil(10 * dfs.pdf(μ));
+
   return dfs;
 };
 ;
@@ -981,6 +1003,7 @@ mctad.triangular = function (a, b, c) {
     skewness: (Math.sqrt(2) * (a + b - (2 * c)) * ((2 * a) - b - c) * (a - (2 * b) + c)) / (5 * Math.pow(Math.pow(a, 2) + Math.pow(b, 2) + Math.pow(c, 2) - (a * b) - (a * c) - (b * c), 1.5)),
     entropy: 0.5 + Math.log((b - a) / 2),
     domain: { min: a, max: b },
+    range: { min: 0, max: Infinity },
 
     // `mctad.triangular(1, 4, 2).generate(100)` will generate an Array of 100
     // random variables, distributed triangularly between 1 and 4, with a peak/mode of 2.
@@ -1030,6 +1053,8 @@ mctad.triangular = function (a, b, c) {
   // Mix in the convenience methods for f(X) and F(X).
   mctad.extend(dfs, mctad.continuousMixins);
 
+  dfs.range.max = 0.1 * Math.ceil(10 * dfs.pdf(c));
+
   return dfs;
 };
 ;
@@ -1045,6 +1070,7 @@ mctad.uniform = function (a, b) {
     skewness: 0,
     entropy: Math.log(b - a),
     domain: { min: a, max: b },
+    range: { min: 0, max: Infinity },
 
     // `mctad.uniform(10, 20).generate(100)` will generate an Array of 100
     // random variables, distributed uniformly between 10 and 20, inclusive.
@@ -1080,6 +1106,8 @@ mctad.uniform = function (a, b) {
 
   // Mix in the convenience methods for f(X) and F(X).
   mctad.extend(dfs, mctad.continuousMixins);
+
+  dfs.range.max = 0.1 * Math.ceil(10 * dfs.pdf(a));
 
   return dfs;
 };

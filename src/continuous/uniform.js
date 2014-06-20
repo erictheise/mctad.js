@@ -27,6 +27,7 @@ mctad.uniform = function (a, b) {
     skewness: 0,
     entropy: Math.log(b - a),
     domain: { min: a, max: b },
+    range: { min: 0, max: Infinity },
 
     // `mctad.uniform(10, 20).generate(100)` will generate an Array of 100
     // random variables, distributed uniformly between 10 and 20, inclusive.
@@ -62,6 +63,8 @@ mctad.uniform = function (a, b) {
 
   // Mix in the convenience methods for f(X) and F(X).
   mctad.extend(dfs, mctad.continuousMixins);
+
+  dfs.range.max = 0.1 * Math.ceil(10 * dfs.pdf(a));
 
   return dfs;
 };

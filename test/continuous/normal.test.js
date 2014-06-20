@@ -14,7 +14,7 @@ describe('normal', function() {
     assert.equal(mctad.normal(-2.0, 0.5).variance, 0.5);
     assert.equal(mctad.normal(-2.0, 0.5).skewness, 0.0);
     assert.closeTo(mctad.normal(-2.0, 0.5).entropy, 1.07236, mctad.ε);
-    assert.deepEqual(mctad.normal(-2.0, 0.5).domain, { min: -Infinity, max: Infinity });
+    assert.deepEqual(mctad.normal(-2.0, 0.5).domain, { min: -2, max: 2 });
   });
 
   it('can, though Marsaglia & Bray does it two at a time, generate the correct number of random variables', function() {

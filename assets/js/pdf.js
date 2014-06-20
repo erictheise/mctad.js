@@ -7,7 +7,7 @@ var pdf = function(dist) {
     halfInterval,
     data = [];
 
-halfInterval = (0.5 * image.width / (dist.domain.max - dist.domain.min + 1));
+halfInterval = (0.5 * image.width / (Math.floor(dist.domain.max) - Math.ceil(dist.domain.min) + 1));
 
 var xScale = d3.scale.linear()
   .domain([dist.domain.min, dist.domain.max])
@@ -48,16 +48,23 @@ svg.append('g')
   .call(xAxis);
 
 svg.append('g')
-    .attr('class', 'axis')
-    .call(yAxis);
+  .attr('class', 'axis')
+  .call(yAxis);
 
-svg.selectAll('dot')
-  .data(data)
-  .enter().append('circle')
-  .attr('class', 'dot')
-  .attr('r', 3.5)
-  .attr('cx', function (d) { return xScale(d[0]); })
-  .attr('cy', function (d) { return yScale(d[1]); })
-;
+for (var i = 0; i <= Math.ceil(image.width); i++) {
+  var x = xScale.invert(i);
+  if ((dist.f(x) !== 0 || x >= dist.domain.min) && (dist.f(x) !== 0 || x <= dist.domain.max) && (typeof dist.f(x) !== 'undefined')) {
+    data.push({ x: x, y: dist.f(x) })
+  }
+}
+
+var line = d3.svg.line()
+  .x(function(d) { return xScale(d.x); })
+  .y(function(d) { return yScale(d.y); });
+
+svg.append('path')
+  .datum(data)
+  .attr('class', 'line')
+  .attr('d', line);
 
 };

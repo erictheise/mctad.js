@@ -26,6 +26,7 @@ mctad.exponential = function (λ) {
     skewness: 2.0,
     entropy: 1 - Math.log(λ),
     domain: { min: 0, max: Infinity },
+    range: { min: 0, max: Infinity },
 
     // `mctad.exponential(1.5).generate(100)` will generate an Array of 100
     // random variables, distributed exponentially.
@@ -38,17 +39,28 @@ mctad.exponential = function (λ) {
     },
 
     pdf: function (x) {
-      return λ * Math.pow(Math.E, -λ * x);
+      if (x >= 0) {
+        return λ * Math.pow(Math.E, -λ * x);
+      } else {
+        return undefined;
+      }
     },
 
     cdf: function (x) {
-      return 1 - Math.pow(Math.E, -λ * x);
+      if (x >= 0) {
+        return 1 - Math.pow(Math.E, -λ * x);
+      } else {
+        return undefined;
+      }
     }
 
   };
 
   // Mix in the convenience methods for f(X) and F(X).
   mctad.extend(dfs, mctad.continuousMixins);
+
+  dfs.domain.max = Math.ceil(4 * dfs.variance);
+  dfs.range.max = 0.1 * Math.ceil(10 * dfs.pdf(0.0));
 
   return dfs;
 };
