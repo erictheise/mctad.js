@@ -3,6 +3,7 @@ var pmf = function(dist) {
     margin = { top: 27, right: 15, bottom: 18, left: 30 },
     paper = { width: 480, height: 240 },
     image = { width: paper.width - margin.left - margin.right, height: paper.height - margin.top - margin.bottom },
+    radius = 3.5,
     discreteWidth = 4,
     halfInterval,
     data = [];
@@ -58,7 +59,7 @@ svg.selectAll('dot')
   .data(data)
   .enter().append('circle')
   .attr('class', 'dot')
-  .attr('r', 3.5)
+  .attr('r', radius)
   .attr('cx', function (d) { return xScale(d[0]); })
   .attr('cy', function (d) { return yScale(d[1]); })
 ;

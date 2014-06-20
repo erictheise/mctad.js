@@ -9,7 +9,7 @@
   fill-opacity: 50%;
 }
 
-.line {
+.line, .trace {
   stroke: #00f;
   stroke-width: 1.5px;
   fill: none;
