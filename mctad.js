@@ -926,7 +926,7 @@ mctad.lognormal = function (μ, σ2) {
   // Mix in the convenience methods for f(X) and F(X).
   mctad.extend(dfs, mctad.continuousMixins);
 
-  dfs.domain.max = μ + Math.ceil(3 * dfs.variance);
+  dfs.domain.max = μ + Math.ceil(2.5 * dfs.variance);
   dfs.range.max = 0.1 * Math.ceil(10 * dfs.pdf(dfs.mode));
 
   return dfs;

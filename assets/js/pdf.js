@@ -45,6 +45,11 @@ svg.append('rect')
 svg.append('g')
   .attr('class', 'axis')
   .attr('transform', 'translate(0,' + image.height + ')')
+  .text('foo');
+
+svg.append('g')
+  .attr('class', 'axis')
+  .attr('transform', 'translate(0,' + image.height + ')')
   .call(xAxis);
 
 svg.append('g')
