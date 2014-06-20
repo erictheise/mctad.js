@@ -32,6 +32,7 @@ mctad.triangular = function (a, b, c) {
     skewness: (Math.sqrt(2) * (a + b - (2 * c)) * ((2 * a) - b - c) * (a - (2 * b) + c)) / (5 * Math.pow(Math.pow(a, 2) + Math.pow(b, 2) + Math.pow(c, 2) - (a * b) - (a * c) - (b * c), 1.5)),
     entropy: 0.5 + Math.log((b - a) / 2),
     domain: { min: a, max: b },
+    range: { min: 0, max: Infinity },
 
     // `mctad.triangular(1, 4, 2).generate(100)` will generate an Array of 100
     // random variables, distributed triangularly between 1 and 4, with a peak/mode of 2.
@@ -80,6 +81,8 @@ mctad.triangular = function (a, b, c) {
 
   // Mix in the convenience methods for f(X) and F(X).
   mctad.extend(dfs, mctad.continuousMixins);
+
+  dfs.range.max = dfs.pdf(c);
 
   return dfs;
 };
