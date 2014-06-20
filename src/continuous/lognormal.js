@@ -49,11 +49,7 @@ mctad.lognormal = function (μ, σ2) {
     cdf: function (x) {
       if (x > 0) {
         var Z = (Math.log(x) - μ) / Math.sqrt(2 * σ2);
-        if (Z >= 0) {
-          return 0.5 * (1.0 + mctad.erf(Z));
-        } else {
-          return 0.5 * (1.0 - mctad.erf(Z));
-        }
+        return mctad.normal(0, 1).F((Math.log(x) - μ)) / Math.sqrt(σ2);
       } else {
         return undefined;
       }
