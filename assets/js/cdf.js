@@ -1,4 +1,4 @@
-var pdf = function(dist) {
+var cdf = function(dist) {
   var
     margin = { top: 27, right: 15, bottom: 18, left: 30 },
     paper = { width: 480, height: 240 },
@@ -21,7 +21,7 @@ var xAxis = d3.svg.axis()
   .orient('bottom');
 
 var yScale = d3.scale.linear()
-  .domain([dist.range.min, dist.range.max])
+  .domain([0, 1])
   .range([image.height, 0]);
 
 var yAxis = d3.svg.axis()
@@ -53,18 +53,28 @@ svg.append('g')
 
 for (var i = 0; i <= Math.ceil(image.width); i++) {
   var x = xScale.invert(i);
-  if ((dist.f(x) !== 0 || x >= dist.domain.min) && (dist.f(x) !== 0 || x <= dist.domain.max) && (typeof dist.f(x) !== 'undefined')) {
-    data.push({ x: x, y: dist.f(x) })
+  if (typeof dist.F(x) !== 'undefined') {
+    data.push({ x: x, y: dist.F(x) })
   }
 }
 
 var line = d3.svg.line()
   .x(function(d) { return xScale(d.x); })
-  .y(function(d) { return yScale(d.y); });
+  .y(function(d) { return yScale(d.y); })
+
+var area = d3.svg.area()
+  .x(function(d) { return xScale(d.x); })
+  .y0(function(d) { return yScale(d.y); })
+  .y1(function(d) { return image.height; });
 
 svg.append('path')
   .datum(data)
   .attr('class', 'line')
   .attr('d', line);
+
+svg.append('path')
+  .datum(data)
+  .attr('class', 'area')
+  .attr('d', area);
 
 };

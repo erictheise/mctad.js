@@ -13,7 +13,12 @@
   stroke: #00f;
   stroke-width: 1.5px;
   fill: none;
-  fill-opacity: 50%;
+}
+
+.area {
+  stroke: none;
+  fill: #00f;
+  fill-opacity: 15%;
 }
 
 .axis path,
