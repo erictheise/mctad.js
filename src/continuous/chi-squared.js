@@ -8,6 +8,8 @@ positive integer that specifies the number of degrees of freedom (i.e. the numbe
 ### Use
 
 `mctad.chiSquared(x, k, α)`
+
+### Inline Comments
 */
 
 mctad.chiSquared = function (x, k, α) {

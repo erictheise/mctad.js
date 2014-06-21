@@ -12,6 +12,8 @@ location parameter, (b - a) as a scale parameter, c as a shape parameter.
 ### Use
 
 `mctad.triangular(a, b, c)`
+
+### Inline Comments
 */
 
 mctad.triangular = function (a, b, c) {

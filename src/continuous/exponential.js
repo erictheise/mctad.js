@@ -12,6 +12,8 @@ and independently.
 ### Use
 
 `mctad.exponential(λ)`
+
+### Inline Comments
 */
 
 mctad.exponential = function (λ) {

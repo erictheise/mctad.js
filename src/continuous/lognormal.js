@@ -11,6 +11,8 @@ distribution of a random variable whose logarithm is normally distributed.
 ### Use
 
 `mctad.lognormal(μ, σ2)`
+
+### Inline Comments
 */
 
 mctad.lognormal = function (μ, σ2) {

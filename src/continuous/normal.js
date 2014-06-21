@@ -11,6 +11,8 @@ symmetric, continuous probability distributions.
 ### Use
 
 `mctad.normal(μ, σ2)`
+
+### Inline Comments
 */
 
 mctad.normal = function (μ, σ2) {

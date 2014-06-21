@@ -13,6 +13,8 @@ intervals of the same length on the distribution are equally probable.
 ### Use
 
 `mctad.uniform(a, b)`
+
+### Inline Comments
 */
 
 mctad.uniform = function (a, b) {
