@@ -20,6 +20,8 @@ module.exports = function(grunt) {
           'src/core/constants.js',
           'src/core/helpers.js',
           'src/core/factorial.js',
+          'src/core/double_factorial.js',
+          'src/core/gamma.js',
           'src/core/combination.js',
           'src/statistics/**/*.js',
           'src/discrete/mixins.js',

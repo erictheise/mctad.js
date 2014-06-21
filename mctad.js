@@ -77,13 +77,67 @@ mctad.getRandomInt = function (min, max) {
 ;
 // A factorial, usually written n!, is the product of all positive integers less than or equal to n.
 mctad.factorial = function(n) {
-  if (n < 0) { return null; }
+  if (n < 0) { return undefined; }
 
   var acc = 1;
   for (var i = 2; i <= n; i++) {
     acc = acc * i;
   }
   return acc;
+};
+;
+//mctad.doubleFactorial = function(n) {
+//  if (!mctad.isInteger(n) || n % 2 === 0) { return undefined; }
+//
+//  var acc = 1;
+//  for (var i = 1; i <= n; i += 2) {
+//    acc = acc * i;
+//  }
+//  return acc;
+//
+//};
+
+mctad.doubleFactorial = function(n) {
+  if (!mctad.isInteger(n) || n % 2 === 0) { return undefined; }
+
+  var acc;
+
+  if (n > 0) {
+    if (n > 1) {
+      acc = n * mctad.doubleFactorial(n - 2);
+    } else {
+      acc = 1;
+    }
+    return acc;
+  } else {
+    if (n < 0) {
+      if (n < -1) {
+        acc = mctad.doubleFactorial(n + 2) / (n + 2);
+      } else {
+        acc = 1;
+      }
+    }
+    return acc;
+  }
+
+};
+;
+mctad.Γ = function(n) {
+  if (n < 0) { return undefined; }
+
+  var Γ;
+
+  // If n is a positive Integer, return its factorial.
+  if (mctad.isInteger(n)) {
+    Γ = mctad.factorial(n - 1);
+  } else {
+    // If (n / 2) is a positive Integer, return the exact value using double factorials.
+    if (mctad.isInteger(2 * n)) {
+      Γ = (Math.sqrt(mctad.π) * mctad.doubleFactorial(n * 2 - 2) / Math.pow(2, (n * 2 - 1) / 2));
+    }
+  }
+  return Γ;
+
 };
 ;
 // # Combination

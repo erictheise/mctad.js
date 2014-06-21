@@ -1,17 +1,26 @@
 require('../../mctad');
 var assert = require('chai').assert;
 
-describe('factorial', function() {
-  it('can return null given a negative number', function() {
-    assert.isNull(mctad.factorial(-1));
+// Test data from http://en.wikipedia.org/wiki/Particular_values_of_the_gamma_function
+describe('Γ, aka gamma,', function() {
+  it('can return undefined given a negative integer', function() {
+    assert.isUndefined(mctad.Γ(-1));
   });
-  it('can calculate 0!', function() {
-    assert.equal(mctad.factorial(0), 1);
+
+  it('can calculate Γ(n) = (n - 1)! for positive integer n', function() {
+    assert.equal(mctad.Γ(1), 1);
+    assert.equal(mctad.Γ(2), 1);
+    assert.equal(mctad.Γ(3), 2);
+    assert.equal(mctad.Γ(4), 6);
+    assert.equal(mctad.Γ(5), 24);
   });
-  it('can calculate 1!', function() {
-    assert.equal(mctad.factorial(1), 1);
+
+  it('can calculate Γ(n) for positive half-integers', function() {
+    assert.closeTo(mctad.Γ(1/2), Math.sqrt(mctad.π), mctad.ε);
+    assert.closeTo(mctad.Γ(3/2), 1 / 2 * Math.sqrt(mctad.π), mctad.ε);
+    assert.closeTo(mctad.Γ(5/2), 3 / 4 * Math.sqrt(mctad.π), mctad.ε);
+    assert.closeTo(mctad.Γ(7/2), 15 / 8 * Math.sqrt(mctad.π), mctad.ε);
   });
-  it('can calculate 100!', function() {
-    assert.equal(mctad.factorial(100), 9.33262154439441e+157);
-  });
+
 });
+
