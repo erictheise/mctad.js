@@ -36,3 +36,5 @@ mctad.Γ = function(n) {
   return Γ;
 
 };
+
+mctad.gamma = mctad.Γ;
