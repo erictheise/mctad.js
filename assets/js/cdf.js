@@ -52,12 +52,11 @@ var cdf = function(dist) {
     .attr('class', 'axis')
     .call(yAxis);
 
-  // Check whether is this is a continuous — has f(x) — or a discrete — has p(x) — probability function
+  // Check whether this probability function is continuous — has f(x) — or discrete — has p(x)
   if (typeof dist.p === 'function') {
     for (var i = dist.domain.min; i <= dist.domain.max; i++) {
       data.push([i, dist.F(i)]);
     }
-    console.log(data);
 
     svg.selectAll('trace')
       .data(data)
@@ -65,8 +64,21 @@ var cdf = function(dist) {
       .attr('class', 'trace')
       .attr('x1', function (d) { return xScale(d[0]); })
       .attr('y1', function (d) { return yScale(d[1]); })
-      .attr('x2', function (d) { return xScale(d[0] + 1); }) //xScale(d[0] + (1)); })
-      .attr('y2', function (d) { return yScale(d[1]); }); //yScale(d[1]); });
+      .attr('x2', function (d) {
+        if (d[0] !== dist.domain.max) {
+          return xScale(d[0] + 1);
+        } else {
+          return xScale(dist.domain.max + 0.5);
+        }
+      })
+      .attr('y2', function (d) { return yScale(d[1]); });
+
+    svg.append('line')
+      .attr('class', 'start')
+      .attr('x1', function (d) { return xScale(dist.domain.min - 0.5); })
+      .attr('y1', function (d) { return yScale(0); })
+      .attr('x2', function (d) { return xScale(dist.domain.min); })
+      .attr('y2', function (d) { return yScale(0); });
 
     svg.selectAll('dot')
       .data(data)
