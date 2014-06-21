@@ -62,11 +62,11 @@ var cdf = function(dist) {
       .data(data)
       .enter().append('line')
       .attr('class', 'trace')
-      .attr('x1', function (d) { return xScale(d[0]); })
+      .attr('x1', function (d) { return xScale(d[0]) + radius; })
       .attr('y1', function (d) { return yScale(d[1]); })
       .attr('x2', function (d) {
         if (d[0] !== dist.domain.max) {
-          return xScale(d[0] + 1);
+          return xScale(d[0] + 1) - radius;
         } else {
           return xScale(dist.domain.max + 0.5);
         }
@@ -77,7 +77,7 @@ var cdf = function(dist) {
       .attr('class', 'start')
       .attr('x1', function (d) { return xScale(dist.domain.min - 0.5); })
       .attr('y1', function (d) { return yScale(0); })
-      .attr('x2', function (d) { return xScale(dist.domain.min); })
+      .attr('x2', function (d) { return xScale(dist.domain.min) - radius; })
       .attr('y2', function (d) { return yScale(0); });
 
     svg.selectAll('dot')
