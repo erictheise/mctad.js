@@ -8,7 +8,7 @@ simple expressions are known for its values at rational points in general.
 
 ### Assumptions
 
-`n` is a positive integer, half-integer, or
+`n` is an integer, or half-integer, of any sign. For negative integers, Γ(n) = ∞.
 
 ### Use
 
@@ -18,15 +18,17 @@ simple expressions are known for its values at rational points in general.
 */
 
 mctad.Γ = function(n) {
-  if (n < 0) { return undefined; }
+  if (!mctad.isInteger(n * 2)) { return undefined; }
+
+  if (n <= 0 && mctad.isInteger(n)) { return Infinity; }
 
   var Γ;
 
-  // If n is a positive Integer, return its factorial.
+  // If n is a positive Integer, return its factorial, n!.
   if (mctad.isInteger(n)) {
     Γ = mctad.factorial(n - 1);
   } else {
-    // If (n / 2) is a positive Integer, return the exact value using double factorials.
+    // If (n / 2) is a positive Integer, return the exact value using double factorials, n!!.
     if (mctad.isInteger(2 * n)) {
       Γ = (Math.sqrt(mctad.π) * mctad.doubleFactorial(n * 2 - 2) / Math.pow(2, (n * 2 - 1) / 2));
     }

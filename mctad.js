@@ -123,15 +123,17 @@ mctad.doubleFactorial = function(n) {
 };
 ;
 mctad.Γ = function(n) {
-  if (n < 0) { return undefined; }
+  if (!mctad.isInteger(n * 2)) { return undefined; }
+
+  if (n <= 0 && mctad.isInteger(n)) { return Infinity; }
 
   var Γ;
 
-  // If n is a positive Integer, return its factorial.
+  // If n is a positive Integer, return its factorial, n!.
   if (mctad.isInteger(n)) {
     Γ = mctad.factorial(n - 1);
   } else {
-    // If (n / 2) is a positive Integer, return the exact value using double factorials.
+    // If (n / 2) is a positive Integer, return the exact value using double factorials, n!!.
     if (mctad.isInteger(2 * n)) {
       Γ = (Math.sqrt(mctad.π) * mctad.doubleFactorial(n * 2 - 2) / Math.pow(2, (n * 2 - 1) / 2));
     }
