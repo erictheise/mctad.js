@@ -2,6 +2,7 @@
 .idea
 .DS_Store
 wkg
+_site
 
 # Logs
 logs
