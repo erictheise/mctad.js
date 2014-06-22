@@ -170,6 +170,14 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                         "slug": "use"
                       },
                       "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Inline Comments",
+                        "slug": "inline-comments"
+                      },
+                      "depth": 3
                     }
                   ]
                 },
@@ -183,6 +191,14 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                     "level": 3,
                     "title": "Use",
                     "slug": "use"
+                  },
+                  "depth": 3
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Inline Comments",
+                    "slug": "inline-comments"
                   },
                   "depth": 3
                 }
@@ -259,6 +275,14 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                         "slug": "use"
                       },
                       "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Inline Comments",
+                        "slug": "inline-comments"
+                      },
+                      "depth": 3
                     }
                   ]
                 },
@@ -280,6 +304,14 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                     "level": 3,
                     "title": "Use",
                     "slug": "use"
+                  },
+                  "depth": 3
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Inline Comments",
+                    "slug": "inline-comments"
                   },
                   "depth": 3
                 }
@@ -326,6 +358,14 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                         "slug": "use"
                       },
                       "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Inline Comments",
+                        "slug": "inline-comments"
+                      },
+                      "depth": 3
                     }
                   ]
                 },
@@ -347,6 +387,14 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                     "level": 3,
                     "title": "Use",
                     "slug": "use"
+                  },
+                  "depth": 3
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Inline Comments",
+                    "slug": "inline-comments"
                   },
                   "depth": 3
                 }
@@ -413,6 +461,14 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                         "slug": "use"
                       },
                       "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Inline Comments",
+                        "slug": "inline-comments"
+                      },
+                      "depth": 3
                     }
                   ]
                 },
@@ -434,6 +490,97 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                     "level": 3,
                     "title": "Use",
                     "slug": "use"
+                  },
+                  "depth": 3
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Inline Comments",
+                    "slug": "inline-comments"
+                  },
+                  "depth": 3
+                }
+              ]
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/continuous/students_t.js",
+                "projectPath": "src/continuous/students_t.js",
+                "targetPath": "src/continuous/students_t",
+                "pageTitle": "src/continuous/students_t",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "Student's t-Distribution",
+                    "slug": "students-t-distribution",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Assumptions",
+                        "slug": "assumptions"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Use",
+                        "slug": "use"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Inline Comments",
+                        "slug": "inline-comments"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                },
+                "title": "Student's t-Distribution"
+              },
+              "depth": 3,
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Assumptions",
+                    "slug": "assumptions"
+                  },
+                  "depth": 3
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Use",
+                    "slug": "use"
+                  },
+                  "depth": 3
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Inline Comments",
+                    "slug": "inline-comments"
                   },
                   "depth": 3
                 }
@@ -480,6 +627,14 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                         "slug": "use"
                       },
                       "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Inline Comments",
+                        "slug": "inline-comments"
+                      },
+                      "depth": 3
                     }
                   ]
                 },
@@ -501,6 +656,14 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                     "level": 3,
                     "title": "Use",
                     "slug": "use"
+                  },
+                  "depth": 3
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Inline Comments",
+                    "slug": "inline-comments"
                   },
                   "depth": 3
                 }
@@ -547,6 +710,14 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                         "slug": "use"
                       },
                       "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Inline Comments",
+                        "slug": "inline-comments"
+                      },
+                      "depth": 3
                     }
                   ]
                 },
@@ -568,6 +739,97 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                     "level": 3,
                     "title": "Use",
                     "slug": "use"
+                  },
+                  "depth": 3
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Inline Comments",
+                    "slug": "inline-comments"
+                  },
+                  "depth": 3
+                }
+              ]
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/continuous/weibull.js",
+                "projectPath": "src/continuous/weibull.js",
+                "targetPath": "src/continuous/weibull",
+                "pageTitle": "src/continuous/weibull",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "Weibull Distribution",
+                    "slug": "weibull-distribution",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Assumptions",
+                        "slug": "assumptions"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Use",
+                        "slug": "use"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Inline Comments",
+                        "slug": "inline-comments"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                },
+                "title": "Weibull Distribution"
+              },
+              "depth": 3,
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Assumptions",
+                    "slug": "assumptions"
+                  },
+                  "depth": 3
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Use",
+                    "slug": "use"
+                  },
+                  "depth": 3
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Inline Comments",
+                    "slug": "inline-comments"
                   },
                   "depth": 3
                 }
@@ -664,6 +926,89 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/core/double_factorial.js",
+                "projectPath": "src/core/double_factorial.js",
+                "targetPath": "src/core/double_factorial",
+                "pageTitle": "src/core/double_factorial",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "Double Factorial",
+                    "slug": "double-factorial",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Assumptions",
+                        "slug": "assumptions"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Use",
+                        "slug": "use"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Inline Comments",
+                        "slug": "inline-comments"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                },
+                "title": "Double Factorial"
+              },
+              "depth": 3,
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Assumptions",
+                    "slug": "assumptions"
+                  },
+                  "depth": 3
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Use",
+                    "slug": "use"
+                  },
+                  "depth": 3
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Inline Comments",
+                    "slug": "inline-comments"
+                  },
+                  "depth": 3
+                }
+              ]
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
                 "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/core/factorial.js",
                 "projectPath": "src/core/factorial.js",
                 "targetPath": "src/core/factorial",
@@ -672,6 +1017,89 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               },
               "depth": 3,
               "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/core/gamma.js",
+                "projectPath": "src/core/gamma.js",
+                "targetPath": "src/core/gamma",
+                "pageTitle": "src/core/gamma",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "Gamma Function",
+                    "slug": "gamma-function",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Assumptions",
+                        "slug": "assumptions"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Use",
+                        "slug": "use"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Inline Comments",
+                        "slug": "inline-comments"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                },
+                "title": "Gamma Function"
+              },
+              "depth": 3,
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Assumptions",
+                    "slug": "assumptions"
+                  },
+                  "depth": 3
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Use",
+                    "slug": "use"
+                  },
+                  "depth": 3
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Inline Comments",
+                    "slug": "inline-comments"
+                  },
+                  "depth": 3
+                }
+              ]
             }, {
               "type": "file",
               "data": {
@@ -1104,12 +1532,65 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                     "slug": "pascal-distribution",
                     "isFileHeader": true
                   },
-                  "depth": 1
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Assumptions",
+                        "slug": "assumptions"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Use",
+                        "slug": "use"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Inline Comments",
+                        "slug": "inline-comments"
+                      },
+                      "depth": 3
+                    }
+                  ]
                 },
                 "title": "Pascal Distribution"
               },
               "depth": 3,
-              "outline": []
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Assumptions",
+                    "slug": "assumptions"
+                  },
+                  "depth": 3
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Use",
+                    "slug": "use"
+                  },
+                  "depth": 3
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Inline Comments",
+                    "slug": "inline-comments"
+                  },
+                  "depth": 3
+                }
+              ]
             }, {
               "type": "file",
               "data": {
