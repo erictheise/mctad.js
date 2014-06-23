@@ -3,7 +3,7 @@ destination: ./_site
 plugins:     ./_plugins
 layouts:     ./_layouts
 include:     ['.htaccess']
-exclude:     ['node_modules', 'wkg', 'mctad.js', 'mctad.min.js', 'Gemfile', 'Gemfile.lock', 'params.json']
+exclude:     ['node_modules', 'wkg', 'Gemfile', 'Gemfile.lock', 'params.json']
 keep_files:  ['.git','.svn']
 gems:        []
 timezone:    nil
