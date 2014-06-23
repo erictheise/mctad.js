@@ -1,11 +1,18 @@
----
-layout: distribution
-title: "mctad.js: Discrete Uniform"
-overview: true
----
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>mctad.js</title>
+  <script type="application/javascript" src="mctad.js"></script>
+  <script type="application/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.4.8/d3.min.js"></script>
+  <script type="application/javascript" src="assets/js/cdf.js"></script><br />
+  <link href="assets/css/d3.css" type="text/css" rel="stylesheet" />
+</head>
 
-<h2>Discrete Uniform</h2>
+<body>
+<h2>Measures of Central Tendency And Dispersion</h2>
 
+<script type="application/javascript" src="assets/js/pmf.js"></script><br />
 <script>pmf(mctad.discreteUniform(-5, 8));</script>
 <script>cdf(mctad.discreteUniform(-5, 8));</script><br />
 
@@ -27,6 +34,7 @@ overview: true
 <script>pmf(mctad.poisson(3));</script>
 <script>cdf(mctad.poisson(3));</script><br />
 
+<script type="application/javascript" src="assets/js/pdf.js"></script><br />
 <script>pdf(mctad.uniform(-5, 8));</script>
 <script>cdf(mctad.uniform(-5, 8));</script><br />
 
@@ -48,3 +56,5 @@ overview: true
 <script>pdf(mctad.t(5));</script>
 <script>cdf(mctad.t(5));</script><br />
 
+</body>
+</html>
