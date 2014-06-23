@@ -32,3 +32,7 @@
   font-family: sans-serif;
   font-size: 0.6em;
 }
+
+#pmf, #pdf, #cdf {
+    display: inline-block;
+}

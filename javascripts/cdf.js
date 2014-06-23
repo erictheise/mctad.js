@@ -1,7 +1,7 @@
 var cdf = function(dist) {
   var
     margin = { top: 27, right: 15, bottom: 18, left: 30 },
-    paper = { width: 480, height: 240 },
+    paper = { width: 318, height: 240 },
     image = { width: paper.width - margin.left - margin.right, height: paper.height - margin.top - margin.bottom },
     radius = 3.5,
     discreteWidth = 4,
@@ -31,7 +31,7 @@ var cdf = function(dist) {
     .tickSize(-image.width)
     .orient('left');
 
-  var svg = d3.select('body')
+  var svg = d3.select('#cdf')
     .append('svg')
     .attr('width', paper.width)
     .attr('height', paper.height)
