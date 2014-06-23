@@ -4,25 +4,59 @@ title: "mctad.js: Measures of Central Tendency And Dispersion"
 overview: true
 ---
 
-<h3>
-  <a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.
-</h3>
+### <a name="about" class="anchor" href="#about"><span class="octicon octicon-link"></span></a>About
 
-This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:
+__mctad.js__ is a JavaScript library for probability and statistics. It was created to provide functionality missing from other such libraries — such as having an awareness of many common discrete and continuous probability distributions, and the ability to generate random variables from those distributions — although it also provides a growing list of standard descriptive statistics and statistical analyses.
 
-```
-$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-```
+### <a name="descriptive-statistics" class="anchor" href="#descriptive-statistics"><span class="octicon octicon-link"></span></a>Descriptive Statistics
 
-If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.
+Given an _Array of data_, __mctad.js__ can calculate its
 
-<h3>
-  <a name="probability-distributions" class="anchor" href="#probability-distributions"><span class="octicon octicon-link"></span></a>Probability Distributions
-</h3>
+* `arithmetic_mean(Array)`, aliased as `mean(Array)`
+* `geometric_mean(Array)`
+* `median(Array)`
+* `mode(Array)`, always returned as an Array, if defined
+* `sample_variance(Array)`
+* `sample_standard_deviation(Array)`
 
-__mctad.js__ can create many common discrete and continuous probability distributions from parameters you supply. The resulting distribution objects contain common statistics on the distribution (when defined); convenience methods for accessing probability distribution, probability mass, and cumulative probability functions; domain & range helpers to simplify integration with [D3](http://d3js.org/), and random variable generators.
+There are also public methods for `sum` and `product`.
+
+{% highlight javascript %}
+> data = [1, 3, 6, 6, 6, 6, 7, 7, 12, 12, 12, 12, 17];
+  [1, 3, 6, 6, 6, 6, 7, 7, 12, 12, 12, 12, 17]
+> mctad.sum(data);
+  107
+> mctad.mean(data);
+  8.23076923076923
+> mctad.median(data);
+  7
+> mctad.mode(data);
+  [6, 12]
+{% endhighlight %}
+
+When defined and non-trivial to implement, descriptive statistics are returned with any [probability distribution objects](#probability-distributions) you create.
+
+### <a name="core_and_helpers" class="anchor" href="#core_and_helpers"><span class="octicon octicon-link"></span></a>Core and Helpers
+
+__mctad.js__ has a number of methods, included in `/src/core`. __mctad.js__ uses them internally, but they are available for your use, and include
+
+* `isInteger()`
+* `allPositive(Array)`
+* `sortNumeric(Array)`
+* `toRadians(v)`
+* `getBaseLog(x, y)`
+* `getRandomArbitrary(min, max)`
+* `getRandomInt(min, max)`
+* `factorial(n)`
+* `doubleFactorial(n)`
+* `combination(n, k)`
+* `Γ(n)`, aliased as `gamma(n)`
+
+Documentation for these is interspersed with the code, meaning the [Groc-generated documentation](doc) is the best place to see how they're implemented and to learn what they do.
+
+### <a name="probability-distributions" class="anchor" href="#probability-distributions"><span class="octicon octicon-link"></span></a>Probability Distributions
+
+__mctad.js__ can create many common discrete and continuous probability distributions from parameters you supply. The resulting probability distribution objects contain common statistics on the distribution (when defined); convenience methods for accessing probability distribution, probability mass, and cumulative probability functions; domain & range helpers to simplify integration with [D3](http://d3js.org/), and random variable generators.
 
 * Discrete Probability Distributions
   * [Discrete Uniform](discrete/uniform/)
@@ -41,18 +75,6 @@ __mctad.js__ can create many common discrete and continuous probability distribu
   * [Lognormal](continuous/lognormal/)
   * [Student's t](continuous/students_t/)
 
-<h3>
-  <a name="documentation" class="anchor" href="#documentation"><span class="octicon octicon-link"></span></a>Documentation
-</h3>
+### <a name="documentation" class="anchor" href="#documentation"><span class="octicon octicon-link"></span></a>Documentation
 
-[Groc](http://nevir.github.io/groc/)-generated documentation is available [here](doc) and in the [/doc](https://github.com/erictheise/mctad.js/tree/master/doc) directory when you clone the repository.
-
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+[Groc](http://nevir.github.io/groc/)-generated documentation is available [here](doc) and in the [/doc](https://github.com/erictheise/mctad.js/tree/master/doc) directory of your cloned repository.
