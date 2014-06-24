@@ -12,7 +12,6 @@ mctad.isInteger = function (n) {
   return (/^-?\d+$/.test(n));
 };
 
-
 mctad.allPositive = function (data) {
   var positive = true;
   for (var i = 0; i < data.length; i++) {
