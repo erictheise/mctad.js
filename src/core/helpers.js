@@ -44,6 +44,15 @@ mctad.toRadians = function (v) {
   }
 };
 
+// # getBaseLog(x, y)
+// A function for returning the logarithm of y with base x (ie. log<sub>x</sub> y), taken from
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/log
+//
+// @todo: replace with Math.log10() if that becomes widely implemented as part of Harmony (ECMAScript 6)
+mctad.getBaseLog = function (x, y) {
+  return Math.log(y) / Math.log(x);
+};
+
 // # getRandomArbitrary(min, max)
 // A function for generating a random number between min and mix, inclusive, taken from
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random

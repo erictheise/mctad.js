@@ -1,7 +1,8 @@
 /*
 # Normal Distribution
 
-The [Normal Distribution](http://en.wikipedia.org/wiki/Normal_distribution) or Gaussian Distribution is a family of symmetric, continuous probability distributions.
+The [Normal Distribution](http://en.wikipedia.org/wiki/Normal_distribution) or Gaussian Distribution is a family of
+symmetric, continuous probability distributions.
 
 ### Assumptions
 
@@ -10,6 +11,8 @@ The [Normal Distribution](http://en.wikipedia.org/wiki/Normal_distribution) or G
 ### Use
 
 `mctad.normal(μ, σ2)`
+
+### Inline Comments
 */
 
 mctad.normal = function (μ, σ2) {
@@ -24,6 +27,7 @@ mctad.normal = function (μ, σ2) {
     skewness: 0,
     entropy: 0.5 * Math.log(2 * mctad.π * Math.E * σ2),
     domain: { min: -Infinity, max: Infinity },
+    range: { min: 0, max: Infinity },
 
     // `mctad.normal(-2.0, 0.5).generate(100)` will generate an Array of 100
     // random variables, distributed normally with mean -2 and variance 0.5. The implementation
@@ -47,20 +51,24 @@ mctad.normal = function (μ, σ2) {
       return (1 / (Math.sqrt(σ2) * Math.sqrt(2 * mctad.π))) * Math.pow(Math.E, -(Math.pow(x - μ, 2) / (2 * σ2)));
     },
 
-    // The implementation uses [Abramowitz and Stegun's approximation 7.1.28](http://en.wikipedia.org/wiki/Error_function#Approximation_with_elementary_functions), which in turn comes from C. Hastings, Jr., Approximations for Digital Computers, Princeton University Press, NJ, 1955.
     cdf: function (x) {
-      var x_normalized = (x - μ) / Math.sqrt(2 * σ2);
-      return 0.5 * (1 +
+      var Z = (x - μ) / Math.sqrt(2 * σ2);
 
-        (1 - (1 / Math.pow(1 + 0.0705230784 * x_normalized + 0.0422820123 * Math.pow(x_normalized, 2) + 0.0092705272 * Math.pow(x_normalized, 3) + 0.0001520143 * Math.pow(x_normalized, 4) + 0.0002765672 * Math.pow(x_normalized, 5) + 0.0000430638 * Math.pow(x_normalized, 6), 16)))
-
-      );
+      if (Z >= 0) {
+        return 0.5 * (1.0 + mctad.erf(Z));
+      } else {
+        return 0.5 * (1.0 - mctad.erf(-Z));
+      }
     }
 
   };
 
   // Mix in the convenience methods for f(X) and F(X).
   mctad.extend(dfs, mctad.continuousMixins);
+
+  dfs.domain.min = μ - Math.ceil(3 * dfs.variance);
+  dfs.domain.max = μ + Math.ceil(3 * dfs.variance);
+  dfs.range.max = 0.1 * Math.ceil(10 * dfs.pdf(μ));
 
   return dfs;
 };

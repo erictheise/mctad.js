@@ -1,7 +1,8 @@
 /*
 # Lognormal Distribution
 
-The [Lognormal Distribution](http://en.wikipedia.org/wiki/Log-normal_distribution) is a family of symmetric, continuous probability distributions.
+The [Lognormal Distribution](http://en.wikipedia.org/wiki/Log-normal_distribution) is a continuous probability
+distribution of a random variable whose logarithm is normally distributed.
 
 ### Assumptions
 
@@ -10,56 +11,58 @@ The [Lognormal Distribution](http://en.wikipedia.org/wiki/Log-normal_distributio
 ### Use
 
 `mctad.lognormal(μ, σ2)`
+
+### Inline Comments
 */
 
 mctad.lognormal = function (μ, σ2) {
-  // Check that `σ2 > 0`.
-  if (σ2 <= 0) { return undefined; }
+  // Check that `μ > 0` and `σ2 > 0`.
+  if (μ < 0 || σ2 <= 0) { return undefined; }
 
   var dfs = {
-    mean: μ,
-    median: μ,
-    mode: μ,
-    variance: σ2,
-    skewness: 0,
-    entropy: 0.5 * Math.log(2 * mctad.π * Math.E * σ2),
-    domain: { min: -Infinity, max: Infinity },
+    mean: Math.pow(Math.E, μ + σ2 / 2),
+    median: Math.pow(Math.E, μ),
+    mode: Math.pow(Math.E, μ - σ2),
+    variance: (Math.pow(Math.E, σ2) - 1) * Math.pow(Math.E, 2 * μ + σ2),
+    skewness: (Math.pow(Math.E, σ2) + 2) * Math.sqrt(Math.pow(Math.E, σ2) - 1),
+    entropy: 0.5 * Math.log(2 * mctad.π * σ2) + μ,
+    domain: { min: 0.0, max: Infinity },
+    range: { min: 0, max: Infinity },
 
-    // `mctad.lognormal(-2.0, 0.5).generate(100)` will generate an Array of 100
-    // random variables, distributed lognormally with mean -2 and variance 0.5. The implementation
-    // uses the [Marsaglia Polar Method](http://en.wikipedia.org/wiki/Marsaglia_polar_method).
+    // `mctad.lognormal(2.0, 0.5).generate(100)` will generate an Array of 100
+    // random variables, distributed lognormally with mean 2 and variance 0.5.
     generate: function (n) {
-      var U = [], V = [], W, Y, randomVariables = [];
-      for (var k = 0; k < n / 2; k++ ) {
-        do {
-          U = [mctad.getRandomArbitrary(0, 1), mctad.getRandomArbitrary(0, 1)];
-          V = [2 * U[0] - 1, 2 * U[1] - 1];
-          W = Math.pow(V[0], 2) + Math.pow(V[1], 2);
-        } while (W > 1);
-      Y = Math.sqrt((-2 * Math.log(W) / W));
-      randomVariables.push(μ + Math.sqrt(σ2) * (V[0] * Y), μ + Math.sqrt(σ2) * (V[1] * Y));
+      var randomVariables = [];
+      randomVariables = mctad.normal(μ, σ2).generate(n);
+      for (var i = 0; i < n; i++ ) {
+        randomVariables[i] = Math.pow(Math.E, randomVariables[i]);
       }
-      if (randomVariables.length === n + 1) { randomVariables.pop(); }
       return randomVariables;
     },
 
     pdf: function (x) {
-      return (1 / (Math.sqrt(σ2) * Math.sqrt(2 * mctad.π))) * Math.pow(Math.E, -(Math.pow(x - μ, 2) / (2 * σ2)));
+      if (x > 0) {
+        return (1 / (x * Math.sqrt(2 * mctad.π * σ2))) * Math.pow(Math.E, -(Math.pow(Math.log(x) - μ, 2) / (2 * σ2)));
+      } else {
+        return undefined;
+      }
     },
 
     cdf: function (x) {
-      var x_scaled = (x - μ) / Math.sqrt(2 * σ2);
-      return (Math.sqrt(1 +
-
-        (1 - (1 / Math.pow(1 + 0.0705230784 * x_scaled + 0.0422820123 * Math.pow(x_scaled, 2) + 0.0092705272 * Math.pow(x_scaled, 3) + 0.0001520143 * Math.pow(x_scaled, 4) + 0.0002765672 * Math.pow(x_scaled, 5) + 0.0000430638 * Math.pow(x_scaled, 6), 16)))
-
-      ));
+      if (x > 0) {
+        var Z = (Math.log(x) - μ) / Math.sqrt(2 * σ2);
+        return mctad.normal(0, 1).F((Math.log(x) - μ)) / Math.sqrt(σ2);
+      } else {
+        return undefined;
+      }
     }
-
   };
 
   // Mix in the convenience methods for f(X) and F(X).
   mctad.extend(dfs, mctad.continuousMixins);
+
+  dfs.domain.max = μ + Math.ceil(2.5 * dfs.variance);
+  dfs.range.max = 0.1 * Math.ceil(10 * dfs.pdf(dfs.mode));
 
   return dfs;
 };

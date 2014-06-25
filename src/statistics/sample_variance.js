@@ -7,7 +7,7 @@
 // More at the [Wikipedia article](http://en.wikipedia.org/wiki/Variance#Sample_variance).
 
 mctad.sampleVariance = function (data) {
-  if (!Array.isArray(data) || data.length === 0 ) { return null; }
+  if (!Array.isArray(data) || data.length === 0 ) { return undefined; }
 
   var mean = 0.0, σ2 = 0.0, Δ, n = 0, M2 = 0.0;
   for (var i = 0; i < data.length; i++) {

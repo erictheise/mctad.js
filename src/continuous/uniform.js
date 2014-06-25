@@ -1,15 +1,20 @@
 /*
-# Uniform Distribution
+# Uniform Distribution (Continuous)
 
-The [Continuous Uniform Distribution](http://en.wikipedia.org/wiki/Uniform_distribution_(continuous)) or Rectangular Distribution is a family of symmetric, continuous probability distributions such that for each member of the family, all intervals of the same length on the distribution are equally probable.
+The [Continuous Uniform Distribution](http://en.wikipedia.org/wiki/Uniform_distribution_(continuous)) or Rectangular
+Distribution is a family of symmetric, continuous probability distributions such that for each member of the family, all
+intervals of the same length on the distribution are equally probable.
 
 ### Assumptions
 
-`a` and `b` are real numbers, the minimum and maximum values, with a < b; a may be thought of as a location parameter, (b - a) as a scale parameter.
+`a` and `b` are real numbers, the minimum and maximum values, with a < b; a may be thought of as a location parameter,
+(b - a) as a scale parameter.
 
 ### Use
 
 `mctad.uniform(a, b)`
+
+### Inline Comments
 */
 
 mctad.uniform = function (a, b) {
@@ -24,6 +29,7 @@ mctad.uniform = function (a, b) {
     skewness: 0,
     entropy: Math.log(b - a),
     domain: { min: a, max: b },
+    range: { min: 0, max: Infinity },
 
     // `mctad.uniform(10, 20).generate(100)` will generate an Array of 100
     // random variables, distributed uniformly between 10 and 20, inclusive.
@@ -59,6 +65,8 @@ mctad.uniform = function (a, b) {
 
   // Mix in the convenience methods for f(X) and F(X).
   mctad.extend(dfs, mctad.continuousMixins);
+
+  dfs.range.max = 0.1 * Math.ceil(10 * dfs.pdf(a));
 
   return dfs;
 };

@@ -20,10 +20,14 @@ module.exports = function(grunt) {
           'src/core/constants.js',
           'src/core/helpers.js',
           'src/core/factorial.js',
+          'src/core/double_factorial.js',
+          'src/core/gamma.js',
           'src/core/combination.js',
           'src/statistics/**/*.js',
           'src/discrete/mixins.js',
           'src/discrete/**/*.js',
+          'src/continuous/mixins.js',
+          'src/continuous/erf.js',
           'src/continuous/**/*.js'
         ],
         dest: './<%= shortname() %>.js'
@@ -53,7 +57,8 @@ module.exports = function(grunt) {
         'src/**/*.js', 'README.md'
       ],
       options: {
-        "out": "doc/"
+        out: 'doc/',
+        github: false
       }
     },
     watch: {
@@ -75,7 +80,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-groc');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
-  // Default task(s).
-  grunt.registerTask('default', ['jshint', 'concat', 'mochaTest', 'uglify', 'groc', 'watch']);
+  grunt.registerTask('default', ['jshint', 'concat', 'mochaTest', 'uglify', 'watch']);
+  grunt.registerTask('gh-pages', 'groc');
 
 };

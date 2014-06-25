@@ -1,5 +1,5 @@
 mctad.discreteMixins = {
-  P: function(x) {
+  p: function(x) {
     if (this.hasOwnProperty(x)) {
       return this[x].pmf;
     } else {
