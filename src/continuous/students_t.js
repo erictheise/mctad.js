@@ -95,9 +95,9 @@ mctad.t = function (v) {
       };
 
       var cdf = [];
-      for (var k in t_distribution_table[v]) {
-        cdf.push([parseFloat(k), parseFloat(t_distribution_table[v][k])]);
-        cdf.push([parseFloat(1.0 - k), parseFloat(-t_distribution_table[v][k])]);
+      for (var key in t_distribution_table[v]) {
+        cdf.push([parseFloat(key), parseFloat(t_distribution_table[v][key])]);
+        cdf.push([parseFloat(1.0 - key), parseFloat(-t_distribution_table[v][key])]);
       }
       cdf.sort(function (a, b) {
         return a[1] - b[1];
