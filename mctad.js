@@ -76,8 +76,27 @@ mctad.getRandomInt = function (min, max) {
 };
 ;
 // A factorial, usually written n!, is the product of all positive integers less than or equal to n.
+/*
+
+# Factorial
+
+The [Factorial](http://en.wikipedia.org/wiki/Factorial) is the product of all positive integers up to a
+specified odd positive integer. The mathematical notation is `n!`.
+
+### Assumptions
+
+`n` is a non-negative Integer.
+
+### Use
+
+`mctad.factorial(n)`
+
+### Inline Comments
+*/
+
 mctad.factorial = function(n) {
-  if (n < 0) { return undefined; }
+  // Check that `n` is a non-negative Integer.
+  if (!mctad.isInteger(n) || n < 0) { return undefined; }
 
   var acc = 1;
   for (var i = 2; i <= n; i++) {
@@ -86,23 +105,15 @@ mctad.factorial = function(n) {
   return acc;
 };
 ;
-//mctad.doubleFactorial = function(n) {
-//  if (!mctad.isInteger(n) || n % 2 === 0) { return undefined; }
-//
-//  var acc = 1;
-//  for (var i = 1; i <= n; i += 2) {
-//    acc = acc * i;
-//  }
-//  return acc;
-//
-//};
-
 mctad.doubleFactorial = function(n) {
+  // Check that `n` is an odd Integer.
   if (!mctad.isInteger(n) || n % 2 === 0) { return undefined; }
 
   var acc;
 
   if (n > 0) {
+    // For the case where `n` is a positive Integer, continue to recurse through lesser positive Integers until 1
+    // is reached.
     if (n > 1) {
       acc = n * mctad.doubleFactorial(n - 2);
     } else {
@@ -111,6 +122,8 @@ mctad.doubleFactorial = function(n) {
     return acc;
   } else {
     if (n < 0) {
+      // For the case where `n` is a negative Integer, use the inversion of its recurrence relation as
+      // described at [the Wikipedia page](http://en.wikipedia.org/wiki/Double_factorial#Negative_arguments).
       if (n < -1) {
         acc = mctad.doubleFactorial(n + 2) / (n + 2);
       } else {
