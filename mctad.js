@@ -75,30 +75,12 @@ mctad.getRandomInt = function (min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 ;
-// A factorial, usually written n!, is the product of all positive integers less than or equal to n.
-/*
-
-# Factorial
-
-The [Factorial](http://en.wikipedia.org/wiki/Factorial) is the product of all positive integers up to a
-specified odd positive integer. The mathematical notation is `n!`.
-
-### Assumptions
-
-`n` is a non-negative Integer.
-
-### Use
-
-`mctad.factorial(n)`
-
-### Inline Comments
-*/
-
 mctad.factorial = function(n) {
   // Check that `n` is a non-negative Integer.
   if (!mctad.isInteger(n) || n < 0) { return undefined; }
 
   var acc = 1;
+  // This is a simple, iterative implementation rather than a recursive implementation.
   for (var i = 2; i <= n; i++) {
     acc = acc * i;
   }
@@ -157,15 +139,13 @@ mctad.Γ = function(n) {
 
 mctad.gamma = mctad.Γ;
 ;
-// # Combination
-//
-// http://en.wikipedia.org/wiki/Combination
-
 mctad.combination = function(n, k) {
-  if (n < 0 || k < 0 ) { return undefined; }
+  // Check that `n` and `k` are non-negative Integers.
+  if (!mctad.isInteger(n) || n < 0 || !mctad.isInteger(k) || k < 0) { return undefined; }
 
   if (k > n) { return 0; }
 
+  // Literal implementation of the (n k) = n!/(k!(n - k)!) formula.
   return this.factorial(n)/(this.factorial(k) * this.factorial(n - k));
 };
 ;

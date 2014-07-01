@@ -1,5 +1,4 @@
 /*
-
 # Double Factorial
 
 The [Double Factorial](http://en.wikipedia.org/wiki/Double_factorial) is the product of all the odd integers up to a

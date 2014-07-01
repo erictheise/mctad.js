@@ -1,6 +1,4 @@
-// A factorial, usually written n!, is the product of all positive integers less than or equal to n.
 /*
-
 # Factorial
 
 The [Factorial](http://en.wikipedia.org/wiki/Factorial) is the product of all positive integers up to a
@@ -22,6 +20,7 @@ mctad.factorial = function(n) {
   if (!mctad.isInteger(n) || n < 0) { return undefined; }
 
   var acc = 1;
+  // This is a simple, iterative implementation rather than a recursive implementation.
   for (var i = 2; i <= n; i++) {
     acc = acc * i;
   }
