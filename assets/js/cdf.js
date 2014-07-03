@@ -114,6 +114,32 @@ var cdf = function(dist) {
       .datum(data)
       .attr('class', 'area')
       .attr('d', area);
+
+    var focus = svg.append('g')
+      .attr('class', 'focus')
+      .style('display', 'none');
+
+    focus.append('circle')
+      .attr('r', 4.5);
+
+    focus.append('text')
+      .attr('x', 9)
+      .attr('dy', '.35em');
+
+    svg.append('rect')
+      .attr('class', 'overlay')
+      .attr('width', image.width)
+      .attr('height', image.height)
+      .on('mouseover', function() { focus.style('display', null); })
+      .on('mouseout', function() { focus.style('display', 'none'); })
+      .on('mousemove', mousemove);
+
+    function mousemove() {
+      var x0 = d3.mouse(this)[0];
+      console.log(x0, yScale(x0));
+      focus.attr('transform', 'translate(' + x0 + ',' + yScale(data[x0].y) + ')');
+      focus.select('text').text(data[x0].y);
+    }
   }
 
 };

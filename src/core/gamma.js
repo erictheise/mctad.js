@@ -1,5 +1,4 @@
 /*
-
 # Gamma Function
 
 The [Gamma Function](http://en.wikipedia.org/wiki/Particular_values_of_the_gamma_function) is an important special

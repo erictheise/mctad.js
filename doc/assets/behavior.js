@@ -148,10 +148,10 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
-                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/continuous/chi-squared.js",
-                "projectPath": "src/continuous/chi-squared.js",
-                "targetPath": "src/continuous/chi-squared",
-                "pageTitle": "src/continuous/chi-squared",
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/continuous/chi_squared.js",
+                "projectPath": "src/continuous/chi_squared.js",
+                "targetPath": "src/continuous/chi_squared",
+                "pageTitle": "src/continuous/chi_squared",
                 "firstHeader": {
                   "type": "heading",
                   "data": {
@@ -868,12 +868,65 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                     "slug": "combination",
                     "isFileHeader": true
                   },
-                  "depth": 1
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Assumptions",
+                        "slug": "assumptions"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Use",
+                        "slug": "use"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Inline Comments",
+                        "slug": "inline-comments"
+                      },
+                      "depth": 3
+                    }
+                  ]
                 },
                 "title": "Combination"
               },
               "depth": 3,
-              "outline": []
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Assumptions",
+                    "slug": "assumptions"
+                  },
+                  "depth": 3
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Use",
+                    "slug": "use"
+                  },
+                  "depth": 3
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Inline Comments",
+                    "slug": "inline-comments"
+                  },
+                  "depth": 3
+                }
+              ]
             }, {
               "type": "file",
               "data": {
@@ -1013,10 +1066,73 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "projectPath": "src/core/factorial.js",
                 "targetPath": "src/core/factorial",
                 "pageTitle": "src/core/factorial",
-                "title": "factorial"
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "Factorial",
+                    "slug": "factorial",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Assumptions",
+                        "slug": "assumptions"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Use",
+                        "slug": "use"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Inline Comments",
+                        "slug": "inline-comments"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                },
+                "title": "Factorial"
               },
               "depth": 3,
-              "outline": []
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Assumptions",
+                    "slug": "assumptions"
+                  },
+                  "depth": 3
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Use",
+                    "slug": "use"
+                  },
+                  "depth": 3
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Inline Comments",
+                    "slug": "inline-comments"
+                  },
+                  "depth": 3
+                }
+              ]
             }, {
               "type": "file",
               "data": {
@@ -1116,34 +1232,151 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "projectPath": "src/core/helpers.js",
                 "targetPath": "src/core/helpers",
                 "pageTitle": "src/core/helpers",
-                "title": "helpers"
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "Helpers",
+                    "slug": "helpers",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "isInteger(n)",
+                        "slug": "isintegern"
+                      },
+                      "depth": 2
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "allPositive(Array)",
+                        "slug": "allpositivearray"
+                      },
+                      "depth": 2
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "extend(destination, source)",
+                        "slug": "extenddestination-source"
+                      },
+                      "depth": 2
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "sortNumeric(Array)",
+                        "slug": "sortnumericarray"
+                      },
+                      "depth": 2
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "toRadians(Number)",
+                        "slug": "toradiansnumber"
+                      },
+                      "depth": 2
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "getBaseLog(x, y)",
+                        "slug": "getbaselogx-y"
+                      },
+                      "depth": 2
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "getRandomArbitrary(min, max)",
+                        "slug": "getrandomarbitrarymin-max"
+                      },
+                      "depth": 2
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "getRandomInt(min, max)",
+                        "slug": "getrandomintmin-max"
+                      },
+                      "depth": 2
+                    }
+                  ]
+                },
+                "title": "Helpers"
               },
               "depth": 3,
               "outline": [
                 {
                   "type": "heading",
                   "data": {
-                    "level": 1,
+                    "level": 2,
+                    "title": "isInteger(n)",
+                    "slug": "isintegern"
+                  },
+                  "depth": 2
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "allPositive(Array)",
+                    "slug": "allpositivearray"
+                  },
+                  "depth": 2
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "extend(destination, source)",
+                    "slug": "extenddestination-source"
+                  },
+                  "depth": 2
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "sortNumeric(Array)",
+                    "slug": "sortnumericarray"
+                  },
+                  "depth": 2
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "toRadians(Number)",
+                    "slug": "toradiansnumber"
+                  },
+                  "depth": 2
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
                     "title": "getBaseLog(x, y)",
                     "slug": "getbaselogx-y"
                   },
-                  "depth": 1
+                  "depth": 2
                 }, {
                   "type": "heading",
                   "data": {
-                    "level": 1,
+                    "level": 2,
                     "title": "getRandomArbitrary(min, max)",
                     "slug": "getrandomarbitrarymin-max"
                   },
-                  "depth": 1
+                  "depth": 2
                 }, {
                   "type": "heading",
                   "data": {
-                    "level": 1,
+                    "level": 2,
                     "title": "getRandomInt(min, max)",
                     "slug": "getrandomintmin-max"
                   },
-                  "depth": 1
+                  "depth": 2
                 }
               ]
             }

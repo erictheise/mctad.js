@@ -32,3 +32,8 @@
   font-family: sans-serif;
   font-size: 0.6em;
 }
+
+.overlay {
+  fill: none;
+  pointer-events: all;
+}

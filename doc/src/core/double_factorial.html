@@ -3,36 +3,33 @@
 <p>The <a href="http://en.wikipedia.org/wiki/Double_factorial">Double Factorial</a> is the product of all the odd integers up to a
 specified odd positive integer. The mathematical notation is <code>n!!</code>.</p>
 
+<p>Because the <a href="../continuous/chi_squared.html">Chi Squared</a>, <a href="../continuous/students_t.html">Student's t</a>, and
+<a href="../continuous/weibull.html">Weibull</a> Distributions require the <a href="gamma.html">Gamma Function</a>, and because this use of
+the Gamma Function requires it to be defined for negative odd integers, that case is handled by this recursive
+implementation.</p>
+
 <h3 id="assumptions">Assumptions</h3>
 
-<p><code>n</code> is an odd positive Integer.</p>
+<p><code>n</code> is an odd Integer.</p>
 
 <h3 id="use">Use</h3>
 
 <p><code>mctad.doubleFactorial(n)</code></p>
 
-<h3 id="inline-comments">Inline Comments</h3></div></div><div class="code"><div class="wrapper"><span class="c1">//mctad.doubleFactorial = function(n) {</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>if (!mctad.isInteger(n) || n % 2 === 0) { return undefined; }
- var acc = 1;
- for (var i = 1; i &lt;= n; i += 2) {
-   acc = acc * i;
- }
- return acc;</p></div></div><div class="code"><div class="wrapper"><span class="c1">//};</span>
-
-<span class="nx">mctad</span><span class="p">.</span><span class="nx">doubleFactorial</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">mctad</span><span class="p">.</span><span class="nx">isInteger</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="o">||</span> <span class="nx">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">undefined</span><span class="p">;</span> <span class="p">}</span>
+<h3 id="inline-comments">Inline Comments</h3></div></div><div class="code"><div class="wrapper"><span class="nx">mctad</span><span class="p">.</span><span class="nx">doubleFactorial</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Check that <code>n</code> is an odd Integer.</p></div></div><div class="code"><div class="wrapper">  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">mctad</span><span class="p">.</span><span class="nx">isInteger</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="o">||</span> <span class="nx">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">undefined</span><span class="p">;</span> <span class="p">}</span>
 
   <span class="kd">var</span> <span class="nx">acc</span><span class="p">;</span>
 
-  <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>For the case where <code>n</code> is a positive Integer, continue to recurse through lesser positive Integers until 1
+is reached.</p></div></div><div class="code"><div class="wrapper">    <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
       <span class="nx">acc</span> <span class="o">=</span> <span class="nx">n</span> <span class="o">*</span> <span class="nx">mctad</span><span class="p">.</span><span class="nx">doubleFactorial</span><span class="p">(</span><span class="nx">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">);</span>
     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
       <span class="nx">acc</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
     <span class="p">}</span>
     <span class="k">return</span> <span class="nx">acc</span><span class="p">;</span>
   <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>For the case where <code>n</code> is a negative Integer, use the inversion of its recurrence relation as
+described at <a href="http://en.wikipedia.org/wiki/Double_factorial#Negative_arguments">the Wikipedia page</a>.</p></div></div><div class="code"><div class="wrapper">      <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">acc</span> <span class="o">=</span> <span class="nx">mctad</span><span class="p">.</span><span class="nx">doubleFactorial</span><span class="p">(</span><span class="nx">n</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="nx">n</span> <span class="o">+</span> <span class="mi">2</span><span class="p">);</span>
       <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
         <span class="nx">acc</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
