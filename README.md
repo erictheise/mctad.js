@@ -113,3 +113,7 @@ Please alert me if you see me breaking my own contract. Contributions should fol
 ### Long Term To Do
 
 ?
+
+### Thanks
+
+Carl Malamud, stats books, other js projects

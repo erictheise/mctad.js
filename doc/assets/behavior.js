@@ -1232,34 +1232,151 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "projectPath": "src/core/helpers.js",
                 "targetPath": "src/core/helpers",
                 "pageTitle": "src/core/helpers",
-                "title": "helpers"
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "Helpers",
+                    "slug": "helpers",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "isInteger(n)",
+                        "slug": "isintegern"
+                      },
+                      "depth": 2
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "allPositive(Array)",
+                        "slug": "allpositivearray"
+                      },
+                      "depth": 2
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "extend(destination, source)",
+                        "slug": "extenddestination-source"
+                      },
+                      "depth": 2
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "sortNumeric(Array)",
+                        "slug": "sortnumericarray"
+                      },
+                      "depth": 2
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "toRadians(Number)",
+                        "slug": "toradiansnumber"
+                      },
+                      "depth": 2
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "getBaseLog(x, y)",
+                        "slug": "getbaselogx-y"
+                      },
+                      "depth": 2
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "getRandomArbitrary(min, max)",
+                        "slug": "getrandomarbitrarymin-max"
+                      },
+                      "depth": 2
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "getRandomInt(min, max)",
+                        "slug": "getrandomintmin-max"
+                      },
+                      "depth": 2
+                    }
+                  ]
+                },
+                "title": "Helpers"
               },
               "depth": 3,
               "outline": [
                 {
                   "type": "heading",
                   "data": {
-                    "level": 1,
+                    "level": 2,
+                    "title": "isInteger(n)",
+                    "slug": "isintegern"
+                  },
+                  "depth": 2
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "allPositive(Array)",
+                    "slug": "allpositivearray"
+                  },
+                  "depth": 2
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "extend(destination, source)",
+                    "slug": "extenddestination-source"
+                  },
+                  "depth": 2
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "sortNumeric(Array)",
+                    "slug": "sortnumericarray"
+                  },
+                  "depth": 2
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "toRadians(Number)",
+                    "slug": "toradiansnumber"
+                  },
+                  "depth": 2
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
                     "title": "getBaseLog(x, y)",
                     "slug": "getbaselogx-y"
                   },
-                  "depth": 1
+                  "depth": 2
                 }, {
                   "type": "heading",
                   "data": {
-                    "level": 1,
+                    "level": 2,
                     "title": "getRandomArbitrary(min, max)",
                     "slug": "getrandomarbitrarymin-max"
                   },
-                  "depth": 1
+                  "depth": 2
                 }, {
                   "type": "heading",
                   "data": {
-                    "level": 1,
+                    "level": 2,
                     "title": "getRandomInt(min, max)",
                     "slug": "getrandomintmin-max"
                   },
-                  "depth": 1
+                  "depth": 2
                 }
               ]
             }
