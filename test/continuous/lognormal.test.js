@@ -7,9 +7,8 @@ describe('lognormal', function() {
     assert.isUndefined(mctad.lognormal(0.0, -1.0), 'σ2 should be > 0');
   });
 
-  it('can return undefined when x is not a valid parameter to f(x) or F(x)', function() {
+  it('can return undefined when x is not a valid parameter to f(x)', function() {
     assert.isUndefined(mctad.lognormal(0.0, 1.0).f(-1), 'x should be ≥ 0');
-    assert.isUndefined(mctad.lognormal(0.0, 1.0).F(-1), 'x should be ≥ 0');
   });
 
   it('can generate the distribution statistics for μ = 1.0, σ2 = 0.25', function() {

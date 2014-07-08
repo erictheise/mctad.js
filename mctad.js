@@ -1010,7 +1010,7 @@ mctad.lognormal = function (μ, σ2) {
         var Z = (Math.log(x) - μ) / Math.sqrt(σ2);
         return mctad.normal(0, 1).F(Z);
       } else {
-        return 0;
+        return 0.0;
       }
     }
   };
@@ -1019,7 +1019,7 @@ mctad.lognormal = function (μ, σ2) {
   mctad.extend(dfs, mctad.continuousMixins);
 
   dfs.domain.max = μ + Math.ceil(2.5 * dfs.variance);
-  dfs.range.max = 0.1 * Math.ceil(10 * dfs.pdf(μ));
+  dfs.range.max = 0.1 * Math.ceil(10 * dfs.pdf(dfs.mode));
 
   return dfs;
 };
