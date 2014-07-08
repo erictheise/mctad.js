@@ -136,7 +136,6 @@ var cdf = function(dist) {
 
     function mousemove() {
       var x0 = d3.mouse(this)[0];
-      console.log(x0, yScale(x0));
       focus.attr('transform', 'translate(' + x0 + ',' + yScale(data[x0].y) + ')');
       focus.select('text').text(data[x0].y);
     }

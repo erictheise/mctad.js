@@ -23,9 +23,9 @@ mctad.lognormal = function (μ, σ2) {
     mean: Math.pow(Math.E, μ + σ2 / 2),
     median: Math.pow(Math.E, μ),
     mode: Math.pow(Math.E, μ - σ2),
-    variance: (Math.pow(Math.E, σ2) - 1) * Math.pow(Math.E, 2 * μ + σ2),
+    variance: Math.pow(Math.E, 2 * μ + σ2) * (Math.pow(Math.E, σ2) - 1),
     skewness: (Math.pow(Math.E, σ2) + 2) * Math.sqrt(Math.pow(Math.E, σ2) - 1),
-    entropy: 0.5 * Math.log(2 * mctad.π * σ2) + μ,
+    entropy: 0.5 + 0.5 * Math.log(2 * mctad.π * σ2) + μ,
     domain: { min: 0.0, max: Infinity },
     range: { min: 0, max: Infinity },
 
@@ -50,10 +50,10 @@ mctad.lognormal = function (μ, σ2) {
 
     cdf: function (x) {
       if (x > 0) {
-        var Z = (Math.log(x) - μ) / Math.sqrt(2 * σ2);
-        return mctad.normal(0, 1).F((Math.log(x) - μ)) / Math.sqrt(σ2);
+        var Z = (Math.log(x) - μ) / Math.sqrt(σ2);
+        return mctad.normal(0, 1).F(Z);
       } else {
-        return undefined;
+        return 0;
       }
     }
   };
@@ -62,7 +62,7 @@ mctad.lognormal = function (μ, σ2) {
   mctad.extend(dfs, mctad.continuousMixins);
 
   dfs.domain.max = μ + Math.ceil(2.5 * dfs.variance);
-  dfs.range.max = 0.1 * Math.ceil(10 * dfs.pdf(dfs.mode));
+  dfs.range.max = 0.1 * Math.ceil(10 * dfs.pdf(μ));
 
   return dfs;
 };
