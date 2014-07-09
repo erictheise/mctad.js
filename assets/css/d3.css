@@ -9,13 +9,13 @@
   fill-opacity: 50%;
 }
 
-.line, .trace, .start {
+.curve, .trace, .start {
   stroke: #00f;
   stroke-width: 1.5px;
   fill: none;
 }
 
-.area {
+.areaUnderTheCurve {
   stroke: none;
   fill: #00f;
   fill-opacity: 15%;
@@ -36,4 +36,33 @@
 .overlay {
   fill: none;
   pointer-events: all;
+}
+
+.focus rect {
+  fill: #000;
+  fill-opacity: 50%;
+}
+.focus circle {
+  stroke: #0f0;
+  stroke-width: 1.5px;
+  fill: #d00;
+  fill-opacity: 50%;
+}
+
+.focus .sweep {
+  stroke: #f00;
+  stroke-width: 1.5px;
+}
+
+.bubble {
+  position: absolute;
+  text-align: center;
+  width: 60px;
+  height: 12px;
+  padding: 8px;
+  font: 10px sans-serif;
+  background: #ddd;
+  border: solid 1px #aaa;
+  border-radius: 8px;
+  pointer-events: none;
 }

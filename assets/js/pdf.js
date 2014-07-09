@@ -4,10 +4,8 @@ var pdf = function(dist) {
     paper = { width: 480, height: 240 },
     image = { width: paper.width - margin.left - margin.right, height: paper.height - margin.top - margin.bottom },
     discreteWidth = 4,
-    halfInterval,
+    halfInterval = (0.5 * image.width / (Math.floor(dist.domain.max) - Math.ceil(dist.domain.min) + 1)),
     data = [];
-
-halfInterval = (0.5 * image.width / (Math.floor(dist.domain.max) - Math.ceil(dist.domain.min) + 1));
 
 var xScale = d3.scale.linear()
   .domain([dist.domain.min, dist.domain.max])
@@ -58,13 +56,13 @@ for (var i = 0; i <= Math.ceil(image.width); i++) {
   }
 }
 
-var line = d3.svg.line()
+var curve = d3.svg.line()
   .x(function(d) { return xScale(d.x); })
   .y(function(d) { return yScale(d.y); });
 
 svg.append('path')
   .datum(data)
-  .attr('class', 'line')
-  .attr('d', line);
+  .attr('class', 'curve')
+  .attr('d', curve);
 
 };

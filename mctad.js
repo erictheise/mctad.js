@@ -957,7 +957,7 @@ mctad.exponential = function (λ) {
       if (x >= 0) {
         return 1 - Math.pow(Math.E, -λ * x);
       } else {
-        return undefined;
+        return 0.0;
       }
     }
 
@@ -1365,7 +1365,7 @@ mctad.weibull = function (λ, k) {
       if (x >= 0) {
         return 1 - Math.pow(Math.E, -Math.pow(x / λ, k));
       } else {
-        return undefined;
+        return 0.0;
       }
     }
 
