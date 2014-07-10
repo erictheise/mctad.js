@@ -132,52 +132,64 @@ var cdf = function(dist) {
       .attr('class', 'curve')
       .attr('d', curve);
 
-    // Provide an invisible overlay that will contain mouseover/mousemove information.
-    var focus = svg.append('g')
-      .attr('class', 'focus')
-      .style('display', 'none');
-
-    // Plot a line downward from F(x) to the baseline.
-    focus.append('line')
-      .datum(data)
-      .attr('class', 'sweep');
-
-    // Plot a circle to mark the point of interest on F(x).
-    focus.append('circle')
-      .datum(data)
-      .attr('r', radius);
-
-    focus.append('text')
-      .datum(data);
-
-    svg.append('rect')
-      .attr('class', 'overlay')
-      .attr('width', image.width)
-      .attr('height', image.height)
-      .on('mouseover', function() { focus.style('display', null); })
-      .on('mouseout', function() { focus.style('display', 'none'); })
-      .on('mousemove', mousemove);
-
-    function mousemove() {
-      var x0 = d3.mouse(this)[0];
-      var sigDigits = d3.format(".4f");
-      focus.select('line')
-        .attr('x1', function (d) { return x0; })
-        .attr('y1', function (d) { return yScale(data[x0].y); })
-        .attr('x2', function (d) { return x0; })
-        .attr('y2', function (d) { return image.height; });
-      focus.select('circle')
-        .attr('cx', function (d) { return x0; })
-        .attr('cy', function (d) { return yScale(data[x0].y); });
-      focus.select('text')
-        .attr('x', function (d) { return x0 + 9; })
-        .attr('y', function (d) { return yScale(data[x0].y); })
-        .attr('dy', '.35em')
-        .text(sigDigits(data[x0].y));
-    }
 
     // End continuous distribution plotting.
 
+  }
+
+  // Provide an invisible overlay that will contain mouseover/mousemove information.
+  var focus = svg.append('g')
+    .attr('class', 'focus')
+    .style('display', 'none');
+
+  // Plot a line downward from F(x) to the baseline.
+  focus.append('line')
+    .datum(data)
+    .attr('class', 'sweep');
+
+  // Plot a circle to mark the point of interest on F(x).
+  focus.append('circle')
+    .datum(data)
+    .attr('r', radius);
+
+  focus.append('text')
+    .datum(data);
+
+  svg.append('rect')
+    .attr('class', 'overlay')
+    .attr('width', image.width)
+    .attr('height', image.height)
+    .on('mouseover', function() { focus.style('display', null); })
+    .on('mouseout', function() { focus.style('display', 'none'); })
+    .on('mousemove', mousemove);
+
+  function mousemove() {
+    var
+      x0 = d3.mouse(this)[0],
+      y0,
+      sigDigits = d3.format(".4f"),
+      caption = '';
+    if (typeof dist.p === 'function') {
+      y0 = yScale(dist.F([Math.floor(xScale.invert(x0))]));
+      caption = 'p(x ≤ ' + Math.ceil(xScale.invert(x0)) + ') = ' + sigDigits(dist.F([Math.floor(xScale.invert(x0))]));
+    } else {
+      y0 = yScale(data[x0].y);
+      caption = 'p(x ≤ ' + sigDigits(xScale.invert(x0)) + ') = ' + sigDigits(data[x0].y);
+    }
+    focus.select('line')
+      .attr('x1', function (d) { return x0; })
+      .attr('y1', function (d) { return y0; })
+      .attr('x2', function (d) { return x0; })
+      .attr('y2', function (d) { return image.height; });
+    focus.select('circle')
+      .attr('cx', function (d) { return x0; })
+      .attr('cy', function (d) { return y0; });
+    focus.select('text')
+      .attr('class', 'bubble')
+      .attr('x', function (d) { return x0 + 9; })
+      .attr('y', function (d) { return y0; })
+      .attr('dy', '.35em')
+      .text(caption);
   }
 
 };
