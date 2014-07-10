@@ -6,12 +6,17 @@ mctad.π = Math.PI;
 // `ε`, epsilon, is a stopping criterion when we want to iterate until we're "close enough".
 mctad.ε = 0.0001;
 ;
-// A, hopefully small, collection of helper methods.
-
+// ## isInteger(n)
+// A function for determining if anything is an Integer. Used widely to validate parameters.
+//
 mctad.isInteger = function (n) {
   return (/^-?\d+$/.test(n));
 };
 
+// ## allPositive(Array)
+// A function for determining if every element of an Array is greater than or equal to zero. Used in the determination
+// of the [Geometric Mean](../statistics/geometric_mean.html).
+//
 mctad.allPositive = function (data) {
   var positive = true;
   for (var i = 0; i < data.length; i++) {
@@ -23,6 +28,9 @@ mctad.allPositive = function (data) {
   return positive;
 };
 
+// ## extend(destination, source)
+// A function used to add convenience methods to distributions, e.g., `.p(x)`, `.f(x)`, `.F(x)`.
+//
 mctad.extend = function (destination, source) {
   for (var k in source) {
     if (source.hasOwnProperty(k)) {
@@ -32,11 +40,17 @@ mctad.extend = function (destination, source) {
   return destination;
 };
 
+// ## sortNumeric(Array)
+// A function for sorting a simple Array in numerical, rather than lexicographical, order.
+//
 mctad.sortNumeric = function (data) {
   data.sort(function (a, b) { return a - b; });
   return data;
 };
 
+// ## toRadians(Number)
+// A function for converting degrees to radians.
+//
 mctad.toRadians = function (v) {
   if (typeof v === 'string' || v instanceof String) {
     // If it's a string, explicitly in degrees, e.g, "47.3°", convert it to radians
@@ -52,7 +66,7 @@ mctad.toRadians = function (v) {
   }
 };
 
-// # getBaseLog(x, y)
+// ## getBaseLog(x, y)
 // A function for returning the logarithm of y with base x (ie. log<sub>x</sub> y), taken from
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/log
 //
@@ -61,48 +75,41 @@ mctad.getBaseLog = function (x, y) {
   return Math.log(y) / Math.log(x);
 };
 
-// # getRandomArbitrary(min, max)
+// ## getRandomArbitrary(min, max)
 // A function for generating a random number between min and mix, inclusive, taken from
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
 mctad.getRandomArbitrary = function (min, max) {
   return Math.random() * (max - min) + min;
 };
 
-// # getRandomInt(min, max)
+// ## getRandomInt(min, max)
 // A function for generating a random integer between min and max, inclusive, taken from
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
 mctad.getRandomInt = function (min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 ;
-// A factorial, usually written n!, is the product of all positive integers less than or equal to n.
 mctad.factorial = function(n) {
-  if (n < 0) { return undefined; }
+  // Check that `n` is a non-negative Integer.
+  if (!mctad.isInteger(n) || n < 0) { return undefined; }
 
   var acc = 1;
+  // This is a simple, iterative implementation rather than a recursive implementation.
   for (var i = 2; i <= n; i++) {
     acc = acc * i;
   }
   return acc;
 };
 ;
-//mctad.doubleFactorial = function(n) {
-//  if (!mctad.isInteger(n) || n % 2 === 0) { return undefined; }
-//
-//  var acc = 1;
-//  for (var i = 1; i <= n; i += 2) {
-//    acc = acc * i;
-//  }
-//  return acc;
-//
-//};
-
 mctad.doubleFactorial = function(n) {
+  // Check that `n` is an odd Integer.
   if (!mctad.isInteger(n) || n % 2 === 0) { return undefined; }
 
   var acc;
 
   if (n > 0) {
+    // For the case where `n` is a positive Integer, continue to recurse through lesser positive Integers until 1
+    // is reached.
     if (n > 1) {
       acc = n * mctad.doubleFactorial(n - 2);
     } else {
@@ -111,6 +118,8 @@ mctad.doubleFactorial = function(n) {
     return acc;
   } else {
     if (n < 0) {
+      // For the case where `n` is a negative Integer, use the inversion of its recurrence relation as
+      // described at [the Wikipedia page](http://en.wikipedia.org/wiki/Double_factorial#Negative_arguments).
       if (n < -1) {
         acc = mctad.doubleFactorial(n + 2) / (n + 2);
       } else {
@@ -144,15 +153,13 @@ mctad.Γ = function(n) {
 
 mctad.gamma = mctad.Γ;
 ;
-// # Combination
-//
-// http://en.wikipedia.org/wiki/Combination
-
 mctad.combination = function(n, k) {
-  if (n < 0 || k < 0 ) { return undefined; }
+  // Check that `n` and `k` are non-negative Integers.
+  if (!mctad.isInteger(n) || n < 0 || !mctad.isInteger(k) || k < 0) { return undefined; }
 
   if (k > n) { return 0; }
 
+  // Literal implementation of the (n k) = n!/(k!(n - k)!) formula.
   return this.factorial(n)/(this.factorial(k) * this.factorial(n - k));
 };
 ;
@@ -808,9 +815,9 @@ mctad.erf = function (x) {
     0.0000430638 * Math.pow(x, 6), 16));
 };
 ;
-mctad.chiSquared = function (x, k, α) {
-  // Check that `x` is positive, and that `k` is an integer, strictly positive.
-  if (x < 0 || k <= 0 || !mctad.isInteger(k)) { return undefined; }
+mctad.chiSquared = function (k) {
+  // Check that `x` is strictly positive, and that `k` is an integer, strictly positive.
+  if (k <= 0 || !mctad.isInteger(k)) { return undefined; }
 
   var dfs = {
     mean: k,
@@ -820,13 +827,18 @@ mctad.chiSquared = function (x, k, α) {
     skewness: Math.sqrt(8 / k),
     entropy: undefined,
     domain: { min: 0, max: Infinity },
+    range: { min: 0, max: Infinity },
 
     generate: function (n) {
       return undefined;
     },
 
     pdf: function (x) {
-      return λ * Math.pow(Math.E, -λ * x);
+      if (x > 0) {
+        return (1 / (Math.pow(2, k / 2) * mctad.Γ(k / 2))) * Math.pow(x, (k / 2) - 1) * Math.pow(Math.E, -x / 2);
+      } else {
+        return 0.0;
+      }
     },
 
     cdf: function (x) {
@@ -872,13 +884,39 @@ mctad.chiSquared = function (x, k, α) {
         100: { 0.995: 67.33, 0.99: 70.06, 0.975: 74.22, 0.95: 77.93, 0.9: 82.36, 0.5: 99.33, 0.1: 118.50, 0.05: 124.34, 0.025: 129.56, 0.01: 135.81, 0.005: 140.17 }
       };
 
-      return 1 - Math.pow(Math.E, -λ * x);
+      var cdf = [];
+      for (var key in chi_squared_distribution_table[k]) {
+        cdf.push([1.0 - parseFloat(key), parseFloat(chi_squared_distribution_table[k][key])]);
+      }
+      cdf.sort(function (a, b) {
+        return a[1] - b[1];
+      });
+
+      var i = 0;
+      while (cdf[i][1] < x && i < cdf.length ) {
+        i++;
+      }
+      return cdf[i][0];
     }
 
   };
 
   // Mix in the convenience methods for f(X) and F(X).
   mctad.extend(dfs, mctad.continuousMixins);
+
+  dfs.domain.max = Math.ceil(2 * dfs.variance);
+  dfs.range.max = function () {
+    if (k > 2 ) {
+      return 0.1 * Math.ceil(10 * dfs.pdf(dfs.mode));
+    } else {
+      if (k === 2) {
+        return 0.5;
+      } else {
+        return 5.5;
+      }
+    }
+
+  }();
 
   return dfs;
 };
@@ -919,7 +957,7 @@ mctad.exponential = function (λ) {
       if (x >= 0) {
         return 1 - Math.pow(Math.E, -λ * x);
       } else {
-        return undefined;
+        return 0.0;
       }
     }
 
@@ -942,9 +980,9 @@ mctad.lognormal = function (μ, σ2) {
     mean: Math.pow(Math.E, μ + σ2 / 2),
     median: Math.pow(Math.E, μ),
     mode: Math.pow(Math.E, μ - σ2),
-    variance: (Math.pow(Math.E, σ2) - 1) * Math.pow(Math.E, 2 * μ + σ2),
+    variance: Math.pow(Math.E, 2 * μ + σ2) * (Math.pow(Math.E, σ2) - 1),
     skewness: (Math.pow(Math.E, σ2) + 2) * Math.sqrt(Math.pow(Math.E, σ2) - 1),
-    entropy: 0.5 * Math.log(2 * mctad.π * σ2) + μ,
+    entropy: 0.5 + 0.5 * Math.log(2 * mctad.π * σ2) + μ,
     domain: { min: 0.0, max: Infinity },
     range: { min: 0, max: Infinity },
 
@@ -969,10 +1007,10 @@ mctad.lognormal = function (μ, σ2) {
 
     cdf: function (x) {
       if (x > 0) {
-        var Z = (Math.log(x) - μ) / Math.sqrt(2 * σ2);
-        return mctad.normal(0, 1).F((Math.log(x) - μ)) / Math.sqrt(σ2);
+        var Z = (Math.log(x) - μ) / Math.sqrt(σ2);
+        return mctad.normal(0, 1).F(Z);
       } else {
-        return undefined;
+        return 0.0;
       }
     }
   };
@@ -1011,8 +1049,8 @@ mctad.normal = function (μ, σ2) {
           V = [2 * U[0] - 1, 2 * U[1] - 1];
           W = Math.pow(V[0], 2) + Math.pow(V[1], 2);
         } while (W > 1);
-      Y = Math.sqrt((-2 * Math.log(W) / W));
-      randomVariables.push(μ + Math.sqrt(σ2) * (V[0] * Y), μ + Math.sqrt(σ2) * (V[1] * Y));
+        Y = Math.sqrt((-2 * Math.log(W) / W));
+        randomVariables.push(μ + Math.sqrt(σ2) * (V[0] * Y), μ + Math.sqrt(σ2) * (V[1] * Y));
       }
       if (randomVariables.length === n + 1) { randomVariables.pop(); }
       return randomVariables;
@@ -1125,9 +1163,9 @@ mctad.t = function (v) {
       };
 
       var cdf = [];
-      for (var k in t_distribution_table[v]) {
-        cdf.push([parseFloat(k), parseFloat(t_distribution_table[v][k])]);
-        cdf.push([parseFloat(1.0 - k), parseFloat(-t_distribution_table[v][k])]);
+      for (var key in t_distribution_table[v]) {
+        cdf.push([parseFloat(key), parseFloat(t_distribution_table[v][key])]);
+        cdf.push([parseFloat(1.0 - key), parseFloat(-t_distribution_table[v][key])]);
       }
       cdf.sort(function (a, b) {
         return a[1] - b[1];
@@ -1327,7 +1365,7 @@ mctad.weibull = function (λ, k) {
       if (x >= 0) {
         return 1 - Math.pow(Math.E, -Math.pow(x / λ, k));
       } else {
-        return undefined;
+        return 0.0;
       }
     }
 
