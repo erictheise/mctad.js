@@ -1,30 +1,30 @@
 .backgrid {
-  fill: #ddd;
+  fill: #e2e2e2;
 }
 
 .dot {
   stroke: #00f;
   stroke-width: 1.5px;
-  fill: #0d0;
-  fill-opacity: 50%;
+  fill: #3232e1;
+  fill-opacity: 33%;
 }
 
 .curve, .trace, .start {
-  stroke: #00f;
+  stroke: #2422a2;
   stroke-width: 1.5px;
   fill: none;
 }
 
 .areaUnderTheCurve {
   stroke: none;
-  fill: #00f;
-  fill-opacity: 15%;
+  fill: #3232e1;
+  fill-opacity: 33%;
 }
 
 .axis path,
 .axis line {
   fill: none;
-  stroke: #fff;
+  stroke: #efefef;
   shape-rendering: crispEdges;
 }
 
@@ -43,25 +43,23 @@
   fill-opacity: 50%;
 }
 .focus circle {
-  stroke: #0f0;
-  stroke-width: 1.5px;
-  fill: #d00;
+  stroke: #fff;
+  stroke-width: 2px;
+  fill: none; /* #FFBB24; */
   fill-opacity: 50%;
 }
 
 .focus .sweep {
-  stroke: #f00;
+  stroke: #ffa01c;
   stroke-width: 1.5px;
 }
 
 .bubble {
   position: absolute;
   text-align: center;
-  width: 60px;
-  height: 12px;
   padding: 8px;
   font: 12px sans-serif;
-  background: #ddd;
+  background: #eee;
   border: solid 1px #aaa;
   border-radius: 8px;
   pointer-events: none;

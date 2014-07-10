@@ -159,9 +159,27 @@ var cdf = function(dist) {
     .attr('class', 'overlay')
     .attr('width', image.width)
     .attr('height', image.height)
-    .on('mouseover', function() { focus.style('display', null); })
-    .on('mouseout', function() { focus.style('display', 'none'); })
+    .on('mouseover', mouseover)
+    .on('mouseout', mouseout)
     .on('mousemove', mousemove);
+
+  var bubble = d3.select('body')
+    .append('div')
+    .attr('class', 'bubble')
+    .style('opacity', 0);
+
+  function mouseover() {
+    bubble.transition()
+      .duration(100)
+      .style('opacity', 1);
+  }
+
+  function mouseout() {
+    focus.style('display', 'none');
+    bubble.transition()
+      .duration(100)
+      .style('opacity', 0);
+  }
 
   function mousemove() {
     var
@@ -176,6 +194,7 @@ var cdf = function(dist) {
       y0 = yScale(data[x0].y);
       caption = 'p(x ≤ ' + sigDigits(xScale.invert(x0)) + ') = ' + sigDigits(data[x0].y);
     }
+    focus.style('display', null);
     focus.select('line')
       .attr('x1', function (d) { return x0; })
       .attr('y1', function (d) { return y0; })
@@ -184,11 +203,10 @@ var cdf = function(dist) {
     focus.select('circle')
       .attr('cx', function (d) { return x0; })
       .attr('cy', function (d) { return y0; });
-    focus.select('text')
-      .attr('class', 'bubble')
-      .attr('x', function (d) { return x0 + 9; })
-      .attr('y', function (d) { return y0; })
-      .attr('dy', '.35em')
+    bubble
+      .style('display', null)
+      .style('left', (d3.event.pageX - 72) + "px")
+      .style('top', (d3.event.pageY - 36) + "px")
       .text(caption);
   }
 
