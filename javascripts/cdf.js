@@ -141,12 +141,10 @@ var cdf = function(dist) {
 
   // Set up to plot a line downward from F(X) to the baseline.
   focus.append('line')
-    .datum(data)
     .attr('class', 'sweep');
 
   // Set up to plot a circle to mark the point of interest on F(X).
   focus.append('circle')
-    .datum(data)
     .attr('r', radius);
 
   svg.append('rect')
@@ -191,8 +189,8 @@ var cdf = function(dist) {
       y0 = yScale(dist.F([Math.floor(xScale.invert(x0))]));
       caption = 'P(X ≤ ' + Math.ceil(xScale.invert(x0)) + ') = ' + sigDigits(dist.F([Math.floor(xScale.invert(x0))]));
     } else {
-      y0 = yScale(data[x0].y);
-      caption = 'P(X ≤ ' + sigDigits(xScale.invert(x0)) + ') = ' + sigDigits(data[x0].y);
+      y0 = yScale(dist.F(xScale.invert(x0)));
+      caption = 'P(X ≤ ' + sigDigits(xScale.invert(x0)) + ') = ' + sigDigits(dist.F(xScale.invert(x0)));
     }
     focus.select('line')
       .attr('x1', function (d) { return x0; })
