@@ -1374,8 +1374,8 @@ mctad.weibull = function (λ, k) {
   // Mix in the convenience methods for f(X) and F(X).
   mctad.extend(dfs, mctad.continuousMixins);
 
-  dfs.domain.max = Math.ceil(10 * dfs.variance);
-  dfs.range.max = 0.1 * Math.ceil(10 * dfs.pdf(dfs.mode));
+  dfs.domain.max = Math.ceil(4 * dfs.variance);
+  dfs.range.max = 0.1 * Math.ceil(10 * dfs.pdf(0.0));
 
   return dfs;
 };
