@@ -22,14 +22,10 @@ mctad.weibull = function (λ, k) {
     mean: λ * mctad.Γ(1 + 1 / k),
     median: λ * Math.pow(Math.log(2), 1 / k),
     mode: function () {
-      if (k > 1) {
+      if (k >= 1) {
         return λ * Math.pow((k - 1) / k, 1 / k);
       } else {
-        if (k === 1) {
-          return 0;
-        } else {
-          return undefined;
-        }
+        return 0.0;
       }
     }(),
     variance: Math.pow(λ, 2) * ( mctad.Γ(1 + 2 / k) - Math.pow(mctad.Γ(1 + 1 / k), 2)),
