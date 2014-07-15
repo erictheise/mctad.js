@@ -3,7 +3,6 @@ var pdf = function(dist) {
     margin = { top: 27, right: 15, bottom: 18, left: 30 },
     paper = { width: 480, height: 240 },
     image = { width: paper.width - margin.left - margin.right, height: paper.height - margin.top - margin.bottom },
-    discreteWidth = 4,
     halfInterval = (0.5 * image.width / (Math.floor(dist.domain.max) - Math.ceil(dist.domain.min) + 1)),
     data = [];
 

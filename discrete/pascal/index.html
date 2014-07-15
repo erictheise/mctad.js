@@ -1,14 +1,15 @@
 ---
 layout: distribution
-title: "mctad.js: pascal"
+title: "pascal: mctad.js"
 overview: true
 ---
 
 ## Pascal
 
+### `mctad.pascal(5, 0.4)`
+
 <div id="pmf"></div>
 <div id="cdf"></div>
 
-<script>pmf(mctad.pascal(5, 0.4));</script>
-<script>cdf(mctad.pascal(5, 0.4));</script><br />
-
+<script>plot(mctad.pascal(5, 0.4), 'pmf', { divToAppend: '#pmf'} );</script>
+<script>plot(mctad.pascal(5, 0.4), 'cdf', { divToAppend: '#cdf'} );</script>

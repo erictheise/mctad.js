@@ -1,13 +1,15 @@
 ---
 layout: distribution
-title: "mctad.js: student's t"
+title: "student's t: mctad.js"
 overview: true
 ---
 
 ## Student's t
 
+### `mctad.t(5)`
+
 <div id="pdf"></div>
 <div id="cdf"></div>
 
-<script>pdf(mctad.t(5));</script>
-<script>cdf(mctad.t(5));</script><br />
+<script>plot(mctad.t(5), 'pdf', { divToAppend: '#pdf'} );</script>
+<script>plot(mctad.t(5), 'cdf', { divToAppend: '#cdf'} );</script>

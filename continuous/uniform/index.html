@@ -1,13 +1,15 @@
 ---
 layout: distribution
-title: "mctad.js: uniform"
+title: "uniform: mctad.js"
 overview: true
 ---
 
 ## Uniform
 
+### `mctad.uniform(-5, 8)`
+
 <div id="pdf"></div>
 <div id="cdf"></div>
 
-<script>pdf(mctad.uniform(-5, 8));</script>
-<script>cdf(mctad.uniform(-5, 8));</script><br />
+<script>plot(mctad.uniform(-5, 8), 'pdf', { divToAppend: '#pdf'} );</script>
+<script>plot(mctad.uniform(-5, 8), 'cdf', { divToAppend: '#cdf'} );</script>

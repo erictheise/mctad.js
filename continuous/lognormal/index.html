@@ -1,13 +1,15 @@
 ---
 layout: distribution
-title: "mctad.js: lognormal"
+title: "lognormal: mctad.js"
 overview: true
 ---
 
 ## Lognormal
 
+### `mctad.lognormal(0, 1)`
+
 <div id="pdf"></div>
 <div id="cdf"></div>
 
-<script>pdf(mctad.lognormal(0, 1));</script>
-<script>cdf(mctad.lognormal(0, 1));</script><br />
+<script>plot(mctad.lognormal(0, 1), 'pdf', { divToAppend: '#pdf'} );</script>
+<script>plot(mctad.lognormal(0, 1), 'cdf', { divToAppend: '#cdf'} );</script>

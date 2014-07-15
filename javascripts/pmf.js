@@ -4,7 +4,6 @@ var pmf = function(dist) {
     paper = { width: 480, height: 240 },
     image = { width: paper.width - margin.left - margin.right, height: paper.height - margin.top - margin.bottom },
     radius = 3.5,
-    discreteWidth = 4,
     halfInterval = (0.5 * image.width / (dist.domain.max - dist.domain.min + 1)),
     data = [];
 

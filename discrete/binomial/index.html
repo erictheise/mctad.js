@@ -1,14 +1,15 @@
 ---
 layout: distribution
-title: "mctad.js: binomial"
+title: "binomial: mctad.js"
 overview: true
 ---
 
 ## Binomial
 
+### `mctad.binomial(12, 0.75)`
+
 <div id="pmf"></div>
 <div id="cdf"></div>
 
-<script>pmf(mctad.binomial(12, 0.75));</script>
-<script>cdf(mctad.binomial(12, 0.75));</script><br />
-
+<script>plot(mctad.binomial(12, 0.75), 'pmf', { divToAppend: '#pmf'} );</script>
+<script>plot(mctad.binomial(12, 0.75), 'cdf', { divToAppend: '#cdf'} );</script>

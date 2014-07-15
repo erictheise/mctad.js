@@ -1,13 +1,15 @@
 ---
 layout: distribution
-title: "mctad.js: exponential"
+title: "exponential: mctad.js"
 overview: true
 ---
 
 ## Exponential
 
+### `mctad.exponential(.5)`
+
 <div id="pdf"></div>
 <div id="cdf"></div>
 
-<script>pdf(mctad.exponential(.5));</script>
-<script>cdf(mctad.exponential(.5));</script><br />
+<script>plot(mctad.exponential(.5), 'pdf', { divToAppend: '#pdf'} );</script>
+<script>plot(mctad.exponential(.5), 'cdf', { divToAppend: '#cdf'} );</script>

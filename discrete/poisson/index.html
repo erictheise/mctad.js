@@ -1,13 +1,28 @@
 ---
 layout: distribution
-title: "mctad.js: poisson"
+title: "poisson: mctad.js"
 overview: true
 ---
 
 ## Poisson
 
-<div id="pmf"></div>
-<div id="cdf"></div>
+### `mctad.poisson(1)`
 
-<script>pmf(mctad.poisson(3));</script>
-<script>cdf(mctad.poisson(3));</script><br />
+<div id="pmf_1"></div>
+<div id="cdf_1"></div>
+<script>plot(mctad.poisson(1), 'pmf', { divToAppend: '#pmf_1'} );</script>
+<script>plot(mctad.poisson(1), 'cdf', { divToAppend: '#cdf_1'} );</script>
+
+### `mctad.poisson(4)`
+
+<div id="pmf_4"></div>
+<div id="cdf_4"></div>
+<script>plot(mctad.poisson(4), 'pmf', { divToAppend: '#pmf_4'} );</script>
+<script>plot(mctad.poisson(4), 'cdf', { divToAppend: '#cdf_4'} );</script>
+
+### `mctad.poisson(10)`
+
+<div id="pmf_10"></div>
+<div id="cdf_10"></div>
+<script>plot(mctad.poisson(10), 'pmf', { divToAppend: '#pmf_10'} );</script>
+<script>plot(mctad.poisson(10), 'cdf', { divToAppend: '#cdf_10'} );</script>

@@ -1,13 +1,15 @@
 ---
 layout: distribution
-title: "mctad.js: normal"
+title: "normal: mctad.js"
 overview: true
 ---
 
 ## Normal
 
+### `mctad.normal(10, 1)`
+
 <div id="pdf"></div>
 <div id="cdf"></div>
 
-<script>pdf(mctad.normal(10, 1));</script>
-<script>cdf(mctad.normal(10, 1));</script><br />
+<script>plot(mctad.normal(10, 1), 'pdf', { divToAppend: '#pdf'} );</script>
+<script>plot(mctad.normal(10, 1), 'cdf', { divToAppend: '#cdf'} );</script>

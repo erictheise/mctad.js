@@ -1,13 +1,15 @@
 ---
 layout: distribution
-title: "mctad.js: discrete uniform"
+title: "discrete uniform: mctad.js"
 overview: true
 ---
 
 ## Discrete Uniform
 
+### `mctad.discreteUniform(-5, 8)`
+
 <div id="pmf"></div>
 <div id="cdf"></div>
 
-<script>pmf(mctad.discreteUniform(-5, 8));</script>
-<script>cdf(mctad.discreteUniform(-5, 8));</script><br />
+<script>plot(mctad.discreteUniform(-5, 8), 'pmf', { divToAppend: '#pmf'} );</script>
+<script>plot(mctad.discreteUniform(-5, 8), 'cdf', { divToAppend: '#cdf'} );</script>
