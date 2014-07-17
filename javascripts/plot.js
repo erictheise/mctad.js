@@ -1,15 +1,14 @@
-var plot = function(dist, plot, options) {
+var plot = function (dist, plot, options) {
 
   if (typeof options === 'undefined') { options = {}; }
 
   var
-    i,
-    x,
+    i, x, n,
     curve,
-    bubble,
+    stats, bubble,
     divToAppend = options.hasOwnProperty('divToAppend') ? options.divToAppend : '#plot',
-    margin = { top: 27, right: 140, bottom: 18, left: 30 },
-    paper = { width: 640, height: 240 },
+    margin = { top: 27, right: 18, bottom: 18, left: 30 },
+    paper = { width: 480, height: 240 },
     image = { width: paper.width - margin.left - margin.right, height: paper.height - margin.top - margin.bottom },
     radius = 3.5,
     halfInterval = (0.5 * image.width / (Math.floor(dist.domain.max) - Math.ceil(dist.domain.min) + 1)),
@@ -28,15 +27,16 @@ var plot = function(dist, plot, options) {
 
   var yScale;
   switch (plot) {
-    case 'pmf':
-    case 'pdf':
+    case 'cdf':
+      yScale = d3.scale.linear()
+        .domain([0, 1])
+        .range([image.height, 0]);
+      break;
+
+    // default handles 'pmf', 'pdf', and 'gen' cases.
+    default:
     yScale = d3.scale.linear()
       .domain([dist.range.min, dist.range.max])
-      .range([image.height, 0]);
-    break;
-    case 'cdf':
-    yScale = d3.scale.linear()
-      .domain([0, 1])
       .range([image.height, 0]);
     break;
   }
@@ -72,8 +72,16 @@ var plot = function(dist, plot, options) {
     .attr('class', 'axis')
     .call(yAxis);
 
+  // Extract the generator parameter, if it's a 'gen' plot.
+  if (plot.search(/^gen/) > -1) {
+    n = parseInt(plot.match(/\d+/));
+    plot = 'gen';
+  }
+
   switch (plot) {
+
     case 'pmf':
+    case 'gen':
       for (i = dist.domain.min; i <= dist.domain.max; i++) {
         data.push([i, dist.p(i)]);
       }
@@ -101,6 +109,21 @@ var plot = function(dist, plot, options) {
         .on('mousemove', pmf_mousemove)
       ;
 
+      // Set up the stats.
+      stats = d3.select(divToAppend)
+        .data(data)
+        .append('div')
+        .attr('class', 'stats')
+        .style('margin-top', margin.top + 'px')
+        .html(
+          'mean: ' + dist.mean + '<br />' +
+          'median: ' + dist.median + '<br />' +
+          'mode: [' + mctad.sortNumeric(dist.mode) + ']<br />' +
+          'variance: ' + dist.variance + '<br />' +
+          'skewness: ' + dist.skewness + '<br />' +
+          'entropy: ' + dist.entropy + '<br />'
+        );
+
       // Set up and hide the information bubble.
       bubble = d3.select('body')
         .data(data)
@@ -109,35 +132,35 @@ var plot = function(dist, plot, options) {
         .style('opacity', 0);
 
       // Fade in the bubble on mouseover.
-    function pmf_mouseover() {
-      bubble.transition()
-        .duration(200)
-        .style('opacity', 1);
-    }
+      function pmf_mouseover() {
+        bubble.transition()
+          .duration(200)
+          .style('opacity', 1);
+      }
 
       // Fade out the bubble on mouseout.
-    function pmf_mouseout() {
-      bubble.transition()
-        .duration(60)
-        .style('opacity', 0);
-    }
+      function pmf_mouseout() {
+        bubble.transition()
+          .duration(60)
+          .style('opacity', 0);
+      }
 
       // Place the bubble containing the caption.
-    function pmf_mousemove() {
-      var
-        x0 = d3.mouse(this)[0],
-        y0,
-        sigDigits = d3.format(".4f"),
-        caption = '';
+      function pmf_mousemove() {
+        var
+          x0 = d3.mouse(this)[0],
+          y0,
+          sigDigits = d3.format(".4f"),
+          caption = '';
 
-      y0 = yScale(dist.p([Math.floor(xScale.invert(x0))]));
-      caption = 'P(X = ' + Math.round(xScale.invert(x0)) + ') = ' + sigDigits(dist.p([Math.round(xScale.invert(x0))]));
+        y0 = yScale(dist.p([Math.floor(xScale.invert(x0))]));
+        caption = 'P(X = ' + Math.round(xScale.invert(x0)) + ') = ' + sigDigits(dist.p([Math.round(xScale.invert(x0))]));
 
-      bubble
-        .style('display', null)
-        .style('left', (d3.event.pageX - 64) + 'px')
-        .style('top', (d3.event.pageY - 36) + 'px')
-        .text(caption);
+        bubble
+          .style('display', null)
+          .style('left', (d3.event.pageX - 64) + 'px')
+          .style('top', (d3.event.pageY - 36) + 'px')
+          .text(caption);
       }
       break;
 

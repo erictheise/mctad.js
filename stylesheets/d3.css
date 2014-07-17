@@ -54,12 +54,24 @@
   stroke-width: 1.5px;
 }
 
+.stats {
+  float: right;
+  width: 120px;
+  text-align: left;
+  padding: 12px;
+  font: 12px sans-serif;
+  line-height: 20px;
+  background: #fff;
+  border: solid 1px #aaa;
+  border-radius: 8px;
+}
+
 .bubble {
   position: absolute;
   text-align: center;
   padding: 8px;
   font: 12px sans-serif;
-  background: #eee;
+  background: #fff;
   border: solid 1px #aaa;
   border-radius: 8px;
   pointer-events: none;
