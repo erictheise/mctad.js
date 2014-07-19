@@ -5,7 +5,7 @@ var plot = function (dist, plot, options) {
   var
     i, x, n,
     curve,
-    stats, bubble,
+    stats, bubble, sigDigits = d3.format(".4f"),
     divToAppend = options.hasOwnProperty('divToAppend') ? options.divToAppend : '#plot',
     margin = { top: 27, right: 18, bottom: 18, left: 30 },
     paper = { width: 480, height: 240 },
@@ -118,7 +118,7 @@ var plot = function (dist, plot, options) {
         .html(
           'mean: ' + dist.mean + '<br />' +
           'median: ' + dist.median + '<br />' +
-          'mode: [' + mctad.sortNumeric(dist.mode) + ']<br />' +
+          'mode: ' + dist.mode + '<br />' +
           'variance: ' + dist.variance + '<br />' +
           'skewness: ' + dist.skewness + '<br />' +
           'entropy: ' + dist.entropy + '<br />'
@@ -150,7 +150,6 @@ var plot = function (dist, plot, options) {
         var
           x0 = d3.mouse(this)[0],
           y0,
-          sigDigits = d3.format(".4f"),
           caption = '';
 
         y0 = yScale(dist.p([Math.floor(xScale.invert(x0))]));
