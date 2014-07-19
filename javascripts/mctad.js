@@ -766,7 +766,7 @@ mctad.poisson = function (λ) {
     generate: function (n) {
       var a = Math.pow(Math.E, -λ), randomVariables = [];
       for (var i = 0; i < n; i++) {
-        var j = 1, b = 1;
+        var j = 0, b = 1;
         do {
           b = b * mctad.getRandomArbitrary(0, 1);
           j++;
