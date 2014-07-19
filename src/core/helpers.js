@@ -57,6 +57,7 @@ mctad.extend = function (destination, source) {
 // A function for sorting a simple Array in numerical, rather than lexicographical, order.
 //
 mctad.sortNumeric = function (data) {
+  if (typeof data === 'undefined') { return undefined; }
   data.sort(function (a, b) { return a - b; });
   return data;
 };

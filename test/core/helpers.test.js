@@ -43,6 +43,9 @@ describe('sign', function () {
 });
 
 describe('sortNumeric', function () {
+  it('can return undefined if passed undefined (as in the case of `mctad.discreteUniform().mode`', function () {
+    assert.isUndefined(mctad.sortNumeric(undefined));
+  });
   it('can leave a sorted array alone', function () {
     assert.deepEqual(mctad.sortNumeric([1, 2, 3, 4, 11]), [1, 2, 3, 4, 11], 'array should be unchanged');
   });
