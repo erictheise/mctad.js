@@ -34,7 +34,7 @@ mctad.geometric = function (p) {
     generate: function (n) {
       var randomVariables = [];
       for (var k = 0; k < n; k++ ) {
-        randomVariables.push(Math.floor(Math.log(mctad.getRandomArbitrary(0, 1))/Math.log(1.0 - p)));
+        randomVariables.push(Math.floor(Math.log(mctad.getRandomArbitrary(0, 1)) / Math.log(1.0 - p)));
       }
       return randomVariables;
     }
