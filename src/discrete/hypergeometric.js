@@ -23,7 +23,7 @@ mctad.hypergeometric = function (N, K, n) {
   var k = 0, pmf, cdf = 0, dfs = {
     mean: n * K / N,
     median: undefined,
-    mode: Math.floor(((n + 1) * (K + 1)) / (N + 2)),
+    mode: [Math.floor(((n + 1) * (K + 1)) / (N + 2))],
     variance: n * (K / N) * ((N - K) / N) * ((N - n) / (N - 1)),
     skewness: ((N - 2 * K) * Math.sqrt(N - 1) * (N - 2 * n)) / (Math.sqrt(n * K * (N - K) * (N - n)) * (N - 2)),
     entropy: undefined,

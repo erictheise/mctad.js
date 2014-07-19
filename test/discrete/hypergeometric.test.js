@@ -17,7 +17,7 @@ describe('hypergeometric', function() {
     assert.isObject(mctad.hypergeometric(9, 3, 4));
     assert.closeTo(mctad.hypergeometric(9, 3, 4).mean, 1.33333, mctad.ε);
     assert.isUndefined(mctad.hypergeometric(9, 3, 4).median);
-    assert.equal(mctad.hypergeometric(9, 3, 4).mode, 1);
+    assert.deepEqual(mctad.hypergeometric(9, 3, 4).mode, [1]);
     assert.closeTo(mctad.hypergeometric(9, 3, 4).variance, 0.55556, mctad.ε);
     assert.closeTo(mctad.hypergeometric(9, 3, 4).skewness, 0.06389, mctad.ε);
     assert.isUndefined(mctad.hypergeometric(9, 3, 4).entropy);

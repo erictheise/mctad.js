@@ -12,7 +12,7 @@ describe('geometric', function() {
     assert.isObject(mctad.geometric(0.25));
     assert.closeTo(mctad.geometric(0.25).mean, 3.0, mctad.ε);
     assert.isUndefined(mctad.geometric(0.25).median);
-    assert.equal(mctad.geometric(0.25).mode, 0);
+    assert.deepEqual(mctad.geometric(0.25).mode, [0]);
     assert.closeTo(mctad.geometric(0.25).variance, 12.0, mctad.ε);
     assert.closeTo(mctad.geometric(0.25).skewness, 2.02073, mctad.ε);
     assert.closeTo(mctad.geometric(0.25).entropy, 3.24511, mctad.ε);

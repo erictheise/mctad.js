@@ -22,7 +22,7 @@ mctad.geometric = function (p) {
   var x = 0, pmf, cdf = 0, dfs = {
     mean: (1 - p)/p,
     median: undefined, // @todo: understand nonuniqueness as laid out at wikipedia page
-    mode: 0.0,
+    mode: [0.0],
     variance: (1.0 - p)/Math.pow(p, 2),
     skewness: (2 - p)/Math.sqrt(1 - p),
     entropy: (-(1.0 - p) * (Math.log(1.0 - p) / Math.LN2) - p * (Math.log(p) / Math.LN2)) / p,

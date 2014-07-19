@@ -15,7 +15,7 @@ describe('pascal', function() {
     assert.isObject(mctad.pascal(5, 0.4));
     assert.closeTo(mctad.pascal(5, 0.4).mean, 3.33333, mctad.ε);
     assert.isUndefined(mctad.pascal(5, 0.4).median);
-    assert.equal(mctad.pascal(5, 0.4).mode, [2]);
+    assert.deepEqual(mctad.pascal(5, 0.4).mode, [2]);
     assert.closeTo(mctad.pascal(5, 0.4).variance, 5.55555, mctad.ε);
     assert.closeTo(mctad.pascal(5, 0.4).skewness, 0.98995, mctad.ε);
     assert.isUndefined(mctad.pascal(5, 0.4).entropy);

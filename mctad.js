@@ -619,7 +619,7 @@ mctad.geometric = function (p) {
   var x = 0, pmf, cdf = 0, dfs = {
     mean: (1 - p)/p,
     median: undefined, // @todo: understand nonuniqueness as laid out at wikipedia page
-    mode: 0.0,
+    mode: [0.0],
     variance: (1.0 - p)/Math.pow(p, 2),
     skewness: (2 - p)/Math.sqrt(1 - p),
     entropy: (-(1.0 - p) * (Math.log(1.0 - p) / Math.LN2) - p * (Math.log(p) / Math.LN2)) / p,
@@ -661,7 +661,7 @@ mctad.hypergeometric = function (N, K, n) {
   var k = 0, pmf, cdf = 0, dfs = {
     mean: n * K / N,
     median: undefined,
-    mode: Math.floor(((n + 1) * (K + 1)) / (N + 2)),
+    mode: [Math.floor(((n + 1) * (K + 1)) / (N + 2))],
     variance: n * (K / N) * ((N - K) / N) * ((N - n) / (N - 1)),
     skewness: ((N - 2 * K) * Math.sqrt(N - 1) * (N - 2 * n)) / (Math.sqrt(n * K * (N - K) * (N - n)) * (N - 2)),
     entropy: undefined,
@@ -698,9 +698,9 @@ mctad.pascal = function (r, p) {
     median: undefined,
     mode: (function () {
       if (r > 1) {
-        return Math.floor((p * (r - 1)) / (1.0 - p));
+        return [Math.floor((p * (r - 1)) / (1.0 - p))];
       } else {
-        return 0;
+        return [0];
       }
     })(),
     variance: (r * p) / Math.pow((1.0 - p), 2),
@@ -740,7 +740,7 @@ mctad.poisson = function (λ) {
   var x = 0, pmf, cdf = 0, dfs = {
     mean: λ,
     median: Math.floor(λ + 1 / 3 - 0.02 / λ),
-    mode: [Math.floor(λ), Math.ceil(λ) - 1],
+    mode: [Math.ceil(λ) - 1, Math.floor(λ)],
     variance: λ,
     skewness: Math.pow(λ, 0.5),
     entropy: undefined, // @todo: revisit this

@@ -26,9 +26,9 @@ mctad.pascal = function (r, p) {
     median: undefined,
     mode: (function () {
       if (r > 1) {
-        return Math.floor((p * (r - 1)) / (1.0 - p));
+        return [Math.floor((p * (r - 1)) / (1.0 - p))];
       } else {
-        return 0;
+        return [0];
       }
     })(),
     variance: (r * p) / Math.pow((1.0 - p), 2),
