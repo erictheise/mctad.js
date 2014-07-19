@@ -28,6 +28,20 @@ mctad.allPositive = function (data) {
   return positive;
 };
 
+// ## sign(n)
+// A function used to determine the sign of a number.
+// Taken from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/sign
+// The Harmony ECMAScript 6 proposal includes Math.sign(), which would replace this helper.
+mctad.sign = function (x) {
+  if(isNaN(x)) {
+    return NaN;
+  } else if(x === 0) {
+    return x;
+  } else {
+    return (x > 0 ? 1 : -1);
+  }
+};
+
 // ## extend(destination, source)
 // A function used to add convenience methods to distributions, e.g., `.p(x)`, `.f(x)`, `.F(x)`.
 //
@@ -970,6 +984,15 @@ mctad.exponential = function (λ) {
   dfs.range.max = 0.1 * Math.ceil(10 * dfs.pdf(0.0));
 
   return dfs;
+};
+;
+mctad.inverseErf = function (x) {
+  var a = 0.147;
+  return mctad.sign(x) * Math.sqrt(
+    Math.sqrt(
+      Math.pow((2 / (mctad.π * a) + (Math.log(1 - Math.pow(x, 2)) / 2)), 2) - Math.log(1 - Math.pow(x, 2)) / a
+    ) - ((2 / (mctad.π * a)) + Math.log(1 - Math.pow(x, 2)) / 2)
+  );
 };
 ;
 mctad.lognormal = function (μ, σ2) {
