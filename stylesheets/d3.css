@@ -9,6 +9,13 @@
   fill-opacity: 33%;
 }
 
+.rv {
+  stroke: #ffc700;
+  stroke-width: 1.5px;
+  fill: #ffde48;
+  fill-opacity: 33%;
+}
+
 .curve, .trace, .start {
   stroke: #2422a2;
   stroke-width: 1.5px;
@@ -29,6 +36,18 @@
 }
 
 .axis text {
+  font-family: sans-serif;
+  font-size: 0.6em;
+}
+
+.rightAxis path,
+.rightAxis line {
+  fill: none;
+  stroke: none;
+  shape-rendering: crispEdges;
+}
+
+.rightAxis text {
   font-family: sans-serif;
   font-size: 0.6em;
 }

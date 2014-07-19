@@ -28,6 +28,20 @@ mctad.allPositive = function (data) {
   return positive;
 };
 
+// ## sign(n)
+// A function used to determine the sign of a number.
+// Taken from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/sign
+// The Harmony ECMAScript 6 proposal includes Math.sign(), which would replace this helper.
+mctad.sign = function (x) {
+  if(isNaN(x)) {
+    return NaN;
+  } else if(x === 0) {
+    return x;
+  } else {
+    return (x > 0 ? 1 : -1);
+  }
+};
+
 // ## extend(destination, source)
 // A function used to add convenience methods to distributions, e.g., `.p(x)`, `.f(x)`, `.F(x)`.
 //
@@ -972,6 +986,15 @@ mctad.exponential = function (λ) {
   return dfs;
 };
 ;
+mctad.inverseErf = function (x) {
+  var a = 0.147;
+  return mctad.sign(x) * Math.sqrt(
+    Math.sqrt(
+      Math.pow((2 / (mctad.π * a) + (Math.log(1 - Math.pow(x, 2)) / 2)), 2) - Math.log(1 - Math.pow(x, 2)) / a
+    ) - ((2 / (mctad.π * a)) + Math.log(1 - Math.pow(x, 2)) / 2)
+  );
+};
+;
 mctad.lognormal = function (μ, σ2) {
   // Check that `μ > 0` and `σ2 > 0`.
   if (μ < 0 || σ2 <= 0) { return undefined; }
@@ -1327,14 +1350,10 @@ mctad.weibull = function (λ, k) {
     mean: λ * mctad.Γ(1 + 1 / k),
     median: λ * Math.pow(Math.log(2), 1 / k),
     mode: function () {
-      if (k > 1) {
+      if (k >= 1) {
         return λ * Math.pow((k - 1) / k, 1 / k);
       } else {
-        if (k === 1) {
-          return 0;
-        } else {
-          return undefined;
-        }
+        return 0.0;
       }
     }(),
     variance: Math.pow(λ, 2) * ( mctad.Γ(1 + 2 / k) - Math.pow(mctad.Γ(1 + 1 / k), 2)),
@@ -1374,7 +1393,7 @@ mctad.weibull = function (λ, k) {
   // Mix in the convenience methods for f(X) and F(X).
   mctad.extend(dfs, mctad.continuousMixins);
 
-  dfs.domain.max = Math.ceil(10 * dfs.variance);
+  dfs.domain.max = Math.ceil(6 * dfs.variance);
   dfs.range.max = 0.1 * Math.ceil(10 * dfs.pdf(dfs.mode));
 
   return dfs;

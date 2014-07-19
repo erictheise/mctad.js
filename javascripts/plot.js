@@ -162,6 +162,58 @@ var plot = function (dist, plot, options) {
           .style('top', (d3.event.pageY - 36) + 'px')
           .text(caption);
       }
+
+      if (plot === 'gen') {
+        // Actually generate n random variables from the specified distribution.
+        var random_variables = dist.generate(n), random_variables_xy = [], frequencies = {}, max = 0;
+
+        // Iterate through the array of random variables data, creating an array that can be plotted, an object that counts frequencies,
+        // and keeping track of the maximum value.
+        for (i = 0; i < random_variables.length; i++) {
+          if (frequencies.hasOwnProperty(random_variables[i])) {
+            frequencies[random_variables[i]]++;
+          } else {
+            frequencies[random_variables[i]] = 1;
+          }
+          if (frequencies[random_variables[i]] > max) { max = frequencies[random_variables[i]]; }
+          random_variables_xy.push([random_variables[i], frequencies[random_variables[i]]]);
+        }
+
+        var y2Scale = d3.scale.linear()
+          .domain([0, max])
+          .range([image.height, 0]);
+
+        var y2Axis = d3.svg.axis()
+          .scale(y2Scale)
+          .ticks(10)
+          .tickSize(-image.width)
+          .orient('right');
+
+        svg.append('g')
+          .attr('class', 'rightAxis')
+          .attr('transform', 'translate(' + image.width + ', 0)')
+          .call(y2Axis);
+
+        function update(data) {
+          var rv = svg.selectAll('rv')
+            .data(data)
+            .enter().append('circle')
+            .attr('class', 'rv')
+            .attr('r', 0.8 * radius)
+            .attr('cx', function (d) { return xScale(d[0]); })
+            .attr('cy', function (d) { return y2Scale(d[1]); });
+        }
+
+      i = 0;
+      setInterval(function () {
+        if (i < n) {
+          update([random_variables_xy[i]]);
+          i++;
+        }
+      }, 80);
+
+      }
+
       break;
 
     case 'pdf':
