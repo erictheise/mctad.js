@@ -631,7 +631,7 @@ mctad.geometric = function (p) {
     generate: function (n) {
       var randomVariables = [];
       for (var k = 0; k < n; k++ ) {
-        randomVariables.push(Math.floor(Math.log(mctad.getRandomArbitrary(0, 1))/Math.log(1.0 - p)));
+        randomVariables.push(Math.floor(Math.log(mctad.getRandomArbitrary(0, 1)) / Math.log(1.0 - p)));
       }
       return randomVariables;
     }
@@ -707,13 +707,27 @@ mctad.pascal = function (r, p) {
     skewness: (1 + p) / Math.sqrt(r * p),
     entropy: undefined,
     domain: { min: 0, max: Infinity },
-    range: { min: 0.0, max: 0.0 }
+    range: { min: 0.0, max: 0.0 },
 
-    // @todo: implement `mctad.pascal(5, 0.4).generate()`
-//    generate: function () {
-//      var randomVariables = [];
-//      return randomVariables;
-//    }
+    // `mctad.pascal(5, 0.8).generate(100)` will perform 100 sequences of [Bernoulli trials](bernoulli.html), each of
+    // which ceases when five failures have been observed. The probability of success is 0.8.
+    generate: function (n) {
+      var successes, failures,
+        randomVariables = [];
+      for (var i = 0; i < n; i++ ) {
+        successes = 0;
+        failures = 0;
+        do {
+          if (mctad.bernoulli(p).generate(1)[0] === 1) {
+            successes++;
+          } else {
+            failures++;
+          }
+        } while (failures <= r);
+        randomVariables.push(successes);
+      }
+      return randomVariables;
+    }
   };
 
   // Iterate over the domain, calculating the probability mass and cumulative distribution functions.
