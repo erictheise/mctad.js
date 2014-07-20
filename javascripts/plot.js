@@ -399,14 +399,16 @@ var plot = function (dist, plot, options) {
 
     case 'gen':
 
-      // Provide invisible circular svg overlays that will respond to the mouse.
-      svg.selectAll('target')
-        .data(data)
-        .enter().append('circle')
+      // Provide an invisible svg overlay that will respond to the mouse.
+      var focus = svg.append('g')
+          .attr('class', 'focus')
+          .style('display', 'none')
+        ;
+
+      svg.append('rect')
         .attr('class', 'overlay')
-        .attr('r', halfInterval)
-        .attr('cx', function (d) { return xScale(d[0]); })
-        .attr('cy', function (d) { return yScale(d[1]); })
+        .attr('width', image.width)
+        .attr('height', image.height)
         .on('mouseover', gen_mouseover)
         .on('mouseout', gen_mouseout)
         .on('mousemove', gen_mousemove)
@@ -429,7 +431,6 @@ var plot = function (dist, plot, options) {
 
       // Set up and hide the information bubble.
       bubble = d3.select('body')
-        .data(data)
         .append('div')
         .attr('class', 'bubble')
         .style('opacity', 0);
@@ -453,16 +454,19 @@ var plot = function (dist, plot, options) {
         var
           x0 = d3.mouse(this)[0],
           y0,
+          observed_frequency,
           caption = '';
 
         y0 = yScale(dist.p([Math.floor(xScale.invert(x0))]));
-        caption = 'P(X = ' + Math.round(xScale.invert(x0)) + ') = ' + sigDigits(dist.p([Math.round(xScale.invert(x0))]));
+        (typeof frequencies[Math.round(xScale.invert(x0))] === 'undefined') ? observed_frequency = 0 : observed_frequency = frequencies[Math.round(xScale.invert(x0))];
+        caption = 'E(' + Math.round(xScale.invert(x0)) + ') = ' + expected_frequencies[Math.round(xScale.invert(x0))][1] + '<br />' +
+                  'O(' + Math.round(xScale.invert(x0)) + ') = ' + observed_frequency;
 
         bubble
           .style('display', null)
-          .style('left', (d3.event.pageX - 64) + 'px')
+          .style('left', (d3.event.pageX - 32) + 'px')
           .style('top', (d3.event.pageY - 36) + 'px')
-          .text(caption);
+          .html(caption);
       }
 
       function update(data) {
