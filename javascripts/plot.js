@@ -14,6 +14,34 @@ var plot = function (dist, plot, options) {
     halfInterval = (0.5 * image.width / (Math.floor(dist.domain.max) - Math.ceil(dist.domain.min) + 1)),
     data = [];
 
+  // A pre-step if this plot uses a generator.
+  if (plot.search(/^gen/) > -1) {
+    // Extract the generator parameter.
+    n = parseInt(plot.match(/\d+/));
+
+    // Generate n random variables from the specified distribution.
+    var random_variables = dist.generate(n), random_variables_xy = [], frequencies = {}, expected_frequencies = [], max = 0;
+
+    // Iterate through the array of random variables data, creating an array that can be plotted, an object that counts frequencies,
+    // and keeping track of the maximum value.
+    for (i = 0; i < random_variables.length; i++) {
+      if (frequencies.hasOwnProperty(random_variables[i])) {
+        frequencies[random_variables[i]]++;
+      } else {
+        frequencies[random_variables[i]] = 1;
+      }
+      if (frequencies[random_variables[i]] > max) { max = frequencies[random_variables[i]]; }
+      random_variables_xy.push([random_variables[i], frequencies[random_variables[i]]]);
+    }
+
+    // Create the expected value array.
+    for (i = dist.domain.min; i <= dist.domain.max; i++) {
+      expected_frequencies.push([i, Math.round(n * dist.p(i))]);
+    }
+console.log(expected_frequencies);
+    plot = 'gen';
+  }
+
   var xScale = d3.scale.linear()
     .domain([dist.domain.min, dist.domain.max])
     .range([halfInterval, image.width - halfInterval]);
@@ -33,11 +61,17 @@ var plot = function (dist, plot, options) {
         .range([image.height, 0]);
       break;
 
-    // default handles 'pmf', 'pdf', and 'gen' cases.
+    case 'gen':
+      yScale = d3.scale.linear()
+        .domain([0, max + 0.1 * max])
+        .range([image.height, 0]);
+      break;
+
+    // default handles 'pmf' and 'pdf' cases.
     default:
-    yScale = d3.scale.linear()
-      .domain([dist.range.min, dist.range.max])
-      .range([image.height, 0]);
+      yScale = d3.scale.linear()
+        .domain([dist.range.min, dist.range.max])
+        .range([image.height, 0]);
     break;
   }
 
@@ -72,16 +106,12 @@ var plot = function (dist, plot, options) {
     .attr('class', 'axis')
     .call(yAxis);
 
-  // Extract the generator parameter, if it's a 'gen' plot.
-  if (plot.search(/^gen/) > -1) {
-    n = parseInt(plot.match(/\d+/));
-    plot = 'gen';
-  }
+
 
   switch (plot) {
 
     case 'pmf':
-    case 'gen':
+
       for (i = dist.domain.min; i <= dist.domain.max; i++) {
         data.push([i, dist.p(i)]);
       }
@@ -122,27 +152,31 @@ var plot = function (dist, plot, options) {
           'variance: ' + dist.variance + '<br />' +
           'skewness: ' + dist.skewness + '<br />' +
           'entropy: ' + dist.entropy + '<br />'
-        );
+        )
+      ;
 
       // Set up and hide the information bubble.
       bubble = d3.select('body')
         .data(data)
         .append('div')
         .attr('class', 'bubble')
-        .style('opacity', 0);
+        .style('opacity', 0)
+      ;
 
       // Fade in the bubble on mouseover.
       function pmf_mouseover() {
         bubble.transition()
           .duration(200)
-          .style('opacity', 1);
+          .style('opacity', 1)
+        ;
       }
 
       // Fade out the bubble on mouseout.
       function pmf_mouseout() {
         bubble.transition()
           .duration(60)
-          .style('opacity', 0);
+          .style('opacity', 0)
+        ;
       }
 
       // Place the bubble containing the caption.
@@ -159,58 +193,8 @@ var plot = function (dist, plot, options) {
           .style('display', null)
           .style('left', (d3.event.pageX - 64) + 'px')
           .style('top', (d3.event.pageY - 36) + 'px')
-          .text(caption);
-      }
-
-      if (plot === 'gen') {
-        // Actually generate n random variables from the specified distribution.
-        var random_variables = dist.generate(n), random_variables_xy = [], frequencies = {}, max = 0;
-
-        // Iterate through the array of random variables data, creating an array that can be plotted, an object that counts frequencies,
-        // and keeping track of the maximum value.
-        for (i = 0; i < random_variables.length; i++) {
-          if (frequencies.hasOwnProperty(random_variables[i])) {
-            frequencies[random_variables[i]]++;
-          } else {
-            frequencies[random_variables[i]] = 1;
-          }
-          if (frequencies[random_variables[i]] > max) { max = frequencies[random_variables[i]]; }
-          random_variables_xy.push([random_variables[i], frequencies[random_variables[i]]]);
-        }
-
-        var y2Scale = d3.scale.linear()
-          .domain([0, max])
-          .range([image.height, 0]);
-
-        var y2Axis = d3.svg.axis()
-          .scale(y2Scale)
-          .ticks(10)
-          .tickSize(-image.width)
-          .orient('right');
-
-        svg.append('g')
-          .attr('class', 'rightAxis')
-          .attr('transform', 'translate(' + image.width + ', 0)')
-          .call(y2Axis);
-
-        function update(data) {
-          var rv = svg.selectAll('rv')
-            .data(data)
-            .enter().append('circle')
-            .attr('class', 'rv')
-            .attr('r', 0.8 * radius)
-            .attr('cx', function (d) { return xScale(d[0]); })
-            .attr('cy', function (d) { return y2Scale(d[1]); });
-        }
-
-      i = 0;
-      setInterval(function () {
-        if (i < n) {
-          update([random_variables_xy[i]]);
-          i++;
-        }
-      }, 80);
-
+          .text(caption)
+        ;
       }
 
       break;
@@ -227,12 +211,15 @@ var plot = function (dist, plot, options) {
 
       curve = d3.svg.line()
         .x(function(d) { return xScale(d.x); })
-        .y(function(d) { return yScale(d.y); });
+        .y(function(d) { return yScale(d.y); })
+      ;
 
       svg.append('path')
         .datum(data)
         .attr('class', 'curve')
-        .attr('d', curve);
+        .attr('d', curve)
+      ;
+
       break;
 
     case 'cdf':
@@ -260,7 +247,8 @@ var plot = function (dist, plot, options) {
               return xScale(dist.domain.max + 0.5);
             }
           })
-          .attr('y2', function (d) { return yScale(d[1]); });
+          .attr('y2', function (d) { return yScale(d[1]); })
+        ;
 
         // "Start" is the small line segment that extends from the left edge of the image to F(0).
         svg.selectAll('start')
@@ -270,7 +258,8 @@ var plot = function (dist, plot, options) {
           .attr('x1', function (d) { return xScale(dist.domain.min - 0.5); })
           .attr('y1', function (d) { return yScale(0); })
           .attr('x2', function (d) { return xScale(dist.domain.min) - radius; })
-          .attr('y2', function (d) { return yScale(0); });
+          .attr('y2', function (d) { return yScale(0); })
+        ;
 
         // "Dots" mark the actual values for F(X).
         svg.selectAll('dot')
@@ -279,7 +268,8 @@ var plot = function (dist, plot, options) {
           .attr('class', 'dot')
           .attr('r', radius)
           .attr('cx', function (d) { return xScale(d[0]); })
-          .attr('cy', function (d) { return yScale(d[1]); });
+          .attr('cy', function (d) { return yScale(d[1]); })
+        ;
 
         // End discrete distribution plotting.
 
@@ -296,7 +286,8 @@ var plot = function (dist, plot, options) {
         var area = d3.svg.area()
           .x(function (d) { return xScale(d.x); })
           .y0(function (d) { return yScale(d.y); })
-          .y1(function (d) { return image.height; });
+          .y1(function (d) { return image.height; })
+          ;
 
         svg.append('path')
           .datum(data)
@@ -306,12 +297,14 @@ var plot = function (dist, plot, options) {
         // Provide a method for, and append, the curve itself.
         curve = d3.svg.line()
           .x(function (d) { return xScale(d.x); })
-          .y(function (d) { return yScale(d.y); });
+          .y(function (d) { return yScale(d.y); })
+        ;
 
         svg.append('path')
           .datum(data)
           .attr('class', 'curve')
-          .attr('d', curve);
+          .attr('d', curve)
+        ;
 
         // End continuous distribution plotting.
 
@@ -320,11 +313,13 @@ var plot = function (dist, plot, options) {
       // Provide an invisible svg overlay that will respond to the mouse.
       var focus = svg.append('g')
         .attr('class', 'focus')
-        .style('display', 'none');
+        .style('display', 'none')
+        ;
 
       // Set up to plot a line downward from F(X) to the baseline.
       focus.append('line')
-        .attr('class', 'sweep');
+        .attr('class', 'sweep')
+      ;
 
       // Set up to plot a circle to mark the point of interest on F(X).
       focus.append('circle')
@@ -336,20 +331,23 @@ var plot = function (dist, plot, options) {
         .attr('height', image.height)
         .on('mouseover', cdf_mouseover)
         .on('mouseout', cdf_mouseout)
-        .on('mousemove', cdf_mousemove);
+        .on('mousemove', cdf_mousemove)
+      ;
 
       // Set up and hide the information bubble.
       bubble = d3.select('body')
         .append('div')
         .attr('class', 'bubble')
-        .style('opacity', 0);
+        .style('opacity', 0)
+      ;
 
       // Display the sweep and fade in the bubble on mouseover.
       function cdf_mouseover() {
         focus.style('display', null);
         bubble.transition()
           .duration(600)
-          .style('opacity', 1);
+          .style('opacity', 1)
+        ;
       }
 
       // Hide the sweep and fade out the bubble on mouseout.
@@ -357,7 +355,8 @@ var plot = function (dist, plot, options) {
         focus.style('display', 'none');
         bubble.transition()
           .duration(60)
-          .style('opacity', 0);
+          .style('opacity', 0)
+        ;
       }
 
       // Place the sweep and bubble containing the caption.
@@ -389,6 +388,103 @@ var plot = function (dist, plot, options) {
           .style('top', (d3.event.pageY - 36) + 'px')
           .text(caption);
       }
+      break;
+
+    case 'gen':
+
+      // Provide invisible circular svg overlays that will respond to the mouse.
+      svg.selectAll('target')
+        .data(data)
+        .enter().append('circle')
+        .attr('class', 'overlay')
+        .attr('r', halfInterval)
+        .attr('cx', function (d) { return xScale(d[0]); })
+        .attr('cy', function (d) { return yScale(d[1]); })
+        .on('mouseover', gen_mouseover)
+        .on('mouseout', gen_mouseout)
+        .on('mousemove', gen_mousemove)
+      ;
+
+      // Set up the stats.
+      stats = d3.select(divToAppend)
+        .data(data)
+        .append('div')
+        .attr('class', 'stats')
+        .style('margin-top', margin.top + 'px')
+        .html(
+          'mean: ' + dist.mean + '<br />' +
+          'median: ' + dist.median + '<br />' +
+          'mode: ' + dist.mode + '<br />' +
+          'variance: ' + dist.variance + '<br />' +
+          'skewness: ' + dist.skewness + '<br />' +
+          'entropy: ' + dist.entropy + '<br />'
+        );
+
+      // Set up and hide the information bubble.
+      bubble = d3.select('body')
+        .data(data)
+        .append('div')
+        .attr('class', 'bubble')
+        .style('opacity', 0);
+
+      // Fade in the bubble on mouseover.
+      function gen_mouseover() {
+        bubble.transition()
+          .duration(200)
+          .style('opacity', 1);
+      }
+
+      // Fade out the bubble on mouseout.
+      function gen_mouseout() {
+        bubble.transition()
+          .duration(60)
+          .style('opacity', 0);
+      }
+
+      // Place the bubble containing the caption.
+      function gen_mousemove() {
+        var
+          x0 = d3.mouse(this)[0],
+          y0,
+          caption = '';
+
+        y0 = yScale(dist.p([Math.floor(xScale.invert(x0))]));
+        caption = 'P(X = ' + Math.round(xScale.invert(x0)) + ') = ' + sigDigits(dist.p([Math.round(xScale.invert(x0))]));
+
+        bubble
+          .style('display', null)
+          .style('left', (d3.event.pageX - 64) + 'px')
+          .style('top', (d3.event.pageY - 36) + 'px')
+          .text(caption);
+      }
+
+      function update(data) {
+        var rv = svg.selectAll('rv')
+          .data(data)
+          .enter().append('circle')
+          .attr('class', 'rv')
+          .attr('r', 0.8 * radius)
+          .attr('cx', function (d) { return xScale(d[0]); })
+          .attr('cy', function (d) { return yScale(d[1]); });
+      }
+
+      i = 0;
+      setInterval(function () {
+        if (i < n) {
+          update([random_variables_xy[i]]);
+          i++;
+        }
+      }, 80);
+
+      svg.selectAll('dot')
+        .data(expected_frequencies)
+        .enter().append('circle')
+        .attr('class', 'dot')
+        .attr('r', radius)
+        .attr('cx', function (d) { return xScale(d[0]); })
+        .attr('cy', function (d) { return yScale(d[1]); })
+      ;
+
       break;
 
     }
