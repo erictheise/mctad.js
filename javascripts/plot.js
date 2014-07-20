@@ -20,7 +20,12 @@ var plot = function (dist, plot, options) {
     n = parseInt(plot.match(/\d+/));
 
     // Generate n random variables from the specified distribution.
-    var random_variables = dist.generate(n), random_variables_xy = [], frequencies = {}, expected_frequencies = [], max = 0;
+    var
+      random_variables = dist.generate(n),
+      random_variables_xy = [],
+      frequencies = {},
+      expected_frequency, expected_frequencies = [],
+      max = 0;
 
     // Iterate through the array of random variables data, creating an array that can be plotted, an object that counts frequencies,
     // and keeping track of the maximum value.
@@ -36,9 +41,11 @@ var plot = function (dist, plot, options) {
 
     // Create the expected value array.
     for (i = dist.domain.min; i <= dist.domain.max; i++) {
-      expected_frequencies.push([i, Math.round(n * dist.p(i))]);
+      expected_frequency = Math.round(n * dist.p(i));
+      if (expected_frequency > max) { max = expected_frequency; }
+      expected_frequencies.push([i, expected_frequency]);
     }
-console.log(expected_frequencies);
+
     plot = 'gen';
   }
 
