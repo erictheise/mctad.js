@@ -73,7 +73,7 @@
   stroke-width: 1.5px;
 }
 
-.stats {
+.stats, .legend {
   float: right;
   width: 120px;
   text-align: left;

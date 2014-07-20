@@ -399,11 +399,48 @@ var plot = function (dist, plot, options) {
 
     case 'gen':
 
+    function update(data) {
+      var rv = svg.selectAll('rv')
+        .data(data)
+        .enter().append('circle')
+        .attr('class', 'rv')
+        .attr('r', 0.8 * radius)
+        .attr('cx', function (d) { return xScale(d[0]); })
+        .attr('cy', function (d) { return yScale(d[1]); });
+    }
+
+      i = 0;
+      setInterval(function () {
+        if (i < n) {
+          update([random_variables_xy[i]]);
+          i++;
+        }
+      }, 80);
+
+      svg.selectAll('dot')
+        .data(expected_frequencies)
+        .enter().append('circle')
+        .attr('class', 'dot')
+        .attr('r', radius)
+        .attr('cx', function (d) { return xScale(d[0]); })
+        .attr('cy', function (d) { return yScale(d[1]); })
+      ;
+
+      // Set up the legend.
+      legend = d3.select(divToAppend)
+        .append('div')
+        .attr('class', 'legend')
+        .style('margin-top', margin.top + 'px')
+        .html(
+          'E(X) is the expected number of observations, while O(X) is the observed (generated) number of observations.'
+        )
+      ;
+
       // Provide an invisible svg overlay that will respond to the mouse.
       var focus = svg.append('g')
-          .attr('class', 'focus')
-          .style('display', 'none')
-        ;
+        .attr('class', 'focus')
+        .style('display', 'none')
+      ;
 
       svg.append('rect')
         .attr('class', 'overlay')
@@ -414,39 +451,27 @@ var plot = function (dist, plot, options) {
         .on('mousemove', gen_mousemove)
       ;
 
-      // Set up the stats.
-      stats = d3.select(divToAppend)
-        .data(data)
-        .append('div')
-        .attr('class', 'stats')
-        .style('margin-top', margin.top + 'px')
-        .html(
-          'mean: ' + dist.mean + '<br />' +
-          'median: ' + dist.median + '<br />' +
-          'mode: ' + dist.mode + '<br />' +
-          'variance: ' + dist.variance + '<br />' +
-          'skewness: ' + dist.skewness + '<br />' +
-          'entropy: ' + dist.entropy + '<br />'
-        );
-
       // Set up and hide the information bubble.
       bubble = d3.select('body')
         .append('div')
         .attr('class', 'bubble')
-        .style('opacity', 0);
+        .style('opacity', 0)
+      ;
 
       // Fade in the bubble on mouseover.
       function gen_mouseover() {
         bubble.transition()
           .duration(200)
-          .style('opacity', 1);
+          .style('opacity', 1)
+        ;
       }
 
       // Fade out the bubble on mouseout.
       function gen_mouseout() {
         bubble.transition()
           .duration(60)
-          .style('opacity', 0);
+          .style('opacity', 0)
+        ;
       }
 
       // Place the bubble containing the caption.
@@ -466,35 +491,9 @@ var plot = function (dist, plot, options) {
           .style('display', null)
           .style('left', (d3.event.pageX - 32) + 'px')
           .style('top', (d3.event.pageY - 36) + 'px')
-          .html(caption);
+          .html(caption)
+        ;
       }
-
-      function update(data) {
-        var rv = svg.selectAll('rv')
-          .data(data)
-          .enter().append('circle')
-          .attr('class', 'rv')
-          .attr('r', 0.8 * radius)
-          .attr('cx', function (d) { return xScale(d[0]); })
-          .attr('cy', function (d) { return yScale(d[1]); });
-      }
-
-      i = 0;
-      setInterval(function () {
-        if (i < n) {
-          update([random_variables_xy[i]]);
-          i++;
-        }
-      }, 80);
-
-      svg.selectAll('dot')
-        .data(expected_frequencies)
-        .enter().append('circle')
-        .attr('class', 'dot')
-        .attr('r', radius)
-        .attr('cx', function (d) { return xScale(d[0]); })
-        .attr('cy', function (d) { return yScale(d[1]); })
-      ;
 
       break;
 
