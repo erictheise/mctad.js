@@ -113,8 +113,6 @@ var plot = function (dist, plot, options) {
     .attr('class', 'axis')
     .call(yAxis);
 
-
-
   switch (plot) {
 
     case 'pmf':
