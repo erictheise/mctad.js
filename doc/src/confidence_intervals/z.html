@@ -1,0 +1,18 @@
+<!DOCTYPE html><html lang="en"><head><title>src/confidence_intervals/z</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../"><meta name="groc-document-path" content="src/confidence_intervals/z"><meta name="groc-project-path" content="src/confidence_intervals/z.js"><link rel="stylesheet" type="text/css" media="all" href="../../assets/style.css"><script type="text/javascript" src="../../assets/behavior.js"></script><body><div id="meta"><div class="file-path">src/confidence_intervals/z.js</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="z-score">Z Score</h1>
+
+<p>The <a href="https://en.wikipedia.org/wiki/Z_score">Z Score</a> is the signed number of standard deviations a datum is above or below the mean of a Standard Normal Distribution. Often it is determined from extensive tables; here it is calculated using the inverse erf function, <code>mcatd.inverseErf()</code>;</p>
+
+<h3 id="assumptions">Assumptions</h3>
+
+<p><code>p</code> is a valid probability (0 &lt; p &lt; 1).</p>
+
+<h3 id="use">Use</h3>
+
+<p><code>mctad.z(p)</code></p>
+
+<h3 id="inline-comments">Inline Comments</h3></div></div><div class="code"><div class="wrapper"><span class="nx">mctad</span><span class="p">.</span><span class="nx">z</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">p</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">p</span> <span class="o">&lt;=</span> <span class="mf">0.0</span> <span class="o">||</span> <span class="nx">p</span> <span class="o">&gt;=</span> <span class="mf">1.0</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">undefined</span><span class="p">;</span> <span class="p">}</span>
+
+  <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="nx">mctad</span><span class="p">.</span><span class="nx">inverseErf</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="nx">p</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+
+<span class="p">};</span></div></div></div></div></body></html>

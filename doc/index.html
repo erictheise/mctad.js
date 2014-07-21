@@ -7,30 +7,21 @@
 
 <h3 id="about">About</h3>
 
-<p><strong>mctad.js</strong> is a JavaScript library for probability and statistics. A goal is to provide functionality missing from other
-such libraries, such as having an awareness of many common discrete and continuous probability distributions, an ability
-to generate random variables from those distributions, and having a basic implementation of directional statistics.</p>
+<p><strong>mctad.js</strong> is a JavaScript library for probability and statistics. A goal is to provide functionality missing from
+other such libraries, including the ability to generate random variables from many common discrete and continuous
+probability distributions, and having a basic implementation of directional statistics.</p>
 
 <h3 id="use">Use</h3>
 
-<h4 id="end-users">End-users</h4>
-
 <p>You'll want either the file <code>mctad.min.js</code> or the file <code>mctad.js</code> in the root of this repository.</p>
 
-<p>Groc-generated documentation is online courtesy <a href="http://erictheise.github.io/mctad.js/">GitHub pages</a> and included in
-the <code>/doc/</code> directory when you <code>git clone</code> this repository.</p>
+<h3 id="documentation">Documentation</h3>
 
-<h4 id="developers">Developers</h4>
-
-<h3 id="conventions">Conventions</h3>
-
-<p>The ability to use Greek letters directly in code appeals to me, and they are used internally. I am still considering
-the extent to which they should be exposed externally. In an ideal world, it would be reliable to use constructions such
-as p-hat (p̂) and x-bar (x̄) as variable names.</p>
-
-<p>Even though it makes little or no difference to the JavaScript language, you will come across examples of <em>type hinting</em>,
-e.g., in the form of 1 versus 1.0, to help clarify whether quantities are operationally expected to take integer or real
-values.</p>
+<p>See the <a href="http://erictheise.github.io/mctad.js/doc">GitHub pages</a> for examples of using <em>mctad.js</em>. In addition,
+<em>mctad.js</em> runs <a href="http://nevir.github.io/groc/">groc</a> as a <a href="http://gruntjs.com/">grunt</a> task to automatically generate
+html documentation from comments in the source code. Access that documentation by opening a browser on your local copy of
+<code>/doc/index.html</code> after you <code>git clone</code> this repository or look at the <a href="http://erictheise.github.io/mctad.js/doc"><code>/doc/</code>
+directory</a> of the GitHub pages.</p>
 
 <h4 id="continuous-and-discrete-probability-distributions">Continuous and Discrete Probability Distributions</h4>
 
@@ -73,48 +64,19 @@ general format of the tests is to test exceptions before testing functionality. 
 wikipedia article or other hopefully long-lived reference. If these are not available, hand-worked examples are used for
 testing.</p>
 
-<h3 id="documentation">Documentation</h3>
+<h3 id="conventions">Conventions</h3>
 
-<p><em>mctad.js</em> runs <a href="http://nevir.github.io/groc/">groc</a> as a <a href="http://gruntjs.com/">grunt</a> task to automatically generate
-html documentation from comments in the source code. Access the documentation by opening a browser on your local copy of
-<code>/doc/index.html</code> or looking at the associated <a href="http://erictheise.github.io/mctad.js/">GitHub pages</a>.</p>
+<p>The ability to use Greek letters directly in code appeals to me, and they are used internally. I am still considering
+the extent to which they should be exposed externally. In an ideal world, it would be reliable to use constructions such
+as p-hat (p̂) and x-bar (x̄) as variable names.</p>
 
-<p>My contract with myself is to provide</p>
+<p>You will come across examples of <em>type hinting</em>, e.g., in the form of 1 versus 1.0, to help clarify whether quantities
+are expected to take integer or real values.</p>
 
-<ul>
-<li>purpose of the method</li>
-<li>input and output formats</li>
-<li>where the method is used, if primarily internal</li>
-<li>a link to a wikipedia article or other hopefully long-lived reference</li>
-<li>a blank line between the introduction and the function declaration</li>
-<li>inline comments about key parameters and non-obvious calculations</li>
-</ul>
-
-<p>Please alert me if you see me breaking my own contract. Contributions should follow this approach.</p>
-
-<h3 id="short-term-to-do">Short Term To Do</h3>
+<h3 id="to-do">To Do</h3>
 
 <ul>
-<li><p>statistics</p>
-
-<ul><li>confidence intervals</li>
-<li>harmonic mean</li></ul></li>
-<li><p>discrete</p>
-
-<ul><li>tests for generators</li></ul></li>
-<li><p>continuous</p>
-
-<ul><li>distributions</li>
-<li>chi square</li>
-<li>student's t</li>
-<li>beta</li>
-<li>generators</li>
-<li>tests for generators</li></ul></li>
-<li><p>distributions that "self-estimate" when given an Array instead of parameters</p></li>
+<li>"self-estimating" distributions</li>
 <li>chi square goodness of fit</li>
 <li>analysis of variance</li>
-</ul>
-
-<h3 id="long-term-to-do">Long Term To Do</h3>
-
-<p>?</p></div></div></div></div></body></html>
+</ul></div></div></div></div></body></html>
