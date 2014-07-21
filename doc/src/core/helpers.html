@@ -16,6 +16,18 @@ of the <a href="../statistics/geometric_mean.html">Geometric Mean</a>.</p></div>
     <span class="p">}</span>
   <span class="p">}</span>
   <span class="k">return</span> <span class="nx">positive</span><span class="p">;</span>
+<span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="signn">sign(n)</h2>
+
+<p>A function used to determine the sign of a number.
+Taken from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/sign
+The Harmony ECMAScript 6 proposal includes Math.sign(), which would replace this helper.</p></div></div><div class="code"><div class="wrapper"><span class="nx">mctad</span><span class="p">.</span><span class="nx">sign</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span><span class="nb">isNaN</span><span class="p">(</span><span class="nx">x</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">NaN</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">x</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">x</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span><span class="nx">x</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">?</span> <span class="mi">1</span> <span class="o">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+  <span class="p">}</span>
 <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="extenddestination-source">extend(destination, source)</h2>
 
 <p>A function used to add convenience methods to distributions, e.g., <code>.p(x)</code>, <code>.f(x)</code>, <code>.F(x)</code>.</p></div></div><div class="code"><div class="wrapper"><span class="nx">mctad</span><span class="p">.</span><span class="nx">extend</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">destination</span><span class="p">,</span> <span class="nx">source</span><span class="p">)</span> <span class="p">{</span>
@@ -28,6 +40,7 @@ of the <a href="../statistics/geometric_mean.html">Geometric Mean</a>.</p></div>
 <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="sortnumericarray">sortNumeric(Array)</h2>
 
 <p>A function for sorting a simple Array in numerical, rather than lexicographical, order.</p></div></div><div class="code"><div class="wrapper"><span class="nx">mctad</span><span class="p">.</span><span class="nx">sortNumeric</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">data</span> <span class="o">===</span> <span class="s1">&#39;undefined&#39;</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">undefined</span><span class="p">;</span> <span class="p">}</span>
   <span class="nx">data</span><span class="p">.</span><span class="nx">sort</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">a</span> <span class="o">-</span> <span class="nx">b</span><span class="p">;</span> <span class="p">});</span>
   <span class="k">return</span> <span class="nx">data</span><span class="p">;</span>
 <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="toradiansnumber">toRadians(Number)</h2>
