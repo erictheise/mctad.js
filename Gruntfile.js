@@ -26,9 +26,11 @@ module.exports = function(grunt) {
           'src/statistics/**/*.js',
           'src/discrete/mixins.js',
           'src/discrete/**/*.js',
+          'src/continuous/tables/**/*.js',
           'src/continuous/mixins.js',
           'src/continuous/erf.js',
-          'src/continuous/**/*.js'
+          'src/continuous/**/*.js',
+          'src/confidence_intervals/**/*.js'
         ],
         dest: './<%= shortname() %>.js'
       }
