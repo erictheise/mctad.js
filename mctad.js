@@ -1453,6 +1453,41 @@ mctad.confidenceIntervalOnTheMean = function (x_bar, s, n, α, type) {
 
 };
 ;
+mctad.confidenceIntervalOnTheProportion = function (x_bar, s, n, α, type) {
+  if (typeof x_bar !== 'number' || typeof s !== 'number' || !mctad.isInteger(n) || α <= 0.0 || α >= 1.0) { return undefined; }
+
+  var σ_bar = s / Math.sqrt(n);
+
+  if (n > 30) {
+    if (typeof type !== 'undefined' && type.toLowerCase() === 'u') {
+      return x_bar + mctad.z(1 - α) * σ_bar;
+    } else {
+      if (typeof type !== 'undefined' && type.toLowerCase() === 'l') {
+        return x_bar - mctad.z(1 - α) * σ_bar;
+      } else {
+        return [
+          x_bar - mctad.z(1 - α / 2) * σ_bar,
+          x_bar + mctad.z(1 - α / 2) * σ_bar
+        ];
+      }
+    }
+  } else {
+    if (typeof type !== 'undefined' && type.toLowerCase() === 'u') {
+      return x_bar + mctad.t_distribution_table[n - 1][1 - α] * σ_bar;
+    } else {
+      if (typeof type !== 'undefined' && type.toLowerCase() === 'l') {
+        return x_bar - mctad.t_distribution_table[n - 1][1 - α] * σ_bar;
+      } else {
+        return [
+          x_bar - mctad.t_distribution_table[n - 1][1 - α / 2] * σ_bar,
+          x_bar + mctad.t_distribution_table[n - 1][1 - α / 2] * σ_bar
+        ];
+      }
+    }
+  }
+
+};
+;
 mctad.z = function (p) {
   if (p <= 0.0 || p >= 1.0) { return undefined; }
 
