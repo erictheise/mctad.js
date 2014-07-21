@@ -1425,11 +1425,14 @@ mctad.confidenceIntervalOnTheMean = function (x_bar, s, n, α, type) {
 
   if (n > 30) {
     if (typeof type !== 'undefined' && type.toLowerCase() === 'u') {
+      // Return the upper confidence bound of a one-tailed confidence interval.
       return x_bar + mctad.z(1 - α) * σ_bar;
     } else {
       if (typeof type !== 'undefined' && type.toLowerCase() === 'l') {
+        // Return the lower confidence bound of a one-tailed confidence interval.
         return x_bar - mctad.z(1 - α) * σ_bar;
       } else {
+        // Return both bounds of a two-tailed confidence interval.
         return [
           x_bar - mctad.z(1 - α / 2) * σ_bar,
           x_bar + mctad.z(1 - α / 2) * σ_bar
@@ -1438,11 +1441,14 @@ mctad.confidenceIntervalOnTheMean = function (x_bar, s, n, α, type) {
     }
   } else {
     if (typeof type !== 'undefined' && type.toLowerCase() === 'u') {
+      // Return the upper confidence bound of a one-tailed confidence interval.
       return x_bar + mctad.t_distribution_table[n - 1][1 - α] * σ_bar;
     } else {
       if (typeof type !== 'undefined' && type.toLowerCase() === 'l') {
+        // Return the lower confidence bound of a one-tailed confidence interval.
         return x_bar - mctad.t_distribution_table[n - 1][1 - α] * σ_bar;
       } else {
+        // Return both bounds of a two-tailed confidence interval.
         return [
           x_bar - mctad.t_distribution_table[n - 1][1 - α / 2] * σ_bar,
           x_bar + mctad.t_distribution_table[n - 1][1 - α / 2] * σ_bar
@@ -1453,36 +1459,28 @@ mctad.confidenceIntervalOnTheMean = function (x_bar, s, n, α, type) {
 
 };
 ;
-mctad.confidenceIntervalOnTheProportion = function (x_bar, s, n, α, type) {
-  if (typeof x_bar !== 'number' || typeof s !== 'number' || !mctad.isInteger(n) || α <= 0.0 || α >= 1.0) { return undefined; }
+mctad.confidenceIntervalOnTheProportion = function (X, n, α, type) {
+  if (typeof X !== 'number' || !mctad.isInteger(n) || α <= 0.0 || α >= 1.0) { return undefined; }
 
-  var σ_bar = s / Math.sqrt(n);
+  var
+  // Apply the Agresti-Coull Interval transformation.
+    n_tilde = n + 4,
+    p_tilde = (X + 2)/ n_tilde,
+    σ_p_tilde = Math.sqrt(p_tilde * (1.0 - p_tilde) / n_tilde);
 
-  if (n > 30) {
-    if (typeof type !== 'undefined' && type.toLowerCase() === 'u') {
-      return x_bar + mctad.z(1 - α) * σ_bar;
-    } else {
-      if (typeof type !== 'undefined' && type.toLowerCase() === 'l') {
-        return x_bar - mctad.z(1 - α) * σ_bar;
-      } else {
-        return [
-          x_bar - mctad.z(1 - α / 2) * σ_bar,
-          x_bar + mctad.z(1 - α / 2) * σ_bar
-        ];
-      }
-    }
+  if (typeof type !== 'undefined' && type.toLowerCase() === 'u') {
+    // Return the upper confidence bound of a one-tailed confidence interval.
+    return p_tilde + mctad.z(1 - α) * σ_p_tilde;
   } else {
-    if (typeof type !== 'undefined' && type.toLowerCase() === 'u') {
-      return x_bar + mctad.t_distribution_table[n - 1][1 - α] * σ_bar;
+    if (typeof type !== 'undefined' && type.toLowerCase() === 'l') {
+      // Return the lower confidence bound of a one-tailed confidence interval.
+      return p_tilde - mctad.z(1 - α) * σ_p_tilde;
     } else {
-      if (typeof type !== 'undefined' && type.toLowerCase() === 'l') {
-        return x_bar - mctad.t_distribution_table[n - 1][1 - α] * σ_bar;
-      } else {
-        return [
-          x_bar - mctad.t_distribution_table[n - 1][1 - α / 2] * σ_bar,
-          x_bar + mctad.t_distribution_table[n - 1][1 - α / 2] * σ_bar
-        ];
-      }
+      // Return both bounds of a two-tailed confidence interval.
+      return [
+        p_tilde - mctad.z(1 - α / 2) * σ_p_tilde,
+        p_tilde + mctad.z(1 - α / 2) * σ_p_tilde
+      ];
     }
   }
 
