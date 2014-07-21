@@ -28,12 +28,12 @@ mctad.confidenceIntervalOnTheProportion = function (X, n, α, type) {
     return p_tilde + mctad.z(1 - α) * σ_p_tilde;
   } else {
     if (typeof type !== 'undefined' && type.toLowerCase() === 'l') {
-      // Return the lower confidence bound of a one-tailed confidence interval.
-      return p_tilde - mctad.z(1 - α) * σ_p_tilde;
+      // Return the lower confidence bound of a one-tailed confidence interval; enforce 0 as lowest possible bound.
+      return Math.max(0, p_tilde - mctad.z(1 - α) * σ_p_tilde);
     } else {
-      // Return both bounds of a two-tailed confidence interval.
+      // Return both bounds of a two-tailed confidence interval; enforce 0 as lowest possible bound.
       return [
-        p_tilde - mctad.z(1 - α / 2) * σ_p_tilde,
+        Math.max(0, p_tilde - mctad.z(1 - α / 2) * σ_p_tilde),
         p_tilde + mctad.z(1 - α / 2) * σ_p_tilde
       ];
     }
