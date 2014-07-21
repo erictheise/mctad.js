@@ -1418,13 +1418,10 @@ mctad.weibull = function (λ, k) {
   return dfs;
 };
 ;
-mctad.confidenceIntervalOnTheMean = function (data, α, type) {
-  if (!Array.isArray(data) || data.length === 0 || α <= 0.0 || α >= 1.0) { return undefined; }
+mctad.confidenceIntervalOnTheMean = function (x_bar, s, n, α, type) {
+  if (typeof x_bar === 'undefined' || s === 'undefined' || α <= 0.0 || α >= 1.0) { return undefined; }
 
-  var
-    n = data.length,
-    x_bar = mctad.arithmeticMean(data),
-    σ_bar = mctad.sampleStandardDeviation(data);
+  var σ_bar = s / Math.sqrt(n);
 
   if (n > 30) {
     if (typeof type !== 'undefined' && type.toLowerCase() === 'u') {

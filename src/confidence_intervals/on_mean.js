@@ -5,22 +5,19 @@ The [Confidence Interval on the Mean}(https://en.wikipedia.org/wiki/Confidence_i
 
 ### Assumptions
 
-`data` is an Array of observations, 0.0 < `α` < 1.0. By default, the confidence interval is two-tailed; this may be changed by specifying `type` as either 'l' for lower, or 'u' for upper. Any other value for `type` generates a two-tailed confidence interval.
+Given a random sample of `n` observations, `x_bar` is the sample mean, `σ_bar` is the sample standard deviation, and 0.0 < `α` < 1.0. By default, the confidence interval is two-tailed; this may be changed by specifying `type` as either 'l' for lower, or 'u' for upper. Any other value for `type` generates a two-tailed confidence interval.
 
 ### Use
 
-`mctad.confidenceIntervalOnTheMean(data, α, 'u')`
+`mctad.confidenceIntervalOnTheMean(x_bar, s, n, α, 'u')`
 
 ### Inline Comments
 */
 
-mctad.confidenceIntervalOnTheMean = function (data, α, type) {
-  if (!Array.isArray(data) || data.length === 0 || α <= 0.0 || α >= 1.0) { return undefined; }
+mctad.confidenceIntervalOnTheMean = function (x_bar, s, n, α, type) {
+  if (typeof x_bar === 'undefined' || s === 'undefined' || α <= 0.0 || α >= 1.0) { return undefined; }
 
-  var
-    n = data.length,
-    x_bar = mctad.arithmeticMean(data),
-    σ_bar = mctad.sampleStandardDeviation(data);
+  var σ_bar = s / Math.sqrt(n);
 
   if (n > 30) {
     if (typeof type !== 'undefined' && type.toLowerCase() === 'u') {
