@@ -15,7 +15,7 @@ Given a random sample of `n` observations, `x_bar` is the sample mean, `σ_bar` 
 */
 
 mctad.confidenceIntervalOnTheMean = function (x_bar, s, n, α, type) {
-  if (typeof x_bar === 'undefined' || s === 'undefined' || α <= 0.0 || α >= 1.0) { return undefined; }
+  if (typeof x_bar !== 'number' || typeof s !== 'number' || !mctad.isInteger(n) || α <= 0.0 || α >= 1.0) { return undefined; }
 
   var σ_bar = s / Math.sqrt(n);
 
