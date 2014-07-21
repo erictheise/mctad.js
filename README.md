@@ -17,11 +17,11 @@ You'll want either the file `mctad.min.js` or the file `mctad.js` in the root of
 
 
 ### Documentation
-See the [GitHub pages](http://erictheise.github.io/mctad.js/doc) for examples of using _mctad.js_. In addition,
+See the [GitHub pages](http://erictheise.github.io/mctad.js/) for examples of using _mctad.js_. In addition,
 _mctad.js_ runs [groc](http://nevir.github.io/groc/) as a [grunt](http://gruntjs.com/) task to automatically generate
 html documentation from comments in the source code. Access that documentation by opening a browser on your local copy of
 `/doc/index.html` after you `git clone` this repository or look at the [`/doc/`
-directory](http://erictheise.github.io/mctad.js/doc) of the GitHub pages.
+directory](http://erictheise.github.io/mctad.js/doc/) of the GitHub pages.
 
 
 #### Continuous and Discrete Probability Distributions
