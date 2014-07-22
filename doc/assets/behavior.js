@@ -121,16 +121,16 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
-                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/confidence_intervals/on_mean.js",
-                "projectPath": "src/confidence_intervals/on_mean.js",
-                "targetPath": "src/confidence_intervals/on_mean",
-                "pageTitle": "src/confidence_intervals/on_mean",
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/confidence_intervals/on_difference_between_two_means.js",
+                "projectPath": "src/confidence_intervals/on_difference_between_two_means.js",
+                "targetPath": "src/confidence_intervals/on_difference_between_two_means",
+                "pageTitle": "src/confidence_intervals/on_difference_between_two_means",
                 "firstHeader": {
                   "type": "heading",
                   "data": {
                     "level": 1,
-                    "title": "Confidence Interval on the Mean",
-                    "slug": "confidence-interval-on-the-mean",
+                    "title": "CI on the Difference between Two Means",
+                    "slug": "ci-on-the-difference-between-two-means",
                     "isFileHeader": true
                   },
                   "depth": 1,
@@ -162,7 +162,90 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                     }
                   ]
                 },
-                "title": "Confidence Interval on the Mean"
+                "title": "CI on the Difference between Two Means"
+              },
+              "depth": 3,
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Assumptions",
+                    "slug": "assumptions"
+                  },
+                  "depth": 3
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Use",
+                    "slug": "use"
+                  },
+                  "depth": 3
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Inline Comments",
+                    "slug": "inline-comments"
+                  },
+                  "depth": 3
+                }
+              ]
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/confidence_intervals/on_mean.js",
+                "projectPath": "src/confidence_intervals/on_mean.js",
+                "targetPath": "src/confidence_intervals/on_mean",
+                "pageTitle": "src/confidence_intervals/on_mean",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "CI on the Mean",
+                    "slug": "ci-on-the-mean",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Assumptions",
+                        "slug": "assumptions"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Use",
+                        "slug": "use"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Inline Comments",
+                        "slug": "inline-comments"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                },
+                "title": "CI on the Mean"
               },
               "depth": 3,
               "outline": [
@@ -212,8 +295,8 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "type": "heading",
                   "data": {
                     "level": 1,
-                    "title": "Confidence Interval on the Proportion",
-                    "slug": "confidence-interval-on-the-proportion",
+                    "title": "CI on the Proportion",
+                    "slug": "ci-on-the-proportion",
                     "isFileHeader": true
                   },
                   "depth": 1,
@@ -245,7 +328,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                     }
                   ]
                 },
-                "title": "Confidence Interval on the Proportion"
+                "title": "CI on the Proportion"
               },
               "depth": 3,
               "outline": [
