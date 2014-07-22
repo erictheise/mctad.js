@@ -19,6 +19,7 @@ mctad.confidenceIntervalOnTheMean = function (x_bar, s, n, α, type) {
 
   var σ_bar = s / Math.sqrt(n);
 
+  // If the sample size is large, use Z Scores from the Standard Normal Distribution.
   if (n > 30) {
     // Return the upper confidence bound of a one-tailed confidence interval.
     if (typeof type !== 'undefined' && type.toLowerCase() === 'u') {
@@ -36,6 +37,7 @@ mctad.confidenceIntervalOnTheMean = function (x_bar, s, n, α, type) {
       }
     }
   } else {
+    // Otherwise, use Student's t distribution.
     // Return the upper confidence bound of a one-tailed confidence interval.
     if (typeof type !== 'undefined' && type.toLowerCase() === 'u') {
       return x_bar + mctad.t_distribution_table[n - 1][1 - α] * σ_bar;

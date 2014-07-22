@@ -23,6 +23,7 @@ mctad.confidenceIntervalOnTheDifferenceBetweenTwoMeans = function (x_bar, s_x, y
     σ_x_bar_minus_y_bar = Math.sqrt(Math.pow(s_x, 2) / n_x + Math.pow(s_y, 2) / n_y),
     v;
 
+  // If the sample size is large, use Z Scores from the Standard Normal Distribution.
   if (n_x > 30 && n_y > 30) {
     // Return the upper confidence bound of a one-tailed confidence interval.
     if (typeof type !== 'undefined' && type.toLowerCase() === 'u') {
@@ -40,7 +41,7 @@ mctad.confidenceIntervalOnTheDifferenceBetweenTwoMeans = function (x_bar, s_x, y
       }
     }
   } else {
-    // Calculate the degrees of freedom for the Student's t distribution.
+    // Otherwise, calculate the degrees of freedom and use Student's t distribution.
     v = Math.floor(
       Math.pow(Math.pow(s_x, 2) / n_x + Math.pow(s_y, 2) / n_y, 2) /
         ((Math.pow(Math.pow(s_x, 2) / n_x, 2) / (n_x - 1)) + (Math.pow(Math.pow(s_y, 2) / n_y, 2) / (n_y - 1)))

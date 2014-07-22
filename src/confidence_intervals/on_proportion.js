@@ -17,10 +17,10 @@ The [Confidence Interval on the Proportion](https://en.wikipedia.org/wiki/Confid
 mctad.confidenceIntervalOnTheProportion = function (X, n, α, type) {
   if (typeof X !== 'number' || !mctad.isInteger(n) || α <= 0.0 || α >= 1.0) { return undefined; }
 
-  var
   // Apply the Agresti-Coull Interval transformation.
+  var
     n_tilde = n + 4,
-    p_tilde = (X + 2)/ n_tilde,
+    p_tilde = (X + 2) / n_tilde,
     σ_p_tilde = Math.sqrt(p_tilde * (1.0 - p_tilde) / n_tilde);
 
   // Return the upper confidence bound of a one-tailed confidence interval.
