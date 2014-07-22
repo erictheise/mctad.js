@@ -204,6 +204,89 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/confidence_intervals/on_difference_between_two_proportions.js",
+                "projectPath": "src/confidence_intervals/on_difference_between_two_proportions.js",
+                "targetPath": "src/confidence_intervals/on_difference_between_two_proportions",
+                "pageTitle": "src/confidence_intervals/on_difference_between_two_proportions",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "CI on the Difference between Two Proportions",
+                    "slug": "ci-on-the-difference-between-two-proportions",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Assumptions",
+                        "slug": "assumptions"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Use",
+                        "slug": "use"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Inline Comments",
+                        "slug": "inline-comments"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                },
+                "title": "CI on the Difference between Two Proportions"
+              },
+              "depth": 3,
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Assumptions",
+                    "slug": "assumptions"
+                  },
+                  "depth": 3
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Use",
+                    "slug": "use"
+                  },
+                  "depth": 3
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Inline Comments",
+                    "slug": "inline-comments"
+                  },
+                  "depth": 3
+                }
+              ]
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
                 "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/confidence_intervals/on_mean.js",
                 "projectPath": "src/confidence_intervals/on_mean.js",
                 "targetPath": "src/confidence_intervals/on_mean",
