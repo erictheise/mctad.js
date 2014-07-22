@@ -3,13 +3,11 @@ var assert = require('chai').assert;
 
 describe('confidenceIntervalOnTheDifferenceBetweenTwoProportions', function() {
   it('can return undefined when given inappropriate arguments', function() {
-    assert.isUndefined(mctad.confidenceIntervalOnTheDifferenceBetweenTwoProportions('foo', 22, 551, 33, 144, 64, 0.05), 'x_bar is not a Number');
-    assert.isUndefined(mctad.confidenceIntervalOnTheDifferenceBetweenTwoProportions(578, 'foo', 551, 33, 144, 64, 0.05), 's_x is not a Number');
-    assert.isUndefined(mctad.confidenceIntervalOnTheDifferenceBetweenTwoProportions(578, 22, 'foo', 33, 144, 64, 0.05), 'y_bar is not a Number');
-    assert.isUndefined(mctad.confidenceIntervalOnTheDifferenceBetweenTwoProportions(578, 22, 551, 'foo', 144, 64, 0.05), 's_y is not a Number');
-    assert.isUndefined(mctad.confidenceIntervalOnTheDifferenceBetweenTwoProportions(578, 22, 551, 33, 144.1, 64, 0.05), 'n_x is not an Integer');
-    assert.isUndefined(mctad.confidenceIntervalOnTheDifferenceBetweenTwoProportions(578, 22, 551, 33, 144, 64.2, 0.05), 'n_y is not an Integer');
-    assert.isUndefined(mctad.confidenceIntervalOnTheDifferenceBetweenTwoProportions(578, 22, 551, 33, 144, 64, 1.2), '0 < α < 1');
+    assert.isUndefined(mctad.confidenceIntervalOnTheDifferenceBetweenTwoProportions('foo', 22, 551, 33, 0.05), 'x_bar is not a Number');
+    assert.isUndefined(mctad.confidenceIntervalOnTheDifferenceBetweenTwoProportions(578, 'foo', 551, 33, 0.05), 's_x is not a Number');
+    assert.isUndefined(mctad.confidenceIntervalOnTheDifferenceBetweenTwoProportions(578, 22, 'foo', 33, 0.05), 'y_bar is not a Number');
+    assert.isUndefined(mctad.confidenceIntervalOnTheDifferenceBetweenTwoProportions(578, 22, 551, 'foo', 0.05), 's_y is not a Number');
+    assert.isUndefined(mctad.confidenceIntervalOnTheDifferenceBetweenTwoProportions(578, 22, 551, 33, 1.2), '0 < α < 1');
   });
 
   // Data from Section 5.5 of William Navidi, "Statistics for Engineers and Scientists", McGraw-Hill (2008).
