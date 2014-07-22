@@ -1,5 +1,5 @@
 /*
-# Confidence Interval on the Mean
+# CI on the Mean
 
 The [Confidence Interval on the Mean](https://en.wikipedia.org/wiki/Confidence_interval) uses the sample mean and sample standard deviation as estimates of the population parameters. When the number of observations `n` is small (≤ 30), the Student's t Distribution is used; when large, Z Scores from the Standard Normal Distribution are used. `mctad.confidenceIntervalOnTheMean()` returns an Array of lower, upper values for the `(1 - α/2)`interval or a Number for the lower or upper `(1 - α)` boundary.
 

@@ -1,5 +1,5 @@
 /*
-# Confidence Interval on the Proportion
+# CI on the Proportion
 
 The [Confidence Interval on the Proportion](https://en.wikipedia.org/wiki/Confidence_interval) uses `X`, the number of successes found in a sample, and `n`, the size of the sample, to estimate the population parameters. This implementation uses the [Agresti-Coull Interval](https://en.wikipedia.org/wiki/Binomial_proportion_confidence_interval#Agresti-Coull_Interval) method, which is appropriate for any sample size `n`. `mctad.confidenceIntervalOnTheProportion()` returns an Array of lower, upper values for the `(1 - α/2)`interval or a Number for the lower or upper `(1 - α)` boundary.
 
