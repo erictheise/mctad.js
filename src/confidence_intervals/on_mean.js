@@ -20,12 +20,12 @@ mctad.confidenceIntervalOnTheMean = function (x_bar, s, n, α, type) {
   var σ_bar = s / Math.sqrt(n);
 
   if (n > 30) {
+    // Return the upper confidence bound of a one-tailed confidence interval.
     if (typeof type !== 'undefined' && type.toLowerCase() === 'u') {
-      // Return the upper confidence bound of a one-tailed confidence interval.
       return x_bar + mctad.z(1 - α) * σ_bar;
     } else {
+      // Return the lower confidence bound of a one-tailed confidence interval.
       if (typeof type !== 'undefined' && type.toLowerCase() === 'l') {
-        // Return the lower confidence bound of a one-tailed confidence interval.
         return x_bar - mctad.z(1 - α) * σ_bar;
       } else {
         // Return both bounds of a two-tailed confidence interval.
@@ -36,12 +36,12 @@ mctad.confidenceIntervalOnTheMean = function (x_bar, s, n, α, type) {
       }
     }
   } else {
+    // Return the upper confidence bound of a one-tailed confidence interval.
     if (typeof type !== 'undefined' && type.toLowerCase() === 'u') {
-      // Return the upper confidence bound of a one-tailed confidence interval.
       return x_bar + mctad.t_distribution_table[n - 1][1 - α] * σ_bar;
     } else {
+      // Return the lower confidence bound of a one-tailed confidence interval.
       if (typeof type !== 'undefined' && type.toLowerCase() === 'l') {
-        // Return the lower confidence bound of a one-tailed confidence interval.
         return x_bar - mctad.t_distribution_table[n - 1][1 - α] * σ_bar;
       } else {
         // Return both bounds of a two-tailed confidence interval.
