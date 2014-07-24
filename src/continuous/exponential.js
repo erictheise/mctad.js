@@ -52,7 +52,7 @@ mctad.exponential = function (λ) {
       if (x >= 0) {
         return 1 - Math.pow(Math.E, -λ * x);
       } else {
-        return undefined;
+        return 0.0;
       }
     }
 

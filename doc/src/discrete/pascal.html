@@ -2,8 +2,8 @@
 
 <p>The <a href="http://en.wikipedia.org/wiki/Negative_binomial_distribution">Pascal or Negative Binomial Distribution</a> is a
 discrete probability distribution of the number of successes in a sequence of independent and identically distributed
-Bernoulli trials before a specified number of failures, <code>r</code>, occurs. This implementation restricts <code>r</code> to be
-integer-valued.</p>
+Bernoulli trials before a specified number of failures, <code>r</code>, occurs. <code>p</code> is the probability of success. This
+implementation restricts <code>r</code> to be integer-valued.</p>
 
 <h3 id="assumptions">Assumptions</h3>
 
@@ -20,19 +20,34 @@ integer-valued.</p>
     <span class="nx">median</span><span class="o">:</span> <span class="kc">undefined</span><span class="p">,</span>
     <span class="nx">mode</span><span class="o">:</span> <span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
       <span class="k">if</span> <span class="p">(</span><span class="nx">r</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">((</span><span class="nx">p</span> <span class="o">*</span> <span class="p">(</span><span class="nx">r</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="nx">p</span><span class="p">));</span>
+        <span class="k">return</span> <span class="p">[</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">((</span><span class="nx">p</span> <span class="o">*</span> <span class="p">(</span><span class="nx">r</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="nx">p</span><span class="p">))];</span>
       <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">return</span> <span class="p">[</span><span class="mi">0</span><span class="p">];</span>
       <span class="p">}</span>
     <span class="p">})(),</span>
     <span class="nx">variance</span><span class="o">:</span> <span class="p">(</span><span class="nx">r</span> <span class="o">*</span> <span class="nx">p</span><span class="p">)</span> <span class="o">/</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">pow</span><span class="p">((</span><span class="mf">1.0</span> <span class="o">-</span> <span class="nx">p</span><span class="p">),</span> <span class="mi">2</span><span class="p">),</span>
     <span class="nx">skewness</span><span class="o">:</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="nx">p</span><span class="p">)</span> <span class="o">/</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">sqrt</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span> <span class="nx">p</span><span class="p">),</span>
     <span class="nx">entropy</span><span class="o">:</span> <span class="kc">undefined</span><span class="p">,</span>
     <span class="nx">domain</span><span class="o">:</span> <span class="p">{</span> <span class="nx">min</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span> <span class="kc">Infinity</span> <span class="p">},</span>
-    <span class="nx">range</span><span class="o">:</span> <span class="p">{</span> <span class="nx">min</span><span class="o">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span> <span class="mf">0.0</span> <span class="p">}</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p>TODO:    generate: function () {
-     var randomVariables = [];
-     return randomVariables;
-   }</p></div></div><div class="code"><div class="wrapper">  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Iterate over the domain, calculating the probability mass and cumulative distribution functions.</p></div></div><div class="code"><div class="wrapper">  <span class="k">do</span> <span class="p">{</span>
+    <span class="nx">range</span><span class="o">:</span> <span class="p">{</span> <span class="nx">min</span><span class="o">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span> <span class="mf">0.0</span> <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p><code>mctad.pascal(5, 0.8).generate(100)</code> will perform 100 sequences of <a href="bernoulli.html">Bernoulli trials</a>, each of
+which ceases when five failures have been observed. The probability of success is 0.8.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">generate</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">successes</span><span class="p">,</span> <span class="nx">failures</span><span class="p">,</span>
+        <span class="nx">randomVariables</span> <span class="o">=</span> <span class="p">[];</span>
+      <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">n</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="nx">successes</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="nx">failures</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">do</span> <span class="p">{</span>
+          <span class="k">if</span> <span class="p">(</span><span class="nx">mctad</span><span class="p">.</span><span class="nx">bernoulli</span><span class="p">(</span><span class="nx">p</span><span class="p">).</span><span class="nx">generate</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">successes</span><span class="o">++</span><span class="p">;</span>
+          <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">failures</span><span class="o">++</span><span class="p">;</span>
+          <span class="p">}</span>
+        <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="nx">failures</span> <span class="o">&lt;=</span> <span class="nx">r</span><span class="p">);</span>
+        <span class="nx">randomVariables</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">successes</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="k">return</span> <span class="nx">randomVariables</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Iterate over the domain, calculating the probability mass and cumulative distribution functions.</p></div></div><div class="code"><div class="wrapper">  <span class="k">do</span> <span class="p">{</span>
     <span class="nx">pmf</span> <span class="o">=</span> <span class="p">(</span><span class="nx">mctad</span><span class="p">.</span><span class="nx">combination</span><span class="p">((</span><span class="nx">k</span> <span class="o">+</span> <span class="nx">r</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="nx">k</span><span class="p">)</span> <span class="o">*</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">pow</span><span class="p">((</span><span class="mf">1.0</span> <span class="o">-</span> <span class="nx">p</span><span class="p">),</span> <span class="nx">r</span><span class="p">))</span> <span class="o">*</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">pow</span><span class="p">(</span><span class="nx">p</span><span class="p">,</span> <span class="nx">k</span><span class="p">);</span>
     <span class="nx">cdf</span> <span class="o">+=</span> <span class="nx">pmf</span><span class="p">;</span>
     <span class="nx">dfs</span><span class="p">[</span><span class="nx">k</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">pmf</span><span class="o">:</span> <span class="nx">pmf</span><span class="p">,</span> <span class="nx">cdf</span><span class="o">:</span> <span class="nx">cdf</span> <span class="p">};</span>

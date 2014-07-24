@@ -6,9 +6,8 @@ describe('exponential', function() {
     assert.isUndefined(mctad.exponential(-1), 'λ should be > 0');
   });
 
-  it('can return undefined when x is not a valid parameter to f(x) or F(x)', function() {
+  it('can return undefined when x is not a valid parameter to f(x)', function() {
     assert.isUndefined(mctad.exponential(0.5).f(-1), 'x should be ≥ 0');
-    assert.isUndefined(mctad.exponential(0.5).F(-1), 'x should be ≥ 0');
   });
 
   it('can generate the distribution statistics for λ = 0.5', function() {

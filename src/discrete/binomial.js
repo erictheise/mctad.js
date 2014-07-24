@@ -41,12 +41,13 @@ mctad.binomial = function (n, p) {
     domain: { min: 0, max: Infinity },
     range: { min: 0.0, max: 0.0 },
 
-    // `mctad.binomial(9, .7).generate()` will perform nine [Bernoulli trials](bernoulli.html), yielding nine
-    // random variables with a success probability of .7.
-    generate: function () {
-      var randomVariables = [];
-      for (var i = 0; i < n; i++ ) {
-        randomVariables.push(mctad.bernoulli(p).generate());
+    // `mctad.binomial(9, .7).generate(100)` will perform 100 sequences of nine [Bernoulli trials](bernoulli.html)
+    // where the random variables have a success probability of .7.
+    generate: function (m) {
+      var trial = [], randomVariables = [];
+      for (var i = 0; i < m; i++ ) {
+        trial = mctad.bernoulli(p).generate(n);
+        randomVariables.push(mctad.sum(trial));
       }
       return randomVariables;
     }

@@ -25,7 +25,7 @@ mctad.poisson = function (λ) {
   var x = 0, pmf, cdf = 0, dfs = {
     mean: λ,
     median: Math.floor(λ + 1 / 3 - 0.02 / λ),
-    mode: [Math.floor(λ), Math.ceil(λ) - 1],
+    mode: [Math.ceil(λ) - 1, Math.floor(λ)],
     variance: λ,
     skewness: Math.pow(λ, 0.5),
     entropy: undefined, // @todo: revisit this
@@ -37,7 +37,7 @@ mctad.poisson = function (λ) {
     generate: function (n) {
       var a = Math.pow(Math.E, -λ), randomVariables = [];
       for (var i = 0; i < n; i++) {
-        var j = 1, b = 1;
+        var j = 0, b = 1;
         do {
           b = b * mctad.getRandomArbitrary(0, 1);
           j++;

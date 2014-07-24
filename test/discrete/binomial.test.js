@@ -15,7 +15,7 @@ describe('binomial', function() {
     assert.isObject(mctad.binomial(6, 0.3));
     assert.closeTo(mctad.binomial(6, 0.3).mean, 1.8, mctad.ε);
     assert.isUndefined(mctad.binomial(6, 0.3).median);
-    assert.equal(mctad.binomial(6, 0.3).mode, 2);
+    assert.deepEqual(mctad.binomial(6, 0.3).mode, [2]);
     assert.closeTo(mctad.binomial(6, 0.3).variance, 1.26, mctad.ε);
     assert.closeTo(mctad.binomial(6, 0.3).skewness, 0.35635, mctad.ε);
     assert.isUndefined(mctad.binomial(6, 0.3).entropy);

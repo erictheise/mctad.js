@@ -52,15 +52,18 @@ mctad.bernoulli = function(p) {
     domain: { min: 0, max: 1 },
     range: { min: 0.0, max: 0.0 },
 
-    // `mctad.bernoulli(.7).generate()` will perform a single Bernoulli trial, yielding one
-    // random variable with a success probability of .7. For a sequence of Bernoulli trials, see
-    // the [Binomial Distribution](binomial.html).
-    generate: function () {
-      if (mctad.getRandomArbitrary(0, 1) <= p) {
-        return 1;
-      } else {
-        return 0;
+    // `mctad.bernoulli(.7).generate(100)` will perform 100 Bernoulli trials, yielding 100
+    // random variables each having had a success probability of .7.
+    generate: function (n) {
+      var randomVariables = [];
+      for (var i = 0; i < n; i++ ) {
+        if (mctad.getRandomArbitrary(0, 1) <= p) {
+          randomVariables.push(1);
+        } else {
+          randomVariables.push(0);
+        }
       }
+      return randomVariables;
     }
   };
 

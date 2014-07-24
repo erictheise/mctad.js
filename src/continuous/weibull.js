@@ -22,14 +22,10 @@ mctad.weibull = function (λ, k) {
     mean: λ * mctad.Γ(1 + 1 / k),
     median: λ * Math.pow(Math.log(2), 1 / k),
     mode: function () {
-      if (k > 1) {
+      if (k >= 1) {
         return λ * Math.pow((k - 1) / k, 1 / k);
       } else {
-        if (k === 1) {
-          return 0;
-        } else {
-          return undefined;
-        }
+        return 0.0;
       }
     }(),
     variance: Math.pow(λ, 2) * ( mctad.Γ(1 + 2 / k) - Math.pow(mctad.Γ(1 + 1 / k), 2)),
@@ -60,7 +56,7 @@ mctad.weibull = function (λ, k) {
       if (x >= 0) {
         return 1 - Math.pow(Math.E, -Math.pow(x / λ, k));
       } else {
-        return undefined;
+        return 0.0;
       }
     }
 
@@ -69,7 +65,7 @@ mctad.weibull = function (λ, k) {
   // Mix in the convenience methods for f(X) and F(X).
   mctad.extend(dfs, mctad.continuousMixins);
 
-  dfs.domain.max = Math.ceil(10 * dfs.variance);
+  dfs.domain.max = Math.ceil(6 * dfs.variance);
   dfs.range.max = 0.1 * Math.ceil(10 * dfs.pdf(dfs.mode));
 
   return dfs;

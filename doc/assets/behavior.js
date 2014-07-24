@@ -45,32 +45,13 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "title": "Use",
                 "slug": "use"
               },
-              "depth": 3,
-              "children": [
-                {
-                  "type": "heading",
-                  "data": {
-                    "level": 4,
-                    "title": "End-users",
-                    "slug": "end-users"
-                  },
-                  "depth": 4
-                }, {
-                  "type": "heading",
-                  "data": {
-                    "level": 4,
-                    "title": "Developers",
-                    "slug": "developers"
-                  },
-                  "depth": 4
-                }
-              ]
+              "depth": 3
             }, {
               "type": "heading",
               "data": {
                 "level": 3,
-                "title": "Conventions",
-                "slug": "conventions"
+                "title": "Documentation",
+                "slug": "documentation"
               },
               "depth": 3,
               "children": [
@@ -96,24 +77,16 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "type": "heading",
               "data": {
                 "level": 3,
-                "title": "Documentation",
-                "slug": "documentation"
+                "title": "Conventions",
+                "slug": "conventions"
               },
               "depth": 3
             }, {
               "type": "heading",
               "data": {
                 "level": 3,
-                "title": "Short Term To Do",
-                "slug": "short-term-to-do"
-              },
-              "depth": 3
-            }, {
-              "type": "heading",
-              "data": {
-                "level": 3,
-                "title": "Long Term To Do",
-                "slug": "long-term-to-do"
+                "title": "To Do",
+                "slug": "to-do"
               },
               "depth": 3
             }
@@ -129,6 +102,431 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
       "depth": 1,
       "children": [
         {
+          "type": "folder",
+          "data": {
+            "path": "src/confidence_intervals",
+            "title": "confidence_intervals"
+          },
+          "depth": 2,
+          "children": [
+            {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/confidence_intervals/on_difference_between_two_means.js",
+                "projectPath": "src/confidence_intervals/on_difference_between_two_means.js",
+                "targetPath": "src/confidence_intervals/on_difference_between_two_means",
+                "pageTitle": "src/confidence_intervals/on_difference_between_two_means",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "CI on the Difference between Two Means",
+                    "slug": "ci-on-the-difference-between-two-means",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Assumptions",
+                        "slug": "assumptions"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Use",
+                        "slug": "use"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Inline Comments",
+                        "slug": "inline-comments"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                },
+                "title": "CI on the Difference between Two Means"
+              },
+              "depth": 3,
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Assumptions",
+                    "slug": "assumptions"
+                  },
+                  "depth": 3
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Use",
+                    "slug": "use"
+                  },
+                  "depth": 3
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Inline Comments",
+                    "slug": "inline-comments"
+                  },
+                  "depth": 3
+                }
+              ]
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/confidence_intervals/on_difference_between_two_proportions.js",
+                "projectPath": "src/confidence_intervals/on_difference_between_two_proportions.js",
+                "targetPath": "src/confidence_intervals/on_difference_between_two_proportions",
+                "pageTitle": "src/confidence_intervals/on_difference_between_two_proportions",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "CI on the Difference between Two Proportions",
+                    "slug": "ci-on-the-difference-between-two-proportions",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Assumptions",
+                        "slug": "assumptions"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Use",
+                        "slug": "use"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Inline Comments",
+                        "slug": "inline-comments"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                },
+                "title": "CI on the Difference between Two Proportions"
+              },
+              "depth": 3,
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Assumptions",
+                    "slug": "assumptions"
+                  },
+                  "depth": 3
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Use",
+                    "slug": "use"
+                  },
+                  "depth": 3
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Inline Comments",
+                    "slug": "inline-comments"
+                  },
+                  "depth": 3
+                }
+              ]
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/confidence_intervals/on_mean.js",
+                "projectPath": "src/confidence_intervals/on_mean.js",
+                "targetPath": "src/confidence_intervals/on_mean",
+                "pageTitle": "src/confidence_intervals/on_mean",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "CI on the Mean",
+                    "slug": "ci-on-the-mean",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Assumptions",
+                        "slug": "assumptions"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Use",
+                        "slug": "use"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Inline Comments",
+                        "slug": "inline-comments"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                },
+                "title": "CI on the Mean"
+              },
+              "depth": 3,
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Assumptions",
+                    "slug": "assumptions"
+                  },
+                  "depth": 3
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Use",
+                    "slug": "use"
+                  },
+                  "depth": 3
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Inline Comments",
+                    "slug": "inline-comments"
+                  },
+                  "depth": 3
+                }
+              ]
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/confidence_intervals/on_proportion.js",
+                "projectPath": "src/confidence_intervals/on_proportion.js",
+                "targetPath": "src/confidence_intervals/on_proportion",
+                "pageTitle": "src/confidence_intervals/on_proportion",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "CI on the Proportion",
+                    "slug": "ci-on-the-proportion",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Assumptions",
+                        "slug": "assumptions"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Use",
+                        "slug": "use"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Inline Comments",
+                        "slug": "inline-comments"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                },
+                "title": "CI on the Proportion"
+              },
+              "depth": 3,
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Assumptions",
+                    "slug": "assumptions"
+                  },
+                  "depth": 3
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Use",
+                    "slug": "use"
+                  },
+                  "depth": 3
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Inline Comments",
+                    "slug": "inline-comments"
+                  },
+                  "depth": 3
+                }
+              ]
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/confidence_intervals/z.js",
+                "projectPath": "src/confidence_intervals/z.js",
+                "targetPath": "src/confidence_intervals/z",
+                "pageTitle": "src/confidence_intervals/z",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "Z Score",
+                    "slug": "z-score",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Assumptions",
+                        "slug": "assumptions"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Use",
+                        "slug": "use"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Inline Comments",
+                        "slug": "inline-comments"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                },
+                "title": "Z Score"
+              },
+              "depth": 3,
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Assumptions",
+                    "slug": "assumptions"
+                  },
+                  "depth": 3
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Use",
+                    "slug": "use"
+                  },
+                  "depth": 3
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Inline Comments",
+                    "slug": "inline-comments"
+                  },
+                  "depth": 3
+                }
+              ]
+            }
+          ]
+        }, {
           "type": "folder",
           "data": {
             "path": "src/continuous",
@@ -316,6 +714,36 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "depth": 3
                 }
               ]
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/continuous/inverse_erf.js",
+                "projectPath": "src/continuous/inverse_erf.js",
+                "targetPath": "src/continuous/inverse_erf",
+                "pageTitle": "src/continuous/inverse_erf",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "Inverse Error Function",
+                    "slug": "inverse-error-function",
+                    "isFileHeader": true
+                  },
+                  "depth": 1
+                },
+                "title": "Inverse Error Function"
+              },
+              "depth": 3,
+              "outline": []
             }, {
               "type": "file",
               "data": {
@@ -583,6 +1011,36 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                     "slug": "inline-comments"
                   },
                   "depth": 3
+                }
+              ]
+            }, {
+              "type": "folder",
+              "data": {
+                "path": "src/continuous/tables",
+                "title": "tables"
+              },
+              "depth": 3,
+              "children": [
+                {
+                  "type": "file",
+                  "data": {
+                    "language": {
+                      "nameMatchers": [".js"],
+                      "pygmentsLexer": "javascript",
+                      "multiLineComment": ["/*", "*", "*/"],
+                      "singleLineComment": ["//"],
+                      "ignorePrefix": "}",
+                      "foldPrefix": "^",
+                      "name": "JavaScript"
+                    },
+                    "sourcePath": "/Users/erictheise/Projects/erictheise/mctad.js/src/continuous/tables/t_distribution_table.js",
+                    "projectPath": "src/continuous/tables/t_distribution_table.js",
+                    "targetPath": "src/continuous/tables/t_distribution_table",
+                    "pageTitle": "src/continuous/tables/t_distribution_table",
+                    "title": "t_distribution_table"
+                  },
+                  "depth": 4,
+                  "outline": []
                 }
               ]
             }, {
@@ -1262,6 +1720,14 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                       "type": "heading",
                       "data": {
                         "level": 2,
+                        "title": "sign(n)",
+                        "slug": "signn"
+                      },
+                      "depth": 2
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
                         "title": "extend(destination, source)",
                         "slug": "extenddestination-source"
                       },
@@ -1327,6 +1793,14 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                     "level": 2,
                     "title": "allPositive(Array)",
                     "slug": "allpositivearray"
+                  },
+                  "depth": 2
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "sign(n)",
+                    "slug": "signn"
                   },
                   "depth": 2
                 }, {

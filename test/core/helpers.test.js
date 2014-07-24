@@ -27,7 +27,25 @@ describe('allPositive', function () {
   });
 });
 
+describe('sign', function () {
+  it('can return NaN when x is not a number', function () {
+    assert.deepEqual(mctad.sign('not a number'), NaN);
+  });
+  it('can return 0 when x is zero', function () {
+    assert.equal(mctad.sign(0), 0);
+  });
+  it('can return -1 when x is a negative number', function () {
+    assert.equal(mctad.sign(-42), -1);
+  });
+  it('can return 1 when x is a positive number', function () {
+    assert.equal(mctad.sign(42), 1);
+  });
+});
+
 describe('sortNumeric', function () {
+  it('can return undefined if passed undefined (as in the case of `mctad.discreteUniform().mode`', function () {
+    assert.isUndefined(mctad.sortNumeric(undefined));
+  });
   it('can leave a sorted array alone', function () {
     assert.deepEqual(mctad.sortNumeric([1, 2, 3, 4, 11]), [1, 2, 3, 4, 11], 'array should be unchanged');
   });
