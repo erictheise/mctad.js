@@ -6,21 +6,45 @@ overview: true
 
 ## Confidence Intervals
 
-### Large-Sample Confidence Intervals on the Population Mean
+__mctad.js__' implementation of confidence intervals draws heavily from Chapter 5 of William Navidi's _Statistics for Engineers and Scientists_ (McGraw-Hill, 2008). The data used here to illustrate their use (and used in the [unit tests](https://github.com/erictheise/mctad.js/blob/master/test/confidence_intervals/)) comes from journal artices cited in Navidi's text.
 
-If `data` is an array containing a large (_n_ > 30) number of random samples from a population with mean μ and standard deviation σ, so that the sample mean X̄ is approximately normal, then a level 100(1 - α) confidence interval for μ is
+### Confidence Intervals on the Population Mean
 
-X̄ ±z<sub>α/2</sub>σ<sub>X̄</sub>
+### `mctad.confidenceIntervalOnTheMean(X̄, s, n, α, type)`
 
+Consider Z. Yang, Y. Chen, and Y. Yang, "Study on the Life Distribution of Microdrills", _Journal of Engineering Manufacture_, 2002:301-305. This journal found that in a sample of 50 low-carbon alloy steel microdrills, the average lifetime (number of holes drilled before failure) was 12.68 with a standard deviation of 6.83.
+
+Because the sample size is large (n > 30), the two-tailed 95% confidence interval can be calculated using a Z Score as X̄ ± z<sub>α/2</sub>σ<sub>X̄</sub>
+
+{% highlight javascript %}
+> mctad.confidenceIntervalOnTheMean(12.68, 6.83, 50, 0.05);
+ [10.787739226564065, 14.572260773435934]
+>
+{% endhighlight %}
+
+A one-tailed confidence interval will be calculated if passed either 'l' or 'u' for the optional _type_ argument. The lower-tailed 99% confidence, then, is
+
+{% highlight javascript %}
+> mctad.confidenceIntervalOnTheMean(12.68, 6.83, 50, 0.01, 'l');
+  10.435143205815796
+>
+{% endhighlight %}
+
+Now consider K. Tan, K. Tong, and C. Tang, "Direct Strut-and-Tie Model for Prestressed Deep Beams", _Journal of Structural Engineering_, 2001:1076-1084. This article presents measurements of the nominal shear strength for a sample of 15 prestressed concrete beams. The average shear strength was 668.27 kN with a standard deviation of 192.089.
+
+Because the sample size is small (n ≤ 30), it is inappropriate to use the Standard Normal Distribution and a Z Score. An examination of the raw sample data reveals no strong asymmetry or outliers, so the two-tailed 99% confidence interval can be calculated using a t Score as X̄ ± t<sub>n-1, α/2</sub>σ<sub>X̄</sub>
+
+{% highlight javascript %}
+> mctad.confidenceIntervalOnTheMean(668.27, 192.089, 15, 0.01);
+  [520.6192352323235, 815.9207647676765]
+>
+{% endhighlight %}
+
+__mctad.js__ will switch between using Z Scores and t Scores based on the sample size, but makes no attempt to assess whether an assumption of normality in the sample data is warranted.
 
 ### Confidence Intervals on Proportions
-
-### Small-Sample Confidence Intervals on the Population Mean
 
 ### Confidence Intervals on the Difference between Two Means
 
 ### Confidence Intervals on the Difference between Two Proportions
 
-### Small-Sample Confidence Intervals on the Difference between Two Means
-
-### Confidence Intervals on Paired Data

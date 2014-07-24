@@ -36,23 +36,14 @@ There are also public methods for `sum` and `product`.
 
 When defined and non-trivial to implement, descriptive statistics are returned with any [probability distribution objects](#probability-distributions) you create.
 
-### <a name="core_and_helpers" class="anchor" href="#core_and_helpers"><span class="octicon octicon-link"></span></a>Core and Helpers
+### <a name="confidence-intervals" class="anchor" href="#confidence-intervals"><span class="octicon octicon-link"></span></a>Confidence Intervals
 
-__mctad.js__ has a number of methods, included in `/src/core`. __mctad.js__ uses them internally, but they are available for your use, and include
+__mctad.js__ can create one- and two-tailed [confidence intervals](confidence-intervals) on the:
 
-* `isInteger()`
-* `allPositive(Array)`
-* `sortNumeric(Array)`
-* `toRadians(v)`
-* `getBaseLog(x, y)`
-* `getRandomArbitrary(min, max)`
-* `getRandomInt(min, max)`
-* `factorial(n)`
-* `doubleFactorial(n)`
-* `combination(n, k)`
-* `Γ(n)`, aliased as `gamma(n)`
-
-Documentation for these is interspersed with the code, meaning the [Groc-generated documentation](doc) is the best place to see how they're implemented and to learn what they do.
+* population mean
+* proportion
+* difference between two means
+* difference between two proportions
 
 ### <a name="probability-distributions" class="anchor" href="#probability-distributions"><span class="octicon octicon-link"></span></a>Probability Distributions
 
@@ -74,6 +65,24 @@ __mctad.js__ can create many common discrete and continuous probability distribu
   * [Normal](continuous/normal/)
   * [Lognormal](continuous/lognormal/)
   * [Student's t](continuous/students_t/)
+
+### <a name="core_and_helpers" class="anchor" href="#core_and_helpers"><span class="octicon octicon-link"></span></a>Core and Helpers
+
+__mctad.js__ has a number of methods, included in `/src/core`. __mctad.js__ uses them internally, but they are available for your use, and include
+
+* `isInteger()`
+* `allPositive(Array)`
+* `sortNumeric(Array)`
+* `toRadians(v)`
+* `getBaseLog(x, y)`
+* `getRandomArbitrary(min, max)`
+* `getRandomInt(min, max)`
+* `factorial(n)`
+* `doubleFactorial(n)`
+* `combination(n, k)`
+* `Γ(n)`, aliased as `gamma(n)`
+
+Documentation for these is interspersed with the code, meaning the [Groc-generated documentation](doc) is the best place to see how they're implemented and to learn what they do.
 
 ### <a name="documentation" class="anchor" href="#documentation"><span class="octicon octicon-link"></span></a>Documentation
 
